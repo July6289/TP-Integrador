@@ -1,5 +1,23 @@
-<div class="imagen">
-  <h1>HOLAAA</h1>
-  <img src="assets/imagenes/cajas/Box_Backyard_BDSP.png" alt="caja 1">
+<div class="imagen" (mouseenter)="showButtons = false" (mouseleave)="showButtons = true">
+  <div class="left-column">
+    <p>Columna Izquierda</p>
+  </div>
+
+  <button class="small-column" *ngIf="showButtons">
+    <img src="assets/imagenes/cajas/flecha_izquierda.png" alt="toTheLeft">
+  </button>
+
+  <div class="center">
+    <img src="assets/imagenes/cajas/Box_Backyard_BDSP.png" alt="caja 1">
+  </div>
+
+  <button class="small-column" *ngIf="showButtons">
+    <img src="assets/imagenes/cajas/flecha_derecha.png" alt="toTheRight">
+  </button>
+
+  <div class="right-column">
+    <p>Columna Derecha</p>
+  </div>
 </div>
+
 <router-outlet></router-outlet>

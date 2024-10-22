@@ -1,6 +1,58 @@
 .imagen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 97vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  height: 97vh; /* El contenedor ocupará el 97% de la altura de la ventana visible */
+}
+
+.imagen img{
+  width: 100%;
+  height: auto;
+}
+
+.small-column {
+  flex: .05; /* Las columnas pequeñas ocupan menos espacio */
+  background-color: lightblue; /* Puedes cambiar el color para distinguirlas */
+  height: 100%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.center {
+  flex: 3; /* La parte central ocupa el doble de espacio que las columnas laterales */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.left-column{
+  flex: 1; /* Las columnas pequeñas ocupan menos espacio */
+  background-color: rgb(220, 152, 44); /* Puedes cambiar el color para distinguirlas */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+
+.right-column {
+  flex: 1;
+  background-color: rgb(220, 152, 44); /* Puedes cambiar el color para distinguirlas */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
