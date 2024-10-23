@@ -11,6 +11,5 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   title = 'pokebox';
-  showButtons: boolean = false; // Inicialmente, los botones no se muestran
 }
 

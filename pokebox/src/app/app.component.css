@@ -1,42 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Incluye el padding y el borde en el tamaño total */
+}
+
+/*------------------------------------------TOTALIDAD------------------------------------------*/
+
 .imagen {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: auto;
   height: 97vh; /* El contenedor ocupará el 97% de la altura de la ventana visible */
 }
 
-.imagen img{
-  width: 100%;
-  height: auto;
-}
+/*------------------------------------------BOTONES------------------------------------------*/
 
-.small-column {
-  flex: .05; /* Las columnas pequeñas ocupan menos espacio */
-  background-color: lightblue; /* Puedes cambiar el color para distinguirlas */
-  height: 100%;
+.button-container {
+  flex: 0.1; /* Las columnas pequeñas ocupan menos espacio */
+  background-color: white; /* Cambia el color según sea necesario */
+  height: 20%;
   border: none;
+  margin: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative; /* Importante para el posicionamiento absoluto de los botones */
   width: 100%;
+  border-radius: 35px;
 }
 
+.button-container:hover {
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño del contenedor al pasar el mouse */
+  background-color: lightgrey;
+  transition: transform 0.6s ease; /* Suaviza la transición */
+}
+
+.button-izq, .button-der {
+  opacity: 0; /* Inicialmente oculto */
+  transition: opacity 0.3s ease; /* Transición suave */
+  position: absolute; /* Coloca sobre otros elementos */
+  width: 100%; /* Ajusta el ancho según lo necesites */
+  height: 100%; /* Ajusta la altura según lo necesites */
+  border: none; /* Sin bordes */
+  background: none; /* Sin fondo */
+  display: flex; /* Para centrar la imagen */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.button-izq img, .button-der img {
+  max-width: 100%; /* Ajusta el ancho máximo */
+  max-height: 100%; /* Ajusta la altura máxima */
+  object-fit: contain; /* Mantiene la proporción sin deformar */
+}
+
+.button-container:hover .button-izq,
+.button-container:hover .button-der {
+  opacity: 1; /* Muestra el botón al pasar el mouse */
+}
+
+/*------------------------------------------ZONA CENTRAL------------------------------------------*/
 .center {
   flex: 3; /* La parte central ocupa el doble de espacio que las columnas laterales */
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: black;
+
 }
 
-img {
-  max-width: 100%;
-  height: auto;
+.center img {
+  max-width: 100%; 
+  max-height: 100%; 
+   /* Ajusta la imagen para cubrir el contenedor sin deformarse */
 }
 
-.left-column{
+/*------------------------------------------Columas Laterales------------------------------------------*/
+
+.left-column {
   flex: 1; /* Las columnas pequeñas ocupan menos espacio */
   background-color: rgb(220, 152, 44); /* Puedes cambiar el color para distinguirlas */
   height: 100%;
@@ -45,7 +87,6 @@ img {
   align-items: center;
   width: 100%;
 }
-
 
 .right-column {
   flex: 1;
