@@ -1,1 +1,121 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Incluye el padding y el borde en el tamaño total */
+}
+
+/*------------------------------------------TOTALIDAD------------------------------------------*/
+html, body{
+  height: 100%;
+}
+body
+{
+  background-color: black;
+}
+
+footer
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:lightgrey ;
+}
+.imagen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 97vh; /* El contenedor ocupará el 97% de la altura de la ventana visible */
+  border: none;/* Mantiene la proporción de la imagen, cubriendo el contenedor */
+  padding: 0;
+  margin: 0;
+  background-color: black;
+}
+/*------------------------------------------BOTONES------------------------------------------*/
+
+.button-container {
+  flex: 0.1; /* Las columnas pequeñas ocupan menos espacio */
+  background-color: rgb(0, 0, 0);
+  height: 30%; /*tamaño del botoncito*/
+  border: none;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Importante para el posicionamiento absoluto de los botones */
+  width: 100%;
+  border-radius: 35px;
+}
+
+.button-container:hover {
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño del contenedor al pasar el mouse */
+  background-color: rgb(149, 149, 149);
+  transition: transform 0.6s ease; /* Suaviza la transición */
+}
+
+.button-izq, .button-der {
+  opacity: 0; /* Inicialmente oculto */
+  transition: opacity 0.3s ease; /* Transición suave */
+  position: absolute; /* Coloca sobre otros elementos */
+  width: 100%; /* Ajusta el ancho según lo necesites */
+  height: 100%; /* Ajusta la altura según lo necesites */
+  border: none; /* Sin bordes */
+  background: none; /* Sin fondo */
+  display: flex; /* Para centrar la imagen */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.button-izq img, .button-der img {
+  max-width: 100%; /* Ajusta el ancho máximo */
+  max-height: 100%; /* Ajusta la altura máxima */
+  object-fit: contain; /* Mantiene la proporción sin deformar */
+}
+
+.button-container:hover .button-izq,
+.button-container:hover .button-der {
+  opacity: 1; /* Muestra el botón al pasar el mouse */
+}
+
+/*------------------------------------------ZONA CENTRAL------------------------------------------*/
+.center {
+  flex: 3; /* La parte central ocupa más espacio */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  width: 100%; /* Asegura que el contenedor use el 100% del ancho disponible */
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.center img {
+  width: 100%; /* Asegura que la imagen ocupe el 100% del ancho del contenedor */
+  height: 100%; /* Asegura que la imagen ocupe el 100% de la altura del contenedor */
+  object-fit: cover;
+  border: none;/* Mantiene la proporción de la imagen, cubriendo el contenedor */
+  padding: 0;
+  margin: 0;
+}
+/*------------------------------------------Columas Laterales------------------------------------------*/
+
+.left-column {
+  flex: 1; /* Las columnas pequeñas ocupan menos espacio */
+  background-color: rgb(7, 130, 29); /* Puedes cambiar el color para distinguirlas */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.right-column {
+  flex: 1;
+  background-color: rgb(7, 130, 29); /* Puedes cambiar el color para distinguirlas */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+}
