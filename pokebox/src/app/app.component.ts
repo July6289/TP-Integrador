@@ -55,6 +55,8 @@ export class AppComponent implements AfterViewInit {
 
   currentIndex: number = 0; // Índice actual
   currentImage: string = this.images[this.currentIndex]; // Imagen actual
+  currentBoxName: string = "Caja 1";
+
 
   ngAfterViewInit() {
     this.observeCenterElement();
@@ -114,10 +116,11 @@ export class AppComponent implements AfterViewInit {
   prevImage() {
     if (this.currentIndex > 0) {
       this.currentIndex--;
+
     } else {
       this.currentIndex = this.images.length - 1; // Si está en la primera, va a la última
     }
-    this.currentImage = this.images[this.currentIndex];
+    this.updateImageAndName()
   }
 
   // Función para ir a la siguiente imagen
@@ -127,6 +130,12 @@ export class AppComponent implements AfterViewInit {
     } else {
       this.currentIndex = 0; // Si está en la última, va a la primera
     }
+    this.updateImageAndName()
+  }
+
+  updateImageAndName() {
     this.currentImage = this.images[this.currentIndex];
+    this.currentBoxName = "Caja " + (this.currentIndex+1); // Actualiza el nombre de la caja
+    this.updateDominantColor(); // Recalcula el color dominante
   }
 }

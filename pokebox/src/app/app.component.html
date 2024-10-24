@@ -1,35 +1,47 @@
-
 <body>
+  <header>Favorites</header>
+  
+  <div class="imagen">
+    
+    <div class="left-column" [ngStyle]="{'background-color': leftColumnColor}">
 
-  <div class="imagen" >
+      <div class="infoPokedex">
+        a
+      </div>
 
-    <div class="left-column"  [ngStyle]="{'background-color': leftColumnColor}">
-      <p>Columna Izquierda</p>
+      <div class="equiposPokemon">
+        b
+      </div>
+
+      <button class="combate">
+        c
+      </button>
+
     </div>
-    <div class= "button-container">
+    <div class="button-container">
       <button class="button-izq" (click)="prevImage()">
         <img src="assets/imagenes/cajas/flecha_izquierda.png" alt="toTheLeft">
       </button>
-  
+
     </div>
-    
-    
-    <div class="center" #center >
+
+
+    <div class="center" #center>
       <img #imageElement [src]="currentImage" alt="caja 1">
-      <h1 [ngStyle]="{'background-color': leftColumnColor}" >Caja 1</h1>
+      <h1 class="caja" [ngStyle]="{'background-color': leftColumnColor}">{{ currentBoxName }}</h1>
     </div>
-    
-    <div class= "button-container" >
+
+    <div class="button-container">
       <button class="button-der" (click)="nextImage()">
         <img src="assets/imagenes/cajas/flecha_derecha.png" alt="toTheRight">
       </button>
     </div>
-    
+
     <div class="right-column" [ngStyle]="{'background-color': rightColumnColor}">
       <p>Columna Derecha</p>
     </div>
   </div>
- 
+
 </body>
 
 <router-outlet></router-outlet>

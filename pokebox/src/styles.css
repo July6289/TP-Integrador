@@ -1,15 +1,19 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* Incluye el padding y el borde en el tamaño total */
+  box-sizing: border-box;
+  /* Incluye el padding y el borde en el tamaño total */
 }
 
 /*------------------------------------------TOTALIDAD------------------------------------------*/
-html, body{
+html,
+body {
   height: 100%;
 }
-body
-{
+
+body {
+  display: flex;
+  flex-direction: column;
   background-color: black;
 }
 
@@ -20,86 +24,116 @@ body
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 97vh; /* El contenedor ocupará el 97% de la altura de la ventana visible */
-  border: none;/* Mantiene la proporción de la imagen, cubriendo el contenedor */
+  height: 82.5vh;
+  /* El contenedor ocupará el 97% de la altura de la ventana visible */
+  border: none;
+  /* Mantiene la proporción de la imagen, cubriendo el contenedor */
   padding: 0;
   margin: 0;
   background-color: black;
 }
+
 /*------------------------------------------BOTONES------------------------------------------*/
 
 .button-container {
-  flex: 0.1; /* Las columnas pequeñas ocupan menos espacio */
+  flex: 0.1;
+  /* Las columnas pequeñas ocupan menos espacio */
   background-color: rgb(0, 0, 0);
-  height: 30%; /*tamaño del botoncito*/
+  height: 30%;
+  /*tamaño del botoncito*/
   border: none;
   margin: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; /* Importante para el posicionamiento absoluto de los botones */
+  position: relative;
+  /* Importante para el posicionamiento absoluto de los botones */
   width: 100%;
   border-radius: 35px;
 }
 
 .button-container:hover {
-  transform: scale(1.1); /* Aumenta ligeramente el tamaño del contenedor al pasar el mouse */
+  transform: scale(1.1);
+  /* Aumenta ligeramente el tamaño del contenedor al pasar el mouse */
   background-color: rgb(149, 149, 149);
-  transition: transform 0.6s ease; /* Suaviza la transición */
-  height: 10%; 
+  transition: transform 0.6s ease;
+  /* Suaviza la transición */
+  height: 10%;
 }
 
-.button-izq, .button-der {
-  opacity: 0; /* Inicialmente oculto */
-  transition: opacity 0.3s ease; /* Transición suave */
-  position: absolute; /* Coloca sobre otros elementos */
-  width: 100%; /* Ajusta el ancho según lo necesites */
-  height: 100%; /* Ajusta la altura según lo necesites */
-  border: none; /* Sin bordes */
-  background: none; /* Sin fondo */
-  display: flex; /* Para centrar la imagen */
-  justify-content: center; /* Centrar horizontalmente */
-  align-items: center; /* Centrar verticalmente */
+.button-izq,
+.button-der {
+  opacity: 0;
+  /* Inicialmente oculto */
+  transition: opacity 0.3s ease;
+  /* Transición suave */
+  position: absolute;
+  /* Coloca sobre otros elementos */
+  width: 100%;
+  /* Ajusta el ancho según lo necesites */
+  height: 100%;
+  /* Ajusta la altura según lo necesites */
+  border: none;
+  /* Sin bordes */
+  background: none;
+  /* Sin fondo */
+  display: flex;
+  /* Para centrar la imagen */
+  justify-content: center;
+  /* Centrar horizontalmente */
+  align-items: center;
+  /* Centrar verticalmente */
 }
 
-.button-izq img, .button-der img {
-  max-width: 100%; /* Ajusta el ancho máximo */
-  max-height: 100%; /* Ajusta la altura máxima */
-  object-fit: contain; /* Mantiene la proporción sin deformar */
+.button-izq img,
+.button-der img {
+  max-width: 100%;
+  /* Ajusta el ancho máximo */
+  max-height: 100%;
+  /* Ajusta la altura máxima */
+  object-fit: contain;
+  /* Mantiene la proporción sin deformar */
 }
 
 .button-container:hover .button-izq,
 .button-container:hover .button-der {
-  opacity: 1; /* Muestra el botón al pasar el mouse */
+  opacity: 1;
+  /* Muestra el botón al pasar el mouse */
 }
 
 /*------------------------------------------ZONA CENTRAL------------------------------------------*/
 .center {
-  flex: 3; /* La parte central ocupa más espacio */
+  flex: 3;
+  /* La parte central ocupa más espacio */
   display: flex;
   justify-content: center;
   flex-direction: column;
   background-color: black;
-  width: 100%; /* Asegura que el contenedor use el 100% del ancho disponible */
+  width: 100%;
+  /* Asegura que el contenedor use el 100% del ancho disponible */
   height: 100%;
   padding: 0;
   margin: 0;
 }
 
-h1 {
+.caja {
   color: aliceblue;
   text-align: center;
-  margin-top: 10px; /* Si deseas agregar un poco de espacio superior */
+  margin-top: 5px;
+  /* Si deseas agregar un poco de espacio superior */
   border-radius: 10px;
- 
+
 }
 
 
 .center img {
-  width: 100%; /* Asegura que la imagen ocupe el 100% del ancho del contenedor */
-  height: 100%; /* Asegura que la imagen ocupe el 100% de la altura del contenedor */
+  width: 100%;
+  /* Asegura que la imagen ocupe el 100% del ancho del contenedor */
+  height: 100%;
+  /* Asegura que la imagen ocupe el 100% de la altura del contenedor */
   object-fit: cover;
-  border: none;/* Mantiene la proporción de la imagen, cubriendo el contenedor */
+  border: none;
+  /* Mantiene la proporción de la imagen, cubriendo el contenedor */
   padding: 0;
   margin: 0;
 }
@@ -109,8 +143,47 @@ h1 {
 /*------------------------------------------Columas Laterales------------------------------------------*/
 
 .left-column {
-  flex: 1; /* Las columnas pequeñas ocupan menos espacio */
-  background-color: rgb(7, 130, 29); /* Puedes cambiar el color para distinguirlas */
+  flex: 1;
+  /* Las columnas pequeñas ocupan menos espacio */
+  background-color: rgb(7, 130, 29);
+  /* Puedes cambiar el color para distinguirlas */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+.infoPokedex,
+.equiposPokemon,
+.combate {
+  flex: 0.33;
+  display: flex;
+  background-color: rgba(255, 165, 0, 0.7);
+  padding-left: 120px;
+  padding-right: 120px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoPokedex,
+.equiposPokemon,
+.combate h1 {
+  color: black;
+}
+
+.combate
+{
+  border-radius: 19px;
+}
+
+.right-column {
+  flex: 1;
+  background-color: rgb(7, 130, 29);
+  /* Puedes cambiar el color para distinguirlas */
   height: 100%;
   display: flex;
   justify-content: center;
@@ -118,12 +191,14 @@ h1 {
   width: 100%;
 }
 
-.right-column {
-  flex: 1;
-  background-color: rgb(7, 130, 29); /* Puedes cambiar el color para distinguirlas */
-  height: 100%;
+/*------------------------------------------Header Favoritos------------------------------------------*/
+
+header {
   display: flex;
   justify-content: center;
+  color: BLACK;
   align-items: center;
-  width:100%;
+  padding: 57px;
+  background-color: aquamarine;
+
 }
