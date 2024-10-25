@@ -3,18 +3,18 @@
 
   <div class="imagen">
 
-    <div class="left-column" [ngStyle]="{'background-color': leftColumnColor}">
+    <div class="left-column">
 
       <div class="infoPokedex">
         a
       </div>
 
-      <div class="equiposPokemon">
-        b
-      </div>
+      <fieldset class="equiposPokemon">
+        <legend class="nombre">Equipos Pokemon</legend>
+      </fieldset>
 
       <button class="combate">
-        c
+       
       </button>
 
     </div>
@@ -37,7 +37,7 @@
       </button>
     </div>
 
-    <div class="right-column" [ngStyle]="{'background-color': rightColumnColor}">
+    <div class="right-column" >
       <p>Columna Derecha</p>
     </div>
   </div>
