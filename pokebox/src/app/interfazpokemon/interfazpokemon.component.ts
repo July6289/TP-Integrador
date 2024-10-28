@@ -1,29 +1,16 @@
 export interface Pokemon {
-  base_experience:          number;
-  cries:                    Cries;
-  forms:                    Species[];
-  game_indices:             GameIndex[];
-  height:                   number;
-  held_items:               HeldItem[];
+  cries:                    Cries; //
+  forms:                    Species[]; //
+  game_indices:             GameIndex[]; //
+  held_items:               HeldItem[]; //
   id:                       number;
   is_default:               boolean;
-  location_area_encounters: string;
-  moves:                    Move[];
   name:                     string;
-  order:                    number;
-  past_abilities:           any[];
-  past_types:               any[];
-  species:                  Species;
+  order:                    number; //
+  past_types:               any[]; //
+  species:                  Species; //
   sprites:                  Sprites;
-  stats:                    Stat[];
   types:                    Type[];
-  weight:                   number;
-}
-
-export interface Ability {
-  ability:   Species;
-  is_hidden: boolean;
-  slot:      number;
 }
 
 export interface Species {
@@ -49,11 +36,6 @@ export interface HeldItem {
 export interface VersionDetail {
   rarity:  number;
   version: Species;
-}
-
-export interface Move {
-  move:                  Species;
-  version_group_details: VersionGroupDetail[];
 }
 
 export interface VersionGroupDetail {
@@ -173,12 +155,6 @@ export interface DreamWorld {
 
 export interface GenerationViii {
   icons: DreamWorld;
-}
-
-export interface Stat {
-  base_stat: number;
-  effort:    number;
-  stat:      Species;
 }
 
 export interface Type {
