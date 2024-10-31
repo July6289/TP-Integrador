@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { PokemonpagesComponent } from './pages/pokemonpages/pokemonpages.component';
+import { PokemonpagesComponent } from './pokemonpages/pokemonpages.component';
 
 export const routes: Routes = [
 {

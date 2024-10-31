@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PokeservicesService } from '../pokeservices/pokeservices.service';
 import { Pokemon } from '../interfazpokemon/interfazpokemon.component';
-import { PokemonpagesComponent } from '../pages/pokemonpages/pokemonpages.component';
+import { PokemonpagesComponent } from '../pokemonpages/pokemonpages.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
