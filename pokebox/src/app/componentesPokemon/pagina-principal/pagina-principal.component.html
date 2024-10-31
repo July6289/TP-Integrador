@@ -1,11 +1,22 @@
-<div>
+<div class="totalidad" >
   <div id="perfil">
     <button (click)="goToPerfil()">perfil</button>
   </div>
 
-  <app-lista-equipo-pokemon></app-lista-equipo-pokemon>
-  <app-lista-pokemon></app-lista-pokemon>
-  <app-caja></app-caja>
-  <app-info-pokedex></app-info-pokedex>
+  <div class="lista-izquierda">
+    <app-lista-equipo-pokemon></app-lista-equipo-pokemon>
+  </div>
+
+  <div class="lista-pokemon">
+    <app-lista-pokemon></app-lista-pokemon>
+  </div>
+
+  <div class="caja-central">
+    <app-caja></app-caja>
+  </div>
+
+  <div class="info-derecha">
+    <app-info-pokedex></app-info-pokedex>
+  </div>
 
 </div>
