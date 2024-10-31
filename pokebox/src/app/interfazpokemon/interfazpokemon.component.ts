@@ -1,16 +1,26 @@
 export interface Pokemon {
-  cries:                    Cries; //
   forms:                    Species[]; //
   game_indices:             GameIndex[]; //
-  held_items:               HeldItem[]; //
   id:                       number;
   is_default:               boolean;
   name:                     string;
-  order:                    number; //
-  past_types:               any[]; //
   species:                  Species; //
   sprites:                  Sprites;
   types:                    Type[];
+}
+
+/* puchamon va a tener:
+
+nombre
+sprite de adelante y de atras (comun y shiny)
+tipos
+info pokedex (creo q no esta en la pokeapi)
+debera tener un atributo personalizzado que sera a vida
+
+*/
+export interface Type {
+  slot: number;
+  type: Species;
 }
 
 export interface Species {
@@ -18,30 +28,29 @@ export interface Species {
   url:  string;
 }
 
-export interface Cries {
-  latest: string;
-  legacy: string;
-}
-
 export interface GameIndex {
   game_index: number;
   version:    Species;
-}
-
-export interface HeldItem {
-  item:            Species;
-  version_details: VersionDetail[];
-}
-
-export interface VersionDetail {
-  rarity:  number;
-  version: Species;
 }
 
 export interface VersionGroupDetail {
   level_learned_at:  number;
   move_learn_method: Species;
   version_group:     Species;
+}
+
+export interface Sprites {
+  back_default:       string;
+  back_female:        null;
+  back_shiny:         string;
+  back_shiny_female:  null;
+  front_default:      string;
+  front_female:       null;
+  front_shiny:        string;
+  front_shiny_female: null;
+  other?:             Other;
+  versions?:          Versions;
+  animated?:          Sprites;
 }
 
 export interface GenerationV {
@@ -72,19 +81,6 @@ export interface Other {
   showdown:           Sprites;
 }
 
-export interface Sprites {
-  back_default:       string;
-  back_female:        null;
-  back_shiny:         string;
-  back_shiny_female:  null;
-  front_default:      string;
-  front_female:       null;
-  front_shiny:        string;
-  front_shiny_female: null;
-  other?:             Other;
-  versions?:          Versions;
-  animated?:          Sprites;
-}
 
 export interface GenerationI {
   "red-blue": RedBlue;
@@ -155,9 +151,4 @@ export interface DreamWorld {
 
 export interface GenerationViii {
   icons: DreamWorld;
-}
-
-export interface Type {
-  slot: number;
-  type: Species;
 }
