@@ -1,0 +1,32 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+  }
+
+button{
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 17px;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border: 2px solid goldenrod;
+  transition-duration: 0.3s;
+}
+
+button:hover {
+  background-color: goldenrod;
+  color: white;
+}
+
+.teams
+{
+  flex: 8;
+  background-color: rgb(155, 117, 23);
+  width: 93%;
+  height: 100%;
+}
+
+
+
