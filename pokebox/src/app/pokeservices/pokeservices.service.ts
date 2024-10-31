@@ -10,7 +10,7 @@ export class PokeservicesService {
 
   constructor(private http:HttpClient) { }
 
-  urlBase: string='https://pokeapi.co/api/v2/pokemon/1';
+  urlBase: string='https://pokeapi.co/api/v2/pokemon/pikachu';
 getPokemon():Observable<Pokemon|undefined>{
   return this.http.get<Pokemon>(this.urlBase).pipe(
     catchError( (error)=>{
