@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  /* Para ocupar toda la altura disponible */
+}
+
+.caja-contenido {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  /* Ocupa el espacio restante, empujando el footer hacia abajo */
+}
+
+.nombrecaja {
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  /* Para que ocupe todo el ancho */
+}
