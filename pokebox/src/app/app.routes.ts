@@ -29,6 +29,6 @@ export const routes: Routes = [
 },
 {
   path:'**',
-  redirectTo: 'search-pokemon'
+  redirectTo: 'main-page'
 }
 ];
