@@ -4,6 +4,7 @@
   justify-content: center;
   width: 100%;
   height: 100%;
+  background-color: #95A98B;
 }
 
 button {
@@ -12,17 +13,30 @@ button {
   font-size: 17px;
   background-color: white;
   color: black;
-  border: 2px solid goldenrod;
+  border: 2px solid #4A7B59;
   transition-duration: 0.3s;
   margin-left: 16%
 }
 
 button:hover {
-  background-color: goldenrod;
+  background-color: #4A7B59;
   color: white;
 }
 
 .teams {
   flex: 8;
-  background-color: rgb(155, 117, 23);
+  background-color: #95A98B;
+  overflow-y: auto;
+  max-height: 300px;
+
+}
+
+::-webkit-scrollbar{
+  background-color: rgb(146, 146, 146);
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb
+{
+  background-color: #4A7B59;
 }

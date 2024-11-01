@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  width: 100%;
   /* Para ocupar toda la altura disponible */
 }
 
@@ -21,3 +22,34 @@
   width: 100%;
   /* Para que ocupe todo el ancho */
 }
+
+.imagencaja
+{
+  width: 10%;
+  height: auto;
+}
+
+.Lbutton,.Rbutton {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: white;
+  border: 2px solid #4A7B59;
+  transition-duration: 0.3s;
+}
+
+.Lbutton:hover, .Rbutton:hover{
+  background-color: #4A7B59;
+  color: white;
+}
+
+.Limagen , .Rimagen{
+  width: 100%;
+  height: 100%;
+}
+

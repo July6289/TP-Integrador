@@ -5,9 +5,9 @@
     margin-top: 70%;
   }
 
-  .botones {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 33%;
+.botones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 33%;
   }
