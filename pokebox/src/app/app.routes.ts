@@ -3,6 +3,7 @@ import { PokemonpagesComponent } from './pokemonpages/pokemonpages.component';
 import { PerfilComponent } from './componentesPokemon/perfil/perfil.component';
 import { EquipoPokemonComponent } from './componentesPokemon/equipo-pokemon/equipo-pokemon.component';
 import { PaginaPrincipalComponent } from './componentesPokemon/pagina-principal/pagina-principal.component';
+import { SearchPokemonComponent } from './search-pokemon/search-pokemon.component';
 
 export const routes: Routes = [
 {
@@ -23,7 +24,11 @@ export const routes: Routes = [
   component: PaginaPrincipalComponent,
 },
 {
+  path:'search-pokemon',
+  component:SearchPokemonComponent,
+},
+{
   path:'**',
-  redirectTo: 'main-page'
+  redirectTo: 'search-pokemon'
 }
 ];
