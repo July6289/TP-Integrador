@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { PokeservicesService } from '../pokeservices/pokeservices.service';
-import { Pokemon } from '../interfazpokemon/interfazpokemon.component';
+import { Pokemon } from '../interfazpokemon/interfazpokemon.inteface';
 import { HttpClientModule } from '@angular/common/http';
 import { PokemonpagesComponent } from '../pokemonpages/pokemonpages.component';
 import { FormsModule } from '@angular/forms';
@@ -22,9 +22,9 @@ export class SearchPokemonComponent implements OnInit {
 
 
 
-  obtenerpokemon()
+  obtenerPokemonPorNombre()
   {
-    this.pokeservice.getPokemon(this.nombrePokemon).subscribe(
+    this.pokeservice.getPokemonByName(this.nombrePokemon).subscribe(
     {
       next: (poke: Pokemon | undefined) => {
         console.log(poke)
@@ -41,9 +41,6 @@ export class SearchPokemonComponent implements OnInit {
 
 
     )
-
-
-
 
   }
 

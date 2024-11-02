@@ -1,5 +1,12 @@
 <div>
   <div id="input">
-    <input type="text" placeholder="pon el n° de la generacion">
+    <input type="number" (input)="buscarPokemonPorGeneracion($event)" placeholder="pon el n° de la generacion">
+  <div class="pokemon">
+    @for (pokemon of listaPokemon; track $index) {
+      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name"/>
+
+    }
+  </div>
   </div>
 </div>
+
