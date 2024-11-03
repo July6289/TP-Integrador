@@ -5,10 +5,11 @@
   /* Habilita el scroll vertical */
   border: 1px solid #ccc;
   /* Opcional: para ver los límites del contenedor */
-  padding: 10px;
+  padding: 1%;
   /* Espaciado interno */
-  margin-top: 10px;
+  margin-top: 1%;
   /* Espaciado superior */
+  max-width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -38,6 +39,6 @@ button:hover {
 }
 
 .seleccionado {
-  border: 2px solid blue;
+  border: 1px solid blue;
   border-radius: 8px;
 }

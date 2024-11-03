@@ -7,5 +7,5 @@
     </div>
   </div>
 
-  <button (click)="agregarPokemonACaja()">Agregar a la Caja</button>
+  <button class="agregar" *ngIf="mostrarBotonAgregar" (click)="agregarPokemonACaja()">Agregar a la Caja</button>
 </div>
