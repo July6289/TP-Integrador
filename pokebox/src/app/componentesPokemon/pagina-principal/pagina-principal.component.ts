@@ -6,6 +6,7 @@ import { CajaComponent } from "../caja/caja.component";
 import { InfoPokedexComponent } from "../info-pokedex/info-pokedex.component";
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
 
 @Component({
   selector: 'pagina-principal',
@@ -15,14 +16,17 @@ import { CommonModule } from '@angular/common';
   styleUrl: './pagina-principal.component.css'
 })
 export class PaginaPrincipalComponent {
-  constructor(private router: Router)
-  {}
-  color='brown';
+  pokemonSeleccionado?: Pokemon; // Variable para guardar el Pokémon seleccionado
 
+  constructor(private router: Router) { }
+  color = 'brown';
 
-
-  goToPerfil()
-  {
+  goToPerfil() {
     this.router.navigate(['/perfil']);
+  }
+
+  // Función para recibir el Pokémon desde CajaComponent
+  onPokemonSeleccionado(pokemon: Pokemon) {
+    this.pokemonSeleccionado = pokemon;
   }
 }

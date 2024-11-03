@@ -1,13 +1,11 @@
-<div class="botones">
-  <div id="macho">
-    <button>macho</button>
-  </div>
+<div *ngIf="pokemon">
+  <h2>{{ pokemon.name | uppercase }}</h2>
+  <img *ngIf="spriteUrl" [src]="spriteUrl" alt="{{ pokemon.name }} sprite" class="sprite-grande">
 
-  <div id="hembra">
-    <button>hembra</button>
-  </div>
-
-  <div id="shiny">
-    <button>shiny</button>
+  <div class="botones">
+    <button (click)="mostrarMacho()">Macho</button>
+    <button (click)="mostrarHembra()">Hembra</button>
+    <button (click)="mostrarShiny()">Shiny</button>
   </div>
 </div>
+
