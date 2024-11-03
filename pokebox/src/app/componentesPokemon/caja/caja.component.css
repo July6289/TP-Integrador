@@ -16,8 +16,10 @@
 
 .caja-grid {
   position: relative;
-  width: 800px; /* Ajusta el tamaño según lo necesites */
-  height: 800px; /* Ajusta el tamaño según lo necesites */
+  width: 800px;
+  /* Ajusta el tamaño según lo necesites */
+  height: 800px;
+  /* Ajusta el tamaño según lo necesites */
 }
 
 .imagencaja {
@@ -27,20 +29,24 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1; /* Imagen de fondo */
+  z-index: 1;
+  /* Imagen de fondo */
 }
 
 .pokemon-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr); /* 6 columnas */
-  grid-template-rows: repeat(5, 1fr); /* 5 filas */
+  grid-template-columns: repeat(6, 1fr);
+  /* 6 columnas */
+  grid-template-rows: repeat(5, 1fr);
+  /* 5 filas */
   gap: 5px;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 2; /* Pokémon sobre la imagen */
+  z-index: 2;
+  /* Pokémon sobre la imagen */
 }
 
 .pokemon {
@@ -54,7 +60,13 @@
   height: 120%;
 }
 
-.Lbutton, .Rbutton {
+.seleccionado {
+  border: 1px solid blue;
+  border-radius: 8px;
+}
+
+.Lbutton,
+.Rbutton {
   width: 3rem;
   height: 3rem;
   display: flex;
@@ -68,20 +80,22 @@
   transition-duration: 0.3s;
 }
 
-.Lbutton{
+.Lbutton {
   margin-left: -22%;
 }
 
-.Rbutton{
+.Rbutton {
   margin-left: 22%;
 }
 
-.Lbutton:hover, .Rbutton:hover {
+.Lbutton:hover,
+.Rbutton:hover {
   background-color: #4A7B59;
   color: white;
 }
 
-.Limagen, .Rimagen {
+.Limagen,
+.Rimagen {
   width: 100%;
   height: 100%;
 }

@@ -13,6 +13,7 @@ import { filter } from 'rxjs/operators';
   templateUrl: './lista-pokemon.component.html',
   styleUrls: ['./lista-pokemon.component.css']
 })
+
 export class ListaPokemonComponent {
   listaPokemon: Pokemon[] = [];
   pokemonSeleccionado: number | null = null;  // Índice del Pokémon seleccionado
@@ -35,10 +36,6 @@ export class ListaPokemonComponent {
   seleccionarPokemon(indice: number) {
     this.pokemonSeleccionado = indice;
   }
-
-
-
-
 
   agregarPokemonACaja() {
     if (this.pokemonSeleccionado !== null) {

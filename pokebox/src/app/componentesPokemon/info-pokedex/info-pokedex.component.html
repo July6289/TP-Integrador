@@ -1,3 +1,9 @@
+<div *ngIf="selectedPokemon">
+  <h2>{{ selectedPokemon.name | titlecase }}</h2>
+  <img [src]="selectedPokemon.sprites.front_default" alt="{{ selectedPokemon.name }}">
+</div>
+
+
 <div class="botones">
   <div id="macho">
     <button>macho</button>

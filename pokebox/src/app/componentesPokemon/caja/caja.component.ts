@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
+import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 
 interface Caja {
   imagen: string;          // Ruta de la imagen de la caja
@@ -14,9 +15,11 @@ interface Caja {
   templateUrl: './caja.component.html',
   styleUrls: ['./caja.component.css']
 })
+
 export class CajaComponent {
   private readonly MAX_POKEMON = 30; // Límite máximo de Pokémon en cada caja
   private readonly TOTAL_CAJAS = 32;  // Número total de cajas disponibles
+  pokemonSeleccionado: Pokemon | null = null;  // Índice del Pokémon seleccionado
 
   // Arreglo de cajas, inicializadas con imágenes y listas vacías de Pokémon
   cajas: Caja[] = Array.from({ length: this.TOTAL_CAJAS }, (_, index) => ({
@@ -25,6 +28,8 @@ export class CajaComponent {
   }));
 
   indiceCaja: number = 0;             // Índice de la caja actual
+
+  constructor(private pokeService: PokeservicesService) { } // Inyectar el servicio
 
   get pokemonesEnCaja(): Pokemon[] {
     return this.cajas[this.indiceCaja].pokemones; // Lista de Pokémon de la caja actual
@@ -51,7 +56,7 @@ export class CajaComponent {
     if (this.indiceCaja > 0) {
       this.indiceCaja--;
     }
-    else{
+    else {
       this.indiceCaja = this.TOTAL_CAJAS - 1
     }
   }
@@ -60,8 +65,15 @@ export class CajaComponent {
     if (this.indiceCaja < this.TOTAL_CAJAS - 1) {
       this.indiceCaja++;
     }
-    else{
-      this.indiceCaja=0;
+    else {
+      this.indiceCaja = 0;
     }
+  }
+
+  // Método para manejar el clic en el Pokémon
+  onPokemonClick(pokemon: Pokemon): void {
+    console.log("Pokemon seleccionado:", pokemon); // Agregar log para verificar
+    this.pokemonSeleccionado=pokemon;
+    this.pokeService.setSelectedPokemon(pokemon); // Establecer el Pokémon seleccionado
   }
 }
