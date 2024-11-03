@@ -1,7 +1,43 @@
-.pokemon{
-  max-height: 700px; /* Ajusta la altura máxima según tus necesidades */
-  overflow-y: auto; /* Habilita el scroll vertical */
-  border: 1px solid #ccc; /* Opcional: para ver los límites del contenedor */
-  padding: 10px; /* Espaciado interno */
-  margin-top: 10px; /* Espaciado superior */
+.pokemon {
+  max-height: 700px;
+  /* Ajusta la altura máxima según tus necesidades */
+  overflow-y: auto;
+  /* Habilita el scroll vertical */
+  border: 1px solid #ccc;
+  /* Opcional: para ver los límites del contenedor */
+  padding: 10px;
+  /* Espaciado interno */
+  margin-top: 10px;
+  /* Espaciado superior */
+}
+
+::-webkit-scrollbar {
+  background-color: rgb(146, 146, 146);
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4A7B59;
+}
+
+button {
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 17px;
+  background-color: white;
+  color: black;
+  border: 2px solid #4A7B59;
+  transition-duration: 0.3s;
+  margin-left: 33%;
+  margin-top: 8%;
+}
+
+button:hover {
+  background-color: #4A7B59;
+  color: white;
+}
+
+.seleccionado {
+  border: 2px solid blue;
+  border-radius: 8px;
 }

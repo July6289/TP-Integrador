@@ -5,31 +5,56 @@
   justify-content: space-between;
   height: 100%;
   width: 100%;
-  /* Para ocupar toda la altura disponible */
 }
 
-.caja-contenido {
+.caja-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
-  /* Ocupa el espacio restante, empujando el footer hacia abajo */
+  position: relative;
 }
 
-.nombrecaja {
-  text-align: center;
-  padding: 10px;
+.caja-grid {
+  position: relative;
+  width: 800px; /* Ajusta el tamaño según lo necesites */
+  height: 800px; /* Ajusta el tamaño según lo necesites */
+}
+
+.imagencaja {
   width: 100%;
-  /* Para que ocupe todo el ancho */
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; /* Imagen de fondo */
 }
 
-.imagencaja
-{
-  width: 10%;
-  height: auto;
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 columnas */
+  grid-template-rows: repeat(5, 1fr); /* 5 filas */
+  gap: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Pokémon sobre la imagen */
 }
 
-.Lbutton,.Rbutton {
+.pokemon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokemon-imagen {
+  width: 120%; /* Ajusta el tamaño de los Pokémon */
+  height: 120%;
+}
+
+.Lbutton, .Rbutton {
   width: 3rem;
   height: 3rem;
   display: flex;
@@ -43,13 +68,19 @@
   transition-duration: 0.3s;
 }
 
-.Lbutton:hover, .Rbutton:hover{
+.Lbutton:hover, .Rbutton:hover {
   background-color: #4A7B59;
   color: white;
 }
 
-.Limagen , .Rimagen{
+.Limagen, .Rimagen {
   width: 100%;
   height: 100%;
 }
 
+.nombrecaja {
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  font-size: xx-large;
+}

@@ -1,17 +1,28 @@
-<div class="caja-contenido">
+<div class="caja-container">
   <div id="botonIz">
-    <button class="Lbutton" >
-      <img  class="Limagen" src="/assets/imagenes/cajas/flecha_izquierda.png" alt="caja">
+    <button class="Lbutton">
+      <img class="Limagen" src="/assets/imagenes/cajas/flecha_izquierda.png" alt="caja">
     </button>
   </div>
 
-  <img  clas="imagencaja" src="/assets/imagenes/cajas/1.png" alt="caja">
+  <div class="caja-grid">
+    <!-- Imagen de fondo de la caja -->
+    <img class="imagencaja" src="/assets/imagenes/cajas/1.png" alt="caja">
+
+    <!-- Cuadrícula de Pokémon sobre la imagen -->
+    <div class="pokemon-grid">
+      <div *ngFor="let pokemon of pokemonesEnCaja" class="pokemon">
+        <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="pokemon-imagen">
+      </div>
+    </div>
+  </div>
 
   <div id="botonDer">
-    <button class="Rbutton" >
-      <img  class="Rimagen" src="/assets/imagenes/cajas/flecha_derecha.png" alt="caja">
+    <button class="Rbutton">
+      <img class="Rimagen" src="/assets/imagenes/cajas/flecha_derecha.png" alt="caja">
     </button>
   </div>
 </div>
 
-<footer class="nombrecaja">caja 1</footer>
+<footer class="nombrecaja">Caja 1</footer>
+
