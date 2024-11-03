@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
+
+interface Caja {
+  imagen: string;          // Ruta de la imagen de la caja
+  pokemones: Pokemon[];    // Lista de Pokémon en esta caja
+}
 
 @Component({
   selector: 'app-caja',
@@ -10,14 +15,47 @@ import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
   styleUrls: ['./caja.component.css']
 })
 export class CajaComponent {
-  private readonly MAX_POKEMON = 30; // Límite máximo de Pokémon en la caja
-  pokemonesEnCaja: Pokemon[] = []; // Lista de Pokémon en la caja
+  private readonly MAX_POKEMON = 30; // Límite máximo de Pokémon en cada caja
+  private readonly TOTAL_CAJAS = 5;  // Número total de cajas disponibles
+
+  // Arreglo de cajas, inicializadas con imágenes y listas vacías de Pokémon
+  cajas: Caja[] = Array.from({ length: this.TOTAL_CAJAS }, (_, index) => ({
+    imagen: `/assets/imagenes/cajas/${index + 1}.png`, // Ruta de imagen dinámica
+    pokemones: []                                       // Pokémon iniciales vacíos
+  }));
+
+  indiceCaja: number = 0;             // Índice de la caja actual
+
+  get pokemonesEnCaja(): Pokemon[] {
+    return this.cajas[this.indiceCaja].pokemones; // Lista de Pokémon de la caja actual
+  }
+
+  get imagenCaja(): string {
+    return this.cajas[this.indiceCaja].imagen; // Imagen de la caja actual
+  }
+
+  get nombreCaja(): string {
+    return `Caja ${this.indiceCaja + 1}`; // Nombre de la caja actual
+  }
 
   agregarPokemon(pokemon: Pokemon) {
-    if (this.pokemonesEnCaja.length < this.MAX_POKEMON) {
-      this.pokemonesEnCaja.push(pokemon);
+    const cajaActual = this.cajas[this.indiceCaja];
+    if (cajaActual.pokemones.length < this.MAX_POKEMON) {
+      cajaActual.pokemones.push(pokemon);
     } else {
       console.warn('No se pueden agregar más Pokémon a la caja. Límite alcanzado.');
+    }
+  }
+
+  cambiarCajaAnterior() {
+    if (this.indiceCaja > 0) {
+      this.indiceCaja--;
+    }
+  }
+
+  cambiarCajaSiguiente() {
+    if (this.indiceCaja < this.TOTAL_CAJAS - 1) {
+      this.indiceCaja++;
     }
   }
 }
