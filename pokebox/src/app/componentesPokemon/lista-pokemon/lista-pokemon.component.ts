@@ -38,6 +38,10 @@ export class ListaPokemonComponent implements OnInit {
   }
 
   pokeService = inject(PokeservicesService);
+  numeroGeneracion?:number=undefined;  //numero de generacion ingresado en el buscador
+  validacion:boolean=true;
+  mensajeError:string='';
+
 
   seleccionarPokemon(indice: number) {
     this.pokemonSeleccionado = indice;
@@ -70,9 +74,18 @@ export class ListaPokemonComponent implements OnInit {
     }
   }
 
-  buscarPokemonPorGeneracion(dato: any) {
-    if (dato.target.value !== '') {
-      this.pokeService.getPokemonByGeneration(dato.target.value).subscribe(
+  buscarPokemonPorGeneracion() {
+    if (this.numeroGeneracion !=undefined) {
+      if(this.numeroGeneracion<=0)
+      {
+
+        this.validacion=false;
+        this.mensajeError='numero de generacion invalido';
+      }
+      else
+      {
+      this.validacion=true;
+      this.pokeService.getPokemonByGeneration(this.numeroGeneracion).subscribe(
         {
           next: (respuesta) => {
             if (respuesta != undefined) {
@@ -88,12 +101,28 @@ export class ListaPokemonComponent implements OnInit {
                   }
                 )
               })
+              this.listaPokemon.sort((a,b)=>a.id-b.id) //ordeno por id
             }
+            else{
+              this.validacion=false;
+              this.mensajeError='el numero de generación no esta disponible';
+            }
+
           }
         }
+
       )
+    }
     } else {
-      this.listaPokemon = [];
+      this.validacion=false;
+      this.mensajeError='campos invalidos, ingrese datos validos';
     }
   }
+
+
+
+
+
+
+
 }

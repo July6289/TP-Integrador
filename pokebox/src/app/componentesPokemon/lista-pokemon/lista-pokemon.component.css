@@ -21,7 +21,7 @@
   background-color: #4A7B59;
 }
 
-button {
+.agregar {
   border-radius: 8px;
   padding: 10px 12px;
   font-size: 17px;
@@ -33,7 +33,7 @@ button {
   margin-top: 8%;
 }
 
-button:hover {
+.agregar:hover {
   background-color: #4A7B59;
   color: white;
 }
@@ -41,4 +41,8 @@ button:hover {
 .seleccionado {
   border: 1px solid blue;
   border-radius: 8px;
+}
+.mensajeError{
+color: red;
+
 }
