@@ -41,6 +41,27 @@ export class ListaPokemonComponent implements OnInit {
   seleccionarPokemon(indice: number) {
     this.pokemonSeleccionado = indice;
   }
+  seleccionarPokemon2(indice: number) {
+    this.pokemonSeleccionado = indice;
+    if (this.pokemonSeleccionado !== null) {
+      const pokemon = this.listaPokemon[this.pokemonSeleccionado];
+      this.pokemonAgregado.emit(pokemon); // Emite el Pokémon seleccionado
+      this.listaPokemon.splice(this.pokemonSeleccionado, 1); // Elimina el Pokémon de la lista
+      this.pokemonSeleccionado = null; // Reinicia la selección
+    }
+  }
+
+
+  agregarPokemonAEquipo() {
+    if (this.pokemonSeleccionado !== null) {
+      const pokemon = this.listaPokemon[this.pokemonSeleccionado];
+      this.pokemonAgregado.emit(pokemon); // Emite el Pokémon seleccionado
+      this.listaPokemon.splice(this.pokemonSeleccionado, 1); // Elimina el Pokémon de la lista
+      this.pokemonSeleccionado = null; // Reinicia la selección
+    }
+  }
+
+
 
   agregarPokemonACaja() {
     if (this.pokemonSeleccionado !== null) {
