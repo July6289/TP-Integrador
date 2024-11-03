@@ -4,6 +4,7 @@ import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
+import { Location } from '@angular/common';  // Importa Location
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -15,20 +16,24 @@ import { filter } from 'rxjs/operators';
 })
 export class ListaPokemonComponent implements OnInit {
   listaPokemon: Pokemon[] = [];
-  pokemonSeleccionado: number | null = null;  // Índice del Pokémon seleccionado
-  @Output() pokemonAgregado = new EventEmitter<Pokemon>(); // Evento para enviar el Pokémon a la caja
+  pokemonSeleccionado: number | null = null;
+  @Output() pokemonAgregado = new EventEmitter<Pokemon>();
   mostrarBotonAgregar = true;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private location: Location) {}  // Inyecta Location
 
   ngOnInit(): void {
-    // Escucha los cambios en la URL y verifica si estamos en "/equipo-pokemon"
+    this.checkRoute();
     this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)  // Filtra solo eventos de finalización de navegación
-    ).subscribe((event: any) => {
-      this.mostrarBotonAgregar = event.url !== '/equipo-pokemon';
-      this.mostrarBotonAgregar ===false;
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.checkRoute();  // Llama a la función checkRoute en cada cambio de URL
     });
+  }
+
+  checkRoute(): void {
+    // Obtiene la ruta actual y verifica si es "/equipo-pokemon"
+    this.mostrarBotonAgregar = !this.location.path().includes('/equipo-pokemon');
   }
 
   pokeService = inject(PokeservicesService);
@@ -40,9 +45,9 @@ export class ListaPokemonComponent implements OnInit {
   agregarPokemonACaja() {
     if (this.pokemonSeleccionado !== null) {
       const pokemon = this.listaPokemon[this.pokemonSeleccionado];
-      this.pokemonAgregado.emit(pokemon);  // Emite el Pokémon seleccionado
-      this.listaPokemon.splice(this.pokemonSeleccionado, 1);  // Remueve el Pokémon de la lista
-      this.pokemonSeleccionado = null;  // Limpia la selección
+      this.pokemonAgregado.emit(pokemon);
+      this.listaPokemon.splice(this.pokemonSeleccionado, 1);
+      this.pokemonSeleccionado = null;
     }
   }
 
@@ -52,7 +57,7 @@ export class ListaPokemonComponent implements OnInit {
         {
           next: (respuesta) => {
             if (respuesta != undefined) {
-              this.listaPokemon = [];  // Limpia la lista antes de cargar nuevos Pokémon
+              this.listaPokemon = [];
               respuesta.pokemon_species.map((pokemonEspecie) => {
                 this.pokeService.getPokemonByName(pokemonEspecie.name).subscribe(
                   {
