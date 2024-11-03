@@ -1,4 +1,4 @@
-import { Component, inject, Output, EventEmitter } from '@angular/core';
+import { Component, inject, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
@@ -13,13 +13,13 @@ import { filter } from 'rxjs/operators';
   templateUrl: './lista-pokemon.component.html',
   styleUrls: ['./lista-pokemon.component.css']
 })
-export class ListaPokemonComponent {
+export class ListaPokemonComponent implements OnInit {
   listaPokemon: Pokemon[] = [];
   pokemonSeleccionado: number | null = null;  // Índice del Pokémon seleccionado
   @Output() pokemonAgregado = new EventEmitter<Pokemon>(); // Evento para enviar el Pokémon a la caja
+  mostrarBotonAgregar = true;
 
   constructor(private router: Router) {}
-  mostrarBotonAgregar = true;
 
   ngOnInit(): void {
     // Escucha los cambios en la URL y verifica si estamos en "/equipo-pokemon"
@@ -27,6 +27,7 @@ export class ListaPokemonComponent {
       filter(event => event instanceof NavigationEnd)  // Filtra solo eventos de finalización de navegación
     ).subscribe((event: any) => {
       this.mostrarBotonAgregar = event.url !== '/equipo-pokemon';
+      this.mostrarBotonAgregar ===false;
     });
   }
 
@@ -35,10 +36,6 @@ export class ListaPokemonComponent {
   seleccionarPokemon(indice: number) {
     this.pokemonSeleccionado = indice;
   }
-
-
-
-
 
   agregarPokemonACaja() {
     if (this.pokemonSeleccionado !== null) {
