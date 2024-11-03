@@ -1,24 +1,51 @@
 :host{
-
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100vh;
-  background-color: #c2d6c4;
-
+  background-color: #819875;
 }
 
 .listaPokemon
 {
   max-height: 50%;
-  flex-grow: 1;
+  flex-grow: 2;
   overflow-y: auto;
+  border-radius: 15PX;
+
+  background-color: #E5F9E0;
+
+}
+
+.pokemon-imagen{
+  width: 200%;
+  height: 200%;
+  padding: 2%;
+}
+.poketeam
+{
+  background-color: #819875;
+  width: 50%;
+  flex: 2;
+  border-radius: 15PX;
+}
+
+.pokemon-grid {
+  display: flex; /* Usa Flexbox para alinear los Pokémon en línea */
+  flex-wrap: wrap; /* Permite que los Pokémon se ajusten a múltiples líneas si no hay suficiente espacio */
+  gap: 10px; /* Espaciado entre los Pokémon */
+  justify-content: center;
+  align-items: center; /* Centra los Pokémon en el contenedor */
 }
 
 .zonabotones {
-  flex: 1;
+  background-color: #E5F9E0;
+  flex: .5;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10%;
+  border-radius: 15PX;
 }
 
 

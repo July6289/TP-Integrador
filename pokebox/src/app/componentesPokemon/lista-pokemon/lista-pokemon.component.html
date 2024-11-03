@@ -1,11 +1,27 @@
-<div>
+<div class="/main-page" *ngIf="mostrarBotonAgregar">
   <div id="input">
     <input type="number" (input)="buscarPokemonPorGeneracion($event)" placeholder="pon el n° de la generacion">
     <div class="pokemon">
       <img *ngFor="let pokemon of listaPokemon; let i = index" [src]="pokemon.sprites.front_default"
         [alt]="pokemon.name" (click)="seleccionarPokemon(i)" [class.seleccionado]="pokemonSeleccionado === i" />
     </div>
+
   </div>
 
-  <button class="agregar" *ngIf="mostrarBotonAgregar" (click)="agregarPokemonACaja()">Agregar a la Caja</button>
+  <button class="agregar" (click)="agregarPokemonACaja()">Agregar a la Caja</button>
+</div>
+
+<div class="/equipo-pokemon" *ngIf="mostrarBotonAgregar===false">
+
+    <div id="input">
+      <input type="number" (input)="buscarPokemonPorGeneracion($event)" placeholder="pon el n° de la generacion">
+      <div class="pokemon">
+        <img *ngFor="let pokemon of listaPokemon; let i = index" [src]="pokemon.sprites.front_default"
+          [alt]="pokemon.name" (click)="seleccionarPokemon2(i)"  [class.seleccionado]="pokemonSeleccionado === i" />
+      </div>
+
+    </div>
+
+
+
 </div>

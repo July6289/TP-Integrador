@@ -1,13 +1,26 @@
 <div class="listaPokemon">
-  <app-lista-pokemon></app-lista-pokemon>
+  <app-lista-pokemon (pokemonAgregado)="agregarPokemon($event)"></app-lista-pokemon>
+</div>
+
+<div class="poketeam">
+  <div class="pokemon-grid">
+    <div *ngFor="let pokemon of pokemonesEnCaja" class="pokemon" (click)="seleccionarPokemon(pokemon)">
+      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="pokemon-imagen">
+    </div>
+  </div>
 </div>
 
 <footer class="zonabotones">
-  <div >
-    <button class="agregar">agregar</button>
-  </div>
-
   <div>
-    <button  class="eliminar">eliminar</button>
+    <button class="agregar">Agregar Pokemon</button>
+  </div>
+  <div>
+    <button class="eliminar">Eliminar Pokemon</button>
+  </div>
+  <div>
+    <button class="eliminar">Guardar Equipo</button>
+  </div>
+  <div>
+    <button class="eliminar">Cambiar nombre Equipo</button>
   </div>
 </footer>
