@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
 
 interface Caja {
@@ -15,8 +15,6 @@ interface Caja {
   styleUrls: ['./caja.component.css']
 })
 export class CajaComponent {
-  @Output() pokemonSeleccionado = new EventEmitter<Pokemon>(); // Emisor para el Pokémon seleccionado
-
   private readonly MAX_POKEMON = 30; // Límite máximo de Pokémon en cada caja
   private readonly TOTAL_CAJAS = 32;  // Número total de cajas disponibles
 
@@ -53,7 +51,7 @@ export class CajaComponent {
     if (this.indiceCaja > 0) {
       this.indiceCaja--;
     }
-    else {
+    else{
       this.indiceCaja = this.TOTAL_CAJAS - 1
     }
   }
@@ -62,13 +60,8 @@ export class CajaComponent {
     if (this.indiceCaja < this.TOTAL_CAJAS - 1) {
       this.indiceCaja++;
     }
-    else {
-      this.indiceCaja = 0;
+    else{
+      this.indiceCaja=0;
     }
-  }
-
-  // Nueva función para manejar el clic en un Pokémon
-  seleccionarPokemon(pokemon: Pokemon) {
-    this.pokemonSeleccionado.emit(pokemon);
   }
 }
