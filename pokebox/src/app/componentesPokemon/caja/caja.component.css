@@ -68,6 +68,14 @@
   transition-duration: 0.3s;
 }
 
+.Lbutton{
+  margin-left: -22%;
+}
+
+.Rbutton{
+  margin-left: 22%;
+}
+
 .Lbutton:hover, .Rbutton:hover {
   background-color: #4A7B59;
   color: white;
