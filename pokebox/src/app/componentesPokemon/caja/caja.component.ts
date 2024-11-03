@@ -16,7 +16,7 @@ interface Caja {
 })
 export class CajaComponent {
   private readonly MAX_POKEMON = 30; // Límite máximo de Pokémon en cada caja
-  private readonly TOTAL_CAJAS = 5;  // Número total de cajas disponibles
+  private readonly TOTAL_CAJAS = 32;  // Número total de cajas disponibles
 
   // Arreglo de cajas, inicializadas con imágenes y listas vacías de Pokémon
   cajas: Caja[] = Array.from({ length: this.TOTAL_CAJAS }, (_, index) => ({
@@ -51,11 +51,17 @@ export class CajaComponent {
     if (this.indiceCaja > 0) {
       this.indiceCaja--;
     }
+    else{
+      this.indiceCaja = this.TOTAL_CAJAS - 1
+    }
   }
 
   cambiarCajaSiguiente() {
     if (this.indiceCaja < this.TOTAL_CAJAS - 1) {
       this.indiceCaja++;
+    }
+    else{
+      this.indiceCaja=0;
     }
   }
 }
