@@ -11,3 +11,43 @@
   justify-content: center;
   gap: 33%;
 }
+
+.macho, .hembra, .shiny {
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 17px;
+  background-color: white;
+  color: black;
+  border: 2px solid #4A7B59;
+  transition-duration: 0.3s;
+}
+
+.macho:hover, .hembra:hover, .shiny:hover {
+  background-color: #4A7B59;
+  color: white;
+}
+
+.info{
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.nombre{
+  margin-top: -100%;
+  margin-left: 30%;
+  margin-bottom: -140%;
+  font-size: xx-large;
+  align-items: center;
+  justify-content: center;
+}
+
+.pokemon{
+  justify-content: center;
+  align-items: center;
+  margin-top: 130%;
+  margin-bottom: -30%;
+  height: 320px;
+  width: 320px;
+}

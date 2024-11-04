@@ -11,6 +11,10 @@ export class PokeservicesService {
   private selectedPokemonSubject = new BehaviorSubject<Pokemon | null>(null); // BehaviorSubject para el Pokémon seleccionado
   selectedPokemon$ = this.selectedPokemonSubject.asObservable(); // Observable para suscribirse a los cambios
 
+  // Nueva propiedad para mantener el sprite actual del Pokémon seleccionado
+  private spriteActualSubject = new BehaviorSubject<string | null>(null);
+  spriteActual$ = this.spriteActualSubject.asObservable()
+
   constructor(private http: HttpClient) { }
 
   urlBase: string = 'https://pokeapi.co/api/v2';
@@ -36,9 +40,15 @@ export class PokeservicesService {
 
   setSelectedPokemon(pokemon: Pokemon): void {
     this.selectedPokemonSubject.next(pokemon); // Emitir el Pokémon seleccionado
+    this.setSpriteActual(pokemon.sprites.front_default); // Inicialmente el sprite normal
   }
 
   getSelectedPokemon(): Pokemon | null {
     return this.selectedPokemonSubject.value; // Obtener el valor actual
+  }
+
+  // Método para actualizar el sprite actual
+  setSpriteActual(spriteUrl: string): void {
+    this.spriteActualSubject.next(spriteUrl);
   }
 }

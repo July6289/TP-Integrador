@@ -15,7 +15,7 @@
 }
 
 .caja-grid {
-  position: relative;
+  position:relative;
   width: 800px;
   /* Ajusta el tamaño según lo necesites */
   height: 800px;
@@ -57,7 +57,7 @@
 
 .pokemon-imagen {
   width: 120%; /* Ajusta el tamaño de los Pokémon */
-  height: 120%;
+  height: 82%;
 }
 
 .seleccionado {

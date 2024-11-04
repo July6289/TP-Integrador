@@ -1,19 +1,15 @@
-<div *ngIf="selectedPokemon">
-  <h2>{{ selectedPokemon.name | titlecase }}</h2>
-  <img [src]="selectedPokemon.sprites.front_default" alt="{{ selectedPokemon.name }}">
-</div>
-
-
-<div class="botones">
-  <div id="macho">
-    <button>macho</button>
+<div class="info">
+  <div *ngIf="selectedPokemon">
+    <h2 class="nombre">{{ selectedPokemon.name | titlecase }}</h2>
+    <img [src]="spriteActual" alt="{{ selectedPokemon.name }}" class="pokemon">
   </div>
 
-  <div id="hembra">
-    <button>hembra</button>
-  </div>
 
-  <div id="shiny">
-    <button>shiny</button>
+  <div class="botones">
+    <button class="macho" (click)="cambiarAMacho()">macho</button>
+
+    <button class="hembra" (click)="cambiarAHembra()">hembra</button>
+
+    <button class="shiny" (click)="cambiarAShiny()">shiny</button>
   </div>
 </div>

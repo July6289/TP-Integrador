@@ -12,14 +12,44 @@ import { CommonModule } from '@angular/common';
 })
 export class InfoPokedexComponent implements OnInit {
   selectedPokemon: Pokemon | null = null;
+  spriteActual: string | null = null;
 
-  constructor(private pokeService: PokeservicesService) {}
+  constructor(private pokeService: PokeservicesService) { }
 
   ngOnInit(): void {
     // Suscribirse al observable para obtener el Pokémon seleccionado
     this.pokeService.selectedPokemon$.subscribe(pokemon => {
       this.selectedPokemon = pokemon; // Actualizar el Pokémon seleccionado
-      console.log("Pokemon actualizado en InfoPokedex:", pokemon); // Agregar log para verificar
     });
+
+    // Suscribirse al sprite actual
+    this.pokeService.spriteActual$.subscribe(sprite => {
+      this.spriteActual = sprite;
+    })
+  }
+
+  cambiarAMacho() {
+    if (this.selectedPokemon) {
+      const spriteUrl = this.selectedPokemon.sprites.front_default;
+      if (spriteUrl) {
+        this.pokeService.setSpriteActual(spriteUrl);
+      }
+    }
+  }
+
+  cambiarAHembra() {
+    if (this.selectedPokemon) {
+      const spriteUrl = this.selectedPokemon.sprites.front_female || this.selectedPokemon.sprites.front_default;
+      this.pokeService.setSpriteActual(spriteUrl);
+    }
+  }
+
+  cambiarAShiny() {
+    if (this.selectedPokemon) {
+      const spriteUrl = this.selectedPokemon.sprites.front_shiny;
+      if (spriteUrl) {
+        this.pokeService.setSpriteActual(spriteUrl);
+      }
+    }
   }
 }

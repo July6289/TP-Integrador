@@ -20,6 +20,7 @@ export class CajaComponent {
   private readonly MAX_POKEMON = 30; // Límite máximo de Pokémon en cada caja
   private readonly TOTAL_CAJAS = 32;  // Número total de cajas disponibles
   pokemonSeleccionado: Pokemon | null = null;  // Índice del Pokémon seleccionado
+  spriteActual: string | null = null;
 
   // Arreglo de cajas, inicializadas con imágenes y listas vacías de Pokémon
   cajas: Caja[] = Array.from({ length: this.TOTAL_CAJAS }, (_, index) => ({
@@ -29,7 +30,14 @@ export class CajaComponent {
 
   indiceCaja: number = 0;             // Índice de la caja actual
 
-  constructor(private pokeService: PokeservicesService) { } // Inyectar el servicio
+  constructor(private pokeService: PokeservicesService) {
+    // Suscribirse al sprite actual
+    this.pokeService.spriteActual$.subscribe(sprite => {
+      if (this.pokemonSeleccionado) {
+        this.spriteActual = sprite;
+      }
+    });
+  } // Inyectar el servicio
 
   get pokemonesEnCaja(): Pokemon[] {
     return this.cajas[this.indiceCaja].pokemones; // Lista de Pokémon de la caja actual
@@ -72,8 +80,7 @@ export class CajaComponent {
 
   // Método para manejar el clic en el Pokémon
   onPokemonClick(pokemon: Pokemon): void {
-    console.log("Pokemon seleccionado:", pokemon); // Agregar log para verificar
-    this.pokemonSeleccionado=pokemon;
+    this.pokemonSeleccionado = pokemon;
     this.pokeService.setSelectedPokemon(pokemon); // Establecer el Pokémon seleccionado
   }
 }
