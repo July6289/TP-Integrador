@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-equipo-pokemon',
@@ -24,7 +25,13 @@ export class EquipoPokemonComponent {
       equipo: []
     }
 
-  constructor(private equipoPokemonService: EquipoPokemonService) { }
+  constructor(private equipoPokemonService: EquipoPokemonService, private router: Router) {}
+
+  goToMainPage()
+  {
+    this.router.navigate(['/main-page']);
+  }
+  
 
   seleccionarPokemon(pokemon: Pokemon) {
     if (this.pokemonesEnEquipo.length < 6) {

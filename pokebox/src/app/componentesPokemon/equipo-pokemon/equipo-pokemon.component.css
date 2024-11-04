@@ -68,9 +68,8 @@
 }
 
 
-.agregar,
-.guardar,
-.cambiar {
+
+.agregar, .guardar, .cambiar, .main{
   width: 80%;
   height: auto;
   margin: 0;
@@ -103,10 +102,9 @@
   transition-duration: 0.3s;
 }
 
-.guardar:hover,
-.agregar:hover,
-.cambiar:hover,
-.eliminar:hover {
+
+.guardar:hover, .agregar:hover, .cambiar:hover, .eliminar:hover, .main:hover {
+
   background-color: #4A7B59;
   color: white;
 }
