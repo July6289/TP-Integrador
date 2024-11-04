@@ -1,7 +1,7 @@
 <div class="info">
   <div *ngIf="selectedPokemon">
     <h2 class="nombre">{{ selectedPokemon.name | titlecase }}</h2>
-    <img [src]="spriteActual" alt="{{ selectedPokemon.name }}" class="pokemon">
+    <img [src]="spriteUrl" alt="{{ selectedPokemon.name }}" class="pokemon">
   </div>
 
 

@@ -5,8 +5,6 @@ import { PaginaPrincipalComponent } from './componentesPokemon/pagina-principal/
 import { ListaEquipoPokemonComponent } from './componentesPokemon/lista-equipo-pokemon/lista-equipo-pokemon.component';
 import { PaginaLogueoComponent } from './componentesPokemon/pagina-logueo/pagina-logueo.component';
 
-
-
 export const routes: Routes = [
   {
     path: 'perfil',

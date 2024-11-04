@@ -12,44 +12,38 @@ import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.intefa
 })
 export class InfoPokedexComponent implements OnInit {
   selectedPokemon: Pokemon | null = null;
-  spriteActual: string | null = null;
+  spriteUrl: string = '';
 
   constructor(private pokeService: PokeservicesService) { }
 
   ngOnInit(): void {
     // Suscribirse al observable para obtener el Pokémon seleccionado
     this.pokeService.selectedPokemon$.subscribe(pokemon => {
-      this.selectedPokemon = pokemon; // Actualizar el Pokémon seleccionado
+      this.selectedPokemon = pokemon;
+      this.updateSprite();
     });
 
-    // Suscribirse al sprite actual
-    this.pokeService.spriteActual$.subscribe(sprite => {
-      this.spriteActual = sprite;
-    })
+    // Suscribirse a los cambios de género y brillo
+    this.pokeService.esMacho$.subscribe(() => this.updateSprite());
+    this.pokeService.esShiny$.subscribe(() => this.updateSprite());
   }
 
-  cambiarAMacho() {
-    if (this.selectedPokemon) {
-      const spriteUrl = this.selectedPokemon.sprites.front_default;
-      if (spriteUrl) {
-        this.pokeService.setSpriteActual(spriteUrl);
-      }
-    }
+  cambiarAMacho(): void {
+    this.pokeService.setEsMacho(true);
   }
 
-  cambiarAHembra() {
-    if (this.selectedPokemon) {
-      const spriteUrl = this.selectedPokemon.sprites.front_female || this.selectedPokemon.sprites.front_default;
-      this.pokeService.setSpriteActual(spriteUrl);
-    }
+
+  cambiarAHembra(): void {
+    this.pokeService.setEsMacho(false);
   }
 
-  cambiarAShiny() {
-    if (this.selectedPokemon) {
-      const spriteUrl = this.selectedPokemon.sprites.front_shiny;
-      if (spriteUrl) {
-        this.pokeService.setSpriteActual(spriteUrl);
-      }
-    }
+  cambiarAShiny(): void {
+    // Alternar el estado de shiny
+    const nuevoEstadoShiny = !this.pokeService.getEsShiny();
+    this.pokeService.setEsShiny(nuevoEstadoShiny);
+  }
+
+  private updateSprite(): void {
+    this.spriteUrl = this.pokeService.getSprite(this.selectedPokemon);
   }
 }
