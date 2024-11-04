@@ -110,7 +110,7 @@ export class ListaPokemonComponent implements OnInit {
                   }
                 )
               })
-              this.listaPokemon.sort((a,b)=>a.id-b.id) //ordeno por id
+              setTimeout(()=>{this.listaPokemon.sort((a,b)=>a.id-b.id)},1000);//ordeno por id //y le dejo un tiempo de espera
             }
             else{
               this.validacion=false;
