@@ -2,6 +2,8 @@ import { Router, RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
 import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
 import { EquipoPokemonComponent } from "../equipo-pokemon/equipo-pokemon.component";
+import { EquipoPokemon } from '../../interfazpokemon/interfazEquipo.interface';
+import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 
 @Component({
   selector: 'app-lista-equipo-pokemon',
@@ -12,16 +14,19 @@ import { EquipoPokemonComponent } from "../equipo-pokemon/equipo-pokemon.compone
 })
 export class ListaEquipoPokemonComponent {
 
-  constructor(private router: Router)
-  {}
+  constructor(private router: Router, private equipoPokemonService: EquipoPokemonService){}
 
-  equiposPokemon: Pokemon[] = [];
+  equiposPokemon: EquipoPokemon | null = null;
 
-  manejarEquipoCompleto(equipo: Pokemon[]) {
-    this.equiposPokemon = equipo;
-    console.log('Equipo Pokémon recibido:', this.equiposPokemon);
-    // Aquí puedes manejar la lógica que necesites con el equipo recibido
+  ngOnInit() {
+    this.equipoPokemonService.equipoPokemon$.subscribe(equipo => {
+      if (equipo) {
+        this.equiposPokemon = equipo;
+        console.log('Equipo Pokémon recibido:', this.equiposPokemon);
+      }
+    });
   }
+
 
   goToCrearEquipo()
   {

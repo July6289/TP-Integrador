@@ -2,6 +2,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { ListaPokemonComponent } from "../lista-pokemon/lista-pokemon.component";
 import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
 import { CommonModule } from '@angular/common';
+import { EquipoPokemon } from '../../interfazpokemon/interfazEquipo.interface';
+import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 
 @Component({
   selector: 'app-equipo-pokemon',
@@ -11,11 +13,19 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./equipo-pokemon.component.css'] // Corrige 'styleUrl' a 'styleUrls'
 })
 export class EquipoPokemonComponent {
+
   @Output() pokemonSeleccionado = new EventEmitter<Pokemon>(); // Emisor para el Pokémon seleccionado
-  @Output() equipoSeleccionado = new EventEmitter<Pokemon[]>(); // Emisor para el Pokémon seleccionado
+  @Output() equipoSeleccionado = new EventEmitter<EquipoPokemon>(); // Emisor para el Pokémon seleccionado
   pokemonesEnEquipo: Pokemon[] = []; // Arreglo para almacenar Pokémon en el equipo
   pokeaux:Pokemon[]=[];
+  equipoPokemon:EquipoPokemon=
+  {
+    nombre:"",
+    equipo:[]
+  }
 
+  constructor(private equipoPokemonService: EquipoPokemonService) {}
+  
   seleccionarPokemon(pokemon: Pokemon) {
     if (this.pokemonesEnEquipo.length < 6) {
       this.pokeaux = [pokemon];
@@ -52,15 +62,18 @@ export class EquipoPokemonComponent {
     this.pokemonesEnEquipo = this.pokemonesEnEquipo.filter(p => p !== pokemon);
   }
 
-  guardarEquipo()
-  {
-    if(this.pokemonesEnEquipo.length ===6)
-    {
-      this.equipoSeleccionado.emit(this.pokemonesEnEquipo);
-      this.pokemonesEnEquipo=[];
-    }
-    else{
-      alert('Debe tener 6 pokemon!')
+  guardarEquipo() {
+    if (this.pokemonesEnEquipo.length === 6) {
+      const nombre = prompt('Ponele un nombre a tu equipo!', 'ejemplo: Equipo dinamita');
+      this.equipoPokemon = {
+        nombre: String(nombre),
+        equipo: this.pokemonesEnEquipo
+      };
+      this.equipoPokemonService.actualizarEquipo(this.equipoPokemon);
+      this.pokemonesEnEquipo = [];
+    } else {
+      alert('Debe tener 6 pokemon!');
     }
   }
 }
+
