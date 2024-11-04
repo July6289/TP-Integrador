@@ -41,6 +41,7 @@ export class ListaEquipoPokemonComponent {
   eliminarElemento(index: number) {
     this.equipoPokemonService.eliminarEquipo(index);
   }
+
   goToCrearEquipo()
   {
     this.router.navigate(['/equipo-pokemon']);

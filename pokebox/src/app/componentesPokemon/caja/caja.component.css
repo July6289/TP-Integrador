@@ -5,6 +5,7 @@
   justify-content: space-between;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 .caja-container {
@@ -12,53 +13,51 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  width: 100%;
+  max-width: 90vw;
+  overflow: hidden;
 }
 
 .caja-grid {
   position: relative;
-  width: 800px;
-  /* Ajusta el tamaño según lo necesites */
-  height: 800px;
-  /* Ajusta el tamaño según lo necesites */
+  width: 70vw;
+  height: 70vw;
+  max-width: 700px;
+  max-height: 700px;
+  overflow: hidden; /* Evita que los elementos se salgan del contenedor */
+  border-radius: 12px; /* Añade bordes redondeados si es necesario */
 }
 
 .imagencaja {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Asegura que la imagen de fondo llene todo el contenedor */
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
-  /* Imagen de fondo */
 }
 
 .pokemon-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  /* 6 columnas */
   grid-template-rows: repeat(5, 1fr);
-  /* 5 filas */
   gap: 5px;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
-  /* Pokémon sobre la imagen */
-}
-
-.pokemon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 10px; /* Añade espacio alrededor de los Pokémon */
+  box-sizing: border-box;
+  overflow: hidden; /* Asegura que nada se salga del área */
 }
 
 .pokemon-imagen {
-  width: 120%;
-  /* Ajusta el tamaño de los Pokémon */
-  height: 82%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Asegura que las imágenes se ajusten dentro de cada celda */
+  max-width: 100%; /* Evita que se extiendan demasiado */
+  max-height: 100%; /* Evita que se extiendan demasiado */
 }
 
 .seleccionado {
@@ -82,11 +81,11 @@
 }
 
 .Lbutton {
-  margin-left: -22%;
+  margin-right: 2rem;
 }
 
 .Rbutton {
-  margin-left: 22%;
+  margin-left: 2rem;
 }
 
 .Lbutton:hover,
@@ -104,6 +103,7 @@
 .nombrecaja {
   text-align: center;
   padding: 10px;
+  font-size: 1.5rem;
   width: 100%;
-  font-size: xx-large;
+  max-width: 90vw;
 }
