@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
-import { Caja } from '../../interfaz-caja/interfazCaja.inteface';
+import { Caja } from '../../interfaces/interfaz-caja/interfazCaja.inteface';
+import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 
 @Component({
   selector: 'app-caja',
