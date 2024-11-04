@@ -31,7 +31,7 @@ export class EquipoPokemonComponent {
   {
     this.router.navigate(['/main-page']);
   }
-  
+
 
   seleccionarPokemon(pokemon: Pokemon) {
     if (this.pokemonesEnEquipo.length < 6) {
@@ -69,15 +69,15 @@ export class EquipoPokemonComponent {
 
   guardarEquipo() {
     if (this.pokemonesEnEquipo.length === 6) {
-      const nombre = prompt('Ponele un nombre a tu equipo!', 'ejemplo: Equipo dinamita');
+      const nombre = prompt('Ponle un nombre a tu equipo!', 'Ejemplo: Equipo Dinamita');
       this.equipoPokemon = {
         nombre: String(nombre),
         equipo: this.pokemonesEnEquipo
       };
-      this.equipoPokemonService.actualizarEquipo(this.equipoPokemon);
+      this.equipoPokemonService.actualizarEquipo(this.equipoPokemon);  // Actualiza el equipo en el arreglo
       this.pokemonesEnEquipo = [];
     } else {
-      alert('Debe tener 6 pokemon!');
+      alert('Debe tener 6 Pokémon en el equipo.');
     }
   }
 }

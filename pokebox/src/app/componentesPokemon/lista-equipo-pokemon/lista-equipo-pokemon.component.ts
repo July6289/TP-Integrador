@@ -20,15 +20,12 @@ export class ListaEquipoPokemonComponent {
   poketeam: EquipoPokemon[]=[];
 
   ngOnInit() {
-    this.equipoPokemonService.equipoPokemon$.subscribe(equipo => {
-    
-      if (equipo) {
-        this.agregarElemento(equipo, this.poketeam.length);
-        console.log('Equipo Pokémon recibido:', this.poketeam);
-       
-      }
+    // Suscribirse a todos los equipos
+    this.equipoPokemonService.equipos$.subscribe(equipos => {
+      this.poketeam = equipos;  // Actualiza el arreglo con todos los equipos
     });
   }
+
 
   // Añadir un nuevo elemento
   agregarElemento(nuevoElemento: EquipoPokemon, index: number) {
@@ -42,9 +39,8 @@ export class ListaEquipoPokemonComponent {
 
   // Eliminar un elemento específico
   eliminarElemento(index: number) {
-    this.poketeam.splice(index, 1);
+    this.equipoPokemonService.eliminarEquipo(index);
   }
-
   goToCrearEquipo()
   {
     this.router.navigate(['/equipo-pokemon']);

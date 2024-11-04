@@ -1,20 +1,27 @@
+// equiposervices.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { EquipoPokemon } from '../interfaces/interfazpokemon/interfazEquipo.interface';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class EquipoPokemonService {
-  private equipoPokemonSubject = new BehaviorSubject<EquipoPokemon | null>(null);
-  equipoPokemon$ = this.equipoPokemonSubject.asObservable();
+  private equipos: EquipoPokemon[] = [];
+  private equiposSubject = new BehaviorSubject<EquipoPokemon[]>(this.equipos);
+  equipos$ = this.equiposSubject.asObservable();
 
-  actualizarEquipo(equipo: EquipoPokemon) {
-    this.equipoPokemonSubject.next(equipo);
+  actualizarEquipo(nuevoEquipo: EquipoPokemon) {
+    this.equipos.push(nuevoEquipo);
+    this.equiposSubject.next([...this.equipos]);  // Emitir copia del arreglo actualizado
   }
 
-  obtenerEquipo() {
-    return this.equipoPokemonSubject.getValue();
+  obtenerEquipos() {
+    return this.equipos;  // Retorna el arreglo completo
+  }
+
+  eliminarEquipo(index: number) {
+    this.equipos.splice(index, 1);
+    this.equiposSubject.next([...this.equipos]);  // Emitir copia del arreglo actualizado tras eliminación
   }
 }
