@@ -21,22 +21,22 @@ export class ListaEquipoPokemonComponent {
 
   ngOnInit() {
     this.equipoPokemonService.equipoPokemon$.subscribe(equipo => {
-      if(this.poketeam.length===0 && equipo)
-      {
-        this.poketeam[0] = equipo;
-        console.log('Equipo Pokémon recibido:', this.poketeam);
-      }
+    
       if (equipo) {
-        this.poketeam[this.poketeam.length-1] = equipo;
+        this.agregarElemento(equipo, this.poketeam.length);
         console.log('Equipo Pokémon recibido:', this.poketeam);
+       
       }
     });
   }
 
   // Añadir un nuevo elemento
-  agregarElemento(nuevoElemento: EquipoPokemon) {
+  agregarElemento(nuevoElemento: EquipoPokemon, index: number) {
     if (nuevoElemento) {
-      this.poketeam.push(nuevoElemento);
+      // Modificar la posición específica
+      this.poketeam[index] = nuevoElemento;
+      // Forzar la actualización de la vista creando una nueva referencia del array
+      this.poketeam = [...this.poketeam];
     }
   }
 
