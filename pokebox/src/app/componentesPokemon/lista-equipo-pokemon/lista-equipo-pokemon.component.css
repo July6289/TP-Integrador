@@ -15,7 +15,7 @@ button {
   color: black;
   border: 2px solid #4A7B59;
   transition-duration: 0.3s;
-  margin-left: 16%
+  margin-left: 16%;
 }
 
 button:hover {
@@ -28,7 +28,6 @@ button:hover {
   background-color: #95A98B;
   overflow-y: auto;
   max-height: 300px;
-
 }
 
 ::-webkit-scrollbar {
@@ -38,4 +37,28 @@ button:hover {
 
 ::-webkit-scrollbar-thumb {
   background-color: #4A7B59;
+}
+
+.equipos {
+  border-bottom: 1px solid #ddd;
+  display: flex; /* Usar flex para alinear elementos */
+  align-items: center;
+  justify-content: space-between; /* Espacio entre elementos */
+}
+
+.equipos
+{
+  border-bottom: 1px solid #ddd;
+}
+
+.equipos:hover
+{
+    background-color: #4A7B59
+}
+
+.eliminar {
+  padding: 5px 10px; /* Tamaño reducido */
+  font-size: 14px; /* Fuente más pequeña */
+  margin-left: auto; /* Empuja el botón a la derecha */
+  margin-right: 1px; /* Añade un margen pequeño a la derecha */
 }

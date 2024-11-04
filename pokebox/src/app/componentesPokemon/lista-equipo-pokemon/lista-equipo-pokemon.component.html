@@ -1,7 +1,7 @@
 <div>
   <fieldset class="teams">
     <ul>
-      <li *ngFor="let item of poketeam; let i = index">
+      <li class="equipos" *ngFor="let item of poketeam; let i = index">
         {{ item.nombre }}
         <button (click)="eliminarElemento(i)">Eliminar</button>
       </li>

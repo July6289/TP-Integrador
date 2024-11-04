@@ -68,17 +68,34 @@ export class EquipoPokemonComponent {
   }
 
   guardarEquipo() {
-    if (this.pokemonesEnEquipo.length === 6) {
-      const nombre = prompt('Ponle un nombre a tu equipo!', 'Ejemplo: Equipo Dinamita');
-      this.equipoPokemon = {
-        nombre: String(nombre),
-        equipo: this.pokemonesEnEquipo
-      };
-      this.equipoPokemonService.actualizarEquipo(this.equipoPokemon);  // Actualiza el equipo en el arreglo
-      this.pokemonesEnEquipo = [];
-    } else {
-      alert('Debe tener 6 Pokémon en el equipo.');
+    let nombreValido=false;
+
+      if (this.pokemonesEnEquipo.length === 6) {
+        while(!nombreValido)
+          {
+            const nombre = prompt('Ponle un nombre a tu equipo!', 'Maximo 14 caracteres! (espacios incluidos)');
+        if(nombre && nombre.length <=14)
+        {
+          this.equipoPokemon = {
+            nombre: String(nombre),
+            equipo: this.pokemonesEnEquipo
+          };
+          this.equipoPokemonService.actualizarEquipo(this.equipoPokemon);  // Actualiza el equipo en el arreglo
+          this.pokemonesEnEquipo = [];
+          nombreValido=true;
+        }
+        else
+        {
+          alert('el nombre debe tener entre 1 y 14 caracteres!')
+        }
+      }
+
+      } else {
+        alert('Debe tener 6 Pokémon en el equipo.');
+
+      }
     }
-  }
+
 }
+
 
