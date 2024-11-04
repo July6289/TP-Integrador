@@ -1,11 +1,11 @@
-import { Component, inject, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, inject, Output, EventEmitter, OnInit, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';  // Importa Location
-import { filter } from 'rxjs/operators';
+import { filter, timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'app-lista-pokemon',
@@ -20,6 +20,7 @@ export class ListaPokemonComponent implements OnInit {
   pokemonSeleccionado: number | null = null;
   @Output() pokemonAgregado = new EventEmitter<Pokemon>();
   mostrarBotonAgregar = true;
+  @Input() deseleccionarPokemon!: () => void;
 
   constructor(private router: Router, private location: Location) {}  // Inyecta Location
 
@@ -46,13 +47,21 @@ export class ListaPokemonComponent implements OnInit {
   seleccionarPokemon(indice: number) {
     this.pokemonSeleccionado = indice;
   }
+  deseleccionar() {
+    this.pokemonSeleccionado = null;
+  }
+
   seleccionarPokemon2(indice: number) {
     this.pokemonSeleccionado = indice;
+
     if (this.pokemonSeleccionado !== null) {
       const pokemon = this.listaPokemon[this.pokemonSeleccionado];
       this.pokemonAgregado.emit(pokemon); // Emite el Pokémon seleccionado
-      this.listaPokemon.splice(this.pokemonSeleccionado, 1); // Elimina el Pokémon de la lista
-      this.pokemonSeleccionado = null; // Reinicia la selección
+      //this.listaPokemon.splice(this.pokemonSeleccionado, 1); // Elimina el Pokémon de la lista
+
+      setTimeout(() => {
+        this.pokemonSeleccionado = null;
+      }, 1300);
     }
   }
 

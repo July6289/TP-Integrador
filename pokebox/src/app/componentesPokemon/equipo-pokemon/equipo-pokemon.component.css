@@ -14,29 +14,44 @@
   border-radius: 15PX;
 
   background-color: #E5F9E0;
-
 }
 
-.pokemon-imagen{
-  width: 200%;
-  height: 200%;
-  padding: 2%;
+.pokemon-imagen {
+  width: 100%; /* Tamaño de la imagen */
+  height: 100%;
+  margin-bottom: 8px; /* Espacio entre la imagen y el botón */
 }
+
 .poketeam
 {
   background-color: #819875;
-  width: 50%;
+  width: 100%;
   flex: 2;
   border-radius: 15PX;
+  justify-content: center;
+  align-items: center;
 }
 
 .pokemon-grid {
-  display: flex; /* Usa Flexbox para alinear los Pokémon en línea */
-  flex-wrap: wrap; /* Permite que los Pokémon se ajusten a múltiples líneas si no hay suficiente espacio */
-  gap: 10px; /* Espaciado entre los Pokémon */
+  display: flex;
+  gap: 10px;
   justify-content: center;
-  align-items: center; /* Centra los Pokémon en el contenedor */
+  align-items: center;
+  flex-wrap: wrap; /* Para que los elementos se ajusten en múltiples líneas si es necesario */
 }
+.pokemon {
+  margin-top: 2.55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra la imagen y el botón */
+  justify-content: center;
+  width: 120px; /* Ancho de cada tarjeta de Pokémon */
+  padding: 10px;
+  background-color: #819875;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
 
 .zonabotones {
   background-color: #E5F9E0;
@@ -49,7 +64,7 @@
 }
 
 
-.agregar, .eliminar {
+.agregar, .guardar, .cambiar{
   width: 80%;
   height: auto;
   margin: 0;
@@ -65,7 +80,26 @@
   transition-duration: 0.3s;
 }
 
-.eliminar:hover, .agregar:hover {
+.eliminar
+{
+  width: 10%;
+  height: auto;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 40px 5px 40px;
+
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: white;
+  border: 2px solid #4A7B59;
+  transition-duration: 0.3s;
+}
+
+.guardar:hover, .agregar:hover, .cambiar:hover, .eliminar:hover {
   background-color: #4A7B59;
   color: white;
 }
+
