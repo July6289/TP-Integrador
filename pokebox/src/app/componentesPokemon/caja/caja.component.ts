@@ -2,11 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
-
-interface Caja {
-  imagen: string;          // Ruta de la imagen de la caja
-  pokemones: Pokemon[];    // Lista de Pokémon en esta caja
-}
+import { Caja } from '../../interfaz-caja/interfazCaja.inteface';
 
 @Component({
   selector: 'app-caja',
