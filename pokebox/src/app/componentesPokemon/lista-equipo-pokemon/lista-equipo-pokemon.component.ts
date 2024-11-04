@@ -1,9 +1,8 @@
 import { Router, RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
-import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
 import { EquipoPokemonComponent } from "../equipo-pokemon/equipo-pokemon.component";
-import { EquipoPokemon } from '../../interfazpokemon/interfazEquipo.interface';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
+import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
 
 @Component({
   selector: 'app-lista-equipo-pokemon',
@@ -12,9 +11,10 @@ import { EquipoPokemonService } from '../../pokeservices/equiposervices.service'
   templateUrl: './lista-equipo-pokemon.component.html',
   styleUrl: './lista-equipo-pokemon.component.css'
 })
+
 export class ListaEquipoPokemonComponent {
 
-  constructor(private router: Router, private equipoPokemonService: EquipoPokemonService){}
+  constructor(private router: Router, private equipoPokemonService: EquipoPokemonService) { }
 
   equiposPokemon: EquipoPokemon | null = null;
 
@@ -27,9 +27,7 @@ export class ListaEquipoPokemonComponent {
     });
   }
 
-
-  goToCrearEquipo()
-  {
+  goToCrearEquipo() {
     this.router.navigate(['/equipo-pokemon']);
   }
 

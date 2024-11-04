@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ListaPokemonComponent } from "../lista-pokemon/lista-pokemon.component";
-import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
 import { CommonModule } from '@angular/common';
-import { EquipoPokemon } from '../../interfazpokemon/interfazEquipo.interface';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
+import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
+import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
 
 @Component({
   selector: 'app-equipo-pokemon',
@@ -17,15 +17,15 @@ export class EquipoPokemonComponent {
   @Output() pokemonSeleccionado = new EventEmitter<Pokemon>(); // Emisor para el Pokémon seleccionado
   @Output() equipoSeleccionado = new EventEmitter<EquipoPokemon>(); // Emisor para el Pokémon seleccionado
   pokemonesEnEquipo: Pokemon[] = []; // Arreglo para almacenar Pokémon en el equipo
-  pokeaux:Pokemon[]=[];
-  equipoPokemon:EquipoPokemon=
-  {
-    nombre:"",
-    equipo:[]
-  }
+  pokeaux: Pokemon[] = [];
+  equipoPokemon: EquipoPokemon =
+    {
+      nombre: "",
+      equipo: []
+    }
 
-  constructor(private equipoPokemonService: EquipoPokemonService) {}
-  
+  constructor(private equipoPokemonService: EquipoPokemonService) { }
+
   seleccionarPokemon(pokemon: Pokemon) {
     if (this.pokemonesEnEquipo.length < 6) {
       this.pokeaux = [pokemon];
@@ -39,23 +39,21 @@ export class EquipoPokemonComponent {
     // Aquí puedes añadir la lógica que necesites para manejar el Pokémon seleccionado
   }
 
-  agregarPokemon()
-  {
+  agregarPokemon() {
     if (this.pokemonesEnEquipo.length < 6) {
-      if(this.pokeaux[0] != null)
-      {
+      if (this.pokeaux[0] != null) {
         this.pokemonesEnEquipo.push(this.pokeaux[0]);
         this.pokeaux = [];
 
       }
-      else{
+      else {
         alert('No hay ningun pokemon seleccionado!!')
       }
 
-  }
-  else {
-    alert('No puedes agregar más de 6 Pokémon al equipo.'); // Mensaje de alerta
-  }
+    }
+    else {
+      alert('No puedes agregar más de 6 Pokémon al equipo.'); // Mensaje de alerta
+    }
   }
 
   eliminarPokemon(pokemon: Pokemon) {

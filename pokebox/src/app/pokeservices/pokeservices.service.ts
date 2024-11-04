@@ -1,8 +1,8 @@
-import { Pokemon } from '../interfazpokemon/interfazpokemon.inteface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
-import { Generation } from '../interfazpokemon/interfazGeneracion.interface';
+import { Generation } from '../interfaces/interfazpokemon/interfazGeneracion.interface';
+import { Pokemon } from '../interfaces/interfazpokemon/interfazpokemon.inteface';
 
 @Injectable({
   providedIn: 'root'

@@ -1,11 +1,11 @@
 import { Component, inject, Output, EventEmitter, OnInit, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';  // Importa Location
-import { filter, timeout } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
+import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 
 @Component({
   selector: 'app-lista-pokemon',
@@ -22,7 +22,7 @@ export class ListaPokemonComponent implements OnInit {
   mostrarBotonAgregar = true;
   @Input() deseleccionarPokemon!: () => void;
 
-  constructor(private router: Router, private location: Location) {}  // Inyecta Location
+  constructor(private router: Router, private location: Location) { }  // Inyecta Location
 
   ngOnInit(): void {
     this.checkRoute();
@@ -39,9 +39,9 @@ export class ListaPokemonComponent implements OnInit {
   }
 
   pokeService = inject(PokeservicesService);
-  numeroGeneracion?:number=undefined;  //numero de generacion ingresado en el buscador
-  validacion:boolean=true;
-  mensajeError:string='';
+  numeroGeneracion?: number = undefined;  //numero de generacion ingresado en el buscador
+  validacion: boolean = true;
+  mensajeError: string = '';
 
 
   seleccionarPokemon(indice: number) {
@@ -84,47 +84,45 @@ export class ListaPokemonComponent implements OnInit {
   }
 
   buscarPokemonPorGeneracion() {
-    if (this.numeroGeneracion !=undefined) {
-      if(this.numeroGeneracion<=0)
-      {
+    if (this.numeroGeneracion != undefined) {
+      if (this.numeroGeneracion <= 0) {
 
-        this.validacion=false;
-        this.mensajeError='numero de generacion invalido';
+        this.validacion = false;
+        this.mensajeError = 'numero de generacion invalido';
       }
-      else
-      {
-      this.validacion=true;
-      this.pokeService.getPokemonByGeneration(this.numeroGeneracion).subscribe(
-        {
-          next: (respuesta) => {
-            if (respuesta != undefined) {
-              this.listaPokemon = [];
-              respuesta.pokemon_species.map((pokemonEspecie) => {
-                this.pokeService.getPokemonByName(pokemonEspecie.name).subscribe(
-                  {
-                    next: (poke: Pokemon | undefined) => {
-                      if (poke != undefined) {
-                        this.listaPokemon.push(poke);
+      else {
+        this.validacion = true;
+        this.pokeService.getPokemonByGeneration(this.numeroGeneracion).subscribe(
+          {
+            next: (respuesta) => {
+              if (respuesta != undefined) {
+                this.listaPokemon = [];
+                respuesta.pokemon_species.map((pokemonEspecie) => {
+                  this.pokeService.getPokemonByName(pokemonEspecie.name).subscribe(
+                    {
+                      next: (poke: Pokemon | undefined) => {
+                        if (poke != undefined) {
+                          this.listaPokemon.push(poke);
+                        }
                       }
                     }
-                  }
-                )
-              })
-              setTimeout(()=>{this.listaPokemon.sort((a,b)=>a.id-b.id)},1000);//ordeno por id //y le dejo un tiempo de espera
-            }
-            else{
-              this.validacion=false;
-              this.mensajeError='el numero de generación no esta disponible';
-            }
+                  )
+                })
+                setTimeout(() => { this.listaPokemon.sort((a, b) => a.id - b.id) }, 1000);//ordeno por id //y le dejo un tiempo de espera
+              }
+              else {
+                this.validacion = false;
+                this.mensajeError = 'el numero de generación no esta disponible';
+              }
 
+            }
           }
-        }
 
-      )
-    }
+        )
+      }
     } else {
-      this.validacion=false;
-      this.mensajeError='campos invalidos, ingrese datos validos';
+      this.validacion = false;
+      this.mensajeError = 'campos invalidos, ingrese datos validos';
     }
   }
 

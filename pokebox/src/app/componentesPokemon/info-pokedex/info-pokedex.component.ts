@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon } from '../../interfazpokemon/interfazpokemon.inteface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { CommonModule } from '@angular/common';
+import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 
 @Component({
   selector: 'app-info-pokedex',

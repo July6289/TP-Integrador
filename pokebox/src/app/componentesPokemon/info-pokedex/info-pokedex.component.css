@@ -12,7 +12,9 @@
   gap: 33%;
 }
 
-.macho, .hembra, .shiny {
+.macho,
+.hembra,
+.shiny {
   border-radius: 8px;
   padding: 10px 12px;
   font-size: 17px;
@@ -22,19 +24,21 @@
   transition-duration: 0.3s;
 }
 
-.macho:hover, .hembra:hover, .shiny:hover {
+.macho:hover,
+.hembra:hover,
+.shiny:hover {
   background-color: #4A7B59;
   color: white;
 }
 
-.info{
+.info {
   justify-content: center;
   align-items: center;
   flex-direction: column;
   display: flex;
 }
 
-.nombre{
+.nombre {
   margin-top: -100%;
   margin-left: 30%;
   margin-bottom: -140%;
@@ -43,7 +47,7 @@
   justify-content: center;
 }
 
-.pokemon{
+.pokemon {
   justify-content: center;
   align-items: center;
   margin-top: 130%;

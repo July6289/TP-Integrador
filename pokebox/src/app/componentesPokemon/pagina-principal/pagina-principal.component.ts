@@ -15,14 +15,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './pagina-principal.component.css'
 })
 export class PaginaPrincipalComponent {
-  constructor(private router: Router)
-  {}
-  color='brown';
+  constructor(private router: Router) { }
+  color = 'brown';
 
-
-
-  goToPerfil()
-  {
+  goToPerfil() {
     this.router.navigate(['/perfil']);
   }
 }

@@ -1,4 +1,4 @@
-:host{
+:host {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -6,8 +6,7 @@
   background-color: #819875;
 }
 
-.listaPokemon
-{
+.listaPokemon {
   max-height: 50%;
   flex-grow: 2;
   overflow-y: auto;
@@ -17,13 +16,14 @@
 }
 
 .pokemon-imagen {
-  width: 100%; /* Tamaño de la imagen */
+  width: 100%;
+  /* Tamaño de la imagen */
   height: 100%;
-  margin-bottom: 8px; /* Espacio entre la imagen y el botón */
+  margin-bottom: 8px;
+  /* Espacio entre la imagen y el botón */
 }
 
-.poketeam
-{
+.poketeam {
   background-color: #819875;
   width: 100%;
   flex: 2;
@@ -37,15 +37,19 @@
   gap: 10px;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap; /* Para que los elementos se ajusten en múltiples líneas si es necesario */
+  flex-wrap: wrap;
+  /* Para que los elementos se ajusten en múltiples líneas si es necesario */
 }
+
 .pokemon {
   margin-top: 2.55%;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra la imagen y el botón */
+  align-items: center;
+  /* Centra la imagen y el botón */
   justify-content: center;
-  width: 120px; /* Ancho de cada tarjeta de Pokémon */
+  width: 120px;
+  /* Ancho de cada tarjeta de Pokémon */
   padding: 10px;
   background-color: #819875;
   border-radius: 10px;
@@ -64,7 +68,9 @@
 }
 
 
-.agregar, .guardar, .cambiar{
+.agregar,
+.guardar,
+.cambiar {
   width: 80%;
   height: auto;
   margin: 0;
@@ -80,8 +86,7 @@
   transition-duration: 0.3s;
 }
 
-.eliminar
-{
+.eliminar {
   width: 10%;
   height: auto;
   margin: 0;
@@ -98,8 +103,10 @@
   transition-duration: 0.3s;
 }
 
-.guardar:hover, .agregar:hover, .cambiar:hover, .eliminar:hover {
+.guardar:hover,
+.agregar:hover,
+.cambiar:hover,
+.eliminar:hover {
   background-color: #4A7B59;
   color: white;
 }
-

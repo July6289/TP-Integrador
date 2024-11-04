@@ -31,12 +31,11 @@ button:hover {
 
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   background-color: rgb(146, 146, 146);
   width: 10px;
 }
 
-::-webkit-scrollbar-thumb
-{
+::-webkit-scrollbar-thumb {
   background-color: #4A7B59;
 }

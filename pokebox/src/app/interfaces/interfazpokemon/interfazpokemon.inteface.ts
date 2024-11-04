@@ -1,12 +1,12 @@
 export interface Pokemon {
-  forms:                    Species[]; //
-  game_indices:             GameIndex[]; //
-  id:                       number;
-  is_default:               boolean;
-  name:                     string;
-  species:                  Species; //
-  sprites:                  Sprites;
-  types:                    Type[];
+  forms: Species[]; //
+  game_indices: GameIndex[]; //
+  id: number;
+  is_default: boolean;
+  name: string;
+  species: Species; //
+  sprites: Sprites;
+  types: Type[];
 }
 
 /* puchamon va a tener:
@@ -25,32 +25,32 @@ export interface Type {
 
 export interface Species {
   name: string;
-  url:  string;
+  url: string;
 }
 
 export interface GameIndex {
   game_index: number;
-  version:    Species;
+  version: Species;
 }
 
 export interface VersionGroupDetail {
-  level_learned_at:  number;
+  level_learned_at: number;
   move_learn_method: Species;
-  version_group:     Species;
+  version_group: Species;
 }
 
 export interface Sprites {
-  back_default:       string;
-  back_female:        null;
-  back_shiny:         string;
-  back_shiny_female:  null;
-  front_default:      string;
-  front_female:       null;
-  front_shiny:        string;
+  back_default: string;
+  back_female: null;
+  back_shiny: string;
+  back_shiny_female: null;
+  front_default: string;
+  front_female: null;
+  front_shiny: string;
   front_shiny_female: null;
-  other?:             Other;
-  versions?:          Versions;
-  animated?:          Sprites;
+  other?: Other;
+  versions?: Versions;
+  animated?: Sprites;
 }
 
 export interface GenerationV {
@@ -58,95 +58,95 @@ export interface GenerationV {
 }
 
 export interface GenerationIv {
-  "diamond-pearl":        Sprites;
+  "diamond-pearl": Sprites;
   "heartgold-soulsilver": Sprites;
-  platinum:               Sprites;
+  platinum: Sprites;
 }
 
 export interface Versions {
-  "generation-i":    GenerationI;
-  "generation-ii":   GenerationIi;
-  "generation-iii":  GenerationIii;
-  "generation-iv":   GenerationIv;
-  "generation-v":    GenerationV;
-  "generation-vi":   { [key: string]: Home };
-  "generation-vii":  GenerationVii;
+  "generation-i": GenerationI;
+  "generation-ii": GenerationIi;
+  "generation-iii": GenerationIii;
+  "generation-iv": GenerationIv;
+  "generation-v": GenerationV;
+  "generation-vi": { [key: string]: Home };
+  "generation-vii": GenerationVii;
   "generation-viii": GenerationViii;
 }
 
 export interface Other {
-  dream_world:        DreamWorld;
-  home:               Home;
+  dream_world: DreamWorld;
+  home: Home;
   "official-artwork": OfficialArtwork;
-  showdown:           Sprites;
+  showdown: Sprites;
 }
 
 
 export interface GenerationI {
   "red-blue": RedBlue;
-  yellow:     RedBlue;
+  yellow: RedBlue;
 }
 
 export interface RedBlue {
-  back_default:      string;
-  back_gray:         string;
-  back_transparent:  string;
-  front_default:     string;
-  front_gray:        string;
+  back_default: string;
+  back_gray: string;
+  back_transparent: string;
+  front_default: string;
+  front_gray: string;
   front_transparent: string;
 }
 
 export interface GenerationIi {
   crystal: Crystal;
-  gold:    Gold;
-  silver:  Gold;
+  gold: Gold;
+  silver: Gold;
 }
 
 export interface Crystal {
-  back_default:            string;
-  back_shiny:              string;
-  back_shiny_transparent:  string;
-  back_transparent:        string;
-  front_default:           string;
-  front_shiny:             string;
+  back_default: string;
+  back_shiny: string;
+  back_shiny_transparent: string;
+  back_transparent: string;
+  front_default: string;
+  front_shiny: string;
   front_shiny_transparent: string;
-  front_transparent:       string;
+  front_transparent: string;
 }
 
 export interface Gold {
-  back_default:       string;
-  back_shiny:         string;
-  front_default:      string;
-  front_shiny:        string;
+  back_default: string;
+  back_shiny: string;
+  front_default: string;
+  front_shiny: string;
   front_transparent?: string;
 }
 
 export interface GenerationIii {
-  emerald:             OfficialArtwork;
+  emerald: OfficialArtwork;
   "firered-leafgreen": Gold;
-  "ruby-sapphire":     Gold;
+  "ruby-sapphire": Gold;
 }
 
 export interface OfficialArtwork {
   front_default: string;
-  front_shiny:   string;
+  front_shiny: string;
 }
 
 export interface Home {
-  front_default:      string;
-  front_female:       null;
-  front_shiny:        string;
+  front_default: string;
+  front_female: null;
+  front_shiny: string;
   front_shiny_female: null;
 }
 
 export interface GenerationVii {
-  icons:                  DreamWorld;
+  icons: DreamWorld;
   "ultra-sun-ultra-moon": Home;
 }
 
 export interface DreamWorld {
   front_default: string;
-  front_female:  null;
+  front_female: null;
 }
 
 export interface GenerationViii {
