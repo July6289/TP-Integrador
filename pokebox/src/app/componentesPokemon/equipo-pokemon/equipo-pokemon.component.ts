@@ -25,6 +25,8 @@ export class EquipoPokemonComponent {
       equipo: []
     }
 
+  equiposPokemon: EquipoPokemon []=[];
+
   constructor(private equipoPokemonService: EquipoPokemonService, private router: Router) {}
 
   goToMainPage()
@@ -83,6 +85,7 @@ export class EquipoPokemonComponent {
           this.equipoPokemonService.actualizarEquipo(this.equipoPokemon);  // Actualiza el equipo en el arreglo
           this.pokemonesEnEquipo = [];
           nombreValido=true;
+
         }
         else
         {

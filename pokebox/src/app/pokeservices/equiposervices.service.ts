@@ -24,4 +24,11 @@ export class EquipoPokemonService {
     this.equipos.splice(index, 1);
     this.equiposSubject.next([...this.equipos]);  // Emitir copia del arreglo actualizado tras eliminación
   }
+
+  actualizarNombreEquipo(index: number, nuevoNombre: string) {
+    if (this.equipos[index]) {
+      this.equipos[index].nombre = nuevoNombre;
+      this.equiposSubject.next([...this.equipos]); // Emitir copia actualizada
+    }
+  }
 }

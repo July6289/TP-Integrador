@@ -24,18 +24,18 @@ export class ListaEquipoPokemonComponent {
     this.equipoPokemonService.equipos$.subscribe(equipos => {
       this.poketeam = equipos;  // Actualiza el arreglo con todos los equipos
     });
+  
   }
 
 
-  // Añadir un nuevo elemento
-  agregarElemento(nuevoElemento: EquipoPokemon, index: number) {
+ /* agregarElemento(nuevoElemento: EquipoPokemon, index: number) {
     if (nuevoElemento) {
       // Modificar la posición específica
       this.poketeam[index] = nuevoElemento;
       // Forzar la actualización de la vista creando una nueva referencia del array
       this.poketeam = [...this.poketeam];
     }
-  }
+  }*/
 
   // Eliminar un elemento específico
   eliminarElemento(index: number) {
@@ -47,4 +47,12 @@ export class ListaEquipoPokemonComponent {
     this.router.navigate(['/equipo-pokemon']);
   }
 
+  cambiarNombreEquipo(index: number) {
+    const nuevoNombre = prompt('Introduce un nuevo nombre para el equipo (Máximo 14 caracteres)', 'Nuevo nombre');
+    if (nuevoNombre && nuevoNombre.length <= 14) {
+      this.equipoPokemonService.actualizarNombreEquipo(index, nuevoNombre);
+    } else {
+      alert('El nombre debe tener entre 1 y 14 caracteres.');
+    }
+  }
 }

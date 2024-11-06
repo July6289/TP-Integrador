@@ -2,8 +2,11 @@
   <fieldset class="teams">
     <ul>
       <li class="equipos" *ngFor="let item of poketeam; let i = index">
-        {{ item.nombre }}
-        <button (click)="eliminarElemento(i)">Eliminar</button>
+        <span>{{ item.nombre }}</span>
+        <div class="botones-container">
+          <button (click)="eliminarElemento(i)">Eliminar</button>
+          <button (click)="cambiarNombreEquipo(i)">Cambiar Nombre</button>
+        </div>
       </li>
     </ul>
     <button (click)="goToCrearEquipo()">Agregar nuevo equipo</button>
