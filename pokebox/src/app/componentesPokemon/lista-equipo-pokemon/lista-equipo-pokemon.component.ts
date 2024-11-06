@@ -47,6 +47,12 @@ export class ListaEquipoPokemonComponent {
     this.router.navigate(['/equipo-pokemon']);
   }
 
+  goToVisualizarpokemon(nombre: string)
+  {
+    console.log(`Navegando a equipo con nombre: ${nombre}`);
+    this.router.navigate(['/equipo', nombre]);
+  }
+
   cambiarNombreEquipo(index: number) {
     const nuevoNombre = prompt('Introduce un nuevo nombre para el equipo (Máximo 14 caracteres)', 'Nuevo nombre');
     if (nuevoNombre && nuevoNombre.length <= 14) {

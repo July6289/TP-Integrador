@@ -31,4 +31,8 @@ export class EquipoPokemonService {
       this.equiposSubject.next([...this.equipos]); // Emitir copia actualizada
     }
   }
+  // Método para obtener un equipo por su nombre
+  obtenerEquipoPorNombre(nombre: string): EquipoPokemon | undefined {
+    return this.equipos.find(equipo => equipo.nombre === nombre);
+  }
 }

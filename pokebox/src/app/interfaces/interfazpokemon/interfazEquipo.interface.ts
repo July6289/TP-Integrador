@@ -1,6 +1,6 @@
 import { Pokemon } from "./interfazpokemon.inteface";
 
 export interface EquipoPokemon {
-  nombre: String;
+  nombre: string;
   equipo: Pokemon[];
 }

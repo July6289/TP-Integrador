@@ -1,0 +1,7 @@
+
+<div class="poketeam">
+    <div class="pokemon-grid">
+      <div *ngFor="let pokemon of pokemonesEnEquipo" class="pokemon" >
+        <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="pokemon-imagen">
+      </div>
+    </div>

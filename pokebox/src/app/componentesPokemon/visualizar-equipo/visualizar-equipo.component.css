@@ -1,0 +1,23 @@
+.pokemon-grid {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* Para que los elementos se ajusten en múltiples líneas si es necesario */
+  }
+  
+  .pokemon {
+    margin-top: 2.55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centra la imagen y el botón */
+    justify-content: center;
+    width: 120px;
+    /* Ancho de cada tarjeta de Pokémon */
+    padding: 10px;
+    background-color: #819875;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }

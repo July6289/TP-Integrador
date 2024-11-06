@@ -2,7 +2,7 @@
   <fieldset class="teams">
     <ul>
       <li class="equipos" *ngFor="let item of poketeam; let i = index">
-        <span>{{ item.nombre }}</span>
+        <span class="nombre-pokemon" (click)="goToVisualizarpokemon(item.nombre)">{{ item.nombre }}</span>
         <div class="botones-container">
           <button (click)="eliminarElemento(i)">Eliminar</button>
           <button (click)="cambiarNombreEquipo(i)">Cambiar Nombre</button>
@@ -17,9 +17,9 @@
 <div>
   <fieldset class="teams">
     <ul>
-      <li class="equipos" *ngFor="let item of poketeam; let i = index" (click)="goToCrearEquipo()">
-        <span>{{ item.nombre }} </span>
-
+      <li class="equipos" *ngFor="let item of poketeam; let i = index" (click)="goToVisualizarpokemon(item.nombre)">
+        {{ item.nombre }}
+        
       </li>
     </ul>
 
