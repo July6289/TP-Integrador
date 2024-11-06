@@ -18,6 +18,11 @@ export class PaginaPrincipalComponent {
   constructor(private router: Router) { }
   color = 'brown';
 
+  goToCombate()
+  {
+    this.router.navigate(['/combate']);
+  }
+  
   goToPerfil() {
     this.router.navigate(['/perfil']);
   }

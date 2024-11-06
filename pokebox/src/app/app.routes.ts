@@ -4,6 +4,7 @@ import { EquipoPokemonComponent } from './componentesPokemon/equipo-pokemon/equi
 import { PaginaPrincipalComponent } from './componentesPokemon/pagina-principal/pagina-principal.component';
 import { ListaEquipoPokemonComponent } from './componentesPokemon/lista-equipo-pokemon/lista-equipo-pokemon.component';
 import { PaginaLogueoComponent } from './componentesPokemon/pagina-logueo/pagina-logueo.component';
+import { PestaniaCombateComponent } from './componentesPokemon/pestania-combate/pestania-combate.component';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,10 @@ export const routes: Routes = [
   {
     path: 'loggin-page',
     component: PaginaLogueoComponent,
+  },
+  {
+    path:'combate',
+    component: PestaniaCombateComponent,
   },
   {
     path: '**',
