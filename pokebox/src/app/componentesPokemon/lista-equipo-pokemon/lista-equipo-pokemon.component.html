@@ -12,3 +12,16 @@
     <button (click)="goToCrearEquipo()">Agregar nuevo equipo</button>
   </fieldset>
 </div>
+
+
+<div>
+  <fieldset class="teams">
+    <ul>
+      <li class="equipos" *ngFor="let item of poketeam; let i = index" (click)="goToCrearEquipo()">
+        <span>{{ item.nombre }} </span>
+
+      </li>
+    </ul>
+
+  </fieldset>
+</div>

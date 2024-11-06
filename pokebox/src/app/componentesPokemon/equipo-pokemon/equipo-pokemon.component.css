@@ -69,7 +69,7 @@
 
 
 
-.agregar, .guardar, .cambiar, .main{
+.agregar, .guardar, .main{
   width: 80%;
   height: auto;
   margin: 0;
@@ -103,7 +103,7 @@
 }
 
 
-.guardar:hover, .agregar:hover, .cambiar:hover, .eliminar:hover, .main:hover {
+.guardar:hover, .agregar:hover, .eliminar:hover, .main:hover {
 
   background-color: #4A7B59;
   color: white;
