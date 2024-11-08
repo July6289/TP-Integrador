@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 
 @Component({
@@ -17,7 +17,8 @@ export class VisualizarEquipoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private equipoPokemonService: EquipoPokemonService
+    private equipoPokemonService: EquipoPokemonService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +28,15 @@ export class VisualizarEquipoComponent implements OnInit {
       this.obtenerEquipo(this.nombreEquipo);
     });
   }
+
+  gotoMainMenu(){
+    this.router.navigate(['/**']);
+  }
+
+  gotoCombate(){
+    this.router.navigate(['/combate']);
+  }
+
 
   obtenerEquipo(nombre: string): void {
     const equipo = this.equipoPokemonService.obtenerEquipoPorNombre(nombre);

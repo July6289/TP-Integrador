@@ -10,7 +10,7 @@
  @Component({
    selector: 'app-root',
  standalone: true,
-   imports: [PaginaPrincipalComponent,RouterOutlet, CommonModule,HttpClientModule],
+   imports: [RouterOutlet, CommonModule,HttpClientModule],
   templateUrl: './app.component.html',
  styleUrls: ['./app.component.css']
  })

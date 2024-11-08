@@ -19,10 +19,20 @@
   margin-left: auto; /* Empuja el contenedor de botones a la derecha */
 }
 
-button {
+.big {
   border-radius: 8px;
   padding: 8px 12px;
   font-size: 14px;
+  background-color: white;
+  color: black;
+  border: 2px solid #4A7B59;
+  transition-duration: 0.3s;
+}
+
+.little {
+  border-radius: 8px;
+  padding: 4px 6px;
+  font-size: 10px;
   background-color: white;
   color: black;
   border: 2px solid #4A7B59;

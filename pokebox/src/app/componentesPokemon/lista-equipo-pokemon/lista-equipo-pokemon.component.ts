@@ -2,20 +2,20 @@ import { Router, RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
 import { EquipoPokemonComponent } from "../equipo-pokemon/equipo-pokemon.component";
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
-import { NgFor } from '@angular/common';
+import { NgFor, Location, NgIf } from '@angular/common';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
 
 @Component({
   selector: 'app-lista-equipo-pokemon',
   standalone: true,
-  imports: [RouterModule, EquipoPokemonComponent, NgFor],
+  imports: [RouterModule, NgFor, NgIf],
   templateUrl: './lista-equipo-pokemon.component.html',
   styleUrl: './lista-equipo-pokemon.component.css'
 })
 
 export class ListaEquipoPokemonComponent {
 
-  constructor(private router: Router, private equipoPokemonService: EquipoPokemonService) { }
+  constructor(private router: Router, private equipoPokemonService: EquipoPokemonService, private location:Location) { }
 
   poketeam: EquipoPokemon[]=[];
 
@@ -24,9 +24,15 @@ export class ListaEquipoPokemonComponent {
     this.equipoPokemonService.equipos$.subscribe(equipos => {
       this.poketeam = equipos;  // Actualiza el arreglo con todos los equipos
     });
-  
+
   }
 
+  rutaCombate=true;
+
+  checkRoute():void
+  {
+    this.rutaCombate= !this.location.path().includes('/main-page');
+  }
 
  /* agregarElemento(nuevoElemento: EquipoPokemon, index: number) {
     if (nuevoElemento) {

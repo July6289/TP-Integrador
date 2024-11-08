@@ -1,25 +1,24 @@
-<div>
+<div *ngIf="rutaCombate===true">
   <fieldset class="teams">
     <ul>
       <li class="equipos" *ngFor="let item of poketeam; let i = index">
         <span class="nombre-pokemon" (click)="goToVisualizarpokemon(item.nombre)">{{ item.nombre }}</span>
         <div class="botones-container">
-          <button (click)="eliminarElemento(i)">Eliminar</button>
-          <button (click)="cambiarNombreEquipo(i)">Cambiar Nombre</button>
+          <button class="little" (click)="eliminarElemento(i)">Eliminar</button>
+          <button class="little" (click)="cambiarNombreEquipo(i)">Cambiar Nombre</button>
         </div>
       </li>
     </ul>
-    <button (click)="goToCrearEquipo()">Agregar nuevo equipo</button>
+    <button class="big" (click)="goToCrearEquipo()">Agregar nuevo equipo</button>
   </fieldset>
 </div>
 
 
-<div>
+<div class="/combate" *ngIf="rutaCombate===false" >
   <fieldset class="teams">
     <ul>
       <li class="equipos" *ngFor="let item of poketeam; let i = index" (click)="goToVisualizarpokemon(item.nombre)">
         {{ item.nombre }}
-        
       </li>
     </ul>
 
