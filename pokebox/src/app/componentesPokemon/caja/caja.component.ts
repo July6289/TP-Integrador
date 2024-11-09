@@ -82,4 +82,6 @@ export class CajaComponent {
     this.pokemonSeleccionado = pokemon;
     this.pokeService.setSelectedPokemon(pokemon); // Establecer el Pokémon seleccionado en el servicio
   }
+
+
 }

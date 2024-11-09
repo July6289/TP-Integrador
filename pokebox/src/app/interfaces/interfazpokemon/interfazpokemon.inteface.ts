@@ -7,17 +7,12 @@ export interface Pokemon {
   species: Species; //
   sprites: Sprites;
   types: Type[];
+
+  // Propiedades personalizadas
+  is_shiny?: boolean; // Indica si el Pokémon está en su estado "shiny"
+  vida?: number;      // Atributo personalizado para la vida del Pokémon
 }
 
-/* puchamon va a tener:
-
-nombre
-sprite de adelante y de atras (comun y shiny)
-tipos
-info pokedex (creo q no esta en la pokeapi)
-debera tener un atributo personalizzado que sera a vida
-
-*/
 export interface Type {
   slot: number;
   type: Species;

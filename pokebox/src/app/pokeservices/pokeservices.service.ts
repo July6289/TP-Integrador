@@ -73,18 +73,8 @@ export class PokeservicesService {
   }
 
   setEsMacho(esMacho: boolean): void {
-    const pokemon = this.getSelectedPokemon();
-    if (!pokemon) return;
-
-    // Verifica si el Pokémon tiene sprite femenino. Si no, manténlo como macho.
-    if (!esMacho && !pokemon.sprites.front_female) {
-      console.warn('Este Pokémon no tiene sprite femenino. Se mantendrá como macho.');
-      this.esMachoSubject.next(true); // Mantener como macho si no hay sprite femenino
-    } else {
-      this.esMachoSubject.next(esMacho); // Cambiar a hembra solo si tiene sprite
-    }
+    this.esMachoSubject.next(esMacho);
   }
-
 
   setEsShiny(esShiny: boolean): void {
     this.esShinySubject.next(esShiny);
@@ -99,19 +89,9 @@ export class PokeservicesService {
     if (esMacho && esShiny) {
       return pokemon.sprites.front_shiny;
     } else if (!esMacho && esShiny) {
-      if (pokemon.sprites.front_shiny_female) {
-        return pokemon.sprites.front_shiny_female;
-      }
-      else {
-        return pokemon.sprites.front_shiny;
-      }
+      return pokemon.sprites.front_shiny_female;
     } else if (!esMacho && !esShiny) {
-      if (pokemon.sprites.front_female) {
-        return pokemon.sprites.front_female;
-      }
-      else {
-        return pokemon.sprites.front_default;
-      }
+      return pokemon.sprites.front_female;
     } else {
       return pokemon.sprites.front_default;
     }
@@ -119,5 +99,17 @@ export class PokeservicesService {
 
   getEsShiny(): boolean {
     return this.esShinySubject.value;
+  }
+
+  updatePokemonInCaja(updatedPokemon: Pokemon): void {
+    // Encuentra el Pokémon en la lista y actualízalo
+    const cajas = this.cajas; // Acceso directo a las cajas en el servicio, si existen en el servicio
+    for (let caja of cajas) {
+      const index = caja.pokemones.findIndex((pokemon: { id: number; }) => pokemon.id === updatedPokemon.id);
+      if (index !== -1) {
+        caja.pokemones[index] = updatedPokemon; // Actualiza el Pokémon
+        break; // Sale del bucle una vez que ha sido actualizado
+      }
+    }
   }
 }

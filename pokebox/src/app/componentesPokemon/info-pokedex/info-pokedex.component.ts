@@ -31,20 +31,28 @@ export class InfoPokedexComponent implements OnInit {
 
   cambiarAMacho(): void {
     this.pokeService.setEsMacho(true);
+    this.applyChangesToPokemon();
   }
-
 
   cambiarAHembra(): void {
     this.pokeService.setEsMacho(false); // Llama a la lógica de verificación en el servicio
+    this.applyChangesToPokemon();
   }
 
   cambiarAShiny(): void {
     // Alternar el estado de shiny
     const nuevoEstadoShiny = !this.pokeService.getEsShiny();
     this.pokeService.setEsShiny(nuevoEstadoShiny);
+    this.applyChangesToPokemon();
   }
 
   private updateSprite(): void {
     this.spriteUrl = this.pokeService.getSprite(this.selectedPokemon);
+  }
+
+  private applyChangesToPokemon(): void {
+    if (this.selectedPokemon) {
+      this.pokeService.updatePokemonInCaja(this.selectedPokemon); // Actualizar en la caja
+    }
   }
 }

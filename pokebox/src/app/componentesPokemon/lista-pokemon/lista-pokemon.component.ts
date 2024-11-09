@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
-import { Location } from '@angular/common';  // Importa Location
+import { Location } from '@angular/common';
 import { filter } from 'rxjs/operators';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 
@@ -125,11 +125,4 @@ export class ListaPokemonComponent implements OnInit {
       this.mensajeError = 'campos invalidos, ingrese datos validos';
     }
   }
-
-
-
-
-
-
-
 }
