@@ -48,8 +48,10 @@ export class EquipoPokemonComponent {
     // Aquí puedes añadir la lógica que necesites para manejar el Pokémon seleccionado
   }
 
+
   agregarPokemon() {
     if (this.pokemonesEnEquipo.length < 6) {
+
       if (this.pokeaux[0] != null) {
         this.pokemonesEnEquipo.push(this.pokeaux[0]);
         this.pokeaux = [];

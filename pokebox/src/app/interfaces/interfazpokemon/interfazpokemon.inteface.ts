@@ -1,3 +1,4 @@
+import { Name } from './interfazGeneracion.interface';
 export interface Pokemon {
   forms: Species[]; //
   game_indices: GameIndex[]; //
@@ -7,6 +8,7 @@ export interface Pokemon {
   species: Species; //
   sprites: Sprites;
   types: Type[];
+  idEquipo?: number;
 }
 
 /* puchamon va a tener:
