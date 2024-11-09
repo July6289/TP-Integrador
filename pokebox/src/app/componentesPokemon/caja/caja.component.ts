@@ -15,23 +15,21 @@ import { Observable } from 'rxjs';
 
 export class CajaComponent {
   private readonly MAX_POKEMON = 30; // Límite máximo de Pokémon en cada caja
-  private readonly TOTAL_CAJAS = 32;  // Número total de cajas disponibles
   pokemonSeleccionado: Pokemon | null = null;  // Índice del Pokémon seleccionado
 
   // Cambia `spriteActual` a `spriteActual$` como Observable
   spriteActual$: Observable<string | null>;
-
-  // Arreglo de cajas, inicializadas con imágenes y listas vacías de Pokémon
-  cajas: Caja[] = Array.from({ length: this.TOTAL_CAJAS }, (_, index) => ({
-    imagen: `/assets/imagenes/cajas/${index + 1}.png`, // Ruta de imagen dinámica
-    pokemones: []                                       // Pokémon iniciales vacíos
-  }));
-
+  cajas!: Caja[];
   indiceCaja: number = 0; // Índice de la caja actual
 
   constructor(private pokeService: PokeservicesService) {
     // Asigna el observable `spriteActual$` desde el servicio
     this.spriteActual$ = this.pokeService.spriteActual$;
+  }
+
+  ngOnInit(): void {
+    // Referencia a las cajas en el servicio
+    this.cajas = this.pokeService.cajas;
   }
 
   // Método getter para obtener la lista de Pokémon de la caja actual
@@ -64,13 +62,13 @@ export class CajaComponent {
     if (this.indiceCaja > 0) {
       this.indiceCaja--;
     } else {
-      this.indiceCaja = this.TOTAL_CAJAS - 1;
+      this.indiceCaja = this.pokeService.TOTAL_CAJAS - 1;
     }
   }
 
   // Cambiar a la caja siguiente
   cambiarCajaSiguiente() {
-    if (this.indiceCaja < this.TOTAL_CAJAS - 1) {
+    if (this.indiceCaja < this.pokeService.TOTAL_CAJAS - 1) {
       this.indiceCaja++;
     } else {
       this.indiceCaja = 0;
@@ -82,6 +80,4 @@ export class CajaComponent {
     this.pokemonSeleccionado = pokemon;
     this.pokeService.setSelectedPokemon(pokemon); // Establecer el Pokémon seleccionado en el servicio
   }
-
-
 }

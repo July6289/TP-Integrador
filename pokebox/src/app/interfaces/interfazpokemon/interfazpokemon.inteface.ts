@@ -1,4 +1,3 @@
-import { Name } from './interfazGeneracion.interface';
 export interface Pokemon {
   forms: Species[]; //
   game_indices: GameIndex[]; //
