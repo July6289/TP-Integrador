@@ -1,3 +1,4 @@
+import { Name } from './interfazGeneracion.interface';
 export interface Pokemon {
   forms: Species[]; //
   game_indices: GameIndex[]; //
@@ -7,10 +8,7 @@ export interface Pokemon {
   species: Species; //
   sprites: Sprites;
   types: Type[];
-
-  // Propiedades personalizadas
-  is_shiny?: boolean; // Indica si el Pokémon está en su estado "shiny"
-  vida?: number;      // Atributo personalizado para la vida del Pokémon
+  idEquipo?: number;
 }
 
 export interface Type {

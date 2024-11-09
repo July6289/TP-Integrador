@@ -37,6 +37,14 @@ export class VisualizarEquipoComponent implements OnInit {
     this.router.navigate(['/combate']);
   }
 
+  ponerMote(pokemon:Pokemon)
+  {
+    let mote : string | null;
+    console.log(pokemon.idEquipo);
+
+    mote= prompt("Aqui puedes cambiarle el nombre. Escribe lo que quieras!", pokemon.name);
+    pokemon.name= mote ?? pokemon.name;
+  }
 
   obtenerEquipo(nombre: string): void {
     const equipo = this.equipoPokemonService.obtenerEquipoPorNombre(nombre);
