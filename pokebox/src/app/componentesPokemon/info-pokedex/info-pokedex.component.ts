@@ -10,6 +10,7 @@ import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.intefa
   templateUrl: './info-pokedex.component.html',
   styleUrls: ['./info-pokedex.component.css']
 })
+
 export class InfoPokedexComponent implements OnInit {
   selectedPokemon: Pokemon | null = null;
   spriteUrl: string = '';
@@ -34,7 +35,7 @@ export class InfoPokedexComponent implements OnInit {
 
 
   cambiarAHembra(): void {
-    this.pokeService.setEsMacho(false);
+    this.pokeService.setEsMacho(false); // Llama a la lógica de verificación en el servicio
   }
 
   cambiarAShiny(): void {

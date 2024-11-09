@@ -55,7 +55,7 @@ export class CajaComponent {
     if (cajaActual.pokemones.length < this.MAX_POKEMON) {
       cajaActual.pokemones.push(pokemon);
     } else {
-      console.warn('No se pueden agregar más Pokémon a la caja. Límite alcanzado.');
+      alert('No se pueden agregar más Pokémon a la caja. Límite alcanzado.');
     }
   }
 

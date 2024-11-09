@@ -73,8 +73,18 @@ export class PokeservicesService {
   }
 
   setEsMacho(esMacho: boolean): void {
-    this.esMachoSubject.next(esMacho);
+    const pokemon = this.getSelectedPokemon();
+    if (!pokemon) return;
+
+    // Verifica si el Pokémon tiene sprite femenino. Si no, manténlo como macho.
+    if (!esMacho && !pokemon.sprites.front_female) {
+      console.warn('Este Pokémon no tiene sprite femenino. Se mantendrá como macho.');
+      this.esMachoSubject.next(true); // Mantener como macho si no hay sprite femenino
+    } else {
+      this.esMachoSubject.next(esMacho); // Cambiar a hembra solo si tiene sprite
+    }
   }
+
 
   setEsShiny(esShiny: boolean): void {
     this.esShinySubject.next(esShiny);
@@ -89,15 +99,25 @@ export class PokeservicesService {
     if (esMacho && esShiny) {
       return pokemon.sprites.front_shiny;
     } else if (!esMacho && esShiny) {
-      return pokemon.sprites.front_shiny_female;
+      if (pokemon.sprites.front_shiny_female) {
+        return pokemon.sprites.front_shiny_female;
+      }
+      else {
+        return pokemon.sprites.front_shiny;
+      }
     } else if (!esMacho && !esShiny) {
-      return pokemon.sprites.front_female;
+      if (pokemon.sprites.front_female) {
+        return pokemon.sprites.front_female;
+      }
+      else {
+        return pokemon.sprites.front_default;
+      }
     } else {
       return pokemon.sprites.front_default;
     }
   }
 
   getEsShiny(): boolean {
-  return this.esShinySubject.value;
-}
+    return this.esShinySubject.value;
+  }
 }

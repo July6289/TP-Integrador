@@ -1,5 +1,4 @@
 <div class="caja-container">
-  <!-- Botón para cambiar a la caja anterior -->
   <div id="botonIz">
     <button class="Lbutton" (click)="cambiarCajaAnterior()">
       <img class="Limagen" src="/assets/imagenes/flecha_izquierda.png" alt="caja">
@@ -7,10 +6,8 @@
   </div>
 
   <div class="caja-grid">
-    <!-- Imagen de fondo dinámica de la caja -->
     <img class="imagencaja" [src]="imagenCaja" alt="caja">
 
-    <!-- Cuadrícula de Pokémon sobre la imagen -->
     <div class="pokemon-grid">
       <div *ngFor="let pokemon of pokemonesEnCaja" class="pokemon">
         <!-- Mostrar sprite actual si el Pokémon está seleccionado; si no, mostrar el sprite por defecto -->
@@ -27,7 +24,6 @@
     </div>
   </div>
 
-  <!-- Botón para cambiar a la siguiente caja -->
   <div id="botonDer">
     <button class="Rbutton" (click)="cambiarCajaSiguiente()">
       <img class="Rimagen" src="/assets/imagenes/flecha_derecha.png" alt="caja">
@@ -35,5 +31,4 @@
   </div>
 </div>
 
-<!-- Pie de página dinámico con el nombre de la caja -->
 <footer class="nombrecaja">{{ nombreCaja }}</footer>
