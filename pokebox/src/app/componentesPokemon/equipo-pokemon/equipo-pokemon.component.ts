@@ -81,7 +81,7 @@ export class EquipoPokemonComponent {
   guardarEquipo() {
     let nombreValido=false;
 
-      if (this.pokemonesEnEquipo.length === 6) {
+      /*f (this.pokemonesEnEquipo.length === 6) {*/
 
             const nombre = prompt('Ponle un nombre a tu equipo!', '');
         if(nombre && nombre.length <=20)
@@ -101,10 +101,10 @@ export class EquipoPokemonComponent {
         }
 
 
-      } else {
+      /*} else {
         alert('Debe tener 6 Pokémon en el equipo.');
 
-      }
+      }*/
     }
 
 }

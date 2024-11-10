@@ -17,7 +17,7 @@ export const routes: Routes = [
     component: EquipoPokemonComponent
   },
   {
-    path: 'lista-pokemon',
+    path: 'selector',
     component: ListaEquipoPokemonComponent
   },
   {

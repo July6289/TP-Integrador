@@ -24,14 +24,16 @@ export class ListaEquipoPokemonComponent {
     this.equipoPokemonService.equipos$.subscribe(equipos => {
       this.poketeam = equipos;  // Actualiza el arreglo con todos los equipos
     });
-
+    this.checkRoute();
   }
 
   rutaCombate=true;
 
+
+
   checkRoute():void
   {
-    this.rutaCombate= !this.location.path().includes('/main-page');
+    this.rutaCombate= this.location.path().includes('/main-page');
   }
 
  /* agregarElemento(nuevoElemento: EquipoPokemon, index: number) {
@@ -52,6 +54,19 @@ export class ListaEquipoPokemonComponent {
   {
     this.router.navigate(['/equipo-pokemon']);
   }
+
+  gotoMain()
+  {
+    this.router.navigate(['/**']);
+  }
+
+  seleccionarEquipo(team : EquipoPokemon)
+  {
+    console.log(team);
+    this.router.navigate(['/combate'])
+
+  }
+
 
   goToVisualizarpokemon(nombre: string)
   {

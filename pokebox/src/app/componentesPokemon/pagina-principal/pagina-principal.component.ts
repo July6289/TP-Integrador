@@ -19,7 +19,7 @@ export class PaginaPrincipalComponent {
 
   goToCombate()
   {
-    this.router.navigate(['/combate']);
+    this.router.navigate(['/selector']);
   }
 
   goToPerfil() {

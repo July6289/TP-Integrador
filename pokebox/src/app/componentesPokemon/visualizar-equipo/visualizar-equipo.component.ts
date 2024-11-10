@@ -34,7 +34,7 @@ export class VisualizarEquipoComponent implements OnInit {
   }
 
   gotoCombate(){
-    this.router.navigate(['/combate']);
+    this.router.navigate(['/selector']);
   }
 
   ponerMote(pokemon: Pokemon) {
