@@ -5,6 +5,8 @@ import { EquipoPokemonService } from '../../pokeservices/equiposervices.service'
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
 import { Router } from '@angular/router';
+import { cloneDeep } from 'lodash';
+
 
 @Component({
   selector: 'app-equipo-pokemon',
@@ -50,22 +52,27 @@ export class EquipoPokemonComponent {
 
 
   agregarPokemon() {
+
     if (this.pokemonesEnEquipo.length < 6) {
 
       if (this.pokeaux[0] != null) {
-        this.pokemonesEnEquipo.push(this.pokeaux[0]);
+        // Crear una copia del Pokémon y asignar un `id` único de tipo `number`
+        const clonPokemon: Pokemon = {
+          ...this.pokeaux[0],
+          id: Date.now() + Math.floor(Math.random() * 1000) // Genera un `id` único basado en tiempo
+        };
+
+        this.pokemonesEnEquipo.push(clonPokemon);
         this.pokeaux = [];
-
+      } else {
+        alert('No hay ningún Pokémon seleccionado!');
       }
-      else {
-        alert('No hay ningun pokemon seleccionado!!')
-      }
-
-    }
-    else {
-      alert('No puedes agregar más de 6 Pokémon al equipo.'); // Mensaje de alerta
+    } else {
+      alert('No puedes agregar más de 6 Pokémon al equipo.');
     }
   }
+
+
 
   eliminarPokemon(pokemon: Pokemon) {
     this.pokemonesEnEquipo = this.pokemonesEnEquipo.filter(p => p !== pokemon);
@@ -74,11 +81,10 @@ export class EquipoPokemonComponent {
   guardarEquipo() {
     let nombreValido=false;
 
-      /*if (this.pokemonesEnEquipo.length === 6) {*/
-        while(!nombreValido)
-          {
-            const nombre = prompt('Ponle un nombre a tu equipo!', 'Maximo 14 caracteres! (espacios incluidos)');
-        if(nombre && nombre.length <=14)
+      if (this.pokemonesEnEquipo.length === 6) {
+
+            const nombre = prompt('Ponle un nombre a tu equipo!', '');
+        if(nombre && nombre.length <=20)
         {
           this.equipoPokemon = {
             nombre: String(nombre),
@@ -93,12 +99,12 @@ export class EquipoPokemonComponent {
         {
           alert('el nombre debe tener entre 1 y 14 caracteres!')
         }
-      }
 
-      /*} else {
+
+      } else {
         alert('Debe tener 6 Pokémon en el equipo.');
 
-      }*/
+      }
     }
 
 }

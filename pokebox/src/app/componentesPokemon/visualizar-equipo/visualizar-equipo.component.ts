@@ -37,13 +37,16 @@ export class VisualizarEquipoComponent implements OnInit {
     this.router.navigate(['/combate']);
   }
 
-  ponerMote(pokemon:Pokemon)
-  {
-    let mote : string | null;
-    console.log(pokemon.idEquipo);
-
-    mote= prompt("Aqui puedes cambiarle el nombre. Escribe lo que quieras!", pokemon.name);
-    pokemon.name= mote ?? pokemon.name;
+  ponerMote(pokemon: Pokemon) {
+    let mote: string | null;
+    mote = prompt("Aquí puedes cambiarle el nombre. Escribe lo que quieras!", pokemon.name);
+    if (mote !== null) {
+      // Buscar la instancia específica en pokemonesEnEquipo y actualizarla
+      const index = this.pokemonesEnEquipo.findIndex(p => p.id === pokemon.id);
+      if (index !== -1) {
+        this.pokemonesEnEquipo[index].name = mote;
+      }
+    }
   }
 
   obtenerEquipo(nombre: string): void {

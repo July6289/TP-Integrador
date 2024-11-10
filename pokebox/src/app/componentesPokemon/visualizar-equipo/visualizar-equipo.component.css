@@ -18,12 +18,16 @@
     /* Centra la imagen y el botón */
     justify-content: center;
     width: 150px;
+    height: 150px;
     /* Ancho de cada tarjeta de Pokémon */
     padding: 15px;
     background-color: #819875;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s;
+    white-space: nowrap; /* Impide que el texto se divida en varias líneas */
+    overflow: hidden; /* Oculta el texto que sobrepase los límites del contenedor */
+    text-overflow: ellipsis; /* Agrega "..." al final del texto si es demasiado largo */
   }
 
   .pokemon:hover {
@@ -71,3 +75,15 @@
     justify-content: center; /* Centra los botones */
     width: 100%; /* Espacio entre la cuadrícula y los botones */
   }
+
+.nombreEquipo{
+
+  font-size: 48px; /* Tamaño de la fuente */
+  font-weight: bold; /* Negrita */
+  color: white; /* Color del texto */
+  text-align: center; /* Alineación del texto */
+  padding: 20px; /* Espaciado alrededor del título */
+  border-radius: 50px; /* Bordes redondeados */
+  box-shadow: 0 10px 12px rgb(95, 95, 95, 1); /* Sombra suave */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra en el texto */
+}
