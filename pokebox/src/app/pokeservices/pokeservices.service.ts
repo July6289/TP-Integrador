@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, combineLatest, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatest, map, Observable, of, forkJoin, filter } from 'rxjs';
 import { Generation } from '../interfaces/interfazpokemon/interfazGeneracion.interface';
 import { Pokemon } from '../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { Caja } from '../interfaces/interfaz-caja/interfazCaja.inteface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -158,4 +159,28 @@ export class PokeservicesService {
       }
     }
   }
+
+  //generar un equipo random
+  getRandomPokemonTeam(): Observable<Pokemon[]> {
+    const pokemonRequests: Observable<Pokemon | null>[] = [];
+
+    // Generar 6 IDs aleatorios de Pokémon entre 1 y 898
+    for (let i = 0; i < 6; i++) {
+      const randomId = Math.floor(Math.random() * 898) + 1;
+      pokemonRequests.push(
+        this.http.get<Pokemon>(`${this.urlBase}/pokemon/${randomId}`).pipe(
+          catchError(() => of(null)) // Emitir `null` si ocurre un error, sin conversión de tipo
+        )
+      );
+    }
+
+    // Combinar todas las peticiones y filtrar resultados `null`
+    return forkJoin(pokemonRequests).pipe(
+      map(results => results.filter((pokemon): pokemon is Pokemon => pokemon !== null))
+    );
+  }
+
+
+
+
 }

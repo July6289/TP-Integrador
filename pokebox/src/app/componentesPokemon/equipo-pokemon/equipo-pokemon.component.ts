@@ -33,7 +33,7 @@ export class EquipoPokemonComponent {
 
   goToMainPage()
   {
-    this.router.navigate(['/main-page']);
+    this.router.navigate(['/**']);
   }
 
 

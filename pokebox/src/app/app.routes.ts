@@ -21,11 +21,11 @@ export const routes: Routes = [
     component: ListaEquipoPokemonComponent
   },
   {
-    path: 'main-page/:id',
+    path: 'main-page',
     component: PaginaPrincipalComponent,
   },
   {
-    path: 'menu-page',
+    path: 'registro',
     component: PaginaLogueoComponent,
 
   },
@@ -39,6 +39,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'menu-page'
+    redirectTo: 'main-page'
   }
 ];

@@ -1,16 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ListaEquipoPokemonComponent } from "../lista-equipo-pokemon/lista-equipo-pokemon.component";
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { isNull } from 'lodash';
+import { PokemonSpecies } from '../../interfaces/interfazpokemon/interfazGeneracion.interface';
+import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
+import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
+import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 
 @Component({
   selector: 'app-pestania-combate',
   standalone: true,
-  imports: [ListaEquipoPokemonComponent],
+  imports: [/*ListaEquipoPokemonComponent*/],
   templateUrl: './pestania-combate.component.html',
   styleUrl: './pestania-combate.component.css'
 })
-export class PestaniaCombateComponent {
+export class PestaniaCombateComponent implements OnInit {
   private tablaTiposValores: number[][] = [
     [0.5, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 1], //normal
     [2, 1, 0.5, 1, 1, 0, 1, 0.5, 2, 1, 2, 1, 0.5, 2, 2, 1, 0.5, 0.5], //lucha
@@ -32,7 +36,48 @@ export class PestaniaCombateComponent {
     [0.5, 1, 1, 2, 1, 1, 0.5, 1, 1, 2, 1, 1, 1, 1, 2, 1, 0.5, 1], //hada
   ]
 
+  equipoMain:EquipoPokemon=
+  {
+    nombre:"",
+    equipo: []
+  }
+
+  equipoRival:EquipoPokemon=
+  {
+    nombre:"",
+    equipo: []
+  }
+
+
+  pokemonTeam: Pokemon[] = [];
+
+  ngOnInit(): void {
+    this.equipoMain=this.service.recibirEquipoPokemon();
+
+    this.pokeservicesService.getRandomPokemonTeam().subscribe(team => {
+      this.pokemonTeam = team;
+      this.equipoRival=
+      {
+        nombre:"Rival",
+        equipo:this.pokemonTeam
+      }
+    });
+
+  }
+
+
+  clicTest()
+  {
+    console.log(this.equipoMain);
+
+    console.log(this.equipoRival);
+
+  }
+
+  constructor(private service : EquipoPokemonService, private pokeservicesService: PokeservicesService){}
+
   private tablaTiposNombres: string[] = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
+
 
 
   tablaDeTipos(pokemonJugador: Pokemon, pokemonBot: Pokemon, turno: boolean) {
@@ -99,5 +144,7 @@ export class PestaniaCombateComponent {
 
     console.log(danio);
   }
+
+
 
 }

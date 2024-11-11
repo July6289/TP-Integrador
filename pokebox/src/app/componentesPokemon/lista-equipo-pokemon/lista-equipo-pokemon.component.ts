@@ -62,7 +62,7 @@ export class ListaEquipoPokemonComponent {
 
   seleccionarEquipo(team : EquipoPokemon)
   {
-    console.log(team);
+    this.equipoPokemonService.EquipoSeleccionado(team);
     this.router.navigate(['/combate'])
 
   }

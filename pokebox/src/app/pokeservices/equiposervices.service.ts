@@ -35,4 +35,21 @@ export class EquipoPokemonService {
   obtenerEquipoPorNombre(nombre: string): EquipoPokemon | undefined {
     return this.equipos.find(equipo => equipo.nombre === nombre);
   }
+
+  poketeam:EquipoPokemon=
+  {
+    nombre:"",
+    equipo: []
+  }
+
+
+  EquipoSeleccionado(equipoSeleccionado : EquipoPokemon)
+  {
+    this.poketeam=equipoSeleccionado;
+  }
+
+  recibirEquipoPokemon():EquipoPokemon
+  {
+    return this.poketeam;
+  }
 }
