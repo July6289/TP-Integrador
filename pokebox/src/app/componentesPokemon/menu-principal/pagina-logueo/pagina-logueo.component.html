@@ -38,6 +38,9 @@
 
     }
 
+    @if (validadorMensajeEspecifico) {
+      <p class="Error">{{mensajeEspecifico}}</p>
+    }
   </form>
   <div class="botones">
   <button class="SalirRegistro" (click)="btVolver()">Volver</button>

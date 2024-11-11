@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterEvent, RouterLinkActive, RouterModule, Router } from '@angular/router';
 import { Caja } from '../../../interfaces/interfaz-caja/interfazCaja.inteface';
 import { UsuarioService } from '../../../pokeservices/usuario.service';
 import { Usuario } from '../../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { PokeservicesService } from '../../../pokeservices/pokeservices.service';
+import { isNull } from 'lodash';
 
 @Component({
   selector: 'app-pagina-logueo',
@@ -15,6 +16,7 @@ import { PokeservicesService } from '../../../pokeservices/pokeservices.service'
 })
 export class PaginaLogueoComponent {
 
+  constructor(private ctrl:ChangeDetectorRef){}
   validadorMensajeEspecifico:boolean=false;
   mensajeEspecifico:string='';
   isLoggingButtonShowing:boolean=true;
@@ -63,6 +65,8 @@ export class PaginaLogueoComponent {
     this.IsFormRegisterShowing=false;
     this.isFormLoginShowing=false;
     this.isLoggingButtonShowing=true;
+    this.validadorMensajeEspecifico=false;
+    this.mensajeEspecifico='';
 
   }
 addUsuario()
@@ -72,30 +76,56 @@ addUsuario()
     console.log("Error");
   }
   else{
+    this.validadorMensajeEspecifico=true;
   const usuario=this.formulario.getRawValue();
   usuario.box=this.pokeservice.getNewCaja();
-  this.usuarioService.postUsuario(usuario).subscribe(
+  this.usuarioService.getUsuariobyName(usuario.Username).subscribe(
     {
-      next:()=>{
-        console.log("enviado con exito");
-        this.isRegisterButtonShowing=true;
-        this.IsFormRegisterShowing=false;
-        this.isLoggingButtonShowing=true;
-        this.formulario.reset();
-      },
-      error:(e:Error)=>{
-        console.log(e.message);
-        this.formulario.reset();
+      next:(usuarioDato:Usuario[]) => {
+        if (usuarioDato.length>0) {
+          this.mensajeEspecifico='Este usuario ya existe en el sistema';
+          this.validadorMensajeEspecifico = true;
+
+          console.log(this.validadorMensajeEspecifico);
+          console.log(this.mensajeEspecifico);
+          this.ctrl.detectChanges();
+
+      }
+      else
+      {
+        this.usuarioService.postUsuario(usuario).subscribe(
+          {
+            next:()=>{
+              console.log("enviado con exito");
+              this.isRegisterButtonShowing=true;
+              this.IsFormRegisterShowing=false;
+              this.isLoggingButtonShowing=true;
+              this.formulario.reset();
+            },
+            error:(e:Error)=>{
+              console.log(e.message);
+              this.formulario.reset();
+
+            }
+
+          }
+
+        )
 
       }
 
+    },
+    error:(e:Error)=>{
+      console.log(e.message);
     }
 
-  )
-  console.log(usuario);
+  }
 
+  )
   }
 }
+
+
 checkLoggedUsuario()
 {
 
@@ -133,7 +163,7 @@ checkLoggedUsuario()
         error:(e:Error)=>{
           console.log(e.message);
           this.validadorMensajeEspecifico=true;
-          this.mensajeEspecifico="el usuario ingresado no existe";
+          this.mensajeEspecifico='el usuario ingresado no existe';
           this.formulario.reset();
         }
 
