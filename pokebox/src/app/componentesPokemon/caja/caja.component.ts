@@ -29,6 +29,11 @@ export class CajaComponent {
 
   ngOnInit(): void {
     // Referencia a las cajas en el servicio
+
+
+
+
+
     this.cajas = this.pokeService.cajas;
   }
 

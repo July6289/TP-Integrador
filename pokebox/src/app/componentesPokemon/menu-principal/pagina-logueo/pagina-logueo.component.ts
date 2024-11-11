@@ -112,14 +112,21 @@ checkLoggedUsuario()
         next:(usuario:Usuario[])=>{
           if (usuario.length > 0) {
             console.log('Usuario encontrado:', usuario[0]);
+            if(usuario[0].Password.localeCompare(datosUsuario.Password)===0)
+            {
+              console.log(usuario[0]);
+              console.log(datosUsuario.Password);
 
 
 
+            }
+            else{
+              this.validadorMensajeEspecifico=true;
+              this.mensajeEspecifico='contraseña incorrecta, ingese nuevamente';
 
-
-          } else {
-            console.log('Usuario no encontrado');
+            }
           }
+
         },
         error:(e:Error)=>{
           console.log(e.message);
