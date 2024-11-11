@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterEvent, RouterLinkActive, RouterModule } from '@angular/router';
-import { Caja } from '../../interfaces/interfaz-caja/interfazCaja.inteface';
-import { UsuarioService } from '../../pokeservices/usuario.service';
-import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { Caja } from '../../../interfaces/interfaz-caja/interfazCaja.inteface';
+import { UsuarioService } from '../../../pokeservices/usuario.service';
+import { Usuario } from '../../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 
 @Component({
   selector: 'app-pagina-logueo',
@@ -71,6 +71,7 @@ addUsuario()
   }
   else{
   const usuario=this.formulario.getRawValue();
+  usuario.box=
   this.usuarioService.postUsuario(usuario).subscribe(
     {
       next:()=>{
