@@ -1,0 +1,113 @@
+<div>
+  <img class="imagenLogueo" src="\assets\imagenes\Pokebox-4-11-2024(1).png" alt="imagen usuario">
+
+  @if (isRegisterButtonShowing) {
+  <button (click)="btRegistro()" class="Registarse">Registrarse</button>
+
+}
+@if (IsFormRegisterShowing) {
+
+
+  <form class="formularioRegistro" [formGroup]="formulario">
+
+    <label for="">Usuario:</label>
+
+    <input type="text" value="''" formControlName="Username">
+    @if (formulario.controls['Username'].getError('required')&&formulario.controls['Username'].touched) {
+
+      <p class="Error">Campo requerido</p>
+
+
+    }
+    @if (formulario.controls['Username'].getError('minlength')&&formulario.controls['Username'].touched) {
+      <p class="Error">Cantidad invalida</p>
+
+    }
+
+    <label for="">Contraseña:</label>
+
+    <input type="text" formControlName="Password">
+    @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
+
+      <p class="Error">Campo requerido</p>
+
+
+    }
+    @if (formulario.controls['Password'].getError('minlength')&&formulario.controls['Password'].touched) {
+      <p class="Error">Cantidad invalida</p>
+
+    }
+
+  </form>
+  <div class="botones">
+  <button class="SalirRegistro" (click)="btVolver()">Volver</button>
+  <button class="Confirmar" (click)="addUsuario()">Confirmar</button>
+  </div>
+
+
+
+}
+
+  @if (isLoggingButtonShowing) {
+
+    <button (click)="btLogueo()" class="IniciarSesion">Iniciar Sesion</button>
+
+  }
+
+@if (isFormLoginShowing) {
+
+
+  <form class="formularioRegistro" [formGroup]="formulario">
+
+    <label for="">Usuario:</label>
+
+    <input type="text" value="''" formControlName="Username">
+    @if (formulario.controls['Username'].getError('required')&&formulario.controls['Username'].touched) {
+
+      <p class="Error">Campo requerido</p>
+
+
+    }
+    @if (formulario.controls['Username'].getError('minlength')&&formulario.controls['Username'].touched) {
+      <p class="Error">Cantidad invalida</p>
+
+    }
+
+    <label for="">Contraseña:</label>
+
+    <input type="text" formControlName="Password">
+    @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
+
+      <p class="Error">Campo requerido</p>
+
+
+    }
+    @if (formulario.controls['Password'].getError('minlength')&&formulario.controls['Password'].touched) {
+      <p class="Error">Cantidad invalida</p>
+
+    }
+    @if (validadorMensajeEspecifico) {
+      <p class="Error">{{mensajeEspecifico}}</p>
+    }
+  </form>
+  <div class="botones">
+  <button class="SalirRegistro" (click)="btVolver()">Volver</button>
+  <button class="Confirmar" (click)="checkLoggedUsuario()">Confirmar</button>
+  </div>
+
+
+
+}
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
