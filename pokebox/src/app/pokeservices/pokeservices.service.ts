@@ -18,13 +18,6 @@ export class PokeservicesService {
     pokemones: []                                       // Pokémon iniciales vacíos
   }));
 
-  getNewCaja(){
-
-  }
-
-
-
-
   private selectedPokemonSubject = new BehaviorSubject<Pokemon | null>(null); // BehaviorSubject para el Pokémon seleccionado
   selectedPokemon$ = this.selectedPokemonSubject.asObservable(); // Observable para suscribirse a los cambios
 
@@ -57,9 +50,6 @@ export class PokeservicesService {
   constructor(private http: HttpClient) { }
 
   urlBase: string = 'https://pokeapi.co/api/v2';
-
-
-
 
   getPokemonByName(nombrePokemon: string): Observable<Pokemon | undefined> {
     return this.http.get<Pokemon>(`${this.urlBase}/${'pokemon'}/${nombrePokemon}`).pipe(
