@@ -4,6 +4,7 @@ import { RouterEvent, RouterLinkActive, RouterModule } from '@angular/router';
 import { Caja } from '../../../interfaces/interfaz-caja/interfazCaja.inteface';
 import { UsuarioService } from '../../../pokeservices/usuario.service';
 import { Usuario } from '../../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { PokeservicesService } from '../../../pokeservices/pokeservices.service';
 
 @Component({
   selector: 'app-pagina-logueo',
@@ -22,7 +23,7 @@ export class PaginaLogueoComponent {
   IsFormRegisterShowing:boolean=false;
 
   usuarioService=inject(UsuarioService);
-
+  pokeservice=inject(PokeservicesService);
   fb=inject(FormBuilder)
 
   formulario=this.fb.nonNullable.group(
@@ -71,7 +72,7 @@ addUsuario()
   }
   else{
   const usuario=this.formulario.getRawValue();
-  usuario.box=
+  usuario.box=this.pokeservice.getNewCaja();
   this.usuarioService.postUsuario(usuario).subscribe(
     {
       next:()=>{
@@ -111,6 +112,11 @@ checkLoggedUsuario()
         next:(usuario:Usuario[])=>{
           if (usuario.length > 0) {
             console.log('Usuario encontrado:', usuario[0]);
+
+
+
+
+
           } else {
             console.log('Usuario no encontrado');
           }
