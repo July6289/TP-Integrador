@@ -145,6 +145,7 @@ checkLoggedUsuario()
             console.log('Usuario encontrado:', usuario[0]);
             if(usuario[0].Password.localeCompare(datosUsuario.Password)===0)
             {
+
               console.log(usuario[0]);
               console.log(datosUsuario.Password);
               this.router.navigate([`main-page/${usuario[0].id}`]);
@@ -158,12 +159,16 @@ checkLoggedUsuario()
 
             }
           }
+          else{
+            this.validadorMensajeEspecifico=true;
+            this.mensajeEspecifico='el usuario ingresado no existe';
+
+          }
 
         },
         error:(e:Error)=>{
           console.log(e.message);
-          this.validadorMensajeEspecifico=true;
-          this.mensajeEspecifico='el usuario ingresado no existe';
+
           this.formulario.reset();
         }
 
