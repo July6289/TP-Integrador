@@ -21,7 +21,7 @@ export const routes: Routes = [
     component: ListaEquipoPokemonComponent
   },
   {
-    path: 'main-page',
+    path: 'main-page/:id',
     component: PaginaPrincipalComponent,
   },
   {

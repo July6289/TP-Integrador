@@ -1,13 +1,7 @@
 {
   "Usuarios": [
     {
-      "id": "a199",
-      "box": [],
-      "Username": "rodolfo",
-      "Password": "er8t748rt8rtrt"
-    },
-    {
-      "id": "ba0c",
+      "id": "44a0",
       "box": [
         {
           "imagen": "/assets/imagenes/cajas/1.png",
@@ -139,7 +133,7 @@
         }
       ],
       "Username": "rodolfo",
-      "Password": "pokerodolfo"
+      "Password": "mim456"
     }
   ]
 }

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterEvent, RouterLinkActive, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterEvent, RouterLinkActive, RouterModule, Router } from '@angular/router';
 import { Caja } from '../../../interfaces/interfaz-caja/interfazCaja.inteface';
 import { UsuarioService } from '../../../pokeservices/usuario.service';
 import { Usuario } from '../../../interfaces/interfaz-usuario/interfazGeneracion.interface';
@@ -24,6 +24,7 @@ export class PaginaLogueoComponent {
 
   usuarioService=inject(UsuarioService);
   pokeservice=inject(PokeservicesService);
+  router=inject(Router);
   fb=inject(FormBuilder)
 
   formulario=this.fb.nonNullable.group(
@@ -116,6 +117,7 @@ checkLoggedUsuario()
             {
               console.log(usuario[0]);
               console.log(datosUsuario.Password);
+              this.router.navigate([`main-page/${usuario[0].id}`]);
 
 
 
