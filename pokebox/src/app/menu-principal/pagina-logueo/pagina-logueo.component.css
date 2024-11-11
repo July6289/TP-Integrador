@@ -5,6 +5,8 @@
   width: 100%;
   height: 100vh;
   background-color: #4A7B59;
+  overflow-y: auto;
+
 }
 
 .imagenLogueo {
