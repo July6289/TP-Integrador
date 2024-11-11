@@ -15,9 +15,9 @@ import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.i
 
 export class ListaEquipoPokemonComponent {
 
-  constructor(private router: Router, private equipoPokemonService: EquipoPokemonService, private location:Location) { }
+  constructor(private router: Router, private equipoPokemonService: EquipoPokemonService, private location: Location) { }
 
-  poketeam: EquipoPokemon[]=[];
+  poketeam: EquipoPokemon[] = [];
 
   ngOnInit() {
     // Suscribirse a todos los equipos
@@ -27,49 +27,32 @@ export class ListaEquipoPokemonComponent {
     this.checkRoute();
   }
 
-  rutaCombate=true;
+  rutaCombate = true;
 
-
-
-  checkRoute():void
-  {
-    this.rutaCombate= this.location.path().includes('/main-page');
+  checkRoute(): void {
+    this.rutaCombate = this.location.path().includes('/main-page');
   }
-
- /* agregarElemento(nuevoElemento: EquipoPokemon, index: number) {
-    if (nuevoElemento) {
-      // Modificar la posición específica
-      this.poketeam[index] = nuevoElemento;
-      // Forzar la actualización de la vista creando una nueva referencia del array
-      this.poketeam = [...this.poketeam];
-    }
-  }*/
 
   // Eliminar un elemento específico
   eliminarElemento(index: number) {
     this.equipoPokemonService.eliminarEquipo(index);
   }
 
-  goToCrearEquipo()
-  {
+  goToCrearEquipo() {
     this.router.navigate(['/equipo-pokemon']);
   }
 
-  gotoMain()
-  {
+  gotoMain() {
     this.router.navigate(['/**']);
   }
 
-  seleccionarEquipo(team : EquipoPokemon)
-  {
+  seleccionarEquipo(team: EquipoPokemon) {
     this.equipoPokemonService.EquipoSeleccionado(team);
     this.router.navigate(['/combate'])
-
   }
 
 
-  goToVisualizarpokemon(nombre: string)
-  {
+  goToVisualizarpokemon(nombre: string) {
     console.log(`Navegando a equipo con nombre: ${nombre}`);
     this.router.navigate(['/equipo', nombre]);
   }

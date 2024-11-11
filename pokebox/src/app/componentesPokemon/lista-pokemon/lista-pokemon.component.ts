@@ -57,7 +57,6 @@ export class ListaPokemonComponent implements OnInit {
     if (this.pokemonSeleccionado !== null) {
       const pokemon = this.listaPokemon[this.pokemonSeleccionado];
       this.pokemonAgregado.emit(pokemon); // Emite el Pokémon seleccionado
-      //this.listaPokemon.splice(this.pokemonSeleccionado, 1); // Elimina el Pokémon de la lista
 
       setTimeout(() => {
         this.pokemonSeleccionado = null;
@@ -114,10 +113,8 @@ export class ListaPokemonComponent implements OnInit {
                 this.validacion = false;
                 this.mensajeError = 'el numero de generación no esta disponible';
               }
-
             }
           }
-
         )
       }
     } else {

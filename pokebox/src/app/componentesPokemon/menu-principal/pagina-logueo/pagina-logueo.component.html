@@ -4,8 +4,8 @@
   @if (isRegisterButtonShowing) {
   <button (click)="btRegistro()" class="Registarse">Registrarse</button>
 
-}
-@if (IsFormRegisterShowing) {
+  }
+  @if (IsFormRegisterShowing) {
 
 
   <form class="formularioRegistro" [formGroup]="formulario">
@@ -15,12 +15,12 @@
     <input type="text" value="''" formControlName="Username">
     @if (formulario.controls['Username'].getError('required')&&formulario.controls['Username'].touched) {
 
-      <p class="Error">Campo requerido</p>
+    <p class="Error">Campo requerido</p>
 
 
     }
     @if (formulario.controls['Username'].getError('minlength')&&formulario.controls['Username'].touched) {
-      <p class="Error">Cantidad invalida</p>
+    <p class="Error">Cantidad invalida</p>
 
     }
 
@@ -29,35 +29,32 @@
     <input type="password" formControlName="Password">
     @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
 
-      <p class="Error">Campo requerido</p>
+    <p class="Error">Campo requerido</p>
 
 
     }
     @if (formulario.controls['Password'].getError('minlength')&&formulario.controls['Password'].touched) {
-      <p class="Error">Cantidad invalida</p>
+    <p class="Error">Cantidad invalida</p>
 
     }
 
     @if (validadorMensajeEspecifico) {
-      <p class="Error">{{mensajeEspecifico}}</p>
+    <p class="Error">{{mensajeEspecifico}}</p>
     }
   </form>
   <div class="botones">
-  <button class="SalirRegistro" (click)="btVolver()">Volver</button>
-  <button class="Confirmar" (click)="addUsuario()">Confirmar</button>
+    <button class="SalirRegistro" (click)="btVolver()">Volver</button>
+    <button class="Confirmar" (click)="addUsuario()">Confirmar</button>
   </div>
-
-
-
-}
+  }
 
   @if (isLoggingButtonShowing) {
 
-    <button (click)="btLogueo()" class="IniciarSesion">Iniciar Sesion</button>
+  <button (click)="btLogueo()" class="IniciarSesion">Iniciar Sesion</button>
 
   }
 
-@if (isFormLoginShowing) {
+  @if (isFormLoginShowing) {
 
 
   <form class="formularioRegistro" [formGroup]="formulario">
@@ -67,12 +64,12 @@
     <input type="text" value="''" formControlName="Username">
     @if (formulario.controls['Username'].getError('required')&&formulario.controls['Username'].touched) {
 
-      <p class="Error">Campo requerido</p>
+    <p class="Error">Campo requerido</p>
 
 
     }
     @if (formulario.controls['Username'].getError('minlength')&&formulario.controls['Username'].touched) {
-      <p class="Error">Cantidad invalida</p>
+    <p class="Error">Cantidad invalida</p>
 
     }
 
@@ -81,36 +78,21 @@
     <input type="password" formControlName="Password">
     @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
 
-      <p class="Error">Campo requerido</p>
+    <p class="Error">Campo requerido</p>
 
 
     }
     @if (formulario.controls['Password'].getError('minlength')&&formulario.controls['Password'].touched) {
-      <p class="Error">Cantidad invalida</p>
+    <p class="Error">Cantidad invalida</p>
 
     }
     @if (validadorMensajeEspecifico) {
-      <p class="Error">{{mensajeEspecifico}}</p>
+    <p class="Error">{{mensajeEspecifico}}</p>
     }
   </form>
   <div class="botones">
-  <button class="SalirRegistro" (click)="btVolver()">Volver</button>
-  <button class="Confirmar" (click)="checkLoggedUsuario()">Confirmar</button>
+    <button class="SalirRegistro" (click)="btVolver()">Volver</button>
+    <button class="Confirmar" (click)="checkLoggedUsuario()">Confirmar</button>
   </div>
-
-
-
-}
-
-
-
-
-
+  }
 </div>
-
-
-
-
-
-
-

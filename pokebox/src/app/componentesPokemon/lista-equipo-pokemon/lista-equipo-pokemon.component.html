@@ -15,17 +15,15 @@
 </div>
 
 
-<div class="/combate" *ngIf="rutaCombate===false" >
-    <h1>Elija un Equipo Pokemon</h1>
-    <ul>
-      <li class="equipos" *ngFor="let item of poketeam; let i = index" (click)="goToVisualizarpokemon(item.nombre)">
-        <span class="nombre-pokemon" (click)="goToVisualizarpokemon(item.nombre)">{{ item.nombre }}</span>
-        <div>
-          <button class="big" (click)="seleccionarEquipo(item)">Selecionar Equipo</button>
-        </div>
-      </li>
-    </ul>
-    <button class="big" (click)="gotoMain()">Volver</button>
-
-
+<div class="/combate" *ngIf="rutaCombate===false">
+  <h1>Elija un Equipo Pokemon</h1>
+  <ul>
+    <li class="equipos" *ngFor="let item of poketeam; let i = index" (click)="goToVisualizarpokemon(item.nombre)">
+      <span class="nombre-pokemon" (click)="goToVisualizarpokemon(item.nombre)">{{ item.nombre }}</span>
+      <div>
+        <button class="big" (click)="seleccionarEquipo(item)">Selecionar Equipo</button>
+      </div>
+    </li>
+  </ul>
+  <button class="big" (click)="gotoMain()">Volver</button>
 </div>

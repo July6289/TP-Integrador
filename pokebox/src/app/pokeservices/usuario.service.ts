@@ -20,6 +20,5 @@ export class UsuarioService {
    }
    getUsuariobyName(name: string): Observable<Usuario[]> {
     return this.service.get<Usuario[]>(`${this.urlbase}?Username=${name}`);
-    //http://localhost:3000/Usuarios ?Username=rodolfo
   }
 }

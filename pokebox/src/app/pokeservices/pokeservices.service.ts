@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, combineLatest, map, Observable, of, forkJoin, filter } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatest, map, Observable, of, forkJoin } from 'rxjs';
 import { Generation } from '../interfaces/interfazpokemon/interfazGeneracion.interface';
 import { Pokemon } from '../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { Caja } from '../interfaces/interfaz-caja/interfazCaja.inteface';
@@ -19,12 +19,9 @@ export class PokeservicesService {
     pokemones: []                                       // Pokémon iniciales vacíos
   }));
 
-  getNewCaja(){
+  getNewCaja() {
     return this.cajas;
   }
-
-
-
 
   private selectedPokemonSubject = new BehaviorSubject<Pokemon | null>(null); // BehaviorSubject para el Pokémon seleccionado
   selectedPokemon$ = this.selectedPokemonSubject.asObservable(); // Observable para suscribirse a los cambios
@@ -59,11 +56,8 @@ export class PokeservicesService {
 
   urlBase: string = 'https://pokeapi.co/api/v2';
 
-
-
-
   getPokemonByName(nombrePokemon: string): Observable<Pokemon | undefined> {
-    return this.http.get<Pokemon>(`${this.urlBase}/${'pokemon'}/${nombrePokemon}`).pipe(
+    return this.http.get<Pokemon>(`${this.urlBase}/'pokemon'/${nombrePokemon}`).pipe(
       catchError((error) => {
         console.log(error)
         return of(undefined)
@@ -73,7 +67,7 @@ export class PokeservicesService {
 
   getPokemonByGeneration(NumeroGeneracion: number): Observable<Generation | undefined> {
     console.log("el dato es", NumeroGeneracion);
-    return this.http.get<Generation>(`${this.urlBase}/${"generation"}/${NumeroGeneracion.toString()}`).pipe(
+    return this.http.get<Generation>(`${this.urlBase}/"generation"/${NumeroGeneracion.toString()}`).pipe(
       catchError((error) => {
         console.log(error)
         return of(undefined)
@@ -166,7 +160,7 @@ export class PokeservicesService {
 
     // Generar 6 IDs aleatorios de Pokémon entre 1 y 898
     for (let i = 0; i < 6; i++) {
-      const randomId = Math.floor(Math.random() * 898) + 1;
+      const randomId = Math.floor(Math.random() * 1025) + 1;
       pokemonRequests.push(
         this.http.get<Pokemon>(`${this.urlBase}/pokemon/${randomId}`).pipe(
           catchError(() => of(null)) // Emitir `null` si ocurre un error, sin conversión de tipo
@@ -179,8 +173,4 @@ export class PokeservicesService {
       map(results => results.filter((pokemon): pokemon is Pokemon => pokemon !== null))
     );
   }
-
-
-
-
 }
