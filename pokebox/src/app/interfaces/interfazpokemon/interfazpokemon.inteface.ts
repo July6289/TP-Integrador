@@ -8,6 +8,8 @@ export interface Pokemon {
   sprites: Sprites;
   types: Type[];
   idEquipo?: number;
+  isShiny?: boolean
+  isMale?: boolean;
 }
 
 export interface Type {

@@ -80,4 +80,20 @@ export class CajaComponent {
     this.pokemonSeleccionado = pokemon;
     this.pokeService.setSelectedPokemon(pokemon); // Establecer el Pokémon seleccionado en el servicio
   }
+
+  getSpriteUrl(pokemon: Pokemon): string {
+    if (pokemon.isMale === undefined || pokemon.isShiny === undefined) {
+      return pokemon.sprites.front_default; // Sprite por defecto si no hay configuración
+    }
+
+    if (pokemon.isMale && pokemon.isShiny) {
+      return pokemon.sprites.front_shiny;
+    } else if (pokemon.isMale && !pokemon.isShiny) {
+      return pokemon.sprites.front_default;
+    } else if (!pokemon.isMale && pokemon.isShiny) {
+      return pokemon.sprites.front_shiny_female || pokemon.sprites.front_shiny;
+    } else {
+      return pokemon.sprites.front_female || pokemon.sprites.front_default;
+    }
+  }
 }

@@ -71,11 +71,16 @@ export class PokeservicesService {
   }
 
   setSelectedPokemon(pokemon: Pokemon): void {
-    this.selectedPokemonSubject.next(pokemon); // Emitir el Pokémon seleccionado
-    // Reiniciar los valores al seleccionar un nuevo Pokémon
-    this.esMachoSubject.next(true); // Por defecto "macho"
-    this.esShinySubject.next(false); // Por defecto no "shiny"
+    this.selectedPokemonSubject.next(pokemon);
+
+    // Establecer esMacho y esShiny según el estado guardado en Caja
+    const esMacho = pokemon.isMale ?? true; // Valor predeterminado si no está definido
+    const esShiny = pokemon.isShiny ?? false; // Valor predeterminado si no está definido
+
+    this.esMachoSubject.next(esMacho);
+    this.esShinySubject.next(esShiny);
   }
+
 
   getSelectedPokemon(): Pokemon | null {
     return this.selectedPokemonSubject.value; // Obtener el valor actual
@@ -130,12 +135,16 @@ export class PokeservicesService {
   }
 
   updatePokemonInCaja(updatedPokemon: Pokemon): void {
-    // Encuentra el Pokémon en la lista y actualízalo
     for (let caja of this.cajas) {
-      const pokemonIndex  = caja.pokemones.findIndex(p => p.id === updatedPokemon.id);
+      const pokemonIndex = caja.pokemones.findIndex(p => p.id === updatedPokemon.id);
       if (pokemonIndex !== -1) {
-        caja.pokemones[pokemonIndex] = updatedPokemon; // Actualiza el Pokémon
-        break; // Sale del bucle una vez que ha sido actualizado
+        // Actualizar las propiedades de género y estado shiny en el objeto Pokémon
+        caja.pokemones[pokemonIndex] = {
+          ...updatedPokemon,
+          isMale: this.esMachoSubject.value, // Guardar el género actual
+          isShiny: this.esShinySubject.value // Guardar el estado shiny actual
+        };
+        break;
       }
     }
   }
