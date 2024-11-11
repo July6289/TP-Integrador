@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterEvent, RouterLinkActive, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterEvent, RouterLinkActive, RouterModule, Router } from '@angular/router';
 import { Caja } from '../../../interfaces/interfaz-caja/interfazCaja.inteface';
 import { UsuarioService } from '../../../pokeservices/usuario.service';
 import { Usuario } from '../../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { PokeservicesService } from '../../../pokeservices/pokeservices.service';
 
 @Component({
   selector: 'app-pagina-logueo',
@@ -22,7 +23,8 @@ export class PaginaLogueoComponent {
   IsFormRegisterShowing:boolean=false;
 
   usuarioService=inject(UsuarioService);
-
+  pokeservice=inject(PokeservicesService);
+  router=inject(Router);
   fb=inject(FormBuilder)
 
   formulario=this.fb.nonNullable.group(
@@ -71,7 +73,7 @@ addUsuario()
   }
   else{
   const usuario=this.formulario.getRawValue();
-  usuario.box=
+  usuario.box=this.pokeservice.getNewCaja();
   this.usuarioService.postUsuario(usuario).subscribe(
     {
       next:()=>{
@@ -111,9 +113,22 @@ checkLoggedUsuario()
         next:(usuario:Usuario[])=>{
           if (usuario.length > 0) {
             console.log('Usuario encontrado:', usuario[0]);
-          } else {
-            console.log('Usuario no encontrado');
+            if(usuario[0].Password.localeCompare(datosUsuario.Password)===0)
+            {
+              console.log(usuario[0]);
+              console.log(datosUsuario.Password);
+              this.router.navigate([`main-page/${usuario[0].id}`]);
+
+
+
+            }
+            else{
+              this.validadorMensajeEspecifico=true;
+              this.mensajeEspecifico='contraseña incorrecta, ingese nuevamente';
+
+            }
           }
+
         },
         error:(e:Error)=>{
           console.log(e.message);
