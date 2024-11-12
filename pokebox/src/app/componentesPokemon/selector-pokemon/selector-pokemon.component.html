@@ -1,2 +1,23 @@
-<button (click)="gotoCombate()"> volver</button>
-<button (click)="seleccionar()"> Elegir Pokemon</button>
+
+<div class="poketeam">
+  <div *ngFor="let pokemon of pokemonesEnEquipo.equipo" class="pokemon">
+    <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="pokemon-imagen">
+    <div class="pokemon-info">
+      <div class="pokemon-nombre">{{pokemon.name}}</div>
+      <div class="pokemon-tipos">
+        <div *ngFor="let tipos of pokemon.types" [ngClass]="getTypeClass(tipos.type.name)" class="pokemon-tipo">
+          {{tipos.type.name}}
+        </div>
+      </div>
+      <button class="select" (click)="seleccionar(pokemon)">Elegir Pokemon</button>
+    </div>
+  </div>
+</div>
+
+
+
+    <div class="boton-volver">
+      <button (click)="gotoCombate()"> volver</button>
+    </div>
+
+

@@ -1,0 +1,249 @@
+
+.pokemon-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Alinea todos los elementos al final de la columna */
+  gap: 15px;
+  width: 100%; /* El contenedor principal ocupa el 100% del ancho */
+  padding-right: 20px;
+}
+
+.pokemon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background-color: #819875;
+  width: 50%; /* Ocupa el 50% del ancho de la pantalla */
+  margin-left: auto; /* Esto hace que el elemento se pegue al lado derecho */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+.pokemon-imagen {
+  width: 80px; /* Ajusta el tamaño de la imagen */
+  height: 80px; /* Asegura que la imagen sea uniforme */
+}
+
+
+.pokemon-nombre {
+  font-weight: bold;
+  font-size: 18px; /* Ajusta el tamaño de la fuente para mayor visibilidad */
+}
+
+.pokemon-info {
+  display: flex;
+  flex-direction: column; /* Coloca los elementos (nombre, tipos, botón) en una columna */
+  gap: 5px; /* Espacio entre el nombre, los tipos y el botón */
+}
+
+.pokemon-tipos {
+  display: flex;
+  gap: 5px; /* Espacio entre los tipos */
+}
+
+.pokemon-tipo {
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.select {
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: white;
+  color: black;
+  border: 2px solid #4A7B59;
+  transition-duration: 0.3s;
+}
+
+.select:hover {
+  background-color: #4A7B59;
+  color: white;
+}
+
+.pokemon:hover {
+  transform: scale(1.01); /* Efecto de aumento al pasar el mouse */
+}
+
+.poketeam {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center; /* Centra verticalmente el contenido */
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box; /* Asegura que el padding y el border no incrementen el tamaño */
+  background-image: url('/assets/imagenes/test2.jpg'); /* URL de tu imagen de fondo */
+  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-position: center;
+}
+
+
+
+button {
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  background-color: white;
+  color: black;
+  border: 2px solid #4A7B59;
+  transition-duration: 0.3s; /* Espacio entre las tarjetas y el botón */
+}
+
+button:hover {
+  background-color: #4A7B59;
+  color: white;
+}
+
+.boton-volver {
+  display: flex;
+  gap: 15px; /* Espacio entre los botones */
+  justify-content: center; /* Centra los botones */
+  width: 100%; /* Espacio entre la cuadrícula y los botones */
+  cursor: pointer;
+}
+
+
+
+/*-----------------------------------------------tipos pokemon-----------------------------------------------*/
+.type-normal{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #9a915a;
+  color: white;
+}
+
+.type-ice{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #06aea5;
+  color: white;
+}
+
+.type-psychic{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #984dd6;
+  color: white;
+}
+
+.type-electric{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(195, 195, 0);
+  color: white;
+}
+
+.type-grass{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(30, 165, 3);
+  color: white;
+}
+
+.type-water{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(0, 73, 182);
+  color: white;
+}
+
+.type-fire{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(194, 0, 0);
+  color: white;
+}
+
+.type-steel{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(111, 130, 157);
+  color: white;
+}
+
+.type-ghost{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(106, 0, 235);
+  color: white;
+}
+
+.type-bug{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(167, 255, 112);
+  color: white;
+
+}
+
+.type-ground{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(182, 140, 0);
+  color: white;
+}
+
+.type-rock{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(138, 106, 2);
+  color: white;
+}
+
+.type-poison{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(144, 0, 255);
+  color: white;
+
+}
+
+.type-flying{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(69, 143, 143);
+  color: white;
+
+}
+
+.type-fighting{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(192, 55, 55);
+  color: white;
+
+}
+
+.type-dragon{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(55, 2, 135);
+  color: white;
+
+}
+
+.type-dark{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(12, 12, 12);
+  color: white;
+}
+
+.type-fairy{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(199, 24, 170);
+  color: white;
+}
+
+.type-stelar{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(228, 228, 228);
+  color: black;
+
+}

@@ -47,6 +47,13 @@ export class PestaniaCombateComponent implements OnInit {
       equipo: []
     }
 
+    getpokemonFight()
+    {
+      this.peleador=this.service.getPosicionEquipo();
+    }
+
+  peleador: number=0;
+
   pokemonTeam: Pokemon[] = [];
 
   private tablaTiposNombres: string[] = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
@@ -57,6 +64,12 @@ export class PestaniaCombateComponent implements OnInit {
 
   ngOnInit(): void {
     this.equipoMain = this.service.recibirEquipoPokemon();
+    console.log("equipo: " +this.equipoMain);
+    this.getpokemonFight();
+    console.log("id elegido: " + this.peleador);
+
+
+
 
     this.pokeservicesService.getRandomPokemonTeam().subscribe(team => {
       this.pokemonTeam = team;
@@ -184,6 +197,8 @@ export class PestaniaCombateComponent implements OnInit {
   }
 
   gotoSlector() {
+    console.log("yendo");
+
     this.router.navigate(['/cambiar-pokemon']);
   }
 }

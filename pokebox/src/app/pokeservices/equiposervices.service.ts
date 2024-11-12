@@ -52,4 +52,16 @@ export class EquipoPokemonService {
   {
     return this.poketeam;
   }
+  selectedPokemon: number=0;
+
+  setPosicionEquipo(id : number)
+  {
+      this.selectedPokemon=id;
+  }
+
+  getPosicionEquipo()
+  {
+      return this.selectedPokemon;
+  }
+
 }
