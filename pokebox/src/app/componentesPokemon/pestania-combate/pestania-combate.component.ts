@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class PestaniaCombateComponent implements OnInit {
   private tablaTiposValores: number[][] = [
-/*    n    l    vo   ve   t    r    b   fa   ac   fu   ag   pl    e   ps   hi    d    s   ha         */
+    /*    n    l    vo   ve   t    r    b   fa   ac   fu   ag   pl    e   ps   hi    d    s   ha         */
     [1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 0.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],//normal
     [2.0, 1.0, 0.5, 0.5, 1.0, 2.0, 0.5, 0.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 2.0, 1.0, 2.0, 0.5],//lucha
     [1.0, 2.0, 1.0, 1.0, 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0],//volador
@@ -49,9 +49,11 @@ export class PestaniaCombateComponent implements OnInit {
 
   pokemonTeam: Pokemon[] = [];
 
-  constructor(private service: EquipoPokemonService, private pokeservicesService: PokeservicesService, private router: Router) { }
-
   private tablaTiposNombres: string[] = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
+
+  turno: boolean = true;
+
+  constructor(private service: EquipoPokemonService, private pokeservicesService: PokeservicesService, private router: Router) { }
 
   ngOnInit(): void {
     this.equipoMain = this.service.recibirEquipoPokemon();
@@ -72,10 +74,6 @@ export class PestaniaCombateComponent implements OnInit {
   }
 
   tablaDeTipos(pokemonJugador: Pokemon, pokemonBot: Pokemon, turno: boolean) {
-    console.log(pokemonJugador.name);
-    console.log(pokemonBot.name);
-    
-    
     let danio = 0;
     let indiceTipos = {
       jugadorTipo1: -1,
@@ -117,20 +115,9 @@ export class PestaniaCombateComponent implements OnInit {
       }
       else if (indiceTipos.jugadorTipo2 === -1 && indiceTipos.botTipo2 !== -1) {
         danio = 4 * (this.tablaTiposValores[indiceTipos.jugadorTipo1][indiceTipos.botTipo1] * this.tablaTiposValores[indiceTipos.jugadorTipo1][indiceTipos.botTipo2]);
-
-        console.log(indiceTipos.jugadorTipo1);
-        console.log(indiceTipos.botTipo1);
-        console.log(indiceTipos.botTipo2);
-
-        console.log("enemigo 2 elementos");
-
       }
       else {
         danio = 4 * this.tablaTiposValores[indiceTipos.jugadorTipo1][indiceTipos.botTipo1];
-        console.log(indiceTipos.jugadorTipo1);
-        console.log(indiceTipos.botTipo1);
-        console.log("ambos 1 elemento");
-
       }
     }
     else {
@@ -148,11 +135,55 @@ export class PestaniaCombateComponent implements OnInit {
       }
     }
 
-    console.log("el daño es " + danio);
+    return danio;
   }
 
-  gotoSlector()
-  {
+  pelea(pokemonJugador: Pokemon, pokemonBot: Pokemon) {
+    pokemonJugador.life = this.inicializarVidas(pokemonJugador)
+    pokemonBot.life = this.inicializarVidas(pokemonBot)
+
+    if (this.turno) {
+      pokemonBot.life -= this.tablaDeTipos(pokemonJugador, pokemonBot, this.turno)
+      this.turno = !this.turno;
+    }
+    else {
+      pokemonJugador.life -= this.tablaDeTipos(pokemonJugador, pokemonBot, this.turno)
+      this.turno = !this.turno;
+    }
+
+    //ver como eliminar pokemon del arreglo
+    if (pokemonJugador.life <= 0) {
+      console.log("tu pokemon fue derrotado");
+      pokemonJugador.life = undefined;
+    }
+    else if (pokemonBot.life <= 0) {
+      console.log("el pokemon rival fue derrotado");
+      pokemonBot.life = undefined;
+    }
+
+    this.ganador()
+  }
+
+  ganador() {
+    if (this.equipoMain.equipo === null) {
+      console.log("perdiste el combate");
+    }
+    else if(this.equipoRival.equipo===null)
+    {
+      console.log("Ganaste el combate!");
+    }
+  }
+
+  inicializarVidas(pokemonto: Pokemon) {
+    if (!pokemonto.life) {
+      return 64;
+    }
+    else {
+      return pokemonto.life
+    }
+  }
+
+  gotoSlector() {
     this.router.navigate(['/cambiar-pokemon']);
   }
 }

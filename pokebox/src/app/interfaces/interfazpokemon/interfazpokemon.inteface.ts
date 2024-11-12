@@ -10,6 +10,7 @@ export interface Pokemon {
   idEquipo?: number;
   isShiny?: boolean
   isMale?: boolean;
+  life?:number;
 }
 
 export interface Type {
