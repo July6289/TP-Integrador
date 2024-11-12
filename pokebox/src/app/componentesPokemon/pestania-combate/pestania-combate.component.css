@@ -1,25 +1,13 @@
 :host {
   background-color: #222;
-  /* Fondo para resaltar el HUD */
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  /* Alinea el contenido hacia abajo */
   height: 100vh;
-  margin: 0;
-  padding: 0;
   overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
 }
 
 
 .battle-enemy {
   width: 20%;
   /* Ocupar todo el ancho disponible */
-  height: 10%;
   padding: 10px;
   background-color: #f0f0f0;
   border-top: 3px solid #333;
@@ -30,15 +18,11 @@
   /* Fijar en la parte inferior */
   top: 0;
   /* Pegado a la parte inferior de la pantalla */
-  left: 0;
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 .battle-me {
   width: 20%;
   /* Ocupar el ancho deseado */
-  height: 10%;
   padding: 10px;
   background-color: #f0f0f0;
   border-top: 3px solid #333;
@@ -50,14 +34,9 @@
   bottom: 23.5%;
   /* Colocar justo encima de battle-hud */
   right: 0;
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 .battle-hud {
-  width: 20%;
-  /* Ocupar todo el ancho disponible */
-  height: 20%;
   padding: 10px;
   background-color: #f0f0f0;
   border-top: 3px solid #333;
@@ -69,17 +48,12 @@
   /* Fijar en la parte inferior */
   bottom: 0;
   /* Pegado a la parte inferior de la pantalla */
-  left: 0;
-  overflow-x: hidden;
-  overflow-y: hidden;
 
 }
 
 .battle-hud {
   width: calc(100% - 20px);
   /* Ajuste para el padding */
-  margin: 0 auto;
-  /* Centro horizontal opcional */
 }
 
 .pokemon-info {
@@ -90,8 +64,6 @@
 }
 
 .info {
-  display: flex;
-  justify-content: space-between;
   font-size: 14px;
   font-weight: bold;
 }
@@ -114,7 +86,6 @@
   background-color: #888;
   border: 1px solid #555;
   border-radius: 5px;
-  overflow: hidden;
 }
 
 .hp-bar-fill {
@@ -127,13 +98,12 @@
 .hp-numbers {
   position: absolute;
   right: 10px;
-  bottom: 5px;
+  bottom: 8px;
   font-size: 12px;
 }
 
 .options {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   margin-top: 15px;
 }
@@ -141,7 +111,6 @@
 .option {
   background-color: #fff;
   border: 2px solid #333;
-  text-align: center;
   padding: 5px;
   font-size: 14px;
   font-weight: bold;
@@ -151,4 +120,9 @@
 
 .option:hover {
   background-color: #757575;
+}
+
+.vistaEquipoPokemon{
+position: fixed;
+bottom: 0;
 }

@@ -27,6 +27,7 @@
   color: black;
   border: 2px solid #4A7B59;
   transition-duration: 0.3s;
+  cursor: pointer;
 }
 
 .little {
@@ -37,6 +38,7 @@
   color: black;
   border: 2px solid #4A7B59;
   transition-duration: 0.3s;
+  cursor: pointer;
 }
 
 button:hover {

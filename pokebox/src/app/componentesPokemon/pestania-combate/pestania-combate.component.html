@@ -1,3 +1,7 @@
+<div class="background-battle">
+  <img class="imagenFondoCombate" src="/assets/imagenes/fondo-combate.png" alt="combate">
+</div>
+
 <div class="battle-enemy">
   <div class="pokemon-info">
     <div class="info">
@@ -29,11 +33,11 @@
 </div>
 
 <div class="battle-hud">
-
   <div class="options">
-    <div class="option" (click)="tablaDeTipos(this.equipoMain.equipo[0], this.equipoRival.equipo[0], true)">FIGHT</div>
-    <div class="option" (click)="gotoSlector()" >POKÉMON</div>
-    <div class="option" (click)="toMainMenu()">RUN</div>
-    <div class="option" (click)="clicTest()">lalalalal</div>
+    <button class="option" (click)="tablaDeTipos(this.equipoMain.equipo[0], this.equipoRival.equipo[0], true)">FIGHT</button>
+    <button class="option">POKÉMON</button>
+    <button class="option" (click)="toMainMenu()">RUN</button>
   </div>
 </div>
+
+<div class="vistaEquipoPokemon">aca van la lista del los pokemon tuyos</div>

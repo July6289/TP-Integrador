@@ -67,11 +67,6 @@ export class PestaniaCombateComponent implements OnInit {
 
   }
 
-  clicTest() {
-    console.log(this.equipoMain);
-    console.log(this.equipoRival);
-  }
-
   toMainMenu() {
     this.router.navigate(['/**']);
   }

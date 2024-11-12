@@ -8,12 +8,14 @@
   overflow-y: auto;
 
 }
+
 .imagenLogueo {
   display: flex;
   margin: 0 auto;
 }
-.formularioRegistro{
-  margin:0 auto ;
+
+.formularioRegistro {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -32,7 +34,8 @@ label {
   font-weight: bold;
   font-size: 1.3rem;
 }
-.Error{
+
+.Error {
   font-size: 1rem;
   color: red;
   text-align: left;
@@ -40,19 +43,25 @@ label {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
 input {
-  font-size:large;
+  font-size: large;
   flex: 2;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  width: 100%; /* Para que el input ocupe todo el espacio disponible en el contenedor */
+  width: 100%;
+  /* Para que el input ocupe todo el espacio disponible en el contenedor */
 }
-.botones{
-  align-items: center; /* Alinea el input y el mensaje de error verticalmente */
+
+.botones {
+  align-items: center;
+  /* Alinea el input y el mensaje de error verticalmente */
   display: flex;
+  cursor: pointer;
 }
-.SalirRegistro{
+
+.SalirRegistro {
   border: 2px solid #4A7B59;
   border-radius: 8px;
   padding: 30px 100px 30px 100px;
@@ -63,7 +72,8 @@ input {
   color: black;
   transition-duration: 0.3s;
 }
-.Confirmar{
+
+.Confirmar {
   border: 2px solid #4A7B59;
   border-radius: 8px;
   padding: 30px 100px 30px 100px;
@@ -74,8 +84,8 @@ input {
   color: black;
   transition-duration: 0.3s;
 }
-.Registarse {
 
+.Registarse {
   border: 2px solid #4A7B59;
   border-radius: 8px;
   padding: 30px 100px 30px 100px;
@@ -85,7 +95,9 @@ input {
   background-color: white;
   color: black;
   transition-duration: 0.3s;
+  cursor: pointer;
 }
+
 .Confirmar:hover,
 .SalirRegistro:hover,
 .IniciarSesion:hover,
@@ -109,5 +121,6 @@ input {
 .input-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Alinea el input y el mensaje de error verticalmente */
+  align-items: center;
+  /* Alinea el input y el mensaje de error verticalmente */
 }
