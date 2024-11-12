@@ -5,4 +5,5 @@ export interface Usuario {
   Username: string;
   Password:string;
   box: Caja[];
+  //combatesGanados: number;
 }

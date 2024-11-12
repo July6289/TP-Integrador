@@ -3,6 +3,7 @@ import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.intefa
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pestania-combate',
@@ -45,8 +46,11 @@ export class PestaniaCombateComponent implements OnInit {
       equipo: []
     }
 
-
   pokemonTeam: Pokemon[] = [];
+
+  constructor(private service: EquipoPokemonService, private pokeservicesService: PokeservicesService, private router: Router) { }
+
+  private tablaTiposNombres: string[] = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
 
   ngOnInit(): void {
     this.equipoMain = this.service.recibirEquipoPokemon();
@@ -62,19 +66,14 @@ export class PestaniaCombateComponent implements OnInit {
 
   }
 
-
   clicTest() {
     console.log(this.equipoMain);
-
     console.log(this.equipoRival);
-
   }
 
-  constructor(private service: EquipoPokemonService, private pokeservicesService: PokeservicesService) { }
-
-  private tablaTiposNombres: string[] = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
-
-
+  toMainMenu() {
+    this.router.navigate(['/**']);
+  }
 
   tablaDeTipos(pokemonJugador: Pokemon, pokemonBot: Pokemon, turno: boolean) {
     let danio = 0;
@@ -140,7 +139,4 @@ export class PestaniaCombateComponent implements OnInit {
 
     console.log(danio);
   }
-
-
-
 }

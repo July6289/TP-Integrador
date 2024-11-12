@@ -57,7 +57,7 @@ export class PokeservicesService {
   urlBase: string = 'https://pokeapi.co/api/v2';
 
   getPokemonByName(nombrePokemon: string): Observable<Pokemon | undefined> {
-    return this.http.get<Pokemon>(`${this.urlBase}/'pokemon'/${nombrePokemon}`).pipe(
+    return this.http.get<Pokemon>(`${this.urlBase}/${'pokemon'}/${nombrePokemon}`).pipe(
       catchError((error) => {
         console.log(error)
         return of(undefined)
@@ -67,7 +67,7 @@ export class PokeservicesService {
 
   getPokemonByGeneration(NumeroGeneracion: number): Observable<Generation | undefined> {
     console.log("el dato es", NumeroGeneracion);
-    return this.http.get<Generation>(`${this.urlBase}/"generation"/${NumeroGeneracion.toString()}`).pipe(
+    return this.http.get<Generation>(`${this.urlBase}/${"generation"}/${NumeroGeneracion.toString()}`).pipe(
       catchError((error) => {
         console.log(error)
         return of(undefined)
