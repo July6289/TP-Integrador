@@ -77,6 +77,10 @@ export class PestaniaCombateComponent implements OnInit {
   }
 
   tablaDeTipos(pokemonJugador: Pokemon, pokemonBot: Pokemon, turno: boolean) {
+    console.log(pokemonJugador.name);
+    console.log(pokemonBot.name);
+    
+    
     let danio = 0;
     let indiceTipos = {
       jugadorTipo1: -1,
@@ -150,5 +154,10 @@ export class PestaniaCombateComponent implements OnInit {
     }
 
     console.log("el daño es " + danio);
+  }
+
+  gotoSlector()
+  {
+    this.router.navigate(['/cambiar-pokemon']);
   }
 }
