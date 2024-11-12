@@ -21,8 +21,21 @@ export class SelectorPokemonComponent {
 
   seleccionar(pokemon: Pokemon) {
     console.log(pokemon.name);
+    let index=0;
 
-    this.pokeservice.setSelectedPokemon(pokemon);
+    for(let i=0; i<this.pokemonesEnEquipo.equipo.length; i++)
+    {
+      if(this.pokemonesEnEquipo.equipo[i]===pokemon)
+        {
+          index=i;
+        }
+
+        
+    }
+    console.log("Hola soy el index:"+ index);
+    
+
+    this.equipoPokemonService.setPosicionEquipo(index);
 
     this.router.navigate(['/combate']);
 
