@@ -11,6 +11,25 @@
   display: flex;
 }
 
+.SalirRegistro {
+  margin-left: 20%;
+  margin-bottom: 50px;
+}
+
+.Confirmar {
+  margin-left: 12%;
+  margin-bottom: 50px;
+}
+
+.Registarse {
+  margin-left: 35%;
+  margin-bottom: 50px;
+}
+
+.IniciarSesion {
+  margin-left: 35.1%;
+}
+
 .formularioRegistro {
   margin: 0 auto;
   display: flex;
@@ -22,6 +41,8 @@
   max-width: 500px;
   align-items: center;
   margin-bottom: 20px;
+  width: 90%;
+  /* Para que se adapte a la mayoría de pantallas */
 }
 
 label {
@@ -47,7 +68,6 @@ input {
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
-  /* Para que el input ocupe todo el espacio disponible en el contenedor */
 }
 
 .botones {
@@ -60,30 +80,17 @@ input {
 .IniciarSesion {
   border: 2px solid #4A7B59;
   border-radius: 8px;
-  padding: 30px 100px 30px 100px;
-  font-size: 20px;
+  padding: 15px 40px;
+  /* Tamaños más manejables */
+  font-size: 1.1rem;
   background-color: white;
   transition-duration: 0.3s;
   cursor: pointer;
-}
-
-.SalirRegistro {
-  margin-left: 20%;
-  margin-bottom: 50px;
-}
-
-.Confirmar {
-  margin-left: 12%;
-  margin-bottom: 50px;
-}
-
-.Registarse {
-  margin-left: 35%;
-  margin-bottom: 50px;
-}
-
-.IniciarSesion {
-  margin-left: 34.3%;
+  width: 100%;
+  /* Hace que los botones ocupen el ancho disponible */
+  max-width: 300px;
+  /* Limita el tamaño en pantallas grandes */
+  margin-bottom: 20px;
 }
 
 .Confirmar:hover,
@@ -98,5 +105,58 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Alinea el input y el mensaje de error verticalmente */
+}
+
+/* Media Queries para pantallas medianas */
+@media (max-width: 768px) {
+  .formularioRegistro {
+    width: 80%;
+    /* Reduce el ancho en pantallas medianas */
+  }
+
+  label {
+    font-size: 1.1rem;
+  }
+
+  .SalirRegistro,
+  .Confirmar,
+  .Registarse,
+  .IniciarSesion {
+    font-size: 1rem;
+    padding: 12px 30px;
+  }
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 480px) {
+  .formularioRegistro {
+    width: 90%;
+    /* Asegura que el formulario se ajuste a pantallas pequeñas */
+    padding: 15px;
+  }
+
+  label {
+    font-size: 1rem;
+  }
+
+  .SalirRegistro,
+  .Confirmar,
+  .Registarse,
+  .IniciarSesion {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    /* Ajusta el tamaño de padding en pantallas pequeñas */
+  }
+
+  .imagenUsuario {
+    width: 70%;
+  }
+
+  input {
+    font-size: 1rem;
+  }
+
+  .Error {
+    font-size: 0.875rem;
+  }
 }
