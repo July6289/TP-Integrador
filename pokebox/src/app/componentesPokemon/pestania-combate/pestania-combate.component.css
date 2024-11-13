@@ -19,9 +19,9 @@
   /* Asegura que la imagen cubra todo el contenedor */
 }
 
-.battle-enemy {
-  width: 20%;
-  /* Ocupar todo el ancho disponible */
+.battle-enemy,
+.battle-me,
+.battle-hud {
   padding: 10px;
   background-color: #f0f0f0;
   border-top: 3px solid #333;
@@ -30,42 +30,24 @@
   box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
   position: fixed;
   /* Fijar en la parte inferior */
-  top: 0;
-  /* Pegado a la parte inferior de la pantalla */
+}
+
+.battle-enemy {
+  width: 20%;
+  /* Ocupar todo el ancho disponible */
 }
 
 .battle-me {
   width: 20%;
-  /* Ocupar el ancho deseado */
-  padding: 10px;
-  background-color: #f0f0f0;
-  border-top: 3px solid #333;
-  /* Solo borde superior */
-  border-radius: 10px;
-  /* Bordes redondeados en la parte superior */
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
-  position: fixed;
   bottom: 23.5%;
   /* Colocar justo encima de battle-hud */
   right: 0;
 }
 
 .battle-hud {
-  padding: 10px;
-  background-color: #f0f0f0;
-  border-top: 3px solid #333;
-  /* Solo borde superior */
   border-radius: 10px 10px 0 0;
-  /* Bordes redondeados en la parte superior */
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
-  position: fixed;
-  /* Fijar en la parte inferior */
   bottom: 0;
   /* Pegado a la parte inferior de la pantalla */
-
-}
-
-.battle-hud {
   width: calc(100% - 20px);
   /* Ajuste para el padding */
 }

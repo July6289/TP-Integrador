@@ -1,90 +1,94 @@
-
 .pokemon-grid {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 90%;
-    margin-bottom: 20px;
-    /* Para que los elementos se ajusten en múltiples líneas si es necesario */
-  }
+  gap: 15px;
+  width: 90%;
+  margin-bottom: 20px;
+  /* Para que los elementos se ajusten en múltiples líneas si es necesario */
+}
 
-  .pokemon {
-    margin-top: 2.55%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Centra la imagen y el botón */
-    justify-content: center;
-    width: 150px;
-    height: 150px;
-    /* Ancho de cada tarjeta de Pokémon */
-    padding: 15px;
-    background-color: #819875;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s;
-    white-space: nowrap; /* Impide que el texto se divida en varias líneas */
-    overflow: hidden; /* Oculta el texto que sobrepase los límites del contenedor */
-    text-overflow: ellipsis; /* Agrega "..." al final del texto si es demasiado largo */
-  }
+.pokemon-grid,
+.pokemon,
+.poketeam,
+.boton-volver {
+  display: flex;
+  justify-content: center;
+}
 
-  .pokemon:hover {
-    transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
-  }
+.pokemon,
+.poketeam {
+  flex-direction: column;
+  align-items: center;
+}
 
-  .poketeam {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Centra verticalmente el contenido */
-    width: 100%;
-    height: 100vh;
-    box-sizing: border-box; /* Asegura que el padding y el border no incrementen el tamaño */
-    background-image: url('/assets/imagenes/test2.jpg'); /* URL de tu imagen de fondo */
-    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-position: center;
-  }
+.pokemon {
+  margin-top: 2.55%;
+  width: 150px;
+  height: 150px;
+  /* Ancho de cada tarjeta de Pokémon */
+  padding: 15px;
+  background-color: #819875;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  white-space: nowrap;
+  /* Impide que el texto se divida en varias líneas */
+  overflow: hidden;
+  /* Oculta el texto que sobrepase los límites del contenedor */
+  text-overflow: ellipsis;
+  /* Agrega "..." al final del texto si es demasiado largo */
+}
 
-  .pokemon-grid {
-    display: flex;
-    gap: 15px; /* Espacio entre las tarjetas */
-    flex-wrap: wrap; /* Permite que las tarjetas se envuelvan si es necesario */
-  }
+.pokemon:hover {
+  transform: scale(1.05);
+  /* Efecto de aumento al pasar el mouse */
+}
 
-  button {
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 14px;
-    background-color: white;
-    color: black;
-    border: 2px solid #4A7B59;
-    transition-duration: 0.3s; /* Espacio entre las tarjetas y el botón */
-  }
+.poketeam {
+  height: 100vh;
+  box-sizing: border-box;
+  /* Asegura que el padding y el border no incrementen el tamaño */
+  background-image: url('/assets/imagenes/test2.jpg');
+  /* URL de tu imagen de fondo */
+  background-size: cover;
+  /* Asegura que la imagen cubra todo el contenedor */
+  background-repeat: no-repeat;
+  /* Evita que la imagen se repita */
+  background-position: center;
+}
 
-  button:hover {
-    background-color: #4A7B59;
-    color: white;
-  }
+button {
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  background-color: white;
+  border: 2px solid #4A7B59;
+  transition-duration: 0.3s;
+  /* Espacio entre las tarjetas y el botón */
+  cursor: pointer;
+}
 
-  .boton-volver {
-    display: flex;
-    gap: 15px; /* Espacio entre los botones */
-    justify-content: center; /* Centra los botones */
-    width: 100%; /* Espacio entre la cuadrícula y los botones */
-    cursor: pointer;
-  }
+button:hover {
+  background-color: #4A7B59;
+  color: white;
+}
 
-.nombreEquipo{
+.boton-volver {
+  gap: 15px;
+  /* Espacio entre los botones */
+}
 
-  font-size: 48px; /* Tamaño de la fuente */
-  font-weight: bold; /* Negrita */
-  color: white; /* Color del texto */
-  text-align: center; /* Alineación del texto */
-  padding: 20px; /* Espaciado alrededor del título */
-  border-radius: 50px; /* Bordes redondeados */
-  box-shadow: 0 10px 12px rgb(95, 95, 95, 1); /* Sombra suave */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra en el texto */
+.nombreEquipo {
+  font-size: 48px;
+  /* Tamaño de la fuente */
+  font-weight: bold;
+  /* Negrita */
+  color: white;
+  /* Color del texto */
+  padding: 20px;
+  /* Espaciado alrededor del título */
+  border-radius: 50px;
+  /* Bordes redondeados */
+  box-shadow: 0 10px 12px rgb(95, 95, 95, 1);
+  /* Sombra suave */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  /* Sombra en el texto */
 }
