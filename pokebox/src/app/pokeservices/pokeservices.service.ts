@@ -66,7 +66,6 @@ export class PokeservicesService {
   }
 
   getPokemonByGeneration(NumeroGeneracion: number): Observable<Generation | undefined> {
-    console.log("el dato es", NumeroGeneracion);
     return this.http.get<Generation>(`${this.urlBase}/${"generation"}/${NumeroGeneracion.toString()}`).pipe(
       catchError((error) => {
         console.log(error)
@@ -158,7 +157,7 @@ export class PokeservicesService {
   getRandomPokemonTeam(): Observable<Pokemon[]> {
     const pokemonRequests: Observable<Pokemon | null>[] = [];
 
-    // Generar 6 IDs aleatorios de Pokémon entre 1 y 898
+    // Generar 6 IDs aleatorios de Pokémon entre 1 y 1025
     for (let i = 0; i < 6; i++) {
       const randomId = Math.floor(Math.random() * 1025) + 1;
       pokemonRequests.push(

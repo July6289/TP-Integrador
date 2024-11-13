@@ -35,6 +35,8 @@ export class PestaniaCombateComponent implements OnInit {
     [1.0, 2.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 1.0],//hada
   ]
 
+  private tablaTiposNombres: string[] = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
+
   equipoMain: EquipoPokemon =
     {
       nombre: "",
@@ -47,20 +49,20 @@ export class PestaniaCombateComponent implements OnInit {
       equipo: []
     }
 
-    getpokemonFight()
-    {
-      this.peleador=this.service.getPosicionEquipo();
-    }
+  peleador: number = 0;
 
-  peleador: number=0;
+  peleadorBot: number = 0;
 
   pokemonTeam: Pokemon[] = [];
-
-  private tablaTiposNombres: string[] = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
 
   turno: boolean = true;
 
   constructor(private service: EquipoPokemonService, private pokeservicesService: PokeservicesService, private router: Router) { }
+
+  getpokemonFight() {
+    this.peleador = this.service.getPosicionEquipo();
+    //this.peleadorBot = this.service.getPosicionEquipo();
+  }
 
   ngOnInit(): void {
     // Verifica compatibilidad antes de usar structuredClone
@@ -70,36 +72,39 @@ export class PestaniaCombateComponent implements OnInit {
       this.equipoMain = JSON.parse(JSON.stringify(this.service.recibirEquipoPokemon()));
     }
 
-    console.log("equipo clonado: ", this.equipoMain.equipo[0].name  );
-    this.getpokemonFight();
-    console.log("id elegido: " + this.peleador);
-
     this.pokeservicesService.getRandomPokemonTeam().subscribe(team => {
       this.pokemonTeam = team;
       this.equipoRival = {
         nombre: "Rival",
-        equipo: structuredClone(this.pokemonTeam) || JSON.parse(JSON.stringify(this.pokemonTeam))
+        equipo: this.pokemonTeam //structuredClone(this.pokemonTeam) || JSON.parse(JSON.stringify(this.pokemonTeam))
       };
     });
+
+   /* for (let i = 0; i < this.equipoRival.equipo.length; i++) {
+      this.equipoRival.equipo[i].isAlive = true;
+    }*/
+
+    console.log("equipo clonado: ", this.equipoMain.equipo);
+    this.getpokemonFight();
+    console.log("id elegido: " + this.peleador);
+
+    console.log("equipo rival: ", this.equipoRival.equipo);
+    console.log("id elegido rival: " + this.peleadorBot);
   }
 
-  deletePokemon()
-  {
-    for(let i=0;i<this.equipoMain.equipo.length;i++)
-      {
-        if(this.equipoMain.equipo[i].isAlive===false)
-        {
-          this.service.eliminarEquipo(i);
-        }
+  deletePokemon(equipoPerdedor: EquipoPokemon) {
+    for (let i = 0; i < equipoPerdedor.equipo.length; i++) {
+      if (equipoPerdedor.equipo[i].isAlive === false) {
+        this.service.eliminarEquipo(i);
       }
+    }
   }
 
   toMainMenu() {
     this.router.navigate(['/**']);
   }
 
-  tablaDeTipos(idPeleador: number, pokemonBot: Pokemon, turno: boolean) {
-
+  tablaDeTipos(idPeleador: number, idBot: number, turno: boolean) {
     let danio = 0;
     let indiceTipos = {
       jugadorTipo1: -1,
@@ -118,11 +123,11 @@ export class PestaniaCombateComponent implements OnInit {
         indiceTipos.jugadorTipo2 = i;
       }
 
-      if (pokemonBot.types[0].type.name === this.tablaTiposNombres[i]) {
+      if (this.equipoRival.equipo[idBot].types[0].type.name === this.tablaTiposNombres[i]) {
         indiceTipos.botTipo1 = i;
       }
 
-      if (pokemonBot.types[1] && pokemonBot.types[1].type.name === this.tablaTiposNombres[i]) {
+      if (this.equipoRival.equipo[idBot].types[1] && this.equipoRival.equipo[idBot].types[1].type.name === this.tablaTiposNombres[i]) {
         indiceTipos.botTipo2 = i;
       }
     }
@@ -130,9 +135,6 @@ export class PestaniaCombateComponent implements OnInit {
 
     //calculadora de daño
     if (turno) {
-
-      //los pokemon van a tener 64 de vida
-
       if (indiceTipos.jugadorTipo2 !== -1 && indiceTipos.botTipo2 !== -1) {
         danio = 4 * ((this.tablaTiposValores[indiceTipos.jugadorTipo1][indiceTipos.botTipo1] * this.tablaTiposValores[indiceTipos.jugadorTipo1][indiceTipos.botTipo2]) * (this.tablaTiposValores[indiceTipos.jugadorTipo2][indiceTipos.botTipo1] * this.tablaTiposValores[indiceTipos.jugadorTipo2][indiceTipos.botTipo2]));
       }
@@ -169,23 +171,23 @@ export class PestaniaCombateComponent implements OnInit {
     pokemonBot.life = this.inicializarVidas(pokemonBot)
 
     if (this.turno) {
-      pokemonBot.life -= this.tablaDeTipos(this.peleador, pokemonBot, this.turno)
+      pokemonBot.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno)
       this.turno = !this.turno;
     }
     else {
-      pokemonJugador.life -= this.tablaDeTipos(this.peleador, pokemonBot, this.turno)
+      pokemonJugador.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno)
       this.turno = !this.turno;
     }
 
-    //ver como eliminar pokemon del arreglo
     if (pokemonJugador.life <= 0) {
       console.log("tu pokemon fue derrotado");
-      pokemonJugador.life = undefined;
-      pokemonJugador.isAlive=false;
+      pokemonJugador.isAlive = false;
+      this.deletePokemon(this.equipoMain)
     }
     else if (pokemonBot.life <= 0) {
       console.log("el pokemon rival fue derrotado");
-      pokemonBot.life = undefined;
+      pokemonBot.isAlive = false;
+      this.deletePokemon(this.equipoRival)
     }
 
     this.ganador()
@@ -193,11 +195,16 @@ export class PestaniaCombateComponent implements OnInit {
 
   ganador() {
     if (this.equipoMain.equipo === null) {
-      console.log("perdiste el combate");
+      alert("perdiste el combate");
+
+      //el alert deberia tener un aceptar para volver al menu principal, preguntarle a nico como hacerlo
+      this.toMainMenu()
     }
-    else if(this.equipoRival.equipo===null)
-    {
-      console.log("Ganaste el combate!");
+    else if (this.equipoRival.equipo === null) {
+      alert("Ganaste el combate!");
+      /* agregar un this.usuario.combatesGanados+=1 */
+      //igual que el de arriba
+      this.toMainMenu()
     }
   }
 
@@ -211,8 +218,6 @@ export class PestaniaCombateComponent implements OnInit {
   }
 
   gotoSlector() {
-    console.log("yendo");
-
     this.router.navigate(['/cambiar-pokemon']);
   }
 }

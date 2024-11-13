@@ -27,12 +27,11 @@ export class EquipoPokemonComponent {
       equipo: []
     }
 
-  equiposPokemon: EquipoPokemon []=[];
+  equiposPokemon: EquipoPokemon[] = [];
 
-  constructor(private equipoPokemonService: EquipoPokemonService, private router: Router) {}
+  constructor(private equipoPokemonService: EquipoPokemonService, private router: Router) { }
 
-  goToMainPage()
-  {
+  goToMainPage() {
     this.router.navigate(['/**']);
   }
 
@@ -54,7 +53,6 @@ export class EquipoPokemonComponent {
   agregarPokemon() {
 
     if (this.pokemonesEnEquipo.length < 6) {
-
       if (this.pokeaux[0] != null) {
         // Crear una copia del Pokémon y asignar un `id` único de tipo `number`
         const clonPokemon: Pokemon = {
@@ -62,7 +60,7 @@ export class EquipoPokemonComponent {
           id: Date.now() + Math.floor(Math.random() * 1000) // Genera un `id` único basado en tiempo
         };
 
-        clonPokemon.isAlive=true;
+        clonPokemon.isAlive = true;
         this.pokemonesEnEquipo.push(clonPokemon);
         this.pokeaux = [];
       } else {
@@ -73,40 +71,26 @@ export class EquipoPokemonComponent {
     }
   }
 
-
-
   eliminarPokemon(pokemon: Pokemon) {
     this.pokemonesEnEquipo = this.pokemonesEnEquipo.filter(p => p !== pokemon);
   }
 
   guardarEquipo() {
-    let nombreValido=false;
-
-      /*f (this.pokemonesEnEquipo.length === 6) {*/
-
-            const nombre = prompt('Ponle un nombre a tu equipo!', '');
-        if(nombre && nombre.length <=20)
-        {
-          this.equipoPokemon = {
-            nombre: String(nombre),
-            equipo: this.pokemonesEnEquipo
-          };
-          this.equipoPokemonService.actualizarEquipo(this.equipoPokemon);  // Actualiza el equipo en el arreglo
-          this.pokemonesEnEquipo = [];
-          nombreValido=true;
-
-        }
-        else
-        {
-          alert('el nombre debe tener entre 1 y 14 caracteres!')
-        }
-
-
-      /*} else {
-        alert('Debe tener 6 Pokémon en el equipo.');
-
-      }*/
+    let nombreValido = false;
+    const nombre = prompt('Ponle un nombre a tu equipo!', '');
+    if (nombre && nombre.length <= 20) {
+      this.equipoPokemon = {
+        nombre: String(nombre),
+        equipo: this.pokemonesEnEquipo
+      };
+      this.equipoPokemonService.actualizarEquipo(this.equipoPokemon);  // Actualiza el equipo en el arreglo
+      this.pokemonesEnEquipo = [];
+      nombreValido = true;
     }
+    else {
+      alert('el nombre debe tener entre 1 y 14 caracteres!')
+    }
+  }
 
 }
 

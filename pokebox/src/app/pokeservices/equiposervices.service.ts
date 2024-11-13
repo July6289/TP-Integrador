@@ -42,7 +42,6 @@ export class EquipoPokemonService {
     equipo: []
   }
 
-
   EquipoSeleccionado(equipoSeleccionado : EquipoPokemon)
   {
     this.poketeam=equipoSeleccionado;
