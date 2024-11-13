@@ -94,9 +94,7 @@ button:hover {
 
 .boton-volver {
   display: flex;
-  gap: 15px;
   justify-content: center;
-  width: 100%;
   cursor: pointer;
 }
 
