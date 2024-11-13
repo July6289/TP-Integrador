@@ -31,12 +31,24 @@
 }
 
 /* Ajuste para `.pokeimg` */
-.pokeimg {
+.pokeimg-a {
   padding: 1rem;
   padding-left: 15%;
   width: 20%;
   position: fixed;
   bottom: 20%;
+}
+
+.pokeimg-e {
+  position: fixed;
+  top: 16%; /* Ajusta la posición vertical */
+  right: 25%; /* Margen derecho pequeño */
+  width: 20%; /* Controla el ancho de la imagen */
+}
+
+.pokemon-imagen {
+  width: 100%; /* Asegura que la imagen ocupe el 100% del contenedor */
+  padding: 0.5rem; /* Espaciado opcional */
 }
 
 .battle-enemy {
@@ -51,10 +63,6 @@
 }
 
 /* Ajustes de `.pokemon-imagen` para escalar con el contenedor */
-.pokemon-imagen {
-  width: 100%;
-  padding: 1rem;
-}
 
 .battle-hud {
   border-radius: 10px 10px 0 0;
