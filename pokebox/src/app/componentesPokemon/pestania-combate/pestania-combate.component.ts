@@ -72,6 +72,7 @@ export class PestaniaCombateComponent implements OnInit {
       this.equipoMain = JSON.parse(JSON.stringify(this.service.recibirEquipoPokemon()));
     }
 
+
     this.pokeservicesService.getRandomPokemonTeam().subscribe(team => {
       this.pokemonTeam = team;
       console.log("equipo pokemon:" + this.pokemonTeam[0].name);
