@@ -7,13 +7,26 @@
   width: 100%; /* El contenedor principal ocupa el 100% del ancho */
   padding-right: 20px;
 }
+.total{
+  background-image: url('/assets/imagenes/test2.jpg');
+  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+
+.titulo{
+  font-size: 48px; /* Tamaño de la fuente */
+  font-weight: bold; /* Negrita */
+  color: white; /* Color del texto */
+  text-align: center; /* Alineación del texto */
+  padding: 15px; /* Espaciado alrededor del título */
+ 
+}
 
 .pokemon {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 15px;
-  padding: 15px;
   background-color: #819875;
   width: 50%; /* Ocupa el 50% del ancho de la pantalla */
   margin-left: auto; /* Esto hace que el elemento se pegue al lado derecho */
@@ -70,12 +83,9 @@
 .poketeam {
   display: flex;
   flex-direction: column;
-  align-items: left;
-  justify-content: center; /* Centra verticalmente el contenido */
   width: 100%;
   height: 100vh;
   box-sizing: border-box; /* Asegura que el padding y el border no incrementen el tamaño */
-  background-image: url('/assets/imagenes/test2.jpg'); /* URL de tu imagen de fondo */
   background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
   background-position: center;

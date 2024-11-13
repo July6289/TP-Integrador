@@ -32,7 +32,7 @@ export class SelectorPokemonComponent {
 
         
     }
-    console.log("Hola soy el index:"+ index);
+    
     
 
     this.equipoPokemonService.setPosicionEquipo(index);
