@@ -11,6 +11,7 @@
   background-image: url('/assets/imagenes/test2.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+  height: 100vh;
 }
 
 .titulo {
@@ -32,6 +33,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s;
+
 }
 
 .pokemon-imagen {
@@ -40,7 +42,7 @@
 
 .pokemon-nombre {
   font-weight: bold;
-  font-size: 1.125rem;
+  font-size: 1rem;
 }
 
 .pokemon-info {
@@ -63,6 +65,11 @@
   padding: 5px 10px;
 }
 
+.convivan
+{
+  display: flex;
+  flex-direction: column;
+}
 .select:hover {
   background-color: #4A7B59;
   color: white;
@@ -73,8 +80,8 @@
 }
 
 .poketeam {
-  min-height: 100vh; /* Ajustado para permitir scroll si es necesario */
-  background-repeat: no-repeat;
+  position: relative;
+  min-height: 10vh;
 }
 
 button {
@@ -93,9 +100,10 @@ button:hover {
 }
 
 .boton-volver {
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 10px; /* Espacio alrededor del botón */
 }
 
 /* Adaptaciones para pantallas medianas */
