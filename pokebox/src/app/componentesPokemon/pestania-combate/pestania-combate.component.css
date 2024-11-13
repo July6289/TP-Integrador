@@ -6,87 +6,71 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  /* Ocupa toda la pantalla */
   overflow: hidden;
-  /* Evita el desbordamiento */
 }
 
-.pokeimg
-{
+.pokeimg {
   position: absolute;
 }
 
 .imagenFondoCombate {
   width: 100%;
   height: 100%;
-  /* Ajusta la altura al 100% */
   object-fit: cover;
-  /* Asegura que la imagen cubra todo el contenedor */
 }
 
 .battle-enemy,
 .battle-me,
 .battle-hud {
-  padding: 10px;
+  padding: 1rem;
   background-color: #f0f0f0;
   border-top: 3px solid #333;
-  /* Solo borde superior */
   border-radius: 10px;
   box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
   position: fixed;
-  /* Fijar en la parte inferior */
 }
 
-.pokeimg
-{
-  padding: 10px;
+/* Ajuste para `.pokeimg` */
+.pokeimg {
+  padding: 1rem;
   padding-left: 15%;
+  width: 20%;
   position: fixed;
+  bottom: 20%;
 }
 
 .battle-enemy {
-  width: 20%;
-  /* Ocupar todo el ancho disponible */
+  width: 25%;
+  /* Ajustado a un tamaño más grande para pantallas medianas */
 }
 
-.battle-me{
-  width: 20%;
-  bottom: 23.5%;
-  /* Colocar justo encima de battle-hud */
+.battle-me {
+  width: 25%;
+  bottom: 30%;
   right: 0;
 }
 
-.pokeimg {
-  width: 23%;
-  padding-left: 17%; /* Mantiene el padding a la izquierda */
-  position: fixed;
-  bottom: 13.5%; /* Mantiene la posición original */
-}
-
-
-.pokemon-imagen
-{
-  width: 100%; /* Aumenta el ancho al 35% */
-  padding: 10px; /* Mantiene el padding */
+/* Ajustes de `.pokemon-imagen` para escalar con el contenedor */
+.pokemon-imagen {
+  width: 100%;
+  padding: 1rem;
 }
 
 .battle-hud {
   border-radius: 10px 10px 0 0;
   bottom: 0;
-  /* Pegado a la parte inferior de la pantalla */
   width: calc(100% - 20px);
-  /* Ajuste para el padding */
 }
 
 .pokemon-info {
   background-color: #d3d3d3;
-  padding: 10px;
+  padding: 1rem;
   border-radius: 8px;
   position: relative;
 }
 
 .info {
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -97,7 +81,7 @@
 }
 
 .hp-label {
-  font-size: 12px;
+  font-size: 0.875rem;
   font-weight: bold;
   margin-right: 5px;
 }
@@ -113,7 +97,6 @@
 .hp-bar-fill {
   height: 100%;
   background-color: #4caf50;
-  /* Verde para indicar salud */
   border-radius: 5px;
 }
 
@@ -121,7 +104,7 @@
   position: absolute;
   right: 10px;
   bottom: 8px;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .options {
@@ -133,8 +116,8 @@
 .option {
   background-color: #fff;
   border: 2px solid #333;
-  padding: 5px;
-  font-size: 14px;
+  padding: 0.5rem;
+  font-size: 1rem;
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
@@ -147,4 +130,60 @@
 .vistaEquipoPokemon {
   position: fixed;
   bottom: 0;
+}
+
+/* Media queries para ajustar en pantallas medianas */
+@media (max-width: 768px) {
+
+  .battle-enemy,
+  .battle-me {
+    width: 35%;
+    /* Ajuste del ancho */
+    bottom: 25%;
+    /* Ajuste de posición vertical */
+  }
+
+  .battle-hud {
+    padding: 1rem;
+    width: calc(100% - 10px);
+  }
+
+  .option {
+    font-size: 0.9rem;
+  }
+}
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 480px) {
+
+  .pokeimg,
+  .battle-enemy,
+  .battle-me {
+    width: 50%;
+    /* Ajusta el ancho a un 50% */
+    bottom: 20%;
+    /* Coloca más alto los elementos para pantallas pequeñas */
+  }
+
+  .battle-hud {
+    padding: 0.75rem;
+    width: calc(100% - 5px);
+    /* Reducir un poco el ancho para caber mejor */
+  }
+
+  .pokemon-info {
+    padding: 0.75rem;
+  }
+
+  .info,
+  .hp-label,
+  .hp-numbers {
+    font-size: 0.75rem;
+    /* Reduce el tamaño de fuente */
+  }
+
+  .option {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
 }

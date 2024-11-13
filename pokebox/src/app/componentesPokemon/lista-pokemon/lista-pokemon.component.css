@@ -1,14 +1,10 @@
 .pokemon {
-  max-height: 700px;
-  /* Ajusta la altura máxima según tus necesidades */
+  max-height: 70vh;
+  /* Ajuste con unidad relativa para adaptarse a diferentes alturas de pantalla */
   overflow-y: auto;
-  /* Habilita el scroll vertical */
   border: 1px solid #ccc;
-  /* Opcional: para ver los límites del contenedor */
   padding: 1%;
-  /* Espaciado interno */
   margin-top: 1%;
-  /* Espaciado superior */
   max-width: 100%;
 }
 
@@ -30,11 +26,13 @@
   cursor: pointer;
 }
 
+/* Ajustes para el botón "agregar" */
 .agregar {
   padding: 10px 12px;
-  font-size: 17px;
-  margin-left: 33%;
+  font-size: 1rem;
   margin-top: 8%;
+  width: auto;
+  /* Ancho ajustable */
 }
 
 .agregar:hover {
@@ -45,9 +43,7 @@
 .seleccionado {
   border-radius: 8px;
   border: 1px solid blue;
-  /* Línea azul delgada alrededor del Pokémon */
   box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);
-  /* Sombra azul sutil */
 }
 
 .mensajeError {
@@ -55,11 +51,53 @@
 }
 
 .buscar {
-  padding: 2px 4px;
-  font-size: 12px;
+  padding: 5px 10px;
+  font-size: 0.7rem;
 }
 
 .buscar:hover {
   background-color: #4A7B59;
   color: white;
+}
+
+/* Media query para pantallas medianas */
+@media (max-width: 768px) {
+  .agregar {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+    margin-left: 25%;
+    /* Ajuste para centrar en pantallas medianas */
+  }
+
+  .buscar {
+    font-size: 0.9rem;
+    padding: 4px 8px;
+  }
+
+  .pokemon {
+    max-height: 60vh;
+    /* Reducción de altura en pantallas medianas */
+  }
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 480px) {
+  .agregar {
+    font-size: 0.3rem;
+    padding: 6px 8px;
+    margin-left: 15%;
+    /* Ajuste para centrar en pantallas pequeñas */
+    width: 70%;
+    /* Asegura que el botón sea más pequeño */
+  }
+
+  .buscar {
+    font-size: 0.3rem;
+    padding: 3px 6px;
+  }
+
+  .pokemon {
+    max-height: 50vh;
+    /* Ajuste de altura en pantallas pequeñas */
+  }
 }

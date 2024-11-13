@@ -5,8 +5,7 @@
 }
 
 .totalidad {
-  height: 100vh;
-  /* Cambiado a 100vh para que ocupe toda la altura de la pantalla */
+  min-height: 100vh; /* Cambia a min-height para evitar problemas en pantallas móviles */
   display: flex;
   flex-direction: column;
 }
@@ -14,34 +13,29 @@
 .contenidoPagina {
   display: flex;
   flex-grow: 1;
+  gap: 10px;
 }
 
 .cajaCentral {
   flex: 2;
-  /* 2/3 del espacio */
   background-color: #d3e9d7;
-
 }
 
 .columnaDerecha {
   flex: 1;
-  /* 1/3 del espacio */
   background-color: #c2d6c4;
 }
 
-/*------------------------------------------------------------------------------------------*/
-
+/* Estilos de cabezal */
 .cabezal {
   display: flex;
-  /* Centra verticalmente el contenido en el header */
-  padding: 2px;
+  padding: 0.5rem;
   background-color: #7FA185;
   box-sizing: border-box;
 }
 
 .perfil {
   margin-left: auto;
-  /* Empuja el perfil hacia la derecha */
 }
 
 .botoncin,
@@ -58,8 +52,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5px;
-  font-size: 15px;
+  padding: 0.5rem;
+  font-size: 1rem;
 }
 
 .botoncin:hover {
@@ -71,28 +65,22 @@
   width: 80%;
 }
 
-/*------------------------------------------------------------------------------------------*/
-
 .columnaIzquierda {
   flex: 1;
-  /* 1/3 del espacio */
   display: flex;
   background-color: #a8b9a0;
   flex-direction: column;
-  gap: 1px
+  gap: 0.5rem;
 }
 
-.columnaIzquierda>* {
+.columnaIzquierda > * {
   margin: auto;
-  /* Centra individualmente los elementos */
-  width: 99%;
-  /* Ajusta el ancho de los elementos para evitar que se vean estrechos */
+  width: 95%;
 }
 
 .infopokedex {
   flex: 1;
   background-color: #95A98B;
-  ;
 }
 
 .listadeequipos {
@@ -104,15 +92,56 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: .2;
+  flex: 0.2;
 }
 
 .btnbattle {
-  padding: 10px 80px;
-  font-size: 17px;
+  padding: 0.5rem 2rem;
+  font-size: 1.1rem;
 }
 
 .btnbattle:hover {
   background-color: #A52A2A;
   color: white;
+}
+
+/* Media queries para pantallas medianas */
+@media (max-width: 768px) {
+  .contenidoPagina {
+    flex-direction: column; /* Cambia a columna en pantallas medianas */
+  }
+
+  .botoncin {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+
+  .btnbattle {
+    font-size: 1rem;
+    padding: 0.4rem 1.5rem;
+  }
+}
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 480px) {
+  .contenidoPagina {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    gap: 0;
+  }
+
+  .cajaCentral,
+  .columnaDerecha,
+  .columnaIzquierda {
+    width: 100%; /* Asegura que ocupen el 100% del ancho en pantallas pequeñas */
+  }
+
+  .botoncin, .btnbattle {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 0.3rem 1rem;
+  }
+
+  .imagenUsuario {
+    width: 70%;
+  }
 }
