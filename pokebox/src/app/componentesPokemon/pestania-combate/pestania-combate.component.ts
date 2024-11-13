@@ -74,10 +74,14 @@ export class PestaniaCombateComponent implements OnInit {
 
     this.pokeservicesService.getRandomPokemonTeam().subscribe(team => {
       this.pokemonTeam = team;
+      console.log("equipo pokemon:" + this.pokemonTeam[0].name);
+
       this.equipoRival = {
         nombre: "Rival",
-        equipo: this.pokemonTeam //structuredClone(this.pokemonTeam) || JSON.parse(JSON.stringify(this.pokemonTeam))
+        equipo: this.pokemonTeam /*= structuredClone(this.pokemonTeam) || JSON.parse(JSON.stringify(this.pokemonTeam))*/
       };
+
+      console.log("hola este es el equipo rival dentro del ngOninit:",  this.pokemonTeam);
     });
 
    /* for (let i = 0; i < this.equipoRival.equipo.length; i++) {
