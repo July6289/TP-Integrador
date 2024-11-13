@@ -30,14 +30,25 @@ export class SelectorPokemonComponent {
           index=i;
         }
 
-        
+
     }
-    
-    
 
-    this.equipoPokemonService.setPosicionEquipo(index);
+    let aux=this.equipoPokemonService.getPosicionEquipo();
+    console.log("hola", aux);
 
-    this.router.navigate(['/combate']);
+
+    if( index===aux)
+    {
+      alert("Ese pokemon esta en combate!");
+    }
+    else
+    {
+      this.equipoPokemonService.setPosicionEquipo(index);
+
+      this.router.navigate(['/combate']);
+
+    }
+
 
   }
 

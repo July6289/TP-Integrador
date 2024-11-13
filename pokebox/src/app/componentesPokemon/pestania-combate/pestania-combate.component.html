@@ -33,18 +33,19 @@
 </div>
 <div class="pokeimg-e">
   <img [src]="this.equipoRival.equipo[peleadorBot].sprites.front_default"
-    [alt]="this.equipoRival.equipo[peleadorBot].name" class="pokemon-imagen">
-  </div>
+  [alt]="this.equipoRival.equipo[peleadorBot].name" class="pokemon-imagen">
+</div>
 <div class="pokeimg-a">
   <img [src]="this.equipoMain.equipo[peleador].sprites.back_default" [alt]="this.equipoMain.equipo[peleador].name"
-    class="pokemon-imagen">
+  class="pokemon-imagen">
 </div>
 
 <div class="battle-hud">
   <div class="options">
     <button class="option"
-      (click)="combate()">FIGHT</button>
+    (click)="combate()">FIGHT</button>
     <button class="option" (click)="gotoSlector()">POKÉMON</button>
+    <button class="option" (click)="getTeams()">peleador</button>
     <button class="option" (click)="toMainMenu()">RUN</button>
   </div>
 </div>
