@@ -75,27 +75,18 @@ export class PestaniaCombateComponent implements OnInit {
 
     this.pokeservicesService.getRandomPokemonTeam().subscribe(team => {
       this.pokemonTeam = team;
-      console.log("equipo pokemon:" + this.pokemonTeam[0].name);
 
       this.equipoRival = {
         nombre: "Rival",
         equipo: this.pokemonTeam /*= structuredClone(this.pokemonTeam) || JSON.parse(JSON.stringify(this.pokemonTeam))*/
       };
-
-      console.log("hola este es el equipo rival dentro del ngOninit:",  this.pokemonTeam);
     });
 
     for (let i = 0; i < this.equipoRival.equipo.length; i++) {
       this.equipoRival.equipo[i].isAlive = true;
     }
 
-    console.log("equipo clonado: ", this.equipoMain.equipo);
     this.getpokemonFight();
-    console.log("id elegido: " + this.peleador);
-
-    console.log("equipo rival: ", this.equipoRival.equipo);
-    console.log("id elegido rival: " + this.peleadorBot);
-
   }
 
   deletePokemon(equipoPerdedor: EquipoPokemon) {
@@ -153,6 +144,8 @@ export class PestaniaCombateComponent implements OnInit {
       else {
         danio = 4 * this.tablaTiposValores[indiceTipos.jugadorTipo1][indiceTipos.botTipo1];
       }
+
+      alert("infligiste " + danio + " de daño")
     }
     else {
       if (indiceTipos.botTipo2 !== -1 && indiceTipos.botTipo2 !== -1) {
@@ -167,6 +160,8 @@ export class PestaniaCombateComponent implements OnInit {
       else {
         danio = 4 * this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo1];
       }
+
+      alert("te infligieron " + danio + " de daño")
     }
 
     return danio;
@@ -178,20 +173,23 @@ export class PestaniaCombateComponent implements OnInit {
 
     if (this.turno) {
       pokemonBot.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno)
-      this.turno = !this.turno;
     }
     else {
       pokemonJugador.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno)
-      this.turno = !this.turno;
     }
 
+    this.turno = !this.turno;
+
+    alert(" la vida de tu pokemon es: " + pokemonJugador.life)
+    alert(" la vida del pokemon rival es: " + pokemonBot.life)
+
     if (pokemonJugador.life <= 0) {
-      console.log("tu pokemon fue derrotado");
+      alert("tu pokemon fue derrotado");
       pokemonJugador.isAlive = false;
       this.deletePokemon(this.equipoMain)
     }
     else if (pokemonBot.life <= 0) {
-      console.log("el pokemon rival fue derrotado");
+      alert("el pokemon rival fue derrotado");
       pokemonBot.isAlive = false;
       this.deletePokemon(this.equipoRival)
     }
