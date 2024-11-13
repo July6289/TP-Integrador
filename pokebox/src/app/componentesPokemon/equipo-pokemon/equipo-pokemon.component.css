@@ -1,24 +1,19 @@
 :host {
   display: flex;
   flex-direction: column;
-  width: 100%;
   height: 100vh;
   background-color: #819875;
 }
 
 .listaPokemon {
   max-height: 50%;
-  flex-grow: 2;
-  overflow-y: auto;
   border-radius: 15PX;
-
   background-color: #E5F9E0;
 }
 
 .pokemon-imagen {
   width: 100%;
   /* Tamaño de la imagen */
-  height: 100%;
   margin-bottom: 8px;
   /* Espacio entre la imagen y el botón */
 }
@@ -28,17 +23,12 @@
   width: 100%;
   flex: 2;
   border-radius: 15PX;
-  justify-content: center;
-  align-items: center;
 }
 
 .pokemon-grid {
   display: flex;
   gap: 10px;
   justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  /* Para que los elementos se ajusten en múltiples líneas si es necesario */
 }
 
 .pokemon {
@@ -47,7 +37,6 @@
   flex-direction: column;
   align-items: center;
   /* Centra la imagen y el botón */
-  justify-content: center;
   width: 120px;
   /* Ancho de cada tarjeta de Pokémon */
   padding: 10px;
@@ -55,7 +44,6 @@
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
-
 
 .zonabotones {
   background-color: #E5F9E0;
@@ -67,46 +55,38 @@
   border-radius: 15PX;
 }
 
-
-
-.agregar, .guardar, .main{
-  width: 80%;
-  height: auto;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 6px 15px 6px 15px;
+.agregar,
+.guardar,
+.main,
+.eliminar {
   border-radius: 8px;
   font-size: 15px;
   background-color: white;
   border: 2px solid #4A7B59;
   transition-duration: 0.3s;
   cursor: pointer;
+}
+
+.agregar,
+.guardar,
+.main {
+  width: 80%;
+  padding: 6px 15px 6px 15px;
+
 }
 
 .eliminar {
   width: 10%;
-  height: auto;
-  margin: 0;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
   padding: 5px 40px 5px 40px;
-
-  border-radius: 8px;
-  font-size: 15px;
-  background-color: white;
-  border: 2px solid #4A7B59;
-  transition-duration: 0.3s;
-  cursor: pointer;
 }
 
 
-.guardar:hover, .agregar:hover, .eliminar:hover, .main:hover {
-
+.guardar:hover,
+.agregar:hover,
+.eliminar:hover,
+.main:hover {
   background-color: #4A7B59;
   color: white;
 }

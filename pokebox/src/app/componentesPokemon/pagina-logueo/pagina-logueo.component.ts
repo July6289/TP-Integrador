@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
-import { Caja } from '../../../interfaces/interfaz-caja/interfazCaja.inteface';
-import { UsuarioService } from '../../../pokeservices/usuario.service';
-import { Usuario } from '../../../interfaces/interfaz-usuario/interfazGeneracion.interface';
-import { PokeservicesService } from '../../../pokeservices/pokeservices.service';
+import { Caja } from '../../interfaces/interfaz-caja/interfazCaja.inteface';
+import { UsuarioService } from '../../pokeservices/usuario.service';
+import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 
 @Component({
   selector: 'app-pagina-logueo',

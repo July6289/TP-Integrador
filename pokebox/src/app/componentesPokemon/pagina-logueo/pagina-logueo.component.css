@@ -2,16 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
   height: 100vh;
   background-color: #4A7B59;
   overflow-y: auto;
-
 }
 
 .imagenLogueo {
   display: flex;
-  margin: 0 auto;
 }
 
 .formularioRegistro {
@@ -22,7 +19,6 @@
   padding: 20px;
   background-color: #3b6b46;
   border-radius: 8px;
-  width: 100%;
   max-width: 500px;
   align-items: center;
   margin-bottom: 20px;
@@ -55,47 +51,39 @@ input {
 }
 
 .botones {
-  align-items: center;
-  /* Alinea el input y el mensaje de error verticalmente */
-  display: flex;
+  cursor: pointer;
+}
+
+.SalirRegistro,
+.Confirmar,
+.Registarse,
+.IniciarSesion {
+  border: 2px solid #4A7B59;
+  border-radius: 8px;
+  padding: 30px 100px 30px 100px;
+  font-size: 20px;
+  background-color: white;
+  transition-duration: 0.3s;
   cursor: pointer;
 }
 
 .SalirRegistro {
-  border: 2px solid #4A7B59;
-  border-radius: 8px;
-  padding: 30px 100px 30px 100px;
-  font-size: 20px;
   margin-left: 20%;
   margin-bottom: 50px;
-  background-color: white;
-  color: black;
-  transition-duration: 0.3s;
 }
 
 .Confirmar {
-  border: 2px solid #4A7B59;
-  border-radius: 8px;
-  padding: 30px 100px 30px 100px;
-  font-size: 20px;
   margin-left: 12%;
   margin-bottom: 50px;
-  background-color: white;
-  color: black;
-  transition-duration: 0.3s;
 }
 
 .Registarse {
-  border: 2px solid #4A7B59;
-  border-radius: 8px;
-  padding: 30px 100px 30px 100px;
-  font-size: 20px;
   margin-left: 35%;
   margin-bottom: 50px;
-  background-color: white;
-  color: black;
-  transition-duration: 0.3s;
-  cursor: pointer;
+}
+
+.IniciarSesion {
+  margin-left: 34.3%;
 }
 
 .Confirmar:hover,
@@ -104,18 +92,6 @@ input {
 .Registarse:hover {
   background-color: #819875;
   color: white;
-}
-
-.IniciarSesion {
-  border: 2px solid #4A7B59;
-  margin-left: 34.3%;
-  border-radius: 8px;
-  padding: 30px 100px 30px 100px;
-  font-size: 20px;
-  background-color: white;
-  color: black;
-  transition-duration: 0.3s;
-
 }
 
 .input-container {

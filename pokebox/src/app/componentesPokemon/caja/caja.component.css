@@ -4,16 +4,12 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  width: 100%;
   overflow: hidden;
 }
 
 .caja-container {
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 100%;
   max-width: 90vw;
   overflow: hidden;
 }
@@ -24,17 +20,15 @@
   height: 70vw;
   max-width: 700px;
   max-height: 700px;
-  overflow: hidden; /* Evita que los elementos se salgan del contenedor */
-  border-radius: 12px; /* Añade bordes redondeados si es necesario */
+  overflow: hidden;
+  /* Evita que los elementos se salgan del contenedor */
 }
 
 .imagencaja {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Asegura que la imagen de fondo llene todo el contenedor */
-  position: absolute;
-  top: 0;
-  left: 0;
+  object-fit: cover;
+  /* Asegura que la imagen de fondo llene todo el contenedor */
 }
 
 .pokemon-grid {
@@ -44,20 +38,22 @@
   gap: 5px;
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
   height: 100%;
-  padding: 10px; /* Añade espacio alrededor de los Pokémon */
+  padding: 10px;
+  /* Añade espacio alrededor de los Pokémon */
   box-sizing: border-box;
-  overflow: hidden; /* Asegura que nada se salga del área */
+  overflow: hidden;
+  /* Asegura que nada se salga del área */
 }
 
 .pokemon-imagen {
-  width: 100%;
   height: 100%;
-  object-fit: contain; /* Asegura que las imágenes se ajusten dentro de cada celda */
-  max-width: 100%; /* Evita que se extiendan demasiado */
-  max-height: 100%; /* Evita que se extiendan demasiado */
+  object-fit: contain;
+  /* Asegura que las imágenes se ajusten dentro de cada celda */
+  max-width: 100%;
+  /* Evita que se extiendan demasiado */
+  max-height: 100%;
+  /* Evita que se extiendan demasiado */
 }
 
 .seleccionado {
@@ -68,13 +64,9 @@
 .Lbutton,
 .Rbutton {
   width: 3rem;
-  height: 3rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 5px;
   border-radius: 8px;
-  font-size: 15px;
   background-color: white;
   border: 2px solid #4A7B59;
   transition-duration: 0.3s;
@@ -98,13 +90,11 @@
 .Limagen,
 .Rimagen {
   width: 100%;
-  height: 100%;
 }
 
 .nombrecaja {
   text-align: center;
   padding: 10px;
   font-size: 1.5rem;
-  width: 100%;
   max-width: 90vw;
 }

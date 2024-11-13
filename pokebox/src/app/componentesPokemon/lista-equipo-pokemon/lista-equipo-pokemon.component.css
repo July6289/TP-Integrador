@@ -2,43 +2,37 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
   height: 100%;
   background-color: #95A98B;
-
-  box-sizing: border-box; /* Para que padding y border no expandan el ancho de los elementos */
-  margin: 0;
-  padding: 0;
+  box-sizing: border-box;
+  /* Para que padding y border no expandan el ancho de los elementos */
 }
-
-
 
 .botones-container {
   display: flex;
-  gap: 10px; /* Espacio entre botones */
-  margin-left: auto; /* Empuja el contenedor de botones a la derecha */
+  gap: 10px;
+  /* Espacio entre botones */
+  margin-left: auto;
+  /* Empuja el contenedor de botones a la derecha */
+}
+
+.big,
+.little {
+  border-radius: 8px;
+  background-color: white;
+  border: 2px solid #4A7B59;
+  transition-duration: 0.3s;
+  cursor: pointer;
 }
 
 .big {
-  border-radius: 8px;
   padding: 8px 12px;
   font-size: 14px;
-  background-color: white;
-  color: black;
-  border: 2px solid #4A7B59;
-  transition-duration: 0.3s;
-  cursor: pointer;
 }
 
 .little {
-  border-radius: 8px;
   padding: 4px 6px;
   font-size: 10px;
-  background-color: white;
-  color: black;
-  border: 2px solid #4A7B59;
-  transition-duration: 0.3s;
-  cursor: pointer;
 }
 
 button:hover {
@@ -47,7 +41,6 @@ button:hover {
 }
 
 .teams {
-  flex: 8;
   background-color: #95A98B;
   overflow-y: auto;
   max-height: 300px;
@@ -71,19 +64,21 @@ button:hover {
   background-color: #95A98B;
 }
 
-.equipos:hover
-{
-    background-color: #4A7B59
+.equipos:hover {
+  background-color: #4A7B59
 }
 
-.nombre-pokemon
-{
+.nombre-pokemon {
   padding: 1rem 2rem 1rem 2rem;
 }
 
 .eliminar {
-  padding: 5px 10px; /* Tamaño reducido */
-  font-size: 14px; /* Fuente más pequeña */
-  margin-left: auto; /* Empuja el botón a la derecha */
-  margin-right: 1px; /* Añade un margen pequeño a la derecha */
+  padding: 5px 10px;
+  /* Tamaño reducido */
+  font-size: 14px;
+  /* Fuente más pequeña */
+  margin-left: auto;
+  /* Empuja el botón a la derecha */
+  margin-right: 1px;
+  /* Añade un margen pequeño a la derecha */
 }

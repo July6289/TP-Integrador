@@ -21,18 +21,20 @@
   background-color: #4A7B59;
 }
 
-.agregar {
+.agregar,
+.buscar {
   border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 17px;
   background-color: white;
-  color: black;
   border: 2px solid #4A7B59;
   transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+.agregar {
+  padding: 10px 12px;
+  font-size: 17px;
   margin-left: 33%;
   margin-top: 8%;
-  cursor: pointer;
-
 }
 
 .agregar:hover {
@@ -41,27 +43,20 @@
 }
 
 .seleccionado {
+  border-radius: 8px;
   border: 1px solid blue;
   /* Línea azul delgada alrededor del Pokémon */
-  border-radius: 8px;
   box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);
   /* Sombra azul sutil */
 }
 
 .mensajeError {
   color: red;
-
 }
 
-.buscar{
-  border-radius: 8px;
+.buscar {
   padding: 2px 4px;
   font-size: 12px;
-  background-color: white;
-  color: black;
-  border: 2px solid #4A7B59;
-  transition-duration: 0.3s;
-  cursor: pointer;
 }
 
 .buscar:hover {
