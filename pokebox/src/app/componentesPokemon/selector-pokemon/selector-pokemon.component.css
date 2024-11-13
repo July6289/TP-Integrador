@@ -2,33 +2,23 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  /* Alinea todos los elementos al final de la columna */
   gap: 15px;
   width: 100%;
-  /* El contenedor principal ocupa el 100% del ancho */
   padding-right: 20px;
 }
 
 .total {
   background-image: url('/assets/imagenes/test2.jpg');
   background-size: cover;
-  /* Asegura que la imagen cubra todo el contenedor */
   background-repeat: no-repeat;
-  /* Evita que la imagen se repita */
 }
 
 .titulo {
-  font-size: 48px;
-  /* Tamaño de la fuente */
+  font-size: 3rem; /* Ajustado a una unidad relativa */
   font-weight: bold;
-  /* Negrita */
   color: white;
-  /* Color del texto */
   text-align: center;
-  /* Alineación del texto */
   padding: 15px;
-  /* Espaciado alrededor del título */
-
 }
 
 .pokemon {
@@ -38,9 +28,7 @@
   gap: 15px;
   background-color: #819875;
   width: 50%;
-  /* Ocupa el 50% del ancho de la pantalla */
   margin-left: auto;
-  /* Esto hace que el elemento se pegue al lado derecho */
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s;
@@ -48,28 +36,22 @@
 
 .pokemon-imagen {
   width: 80px;
-  /* Ajusta el tamaño de la imagen */
 }
-
 
 .pokemon-nombre {
   font-weight: bold;
-  font-size: 18px;
-  /* Ajusta el tamaño de la fuente para mayor visibilidad */
+  font-size: 1.125rem;
 }
 
 .pokemon-info {
   display: flex;
   flex-direction: column;
-  /* Coloca los elementos (nombre, tipos, botón) en una columna */
   gap: 5px;
-  /* Espacio entre el nombre, los tipos y el botón */
 }
 
 .pokemon-tipos {
   display: flex;
   gap: 5px;
-  /* Espacio entre los tipos */
 }
 
 .pokemon-tipo {
@@ -88,23 +70,20 @@
 
 .pokemon:hover {
   transform: scale(1.01);
-  /* Efecto de aumento al pasar el mouse */
 }
 
 .poketeam {
-  height: 100vh;
+  min-height: 100vh; /* Ajustado para permitir scroll si es necesario */
   background-repeat: no-repeat;
-  /* Evita que la imagen se repita */
 }
 
 button {
   border-radius: 8px;
   padding: 10px 14px;
-  font-size: 14px;
+  font-size: 1rem;
   background-color: white;
   border: 2px solid #4A7B59;
   transition-duration: 0.3s;
-  /* Espacio entre las tarjetas y el botón */
 }
 
 button:hover {
@@ -112,16 +91,56 @@ button:hover {
   color: white;
 }
 
-/*ver si esta optimizado*/
 .boton-volver {
   display: flex;
   gap: 15px;
-  /* Espacio entre los botones */
   justify-content: center;
-  /* Centra los botones */
   width: 100%;
-  /* Espacio entre la cuadrícula y los botones */
   cursor: pointer;
+}
+
+/* Adaptaciones para pantallas medianas */
+@media (max-width: 768px) {
+  .pokemon {
+    width: 70%; /* Ajuste para pantallas medianas */
+  }
+
+  .titulo {
+    font-size: 2rem;
+    padding: 10px;
+  }
+
+  .pokemon-imagen {
+    width: 60px;
+  }
+}
+
+/* Adaptaciones para pantallas pequeñas */
+@media (max-width: 480px) {
+  .pokemon-grid {
+    align-items: center;
+    padding-right: 10px;
+  }
+
+  .pokemon {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    width: 90%;
+    margin-left: 0;
+  }
+
+  .titulo {
+    font-size: 1.5rem;
+    padding: 8px;
+  }
+
+  .pokemon-imagen {
+    width: 50px;
+  }
+
+  button {
+    font-size: 0.875rem;
+    padding: 8px 10px;
+  }
 }
 
 /*-----------------------------------------------tipos pokemon-----------------------------------------------*/

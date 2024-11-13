@@ -1,14 +1,33 @@
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Asegura que no haya scroll si no es necesario */
+  overflow: hidden;
+  /* Asegura que no haya scroll si no es necesario */
 }
 
-app-root, app-pagina-principal {
-  height: 100%;
+app-root,
+app-pagina-principal {
+  min-height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
+/* Adaptación para pantallas medianas */
+@media (max-width: 768px) {
+  app-root,
+  app-pagina-principal {
+    padding: 10px;
+  }
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 480px) {
+  app-root,
+  app-pagina-principal {
+    flex-direction: column;
+    padding: 5px;
+  }
+}

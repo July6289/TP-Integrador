@@ -80,9 +80,9 @@ export class PestaniaCombateComponent implements OnInit {
       };
     });
 
-   /* for (let i = 0; i < this.equipoRival.equipo.length; i++) {
+    for (let i = 0; i < this.equipoRival.equipo.length; i++) {
       this.equipoRival.equipo[i].isAlive = true;
-    }*/
+    }
 
     console.log("equipo clonado: ", this.equipoMain.equipo);
     this.getpokemonFight();
@@ -90,6 +90,7 @@ export class PestaniaCombateComponent implements OnInit {
 
     console.log("equipo rival: ", this.equipoRival.equipo);
     console.log("id elegido rival: " + this.peleadorBot);
+
   }
 
   deletePokemon(equipoPerdedor: EquipoPokemon) {

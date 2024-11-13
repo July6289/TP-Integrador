@@ -3,6 +3,10 @@
   width: 90%;
   margin-bottom: 20px;
   /* Para que los elementos se ajusten en múltiples líneas si es necesario */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  /* Diseño de grilla adaptable */
+
 }
 
 .pokemon-grid,
@@ -58,7 +62,7 @@
 button {
   border-radius: 8px;
   padding: 10px 14px;
-  font-size: 14px;
+  font-size: 1rem;
   background-color: white;
   border: 2px solid #4A7B59;
   transition-duration: 0.3s;
@@ -77,7 +81,7 @@ button:hover {
 }
 
 .nombreEquipo {
-  font-size: 48px;
+  font-size: 3rem;
   /* Tamaño de la fuente */
   font-weight: bold;
   /* Negrita */
@@ -91,4 +95,46 @@ button:hover {
   /* Sombra suave */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   /* Sombra en el texto */
+}
+
+/* Media Queries para ajustar el diseño en pantallas medianas */
+@media (max-width: 768px) {
+  .pokemon {
+    width: 120px;
+    /* Ajuste de tamaño en pantallas medianas */
+    height: 120px;
+  }
+
+  .nombreEquipo {
+    font-size: 2rem;
+    padding: 15px;
+  }
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 480px) {
+  .pokemon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    /* Ajuste de columnas */
+  }
+
+  .pokemon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .nombreEquipo {
+    font-size: 1.5rem;
+    padding: 10px;
+  }
+
+  .poketeam {
+    padding: 20px;
+    /* Ajuste de padding en contenedor principal */
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
 }
