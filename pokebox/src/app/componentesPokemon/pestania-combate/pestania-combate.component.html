@@ -31,10 +31,14 @@
     <div class="hp-numbers">83/88</div>
   </div>
 </div>
+<div class="pokeimg">
+  <img  [src]="this.equipoMain.equipo[peleador].sprites.back_default" [alt]="this.equipoMain.equipo[peleador].name"
+      class="pokemon-imagen">
+</div>
 
 <div class="battle-hud">
   <div class="options">
-    <button class="option" (click)="pelea(this.equipoMain.equipo[0], this.equipoRival.equipo[0])">FIGHT</button>
+    <button class="option" (click)="pelea(this.equipoMain.equipo[this.peleador], this.equipoRival.equipo[0])">FIGHT</button>
     <button class="option" (click)="gotoSlector()">POKÉMON</button>
     <button class="option" (click)="toMainMenu()">RUN</button>
   </div>

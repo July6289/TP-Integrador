@@ -62,6 +62,7 @@ export class EquipoPokemonComponent {
           id: Date.now() + Math.floor(Math.random() * 1000) // Genera un `id` único basado en tiempo
         };
 
+        clonPokemon.isAlive=true;
         this.pokemonesEnEquipo.push(clonPokemon);
         this.pokeaux = [];
       } else {

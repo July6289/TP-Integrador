@@ -11,6 +11,11 @@
   /* Evita el desbordamiento */
 }
 
+.pokeimg
+{
+  position: absolute;
+}
+
 .imagenFondoCombate {
   width: 100%;
   height: 100%;
@@ -32,16 +37,38 @@
   /* Fijar en la parte inferior */
 }
 
+.pokeimg
+{
+  padding: 10px;
+  padding-left: 15%;
+  position: fixed;
+}
+
 .battle-enemy {
   width: 20%;
   /* Ocupar todo el ancho disponible */
 }
 
-.battle-me {
+.battle-me{
   width: 20%;
   bottom: 23.5%;
   /* Colocar justo encima de battle-hud */
   right: 0;
+}
+
+.pokeimg {
+  width: 23%;
+  padding-left: 17%; /* Mantiene el padding a la izquierda */
+  position: fixed;
+  bottom: 13.5%; /* Mantiene la posición original */
+}
+
+
+.pokemon-imagen
+{
+  width: 100%; /* Aumenta el ancho al 35% */
+
+  padding: 10px; /* Mantiene el padding */
 }
 
 .battle-hud {
