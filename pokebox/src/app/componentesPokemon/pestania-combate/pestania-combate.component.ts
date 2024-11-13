@@ -76,15 +76,17 @@ export class PestaniaCombateComponent implements OnInit {
     this.pokeservicesService.getRandomPokemonTeam().subscribe(team => {
       this.pokemonTeam = team;
 
+      for (let i = 0; i < this.pokemonTeam.length; i++) {
+        this.pokemonTeam[i].isAlive = true;
+      }
+
       this.equipoRival = {
         nombre: "Rival",
         equipo: this.pokemonTeam /*= structuredClone(this.pokemonTeam) || JSON.parse(JSON.stringify(this.pokemonTeam))*/
       };
     });
 
-    for (let i = 0; i < this.equipoRival.equipo.length; i++) {
-      this.equipoRival.equipo[i].isAlive = true;
-    }
+
 
     this.getpokemonFight();
   }
@@ -171,30 +173,90 @@ export class PestaniaCombateComponent implements OnInit {
     pokemonJugador.life = this.inicializarVidas(pokemonJugador)
     pokemonBot.life = this.inicializarVidas(pokemonBot)
 
-    if (this.turno) {
-      pokemonBot.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno)
-    }
-    else {
-      pokemonJugador.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno)
-    }
 
-    this.turno = !this.turno;
 
-    alert(" la vida de tu pokemon es: " + pokemonJugador.life)
-    alert(" la vida del pokemon rival es: " + pokemonBot.life)
 
-    if (pokemonJugador.life <= 0) {
-      alert("tu pokemon fue derrotado");
-      pokemonJugador.isAlive = false;
-      this.deletePokemon(this.equipoMain)
+      if (this.turno) {
+        pokemonBot.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno)
+        console.log("tu turno");
+
+      }
+      else {
+        pokemonJugador.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno);
+        console.log("turno del bot");
+
+      }
+
+      this.turno = !this.turno;
+
+      alert(" la vida de tu pokemon es: " + pokemonJugador.life)
+      alert(" la vida del pokemon rival es: " + pokemonBot.life)
+
+      if (pokemonJugador.life <= 0) {
+        alert("tu pokemon fue derrotado");
+        pokemonJugador.isAlive = false;
+        this.deletePokemon(this.equipoMain)
+      }
+      else if (pokemonBot.life <= 0) {
+        alert("el pokemon rival fue derrotado");
+        pokemonBot.isAlive = false;
+        this.deletePokemon(this.equipoRival)
+      }
+
+      this.ganador()
+
+
+  }
+
+  combate()
+  {
+    let turn=0;
+    if(!this.checkStstate(this.equipoMain.equipo[this.peleador]))
+    {
+      console.log("estas muerto!");
+
+    }else if(!this.checkStstate(this.equipoRival.equipo[this.peleadorBot]))
+    {
+
     }
-    else if (pokemonBot.life <= 0) {
-      alert("el pokemon rival fue derrotado");
-      pokemonBot.isAlive = false;
-      this.deletePokemon(this.equipoRival)
-    }
+    else
+    {
+      while(this.alguienVivo(this.equipoMain) && this.alguienVivo(this.equipoRival) && true)
+      {
+          console.log("paso por aca");
 
-    this.ganador()
+
+          this.pelea(this.equipoMain.equipo[this.peleador],this.equipoRival.equipo[this.peleadorBot]);
+          turn++;
+          if(turn%2===0)
+          {
+            break;
+          }
+      }
+    }
+  }
+
+  checkStstate(pkmn:Pokemon)
+  {
+    if(pkmn.isAlive)
+    {
+      return true;
+    }
+    return false;
+  }
+
+  alguienVivo(team: EquipoPokemon)
+  {
+    let alive=false;
+    for(let i=0; i<team.equipo.length; i++)
+    {
+      if(team.equipo[i].isAlive)
+      {
+
+        alive = true;
+      }
+    }
+    return alive;
   }
 
   ganador() {
