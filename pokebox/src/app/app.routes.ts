@@ -31,7 +31,7 @@ export const routes: Routes = [
 
   },
   {
-    path:'combate',
+    path: 'combate',
     component: PestaniaCombateComponent,
   },
   {

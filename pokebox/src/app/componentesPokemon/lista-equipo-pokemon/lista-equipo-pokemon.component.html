@@ -15,7 +15,7 @@
 </div>
 
 
-<div class="/combate" *ngIf="rutaCombate===false">
+<div class="/selector" *ngIf="rutaCombate===false">
   <h1>Elija un Equipo Pokemon</h1>
   <ul>
     <li class="equipos" *ngFor="let item of poketeam; let i = index" (click)="goToVisualizarpokemon(item.nombre)">

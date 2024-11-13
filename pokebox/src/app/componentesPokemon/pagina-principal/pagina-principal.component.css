@@ -5,7 +5,7 @@
 }
 
 .totalidad {
-  min-height: 100vh; /* Cambia a min-height para evitar problemas en pantallas móviles */
+  height: 100vh; /* Cambia a min-height para evitar problemas en pantallas móviles */
   display: flex;
   flex-direction: column;
 }
@@ -85,7 +85,6 @@
 
 .listadeequipos {
   flex: 1;
-  background-color: goldenrod;
 }
 
 .battle {
