@@ -125,7 +125,7 @@ export class PaginaLogueoComponent {
                 console.log(usuario[0]);
                 console.log(datosUsuario.Password);
                 this.auth.logIn();
-                this.router.navigate([`main-page/${usuario[0].id}`]);
+                this.router.navigate([`main-page`]);
               }
               else {
                 this.validadorMensajeEspecifico = true;

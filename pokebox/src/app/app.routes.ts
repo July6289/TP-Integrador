@@ -31,7 +31,7 @@ export const routes: Routes = [
 
   },
   {
-    path: 'main-page/:id',
+    path: 'main-page',
     component: PaginaPrincipalComponent,
     canActivate:[authGuardFn]
   },

@@ -10,6 +10,11 @@ nav {
   height: auto;
   font-size: small;
 }
+.homePage{
+
+margin-right: 150px;
+margin-bottom: 20px;
+}
 ul {
   list-style: none;
   margin: 0;
@@ -26,6 +31,9 @@ ul li a {
   font-size: 2rem;
   color:black;
 }
+.boton1{
+  margin-top: 100px;
+}
 .boton2{
   border: none;
   font-size: 2rem;
@@ -35,5 +43,5 @@ ul li a {
   cursor: pointer;
 }
 .imagenUsuario {
-  width: 80%;
+  width: 70px;
 }
