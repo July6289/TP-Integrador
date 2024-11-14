@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { Caja } from '../../../interfaces/interfaz-caja/interfazCaja.inteface';
@@ -14,7 +14,10 @@ import { AuthService } from '../../../auth/service/auth.service';
   templateUrl: './pagina-logueo.component.html',
   styleUrl: './pagina-logueo.component.css'
 })
-export class PaginaLogueoComponent {
+export class PaginaLogueoComponent implements OnInit {
+  ngOnInit(): void {
+    console.log(this.auth.idDelUsuario)
+  }
 
   constructor(private ctrl: ChangeDetectorRef) { }
   validadorMensajeEspecifico: boolean = false;
@@ -70,14 +73,14 @@ export class PaginaLogueoComponent {
     else {
       this.validadorMensajeEspecifico = true;
       const usuario = this.formulario.getRawValue();
-      usuario.box = this.pokeservice.getNewCaja();
+      usuario.box = this.pokeservice.cajas;
       this.usuarioService.getUsuariobyName(usuario.Username).subscribe(
         {
           next: (usuarioDato: Usuario[]) => {
             if (usuarioDato.length > 0 && usuarioDato[0]!=undefined) {
               this.mensajeEspecifico = 'Este usuario ya existe en el sistema';
               this.validadorMensajeEspecifico = true;
-
+              console.log(usuarioDato[0]);
               console.log(this.validadorMensajeEspecifico);
               console.log(this.mensajeEspecifico);
               this.ctrl.detectChanges();

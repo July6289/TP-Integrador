@@ -1,9 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { Caja } from '../../interfaces/interfaz-caja/interfazCaja.inteface';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { Observable } from 'rxjs';
+import { AuthService } from '../../auth/service/auth.service';
+import { UsuarioService } from '../../pokeservices/usuario.service';
+import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 
 @Component({
   selector: 'app-caja',
@@ -13,7 +16,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./caja.component.css']
 })
 
-export class CajaComponent {
+export class CajaComponent implements OnInit {
   private readonly MAX_POKEMON = 30; // Límite máximo de Pokémon en cada caja
   pokemonSeleccionado: Pokemon | null = null;  // Índice del Pokémon seleccionado
 
@@ -22,6 +25,35 @@ export class CajaComponent {
   cajas!: Caja[];
   indiceCaja: number = 0; // Índice de la caja actual
 
+  auth=inject(AuthService);
+  pokeservicio=inject(PokeservicesService);
+
+  usarioServicio=inject(UsuarioService);
+
+
+
+
+  usuario:Usuario= {id: "",
+  box: this.pokeservicio.cajas,
+  Username: "",
+  Password: ""
+
+  }
+  datosDelId:string|undefined=this.auth.idDelUsuario;
+
+  dbUsuarioId(id:string|undefined){
+    this.usarioServicio.getUsuarioById(id).subscribe(
+    {
+      next:(valor:Usuario)=>{
+        this.usuario=valor;
+      },
+      error:(e:Error)=>{
+        console.log(e.message);
+      }
+    }
+    )
+  }
+
   constructor(private pokeService: PokeservicesService) {
     // Asigna el observable `spriteActual$` desde el servicio
     this.spriteActual$ = this.pokeService.spriteActual$;
@@ -29,7 +61,11 @@ export class CajaComponent {
 
   ngOnInit(): void {
     // Referencia a las cajas en el servicio
-    this.cajas = this.pokeService.cajas;
+    this.dbUsuarioId(this.datosDelId);
+    console.log(this.usuario);
+    this.cajas = this.usuario.box;
+    console.log("el dato es",this.cajas);
+
   }
 
   // Método getter para obtener la lista de Pokémon de la caja actual
