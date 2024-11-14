@@ -1,4 +1,4 @@
-import { Pokemon } from "../interfazpokemon/interfazpokemon.inteface";
+import { Pokemon } from '../interfazpokemon/interfazpokemon.inteface';
 
 export interface Caja {
   imagen: string;          // Ruta de la imagen de la caja
