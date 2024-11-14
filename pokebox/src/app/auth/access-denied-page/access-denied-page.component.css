@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #b40b0b;
+  overflow-y: auto;
+
+}
+.titulo{
+  font-style: italic;
+  color: white;
+  font-size: 50px;
+  text-shadow:
+    -1px -1px 0 black,   /* Sombra en la esquina superior izquierda */
+    1px -1px 0 black,    /* Sombra en la esquina superior derecha */
+    -1px 1px 0 black,    /* Sombra en la esquina inferior izquierda */
+    1px 1px 0 black;
+    font-family: Arial, sans-serif; /* Cambiar la fuente */
+}
+.comentario{
+  font-style: italic;
+  color: white;
+  font-size: 35px;
+  font-family: "Times New Roman", serif;
+  text-shadow:
+    -1px -1px 0 black,   /* Sombra en la esquina superior izquierda */
+    1px -1px 0 black,    /* Sombra en la esquina superior derecha */
+    -1px 1px 0 black,    /* Sombra en la esquina inferior izquierda */
+    1px 1px 0 black;
+
+
+
+}
