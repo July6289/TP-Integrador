@@ -16,6 +16,7 @@ export class AppComponent implements OnInit  {
 
   showNavbar: boolean = true;
   showNavbar2:boolean=true;
+  showNavbar3:boolean=true;
 
   constructor(private router: Router) {}
 
@@ -25,6 +26,8 @@ export class AppComponent implements OnInit  {
       const currentRoute = this.router.url;
       this.showNavbar =!currentRoute.includes('registro')
       this.showNavbar2=!currentRoute.includes('combate'); // Ejemplo de ruta para no mostrar el navbar
+      this.showNavbar2=!currentRoute.includes('cambiar-pokemon'); // Ejemplo de ruta para no mostrar el navbar
+
     });
   }
 }
