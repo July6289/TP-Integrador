@@ -62,6 +62,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'registro'
+    redirectTo: 'main-page'
   }
 ];

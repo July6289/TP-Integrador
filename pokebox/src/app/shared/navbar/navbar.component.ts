@@ -1,7 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
-import { authGuardFn } from '../../auth/guard/auth.guard-fn';
 import { AuthService } from '../../auth/service/auth.service';
 
 @Component({
@@ -17,7 +16,6 @@ export class NavbarComponent implements OnInit {
       {
         this.textButton='Cerrar Sesion'
       }
-
   }
 
 textButton:string='Iniciar Sesion'

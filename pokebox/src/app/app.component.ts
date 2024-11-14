@@ -1,20 +1,18 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { NavigationEnd, Router, RouterEvent, RouterOutlet } from '@angular/router';
-import { CommonModule, Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { AuthService } from './auth/service/auth.service';
-import { filter } from 'lodash';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, HttpClientModule,NavbarComponent],
+  imports: [RouterOutlet, CommonModule, HttpClientModule, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent   {
+export class AppComponent implements OnInit  {
 
   showNavbar: boolean = true;
   showNavbar2:boolean=true;

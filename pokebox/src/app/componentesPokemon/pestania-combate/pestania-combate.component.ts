@@ -64,6 +64,7 @@ export class PestaniaCombateComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTeams()
+    this.getTeams()
   }
 
   getTeams() {
