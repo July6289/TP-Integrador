@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
@@ -12,7 +12,7 @@ import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.i
   templateUrl: './selector-pokemon.component.html',
   styleUrl: './selector-pokemon.component.css'
 })
-export class SelectorPokemonComponent {
+export class SelectorPokemonComponent implements OnInit{
   pokemonesEnEquipo: EquipoPokemon =
     {
       nombre: '',
@@ -23,8 +23,14 @@ export class SelectorPokemonComponent {
     private equipoPokemonService: EquipoPokemonService,
     private router: Router
   ) { }
+ 
 
   gotoCombate() {
+    this.router.navigate(['/combate']);
+  }
+
+  goBack() {
+    this.equipoPokemonService.guardarTurno(!this.turns);
     this.router.navigate(['/combate']);
   }
 
@@ -50,9 +56,13 @@ export class SelectorPokemonComponent {
       this.router.navigate(['/combate']);
     }
   }
+  
+  turns: boolean = true;
 
   ngOnInit(): void {
     this.pokemonesEnEquipo = this.equipoPokemonService.recibirEquipoPokemon();
+    this.turns= this.equipoPokemonService.getTurno();
+
   }
 
   gotoMainMenu() {

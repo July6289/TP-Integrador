@@ -70,6 +70,18 @@ export class EquipoPokemonService {
     this.pokeRival = equipoSeleccionado;
   }
 
+  turns:boolean =true;
+
+  guardarTurno(t1:boolean)
+  {
+    this.turns=t1;
+  }
+
+  getTurno():boolean
+  {
+    return this.turns;
+  }
+
   recibirEquipoPokemon(): EquipoPokemon {
     return this.poketeam;
   }

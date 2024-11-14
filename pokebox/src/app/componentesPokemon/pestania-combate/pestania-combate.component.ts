@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class PestaniaCombateComponent implements OnInit {
   private tablaTiposValores: number[][] = [
-    /*    n    l    vo   ve   t    r    b   fa   ac   fu   ag   pl    e   ps   hi    d    s   ha         */
+    /*n    l    vo   ve   t    r    b   fa   ac   fu   ag   pl    e   ps   hi    d    s   ha         */
     [1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 0.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],//normal
     [2.0, 1.0, 0.5, 0.5, 1.0, 2.0, 0.5, 0.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 2.0, 1.0, 2.0, 0.5],//lucha
     [1.0, 2.0, 1.0, 1.0, 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0],//volador
@@ -64,6 +64,16 @@ export class PestaniaCombateComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTeams()
+
+    this.turno = this.service.getTurno();
+  }
+
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // Verificamos si el peleador actual no tiene un Pokémon asignado en equipoMain
+    if (this.equipoMain.equipo[this.peleador] === undefined) {
+      this.gotoSlector(); // Llama automáticamente al método si no hay Pokémon seleccionado
+    }
   }
 
   getTeams() {
@@ -143,13 +153,13 @@ export class PestaniaCombateComponent implements OnInit {
       alert("infligiste " + danio + " de daño")
     }
     else {
-      if (indiceTipos.botTipo2 !== -1 && indiceTipos.botTipo2 !== -1) {
+      if (indiceTipos.jugadorTipo2 !== -1 && indiceTipos.botTipo2 !== -1) {
         danio = 4 * ((this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo1] * this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo2]) * (this.tablaTiposValores[indiceTipos.botTipo2][indiceTipos.jugadorTipo1] * this.tablaTiposValores[indiceTipos.botTipo2][indiceTipos.jugadorTipo2]));
       }
-      else if (indiceTipos.botTipo2 !== -1 && indiceTipos.botTipo2 === -1) {
+      else if (indiceTipos.jugadorTipo2 !== -1 && indiceTipos.botTipo2 === -1) {
         danio = 4 * (this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo1] * this.tablaTiposValores[indiceTipos.botTipo2][indiceTipos.jugadorTipo1]);
       }
-      else if (indiceTipos.botTipo2 === -1 && indiceTipos.botTipo2 !== -1) {
+      else if (indiceTipos.jugadorTipo2 === -1 && indiceTipos.botTipo2 !== -1) {
         danio = 4 * (this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo1] * this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo2]);
       }
       else {
@@ -181,7 +191,6 @@ export class PestaniaCombateComponent implements OnInit {
       pokemonJugador.isAlive = false;
     }
     else if (pokemonBot.life <= 0) {
-      this.peleadorBot++
       pokemonBot.isAlive = false;
     }
   }
@@ -193,10 +202,8 @@ export class PestaniaCombateComponent implements OnInit {
 
     if (!this.checkStstate(this.equipoMain.equipo[this.peleador])) {
       console.log("tu pokemon esta muerto!");
-      this.equipoMain = this.deletePokemon(this.equipoMain)
     } else if (!this.checkStstate(this.equipoRival.equipo[this.peleadorBot])) {
       console.log("el pokemon rival esta muerto!");
-      this.equipoRival = this.deletePokemon(this.equipoRival)
     }
     else {
       while (this.checkStstate(this.equipoMain.equipo[this.peleador]) && this.checkStstate(this.equipoRival.equipo[this.peleadorBot])) {
@@ -205,7 +212,7 @@ export class PestaniaCombateComponent implements OnInit {
 
         turn++;
 
-        if (turn % 2 === 0) {
+        if (!this.checkStstate(this.equipoMain.equipo[this.peleador]) || !this.checkStstate(this.equipoRival.equipo[this.peleadorBot]) || turn % 2 === 0) {
           break;
         }
       }
@@ -220,6 +227,7 @@ export class PestaniaCombateComponent implements OnInit {
     if (pkmn !== undefined && pkmn.isAlive) {
       return true;
     } else {
+      this.turno = !this.turno;
       return false;
     }
   }
@@ -234,6 +242,7 @@ export class PestaniaCombateComponent implements OnInit {
         }
         else {
           this.deletePokemon(team);
+          this.gotoSlector();
         }
       }
       return alive;
@@ -275,6 +284,7 @@ export class PestaniaCombateComponent implements OnInit {
   gotoSlector() {
     this.service.EquipoSeleccionado(this.equipoMain);
     this.service.EquipoSeleccionadoBot(this.equipoRival);
+    this.service.guardarTurno(!this.turno);
     this.router.navigate(['/cambiar-pokemon']);
   }
 }

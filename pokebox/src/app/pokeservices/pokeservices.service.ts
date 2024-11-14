@@ -59,7 +59,6 @@ export class PokeservicesService {
   getPokemonByName(nombrePokemon: string): Observable<Pokemon | undefined> {
     return this.http.get<Pokemon>(`${this.urlBase}/${'pokemon'}/${nombrePokemon}`).pipe(
       catchError((error) => {
-        console.log(error)
         return of(undefined)
       })
     )
@@ -68,7 +67,6 @@ export class PokeservicesService {
   getPokemonByGeneration(NumeroGeneracion: number): Observable<Generation | undefined> {
     return this.http.get<Generation>(`${this.urlBase}/${"generation"}/${NumeroGeneracion.toString()}`).pipe(
       catchError((error) => {
-        console.log(error)
         return of(undefined)
       })
     );
