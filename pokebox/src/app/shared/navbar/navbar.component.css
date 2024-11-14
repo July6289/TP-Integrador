@@ -3,36 +3,36 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 0.3px;
 }
 
 .imagenLogueo {
   width: 25vh;
   /* Ajusta el ancho de la imagen */
-  height: auto;
-  font-size: small;
 }
 
 .homePage {
   margin-right: 150px;
-  margin-bottom: 20px;
 }
 
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-ul li {
-  display: inline-block;
-}
-
-ul li a {
+ul,
+li,
+a {
   text-decoration: none;
   margin-left: 1rem;
   font-size: 2rem;
   color: black;
+}
+
+ul,
+li {
+  display: inline-block;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
 }
 
 .boton1 {
@@ -45,9 +45,11 @@ ul li a {
   background-color: red;
   color: white;
   padding: 0.5rem 1.2rem;
+  margin-right: 1rem;
   cursor: pointer;
 }
 
 .imagenUsuario {
-  width: 70px;
+  width: 7vh;
+  cursor: pointer;
 }
