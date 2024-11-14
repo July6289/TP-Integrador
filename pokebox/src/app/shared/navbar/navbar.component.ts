@@ -18,16 +18,15 @@ export class NavbarComponent implements OnInit {
         this.perfilActivo=true;
       }
   }
-
 textButton:string='Iniciar Sesion'
 perfilActivo:boolean=false;
 auth=inject(AuthService);
-
 localizador=inject(Location);
 
 Router= inject(Router);
 
 goToPerfil() {
+  this.auth.setValue(true);
   this.Router.navigate(['/perfil']);
 }
 onLonginLogout(){

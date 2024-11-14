@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { Caja } from '../../interfaces/interfaz-caja/interfazCaja.inteface';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AuthService } from '../../auth/service/auth.service';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
@@ -16,7 +16,7 @@ import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.in
   styleUrls: ['./caja.component.css']
 })
 
-export class CajaComponent implements OnInit {
+export class CajaComponent implements OnInit, OnDestroy {
   private readonly MAX_POKEMON = 30; // Límite máximo de Pokémon en cada caja
   pokemonSeleccionado: Pokemon | null = null;  // Índice del Pokémon seleccionado
 
@@ -30,7 +30,7 @@ export class CajaComponent implements OnInit {
 
   usarioServicio=inject(UsuarioService);
 
-
+  private valuesubscription!:Subscription;
 
 
   usuario:Usuario= {id: "",
@@ -40,6 +40,34 @@ export class CajaComponent implements OnInit {
 
   }
   datosDelId:string|undefined=this.auth.idDelUsuario;
+
+
+  constructor(private pokeService: PokeservicesService) {
+    // Asigna el observable `spriteActual$` desde el servicio
+    this.spriteActual$ = this.pokeService.spriteActual$;
+  }
+
+  ngOnInit(): void {
+    // Referencia a las cajas en el servicio
+    this.dbUsuarioId(this.datosDelId);
+    console.log(this.usuario);
+    this.cajas = this.usuario.box;
+    console.log("el dato es",this.cajas);
+
+    this.valuesubscription=this.auth.guardarProgreso.subscribe((newValue) => {
+      if (newValue) {
+        this.dbGuardarDatos();
+      }
+    });
+
+  }
+
+  ngOnDestroy(): void {
+     // Limpiar la suscripción cuando el componente se destruye
+     if (this.valuesubscription) {
+      this.valuesubscription.unsubscribe();
+    }
+  }
 
   dbUsuarioId(id:string|undefined){
     this.usarioServicio.getUsuarioById(id).subscribe(
@@ -53,18 +81,22 @@ export class CajaComponent implements OnInit {
     }
     )
   }
+  dbGuardarDatos()
+  {
+      this.usarioServicio.putUsuario(this.usuario,this.datosDelId).subscribe(
+        {
+          next:()=>{
+            console.log("Usuario Guardado");
+          },
+          error:(e:Error)=>{
 
-  constructor(private pokeService: PokeservicesService) {
-    // Asigna el observable `spriteActual$` desde el servicio
-    this.spriteActual$ = this.pokeService.spriteActual$;
-  }
+            console.log(e.message);
 
-  ngOnInit(): void {
-    // Referencia a las cajas en el servicio
-    this.dbUsuarioId(this.datosDelId);
-    console.log(this.usuario);
-    this.cajas = this.usuario.box;
-    console.log("el dato es",this.cajas);
+          }
+
+
+        }
+      )
 
   }
 
