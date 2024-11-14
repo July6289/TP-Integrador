@@ -124,7 +124,7 @@ export class PaginaLogueoComponent {
               if (usuario[0].Password.localeCompare(datosUsuario.Password) === 0) {
                 console.log(usuario[0]);
                 console.log(datosUsuario.Password);
-                this.auth.logIn();
+                this.auth.logIn(usuario[0].id);
                 this.router.navigate([`main-page`]);
               }
               else {

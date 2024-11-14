@@ -6,11 +6,12 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   estoyLogeado:boolean=false;
+  idDelUsuario:string|undefined='';
 
-
-  logIn(){
+  logIn(id:string|undefined){
+    this.idDelUsuario=id;
     this.estoyLogeado=true;
-
+    console.log("dato del usuario:",this.idDelUsuario)
 
   }
   logOut(){

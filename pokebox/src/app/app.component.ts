@@ -17,7 +17,7 @@ import { filter } from 'lodash';
 export class AppComponent   {
 
   showNavbar: boolean = true;
-
+  showNavbar2:boolean=true;
 
   constructor(private router: Router) {}
 
@@ -25,7 +25,8 @@ export class AppComponent   {
     this.router.events.subscribe(() => {
       // Aquí detectamos si estamos en una ruta en la que no queremos mostrar el Navbar
       const currentRoute = this.router.url;
-      this.showNavbar = !currentRoute.includes('registro'); // Ejemplo de ruta para no mostrar el navbar
+      this.showNavbar = !currentRoute.includes('registro')
+      this.showNavbar2=!currentRoute.includes('combate'); // Ejemplo de ruta para no mostrar el navbar
     });
   }
 }

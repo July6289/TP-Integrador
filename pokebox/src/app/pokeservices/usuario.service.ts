@@ -15,8 +15,11 @@ export class UsuarioService {
   postUsuario(usuario:Usuario):Observable<Usuario>{
     return this.service.post<Usuario>(this.urlbase,usuario);
    }
-   getCharacters():Observable<Usuario[]>{
+   getUsuarios():Observable<Usuario[]>{
     return this.service.get<Usuario[]>(this.urlbase)
+   }
+   getUsuarioById(id:string|undefined):Observable<Usuario>{
+    return this.service.get<Usuario>(`${this.urlbase}/${id}`);
    }
    getUsuariobyName(name: string): Observable<Usuario[]> {
     return this.service.get<Usuario[]>(`${this.urlbase}?Username=${name}`);
