@@ -3,7 +3,7 @@
     <input type="number" [(ngModel)]="this.numeroGeneracion" placeholder="pon el n° de la generacion">
     <button class="buscar" (click)="buscarPokemonPorGeneracion()"> <i class="fas fa-search"></i>Buscar</button>
     @if(validacion){
-    <div class="pokemon">
+    <div class="pokemon" style="max-height: 75vh;">
       <img *ngFor="let pokemon of listaPokemon; let i = index" [src]="pokemon.sprites.front_default"
         [alt]="pokemon.name" (click)="seleccionarPokemon(i)" [class.seleccionado]="pokemonSeleccionado === i" />
     </div>
@@ -22,7 +22,7 @@
     <button class="buscar" (click)="buscarPokemonPorGeneracion()"> <i class="fas fa-search"></i>Buscar</button>
     @if(validacion)
     {
-    <div class="pokemon">
+    <div class="pokemon" style="max-height: 38vh;">
       <img *ngFor="let pokemon of listaPokemon; let i = index" [src]="pokemon.sprites.front_default"
         [alt]="pokemon.name" (click)="seleccionarPokemon2(i)" [class.seleccionado]="pokemonSeleccionado === i" />
     </div>

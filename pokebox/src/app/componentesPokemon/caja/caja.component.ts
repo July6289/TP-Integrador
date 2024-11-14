@@ -25,22 +25,23 @@ export class CajaComponent implements OnInit, OnDestroy {
   cajas!: Caja[];
   indiceCaja: number = 0; // Índice de la caja actual
 
-  posicion:number=0;
-  auth=inject(AuthService);
-  pokeservicio=inject(PokeservicesService);
+  posicion: number = 0;
+  auth = inject(AuthService);
+  pokeservicio = inject(PokeservicesService);
 
-  usarioServicio=inject(UsuarioService);
+  usarioServicio = inject(UsuarioService);
 
-  private valuesubscription!:Subscription;
+  private valuesubscription!: Subscription;
 
 
-  usuario:Usuario= {id: "",
-  box: this.pokeservicio.cajas,
-  Username: "",
-  Password: ""
+  usuario: Usuario = {
+    id: "",
+    box: this.pokeservicio.cajas,
+    Username: "",
+    Password: ""
 
   }
-  datosDelId:string|undefined=this.auth.idDelUsuario;
+  datosDelId: string | undefined = this.auth.idDelUsuario;
 
 
   constructor(private pokeService: PokeservicesService) {
@@ -53,9 +54,9 @@ export class CajaComponent implements OnInit, OnDestroy {
     this.dbUsuarioId(this.datosDelId);
     console.log(this.usuario);
     this.cajas = this.usuario.box;
-    console.log("el dato es",this.cajas);
+    console.log("el dato es", this.cajas);
 
-    this.valuesubscription=this.auth.guardarProgreso.subscribe((newValue) => {
+    this.valuesubscription = this.auth.guardarProgreso.subscribe((newValue) => {
       if (newValue) {
         this.dbGuardarDatos();
       }
@@ -64,51 +65,45 @@ export class CajaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-     // Limpiar la suscripción cuando el componente se destruye
-     if (this.valuesubscription) {
+    // Limpiar la suscripción cuando el componente se destruye
+    if (this.valuesubscription) {
       this.valuesubscription.unsubscribe();
     }
   }
 
-  dbUsuarioId(id:string|undefined){
+  dbUsuarioId(id: string | undefined) {
     this.usarioServicio.getUsuarioById(id).subscribe(
-    {
-      next:(valor:Usuario)=>{
-        this.usuario.Username=valor.Username;
-        this.usuario.Password=valor.Password;
+      {
+        next: (valor: Usuario) => {
+          this.usuario.Username = valor.Username;
+          this.usuario.Password = valor.Password;
 
 
-        this.usuario.box.map((caja)=>{
-          this.usuario.box[this.posicion].imagen=caja.imagen;
-          this.usuario.box[this.posicion].pokemones=caja.pokemones;
-          this.posicion=this.posicion+1;
-        })
-        this.usuario.id=valor.id;
+          this.usuario.box.map((caja) => {
+            this.usuario.box[this.posicion].imagen = caja.imagen;
+            this.usuario.box[this.posicion].pokemones = caja.pokemones;
+            this.posicion = this.posicion + 1;
+          })
+          this.usuario.id = valor.id;
 
-      },
-      error:(e:Error)=>{
-        console.log(e.message);
+        },
+        error: (e: Error) => {
+          console.log(e.message);
+        }
       }
-    }
     )
   }
-  dbGuardarDatos()
-  {
-      this.usarioServicio.putUsuario(this.usuario,this.datosDelId).subscribe(
-        {
-          next:()=>{
-            console.log("Usuario Guardado");
-          },
-          error:(e:Error)=>{
-
-            console.log(e.message);
-
-          }
-
-
+  dbGuardarDatos() {
+    this.usarioServicio.putUsuario(this.usuario, this.datosDelId).subscribe(
+      {
+        next: () => {
+          console.log("Usuario Guardado");
+        },
+        error: (e: Error) => {
+          console.log(e.message);
         }
-      )
-
+      }
+    )
   }
 
   // Método getter para obtener la lista de Pokémon de la caja actual
