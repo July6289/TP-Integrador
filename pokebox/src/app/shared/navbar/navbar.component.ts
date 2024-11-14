@@ -35,6 +35,7 @@ onLonginLogout(){
     this.auth.logIn('')
     this.Router.navigateByUrl('registro');
   }else{
+
     this.auth.logOut()
     this.textButton='Iniciar Sesion'
     this.Router.navigateByUrl('registro');

@@ -49,14 +49,7 @@ export class CajaComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Referencia a las cajas en el servicio
-    this.dbUsuarioId(this.datosDelId);
-    console.log(this.usuario);
 
-    this.valuesubscription=this.auth.guardarProgreso.subscribe((newValue) => {
-      if (newValue) {
-        this.dbGuardarDatos();
-      }
-    });
 
   }
 
@@ -126,9 +119,8 @@ export class CajaComponent implements OnInit, OnDestroy {
 
   // Método para agregar un Pokémon a la caja actual
   agregarPokemon(pokemon: Pokemon) {
-    const cajaActual = this.usuario.box[this.indiceCaja];
-    if (cajaActual.pokemones.length < this.MAX_POKEMON) {
-      cajaActual.pokemones.push(pokemon);
+    if (this.usuario.box[this.indiceCaja].pokemones.length < this.MAX_POKEMON) {
+      this.usuario.box[this.indiceCaja].pokemones.push(pokemon);
     } else {
       alert('No se pueden agregar más Pokémon a la caja. Límite alcanzado.');
     }
