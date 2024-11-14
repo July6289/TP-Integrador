@@ -2,6 +2,54 @@
   height: 100vh;
   background-color: #4A7B59;
 }
-div {
-  background-color: gray;
+.user-card {
+  width: 600px;
+  border-radius: 10px;
+  background: #f8f8f8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+  margin: 20px auto;
+}
+
+/* Cabecera del perfil */
+.user-card-header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.user-card-header h2 {
+  margin: 0;
+}
+
+/* Estilos del cuerpo del perfil */
+.user-card-body {
+  padding: 60px;
+  font-size: 20px;
+}
+
+/* Cada bloque de información del usuario */
+.user-info {
+  margin-bottom: 15px;
+}
+
+.user-info label {
+  font-weight: bold;
+  color: #333;
+}
+
+.user-info span {
+  display: block;
+  margin-top: 5px;
+  color: #000000;
+  font-size: 16px;
+}
+
+/* Efecto al pasar el mouse por encima del contenedor */
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
 }
