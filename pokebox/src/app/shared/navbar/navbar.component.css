@@ -1,5 +1,5 @@
 nav {
-  background-color: green;
+  background-color: #7FA185;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,11 +26,14 @@ ul li a {
   font-size: 2rem;
   color:black;
 }
-button {
+.boton2{
   border: none;
   font-size: 2rem;
   background-color: red;
   color: white;
   padding: 0.5rem 1.2rem;
   cursor: pointer;
+}
+.imagenUsuario {
+  width: 80%;
 }

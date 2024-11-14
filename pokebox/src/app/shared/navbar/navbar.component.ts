@@ -27,8 +27,9 @@ localizador=inject(Location);
 
 Router= inject(Router);
 
-
-
+goToPerfil() {
+  this.Router.navigate(['/perfil']);
+}
 onLonginLogout(){
   if(this.textButton==='Iniciar Sesion'){
     this.textButton='Cerrar Sesion'

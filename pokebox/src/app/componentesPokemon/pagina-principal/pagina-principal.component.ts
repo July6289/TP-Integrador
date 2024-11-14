@@ -22,7 +22,4 @@ export class PaginaPrincipalComponent {
     this.router.navigate(['/selector']);
   }
 
-  goToPerfil() {
-    this.router.navigate(['/perfil']);
-  }
 }
