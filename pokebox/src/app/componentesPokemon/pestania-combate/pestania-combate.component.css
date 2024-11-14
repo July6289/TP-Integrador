@@ -3,17 +3,10 @@
   max-width: 100vh;
 }
 
-.lala
-{
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-}
 .background-battle {
   position: absolute;
   width: 100%;
   height: 100%;
-
 }
 
 .pokeimg {
@@ -48,17 +41,23 @@
 
 .pokeimg-e {
   position: fixed;
-  top: 16%; /* Ajusta la posición vertical */
-  right: 25%; /* Margen derecho pequeño */
-  width: 20%; /* Controla el ancho de la imagen */
+  top: 16%;
+  /* Ajusta la posición vertical */
+  right: 25%;
+  /* Margen derecho pequeño */
+  width: 20%;
+  /* Controla el ancho de la imagen */
 }
 
-.pokemon-imagen, .pokemon-imagenFixed{
-  width: 100%; /* Asegura que la imagen ocupe el 100% del contenedor */
-  padding: 0.5rem; /* Espaciado opcional */
+.pokemon-imagen,
+.pokemon-imagenFixed {
+  width: 100%;
+  /* Asegura que la imagen ocupe el 100% del contenedor */
+  padding: 0.5rem;
+  /* Espaciado opcional */
 }
 
-.pokemon-imagenFixed{
+.pokemon-imagenFixed {
   transform: rotateY(180deg);
 }
 
@@ -76,9 +75,31 @@
 /* Ajustes de `.pokemon-imagen` para escalar con el contenedor */
 
 .battle-hud {
+  display: flex;
+  padding: 1rem;
   border-radius: 10px 10px 0 0;
   bottom: 0;
   width: calc(100% - 20px);
+}
+
+.hud-left,
+.hud-right {
+  width: 50%;
+  /* Ocupa el 50% del ancho de battle-hud */
+}
+
+.hud-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hud-right {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto; /* Habilita la barra de desplazamiento vertical */
+  max-height: 100px; /* Ajusta la altura máxima de hud-right para que genere scroll */
 }
 
 .pokemon-info {
@@ -127,9 +148,9 @@
 }
 
 .options {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-  margin-top: 15px;
 }
 
 .option {
@@ -146,8 +167,7 @@
   background-color: #757575;
 }
 
-.pokedead
-{
+.pokedead {
   background-color: #fff;
   border: 2px solid #333;
   padding: 0.5rem;
@@ -166,6 +186,12 @@
 .vistaEquipoPokemon {
   position: fixed;
   bottom: 0;
+}
+
+.narrador {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  white-space: pre-line; /* Asegura que se respeten los saltos de línea */
 }
 
 /* Media queries para ajustar en pantallas medianas */
@@ -219,6 +245,7 @@
   }
 
   .option {
+    flex: 1;
     font-size: 0.85rem;
     padding: 0.5rem;
   }

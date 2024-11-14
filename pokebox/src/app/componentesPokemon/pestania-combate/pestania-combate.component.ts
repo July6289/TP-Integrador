@@ -56,6 +56,8 @@ export class PestaniaCombateComponent implements OnInit {
 
   turno: boolean = true;
 
+  mensaje: string[] = [];
+
   constructor(private service: EquipoPokemonService, private pokeservicesService: PokeservicesService, private router: Router) { }
 
   getpokemonFight() {
@@ -106,6 +108,13 @@ export class PestaniaCombateComponent implements OnInit {
     this.router.navigate(['/**']);
   }
 
+  calcularAnchoVida(pokemon: Pokemon): string {
+    if (pokemon && pokemon.life !== undefined) {
+      return `${(pokemon.life * 100) / 64}%`;
+    }
+    return '0%';
+  }
+
   tablaDeTipos(idPeleador: number, idBot: number, turno: boolean) {
     let danio = 0;
     let indiceTipos = {
@@ -150,23 +159,24 @@ export class PestaniaCombateComponent implements OnInit {
         danio = 4 * this.tablaTiposValores[indiceTipos.jugadorTipo1][indiceTipos.botTipo1];
       }
 
-      alert("infligiste " + danio + " de daño")
+      this.mensaje[this.mensaje.length] = "infligiste " + danio + " de daño"
     }
     else {
       if (indiceTipos.jugadorTipo2 !== -1 && indiceTipos.botTipo2 !== -1) {
         danio = 4 * ((this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo1] * this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo2]) * (this.tablaTiposValores[indiceTipos.botTipo2][indiceTipos.jugadorTipo1] * this.tablaTiposValores[indiceTipos.botTipo2][indiceTipos.jugadorTipo2]));
       }
       else if (indiceTipos.jugadorTipo2 !== -1 && indiceTipos.botTipo2 === -1) {
-        danio = 4 * (this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo1] * this.tablaTiposValores[indiceTipos.botTipo2][indiceTipos.jugadorTipo1]);
+        danio = 4 * (this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo1] * this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo2]);
       }
       else if (indiceTipos.jugadorTipo2 === -1 && indiceTipos.botTipo2 !== -1) {
-        danio = 4 * (this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo1] * this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo2]);
+        danio = 4 * (this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo1] * this.tablaTiposValores[indiceTipos.botTipo2][indiceTipos.jugadorTipo1]);
       }
       else {
         danio = 4 * this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo1];
       }
 
-      alert("te infligieron " + danio + " de daño")
+      this.mensaje[this.mensaje.length]  = "te infligieron " + danio + " de daño"
+      
     }
 
     return danio;
@@ -178,11 +188,13 @@ export class PestaniaCombateComponent implements OnInit {
 
     if (this.turno) {
       pokemonBot.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno)
-      alert(" la vida del pokemon rival es: " + pokemonBot.life)
+      this.mensaje[this.mensaje.length]  = " la vida del pokemon rival es: " + pokemonBot.life
+      this.mensaje[this.mensaje.length]  = " "
     }
     else {
       pokemonJugador.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno);
-      alert(" la vida de tu pokemon es: " + pokemonJugador.life)
+      this.mensaje[this.mensaje.length]  = " la vida de tu pokemon es: " + pokemonJugador.life
+      this.mensaje[this.mensaje.length]  = " "
     }
 
     this.turno = !this.turno;
@@ -201,9 +213,11 @@ export class PestaniaCombateComponent implements OnInit {
     let turn = 0;
 
     if (!this.checkStstate(this.equipoMain.equipo[this.peleador])) {
-      console.log("tu pokemon esta muerto!");
+      this.mensaje[this.mensaje.length]  = " "
+      this.mensaje[this.mensaje.length]  = "tu pokemon esta debilitado!"
     } else if (!this.checkStstate(this.equipoRival.equipo[this.peleadorBot])) {
-      console.log("el pokemon rival esta muerto!");
+      this.mensaje[this.mensaje.length]  = " "
+      this.mensaje[this.mensaje.length]  = "el pokemon rival esta debilitado!"
     }
     else {
       while (this.checkStstate(this.equipoMain.equipo[this.peleador]) && this.checkStstate(this.equipoRival.equipo[this.peleadorBot])) {
@@ -253,10 +267,6 @@ export class PestaniaCombateComponent implements OnInit {
   }
 
   ganador() {
-
-    console.log("hola");
-    console.log(this.equipoMain);
-
     if (this.equipoMain.equipo.length === 0) {
       alert("perdiste");
 
