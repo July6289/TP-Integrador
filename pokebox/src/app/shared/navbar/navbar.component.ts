@@ -15,10 +15,12 @@ export class NavbarComponent implements OnInit {
       if(localStorage.getItem('token'))
       {
         this.textButton='Cerrar Sesion'
+        this.perfilActivo=true;
       }
   }
 
 textButton:string='Iniciar Sesion'
+perfilActivo:boolean=false;
 auth=inject(AuthService);
 
 localizador=inject(Location);

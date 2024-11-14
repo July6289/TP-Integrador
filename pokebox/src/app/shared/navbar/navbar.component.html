@@ -1,7 +1,7 @@
 <nav>
   <img class="imagenLogueo" src="\assets\imagenes\Pokebox-4-11-2024(1).png" alt="imagen usuario">
   <ul>
-    @if (auth.estoyLogeado) {
+    @if (perfilActivo) {
     <li class="homePage"><a routerLink="/main-page">Home</a></li>
     <button class="boton1" (click)="goToPerfil()" class="botoncin">
       <img class="imagenUsuario" src="assets/imagenes/icono.png" alt="imagen usuario">
