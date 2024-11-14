@@ -1,6 +1,5 @@
 export interface Pokemon {
   forms: Species[]; //
-  game_indices: GameIndex[]; //
   id: number;
   is_default: boolean;
   name: string;
@@ -22,17 +21,6 @@ export interface Type {
 export interface Species {
   name: string;
   url: string;
-}
-
-export interface GameIndex {
-  game_index: number;
-  version: Species;
-}
-
-export interface VersionGroupDetail {
-  level_learned_at: number;
-  move_learn_method: Species;
-  version_group: Species;
 }
 
 export interface Sprites {

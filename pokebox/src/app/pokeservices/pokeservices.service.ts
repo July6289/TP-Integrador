@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, combineLatest, map, Observable, of, forkJoin } from 'rxjs';
 import { Generation } from '../interfaces/interfazpokemon/interfazGeneracion.interface';
-import { GameIndex, Pokemon, Species, Sprites, Type } from '../interfaces/interfazpokemon/interfazpokemon.inteface';
+import { Pokemon, Species, Sprites, Type } from '../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { Caja } from '../interfaces/interfaz-caja/interfazCaja.inteface';
 
 
@@ -64,14 +64,6 @@ export class PokeservicesService {
           url: form.url
         })) as Species[],
 
-        game_indices: data.game_indices.map((index: any) => ({
-          game_index: index.game_index,
-          version: {
-            name: index.version.name,
-            url: index.version.url
-          }
-        })) as GameIndex[],
-
         id: data.id,
         is_default: data.is_default,
         name: data.name,
@@ -98,14 +90,7 @@ export class PokeservicesService {
             name: typeData.type.name,
             url: typeData.type.url
           } as Species
-        })) as Type[],
-
-        // Campos adicionales opcionales
-        idEquipo: undefined,   // Puedes configurar esto según la lógica de tu aplicación
-        isShiny: false,        // Por defecto, asumimos que no es shiny
-        isMale: true,          // Asumimos género masculino como predeterminado
-        life: 100,             // Valor inicial para la vida
-        isAlive: true          // Se asume como vivo inicialmente
+        })) as Type[]
       })),
       catchError((error) => {
         console.error('Error fetching Pokémon:', error);
