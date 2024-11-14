@@ -53,9 +53,13 @@
   width: 20%; /* Controla el ancho de la imagen */
 }
 
-.pokemon-imagen {
+.pokemon-imagen, .pokemon-imagenFixed{
   width: 100%; /* Asegura que la imagen ocupe el 100% del contenedor */
   padding: 0.5rem; /* Espaciado opcional */
+}
+
+.pokemon-imagenFixed{
+  transform: rotateY(180deg);
 }
 
 .battle-enemy {

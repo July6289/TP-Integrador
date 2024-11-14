@@ -4,6 +4,7 @@ import { EquipoPokemonComponent } from "../equipo-pokemon/equipo-pokemon.compone
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { NgFor, Location, NgIf } from '@angular/common';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
+import { set } from 'lodash';
 
 @Component({
   selector: 'app-lista-equipo-pokemon',
@@ -18,6 +19,12 @@ export class ListaEquipoPokemonComponent {
   constructor(private router: Router, private equipoPokemonService: EquipoPokemonService, private location: Location) { }
 
   poketeam: EquipoPokemon[] = [];
+
+  equipoRival: EquipoPokemon =
+    {
+      nombre: "",
+      equipo: []
+    }
 
   ngOnInit() {
     // Suscribirse a todos los equipos
@@ -48,7 +55,21 @@ export class ListaEquipoPokemonComponent {
 
   seleccionarEquipo(team: EquipoPokemon) {
     this.equipoPokemonService.EquipoSeleccionado(team);
-    this.router.navigate(['/combate'])
+
+    this.equipoRival.nombre = "";
+    this.equipoRival.equipo = [];
+    this.equipoPokemonService.EquipoSeleccionadoBot(this.equipoRival);
+
+    if (typeof structuredClone === 'function') {
+      this.equipoRival = structuredClone(this.equipoPokemonService.recibirEquipoPokemonRival());
+    }
+
+    setTimeout(() => {
+      this.router.navigate(['/combate'])
+
+    }, 1000);
+    this.equipoPokemonService.EquipoSeleccionadoBot(this.equipoRival);
+
   }
 
 

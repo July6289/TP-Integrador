@@ -10,10 +10,16 @@
     <div class="hp-bar">
       <div class="hp-label">HP</div>
       <div class="hp-bar-container">
-        <div class="hp-bar-fill" style="width: 90%;"></div>
+        <div class="hp-bar-fill" style="width: 100%;"></div>
       </div>
     </div>
-    <div class="hp-numbers">83/88</div>
+    @if(this.equipoMain.equipo[peleador] !== undefined)
+    {
+    <div class="hp-numbers">{{this.equipoRival.equipo[peleadorBot].life}} / 64 </div>
+    }@else
+    {
+    <div class="hp-numbers">0 / 64 </div>
+    }
   </div>
 </div>
 
@@ -25,19 +31,34 @@
     <div class="hp-bar">
       <div class="hp-label">HP</div>
       <div class="hp-bar-container">
-        <div class="hp-bar-fill" style="width: 90%;"></div>
+        <div class="hp-bar-fill" style="width: 100%;"></div>
       </div>
     </div>
-    <div class="hp-numbers">83/88</div>
+    @if(this.equipoMain.equipo[peleador] !== undefined)
+    {
+    <div class="hp-numbers">{{this.equipoMain.equipo[peleador].life}} / 64 </div>
+    }@else
+    {
+    <div class="hp-numbers">0 / 64 </div>
+    }
   </div>
 </div>
+
 <div class="pokeimg-e" (mouseup)="getTeams()">
-  <img  [src]="this.equipoRival.equipo[peleadorBot].sprites.front_default"
+  <img [src]="this.equipoRival.equipo[peleadorBot].sprites.front_default"
     [alt]="this.equipoRival.equipo[peleadorBot].name" class="pokemon-imagen">
 </div>
+
 <div class="pokeimg-a">
-  <img [src]="this.equipoMain.equipo[peleador].sprites.back_default" [alt]="this.equipoMain.equipo[peleador].name"
-    class="pokemon-imagen">
+  @if(this.equipoMain.equipo[peleador].sprites.back_default!== null)
+    {
+      <img [src]="this.equipoMain.equipo[peleador].sprites.back_default" [alt]="this.equipoMain.equipo[peleador].name"
+      class="pokemon-imagen">
+    }
+    @else {
+      <img [src]="this.equipoMain.equipo[peleador].sprites.front_default" [alt]="this.equipoMain.equipo[peleador].name"
+      class="pokemon-imagenFixed">
+    }
 </div>
 
 <div class="battle-hud">

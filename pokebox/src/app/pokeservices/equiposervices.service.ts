@@ -45,6 +45,11 @@ export class EquipoPokemonService {
     this.equiposSubject.next([...this.equipos]);  // Emitir copia del arreglo actualizado tras eliminación
   }
 
+  eliminarpokemonPerdedor(index: number, pokeEquipo: EquipoPokemon): EquipoPokemon {
+    pokeEquipo.equipo.splice(index, 1);
+    return pokeEquipo;
+  }
+
   actualizarNombreEquipo(index: number, nuevoNombre: string) {
     if (this.equipos[index]) {
       this.equipos[index].nombre = nuevoNombre;
@@ -70,17 +75,19 @@ export class EquipoPokemonService {
   }
 
   recibirEquipoPokemonRival(): EquipoPokemon {
-    if (this.pokeRival.nombre==="") {
-      this.pokeService.getRandomPokemonTeam().subscribe(team => {
-        this.pokemonTeam = team;
+    if (this.pokeRival.nombre === "") {
+      this.pokeService.getRandomPokemonTeam().subscribe({
+        next: (team) => {
+          this.pokemonTeam = team;
 
-        for (let i = 0; i < this.pokemonTeam.length; i++) {
-          this.pokemonTeam[i].isAlive = true;
-        }
+          for (let i = 0; i < this.pokemonTeam.length; i++) {
+            this.pokemonTeam[i].isAlive = true;
+          }
 
-        this.pokeRival = {
-          nombre: "Rival",
-          equipo: this.pokemonTeam
+          this.pokeRival = {
+            nombre: "Rival",
+            equipo: this.pokemonTeam
+          }
         }
       })
       console.log("sexto rival");
