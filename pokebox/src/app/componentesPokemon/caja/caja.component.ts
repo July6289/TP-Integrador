@@ -25,6 +25,7 @@ export class CajaComponent implements OnInit, OnDestroy {
   cajas!: Caja[];
   indiceCaja: number = 0; // Índice de la caja actual
 
+  posicion:number=0;
   auth=inject(AuthService);
   pokeservicio=inject(PokeservicesService);
 
@@ -73,7 +74,17 @@ export class CajaComponent implements OnInit, OnDestroy {
     this.usarioServicio.getUsuarioById(id).subscribe(
     {
       next:(valor:Usuario)=>{
-        this.usuario=valor;
+        this.usuario.Username=valor.Username;
+        this.usuario.Password=valor.Password;
+
+
+        this.usuario.box.map((caja)=>{
+          this.usuario.box[this.posicion].imagen=caja.imagen;
+          this.usuario.box[this.posicion].pokemones=caja.pokemones;
+          this.posicion=this.posicion+1;
+        })
+        this.usuario.id=valor.id;
+
       },
       error:(e:Error)=>{
         console.log(e.message);

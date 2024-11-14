@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, combineLatest, map, Observable, of, forkJoin } from 'rxjs';
 import { Generation } from '../interfaces/interfazpokemon/interfazGeneracion.interface';
-import { Pokemon } from '../interfaces/interfazpokemon/interfazpokemon.inteface';
+import { GameIndex, Pokemon, Species, Sprites, Type } from '../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { Caja } from '../interfaces/interfaz-caja/interfazCaja.inteface';
 
 
@@ -57,11 +57,61 @@ export class PokeservicesService {
   }
 
   getPokemonByName(nombrePokemon: string): Observable<Pokemon | undefined> {
-    return this.http.get<Pokemon>(`${this.urlBase}/${'pokemon'}/${nombrePokemon}`).pipe(
+    return this.http.get<any>(`${this.urlBase}/pokemon/${nombrePokemon}`).pipe(
+      map((data) => ({
+        forms: data.forms.map((form: any) => ({
+          name: form.name,
+          url: form.url
+        })) as Species[],
+
+        game_indices: data.game_indices.map((index: any) => ({
+          game_index: index.game_index,
+          version: {
+            name: index.version.name,
+            url: index.version.url
+          }
+        })) as GameIndex[],
+
+        id: data.id,
+        is_default: data.is_default,
+        name: data.name,
+
+        species: {
+          name: data.species.name,
+          url: data.species.url
+        } as Species,
+
+        sprites: {
+          back_default: data.sprites.back_default,
+          back_female: data.sprites.back_female,
+          back_shiny: data.sprites.back_shiny,
+          back_shiny_female: data.sprites.back_shiny_female,
+          front_default: data.sprites.front_default,
+          front_female: data.sprites.front_female,
+          front_shiny: data.sprites.front_shiny,
+          front_shiny_female: data.sprites.front_shiny_female
+        } as Sprites,
+
+        types: data.types.map((typeData: any) => ({
+          slot: typeData.slot,
+          type: {
+            name: typeData.type.name,
+            url: typeData.type.url
+          } as Species
+        })) as Type[],
+
+        // Campos adicionales opcionales
+        idEquipo: undefined,   // Puedes configurar esto según la lógica de tu aplicación
+        isShiny: false,        // Por defecto, asumimos que no es shiny
+        isMale: true,          // Asumimos género masculino como predeterminado
+        life: 100,             // Valor inicial para la vida
+        isAlive: true          // Se asume como vivo inicialmente
+      })),
       catchError((error) => {
-        return of(undefined)
+        console.error('Error fetching Pokémon:', error);
+        return of(undefined);
       })
-    )
+    );
   }
 
   getPokemonByGeneration(NumeroGeneracion: number): Observable<Generation | undefined> {
