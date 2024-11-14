@@ -22,7 +22,6 @@ export class CajaComponent implements OnInit, OnDestroy {
 
   // Cambia `spriteActual` a `spriteActual$` como Observable
   spriteActual$: Observable<string | null>;
-  cajas!: Caja[];
   indiceCaja: number = 0; // Índice de la caja actual
 
   posicion:number=0;
@@ -52,8 +51,6 @@ export class CajaComponent implements OnInit, OnDestroy {
     // Referencia a las cajas en el servicio
     this.dbUsuarioId(this.datosDelId);
     console.log(this.usuario);
-    this.cajas = this.usuario.box;
-    console.log("el dato es",this.cajas);
 
     this.valuesubscription=this.auth.guardarProgreso.subscribe((newValue) => {
       if (newValue) {
@@ -76,12 +73,13 @@ export class CajaComponent implements OnInit, OnDestroy {
       next:(valor:Usuario)=>{
         this.usuario.Username=valor.Username;
         this.usuario.Password=valor.Password;
-
+        console.log("veamos la caja de la api:",valor.box);
 
         this.usuario.box.map((caja)=>{
-          this.usuario.box[this.posicion].imagen=caja.imagen;
+          console.log(caja);
           this.usuario.box[this.posicion].pokemones=caja.pokemones;
           this.posicion=this.posicion+1;
+          console.log("veamos la caja nuestra:",this.usuario.box);
         })
         this.usuario.id=valor.id;
 
@@ -113,12 +111,12 @@ export class CajaComponent implements OnInit, OnDestroy {
 
   // Método getter para obtener la lista de Pokémon de la caja actual
   get pokemonesEnCaja(): Pokemon[] {
-    return this.cajas[this.indiceCaja].pokemones;
+    return this.usuario.box[this.indiceCaja].pokemones;
   }
 
   // Método getter para obtener la imagen de la caja actual
   get imagenCaja(): string {
-    return this.cajas[this.indiceCaja].imagen;
+    return this.usuario.box[this.indiceCaja].imagen;
   }
 
   // Método getter para obtener el nombre de la caja actual
@@ -128,7 +126,7 @@ export class CajaComponent implements OnInit, OnDestroy {
 
   // Método para agregar un Pokémon a la caja actual
   agregarPokemon(pokemon: Pokemon) {
-    const cajaActual = this.cajas[this.indiceCaja];
+    const cajaActual = this.usuario.box[this.indiceCaja];
     if (cajaActual.pokemones.length < this.MAX_POKEMON) {
       cajaActual.pokemones.push(pokemon);
     } else {

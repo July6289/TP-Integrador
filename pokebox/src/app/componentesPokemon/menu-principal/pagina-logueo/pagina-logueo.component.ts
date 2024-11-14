@@ -128,6 +128,7 @@ export class PaginaLogueoComponent implements OnInit {
                 console.log(usuario[0]);
                 console.log(datosUsuario.Password);
                 this.auth.logIn(usuario[0].id);
+                console.log(this.auth.idDelUsuario);
                 this.router.navigate([`main-page`]);
               }
               else {
