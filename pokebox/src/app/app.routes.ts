@@ -7,23 +7,33 @@ import { PestaniaCombateComponent } from './componentesPokemon/pestania-combate/
 import { VisualizarEquipoComponent } from './componentesPokemon/visualizar-equipo/visualizar-equipo.component';
 import { PaginaLogueoComponent } from './componentesPokemon/menu-principal/pagina-logueo/pagina-logueo.component';
 import { SelectorPokemonComponent } from './componentesPokemon/selector-pokemon/selector-pokemon.component';
+import { AccessDeniedPageComponent } from './auth/access-denied-page/access-denied-page.component';
+import { authGuardFnLogout } from './auth/guard/auth.guard-fn-logout';
+import { authGuardFn } from './auth/guard/auth.guard-fn';
 
 export const routes: Routes = [
   {
     path: 'perfil',
-    component: PerfilComponent
+    component: PerfilComponent,
+    canActivate:[authGuardFn]
+
+
   },
   {
     path: 'equipo-pokemon',
-    component: EquipoPokemonComponent
+    component: EquipoPokemonComponent,
+    canActivate:[authGuardFn]
   },
   {
     path: 'selector',
-    component: ListaEquipoPokemonComponent
+    component: ListaEquipoPokemonComponent,
+    canActivate:[authGuardFn]
+
   },
   {
-    path: 'main-page',
+    path: 'main-page/:id',
     component: PaginaPrincipalComponent,
+    canActivate:[authGuardFn]
   },
   {
     path: 'registro',
@@ -31,19 +41,27 @@ export const routes: Routes = [
 
   },
   {
+    path:'access-denied',
+    component:AccessDeniedPageComponent,
+    canActivate:[authGuardFnLogout]
+  },
+  {
     path: 'combate',
     component: PestaniaCombateComponent,
+    canActivate:[authGuardFn]
   },
   {
     path: 'equipo/:nombre',
     component: VisualizarEquipoComponent,
+    canActivate:[authGuardFn]
   },
   {
     path: 'cambiar-pokemon',
-    component: SelectorPokemonComponent
+    component: SelectorPokemonComponent,
+    canActivate:[authGuardFn]
   },
   {
     path: '**',
-    redirectTo: 'main-page'
+    redirectTo: 'registro'
   }
 ];

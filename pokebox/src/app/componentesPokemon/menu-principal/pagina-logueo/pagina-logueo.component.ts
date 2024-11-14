@@ -5,6 +5,7 @@ import { Caja } from '../../../interfaces/interfaz-caja/interfazCaja.inteface';
 import { UsuarioService } from '../../../pokeservices/usuario.service';
 import { Usuario } from '../../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { PokeservicesService } from '../../../pokeservices/pokeservices.service';
+import { AuthService } from '../../../auth/service/auth.service';
 
 @Component({
   selector: 'app-pagina-logueo',
@@ -26,8 +27,8 @@ export class PaginaLogueoComponent {
   usuarioService = inject(UsuarioService);
   pokeservice = inject(PokeservicesService);
   router = inject(Router);
-  fb = inject(FormBuilder)
-
+  fb = inject(FormBuilder);
+  auth=inject(AuthService);
   formulario = this.fb.nonNullable.group(
     {
       box: [[] as Caja[]], //un array vacio de cajas
@@ -73,7 +74,7 @@ export class PaginaLogueoComponent {
       this.usuarioService.getUsuariobyName(usuario.Username).subscribe(
         {
           next: (usuarioDato: Usuario[]) => {
-            if (usuarioDato.length > 0) {
+            if (usuarioDato.length > 0 && usuarioDato[0]!=undefined) {
               this.mensajeEspecifico = 'Este usuario ya existe en el sistema';
               this.validadorMensajeEspecifico = true;
 
@@ -123,6 +124,7 @@ export class PaginaLogueoComponent {
               if (usuario[0].Password.localeCompare(datosUsuario.Password) === 0) {
                 console.log(usuario[0]);
                 console.log(datosUsuario.Password);
+                this.auth.logIn();
                 this.router.navigate([`main-page/${usuario[0].id}`]);
               }
               else {
