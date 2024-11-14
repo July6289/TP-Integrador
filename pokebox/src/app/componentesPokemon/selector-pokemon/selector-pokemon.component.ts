@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { CommonModule } from '@angular/common';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
-import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 
 @Component({
   selector: 'app-selector-pokemon',
@@ -14,6 +13,16 @@ import { PokeservicesService } from '../../pokeservices/pokeservices.service';
   styleUrl: './selector-pokemon.component.css'
 })
 export class SelectorPokemonComponent {
+  pokemonesEnEquipo: EquipoPokemon =
+    {
+      nombre: '',
+      equipo: []
+    };
+
+  constructor(
+    private equipoPokemonService: EquipoPokemonService,
+    private router: Router
+  ) { }
 
   gotoCombate() {
     this.router.navigate(['/combate']);
@@ -21,62 +30,34 @@ export class SelectorPokemonComponent {
 
   seleccionar(pokemon: Pokemon) {
     console.log(pokemon.name);
-    let index=0;
+    let index = 0;
 
-    for(let i=0; i<this.pokemonesEnEquipo.equipo.length; i++)
-    {
-      if(this.pokemonesEnEquipo.equipo[i]===pokemon)
-        {
-          index=i;
-        }
-
-
+    for (let i = 0; i < this.pokemonesEnEquipo.equipo.length; i++) {
+      if (this.pokemonesEnEquipo.equipo[i] === pokemon) {
+        index = i;
+      }
     }
 
-    let aux=this.equipoPokemonService.getPosicionEquipo();
+    let aux = this.equipoPokemonService.getPosicionEquipo();
     console.log("hola", aux);
 
 
-    if( index===aux)
-    {
+    if (index === aux) {
       alert("Ese pokemon esta en combate!");
     }
-    else
-    {
+    else {
       this.equipoPokemonService.setPosicionEquipo(index);
-
       this.router.navigate(['/combate']);
-
     }
-
-
   }
 
-  pokemonesEnEquipo: EquipoPokemon =
-    {
-      nombre: '',
-      equipo: []
-    };
-
-
-  constructor(
-    private pokeservice: PokeservicesService,
-    private route: ActivatedRoute,
-    private equipoPokemonService: EquipoPokemonService,
-    private router: Router
-  ) { }
-
-
-
   ngOnInit(): void {
-
     this.pokemonesEnEquipo = this.equipoPokemonService.recibirEquipoPokemon();
   }
 
   gotoMainMenu() {
     this.router.navigate(['/**']);
   }
-
 
   getTypeClass(type: string): string {
     switch (type) {
@@ -116,9 +97,6 @@ export class SelectorPokemonComponent {
         return 'type-dark';
       case 'fairy':
         return 'type-fairy';
-      case 'stelar':
-        return 'type-stelar'
-
       // Agrega más casos según los tipos de Pokémon que tengas
       default:
         return 'type-default';

@@ -2,6 +2,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { EquipoPokemon } from '../interfaces/interfazpokemon/interfazEquipo.interface';
+import { PokeservicesService } from './pokeservices.service';
+import { Pokemon } from '../interfaces/interfazpokemon/interfazpokemon.inteface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,24 @@ export class EquipoPokemonService {
   private equipos: EquipoPokemon[] = [];
   private equiposSubject = new BehaviorSubject<EquipoPokemon[]>(this.equipos);
   equipos$ = this.equiposSubject.asObservable();
+
+  poketeam: EquipoPokemon =
+    {
+      nombre: "",
+      equipo: []
+    }
+
+  pokeRival: EquipoPokemon =
+    {
+      nombre: "",
+      equipo: []
+    }
+
+  pokemonTeam: Pokemon[] = [];
+
+  selectedPokemon: number = 0;
+
+  constructor(private pokeService: PokeservicesService) { }
 
   actualizarEquipo(nuevoEquipo: EquipoPokemon) {
     this.equipos.push(nuevoEquipo);
@@ -31,36 +51,53 @@ export class EquipoPokemonService {
       this.equiposSubject.next([...this.equipos]); // Emitir copia actualizada
     }
   }
+
   // Método para obtener un equipo por su nombre
   obtenerEquipoPorNombre(nombre: string): EquipoPokemon | undefined {
     return this.equipos.find(equipo => equipo.nombre === nombre);
   }
 
-  poketeam:EquipoPokemon=
-  {
-    nombre:"",
-    equipo: []
+  EquipoSeleccionado(equipoSeleccionado: EquipoPokemon) {
+    this.poketeam = equipoSeleccionado;
   }
 
-  EquipoSeleccionado(equipoSeleccionado : EquipoPokemon)
-  {
-    this.poketeam=equipoSeleccionado;
+  EquipoSeleccionadoBot(equipoSeleccionado: EquipoPokemon) {
+    this.pokeRival = equipoSeleccionado;
   }
 
-  recibirEquipoPokemon():EquipoPokemon
-  {
+  recibirEquipoPokemon(): EquipoPokemon {
     return this.poketeam;
   }
-  selectedPokemon: number=0;
 
-  setPosicionEquipo(id : number)
-  {
-      this.selectedPokemon=id;
+  recibirEquipoPokemonRival(): EquipoPokemon {
+    if (this.pokeRival.nombre==="") {
+      this.pokeService.getRandomPokemonTeam().subscribe(team => {
+        this.pokemonTeam = team;
+
+        for (let i = 0; i < this.pokemonTeam.length; i++) {
+          this.pokemonTeam[i].isAlive = true;
+        }
+
+        this.pokeRival = {
+          nombre: "Rival",
+          equipo: this.pokemonTeam
+        }
+      })
+      console.log("sexto rival");
+      return this.pokeRival;
+    }
+    else {
+      console.log("septimo rival");
+      console.log(this.pokeRival);
+      return this.pokeRival;
+    }
   }
 
-  getPosicionEquipo()
-  {
-      return this.selectedPokemon;
+  setPosicionEquipo(id: number) {
+    this.selectedPokemon = id;
   }
 
+  getPosicionEquipo() {
+    return this.selectedPokemon;
+  }
 }

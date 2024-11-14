@@ -1,5 +1,5 @@
 .pokemon {
-  max-height: 70vh;
+  max-height: 43vh;
   /* Ajuste con unidad relativa para adaptarse a diferentes alturas de pantalla */
   overflow-y: auto;
   border: 1px solid #ccc;
@@ -60,13 +60,11 @@
   color: white;
 }
 
-/* Media query para pantallas medianas */
 @media (max-width: 768px) {
   .agregar {
     font-size: 0.9rem;
     padding: 8px 10px;
     margin-left: 25%;
-    /* Ajuste para centrar en pantallas medianas */
   }
 
   .buscar {
@@ -76,19 +74,16 @@
 
   .pokemon {
     max-height: 60vh;
-    /* Reducción de altura en pantallas medianas */
+
   }
 }
 
-/* Media query para pantallas pequeñas */
 @media (max-width: 480px) {
   .agregar {
     font-size: 0.3rem;
     padding: 6px 8px;
     margin-left: 15%;
-    /* Ajuste para centrar en pantallas pequeñas */
     width: 70%;
-    /* Asegura que el botón sea más pequeño */
   }
 
   .buscar {
@@ -98,6 +93,5 @@
 
   .pokemon {
     max-height: 50vh;
-    /* Ajuste de altura en pantallas pequeñas */
   }
 }

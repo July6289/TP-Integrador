@@ -4,11 +4,12 @@ import { EquipoPokemonService } from '../../pokeservices/equiposervices.service'
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-pestania-combate',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './pestania-combate.component.html',
   styleUrl: './pestania-combate.component.css'
 })
@@ -53,15 +54,12 @@ export class PestaniaCombateComponent implements OnInit {
 
   peleadorBot: number = 0;
 
-  pokemonTeam: Pokemon[] = [];
-
   turno: boolean = true;
 
   constructor(private service: EquipoPokemonService, private pokeservicesService: PokeservicesService, private router: Router) { }
 
   getpokemonFight() {
-    this.peleador = this.service.getPosicionEquipo();
-    //this.peleadorBot = this.service.getPosicionEquipo();
+      this.peleador = this.service.getPosicionEquipo();
   }
 
   ngOnInit(): void {
@@ -76,23 +74,13 @@ export class PestaniaCombateComponent implements OnInit {
       this.equipoMain = JSON.parse(JSON.stringify(this.service.recibirEquipoPokemon()));
     }
 
-
-    this.pokeservicesService.getRandomPokemonTeam().subscribe(team => {
-      this.pokemonTeam = team;
-
-      for (let i = 0; i < this.pokemonTeam.length; i++) {
-        this.pokemonTeam[i].isAlive = true;
-      }
-
-      this.equipoRival = {
-        nombre: "Rival",
-        equipo: this.pokemonTeam /*= structuredClone(this.pokemonTeam) || JSON.parse(JSON.stringify(this.pokemonTeam))*/
-      };
-    });
+    if (typeof structuredClone === 'function') {
+      this.equipoRival = structuredClone(this.service.recibirEquipoPokemonRival());
+    } else {
+      this.equipoRival = JSON.parse(JSON.stringify(this.service.recibirEquipoPokemonRival()));
+    }
 
     this.getpokemonFight();
-
-
   }
 
   deletePokemon(equipoPerdedor: EquipoPokemon) {
@@ -177,25 +165,20 @@ export class PestaniaCombateComponent implements OnInit {
     pokemonJugador.life = this.inicializarVidas(pokemonJugador)
     pokemonBot.life = this.inicializarVidas(pokemonBot)
 
-
-
-
     if (this.turno) {
       pokemonBot.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno)
       console.log("tu turno");
-
+      alert(" la vida del pokemon rival es: " + pokemonBot.life)
     }
     else {
       pokemonJugador.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno);
       console.log("turno del bot");
-
+      alert(" la vida de tu pokemon es: " + pokemonJugador.life)
     }
 
     this.turno = !this.turno;
 
-    alert(" la vida de tu pokemon es: " + pokemonJugador.life)
-    alert(" la vida del pokemon rival es: " + pokemonBot.life)
-
+    //este if es neceario?
     if (pokemonJugador.life <= 0) {
       alert("tu pokemon fue derrotado");
       pokemonJugador.isAlive = false;
@@ -206,10 +189,6 @@ export class PestaniaCombateComponent implements OnInit {
       pokemonBot.isAlive = false;
       this.deletePokemon(this.equipoRival)
     }
-
-    this.ganador()
-
-
   }
 
   /*------------------------------------------------------------------------------------------------------*/
@@ -217,29 +196,27 @@ export class PestaniaCombateComponent implements OnInit {
     console.log("cantidad de pokemon vivos", this.equipoMain.equipo.length);
     console.log("vida del pokemon", this.equipoMain.equipo[0].life);
 
-
     let turn = 0;
+
     if (!this.checkStstate(this.equipoMain.equipo[this.peleador])) {
-      console.log("estas muerto!");
+      console.log("tu pokemon esta muerto!");
 
     } else if (!this.checkStstate(this.equipoRival.equipo[this.peleadorBot])) {
       console.log("el pokemon rival esta muerto!");
-
     }
     else {
       while (this.checkStstate(this.equipoMain.equipo[this.peleador]) && this.checkStstate(this.equipoRival.equipo[this.peleadorBot]) && true) {
         console.log("paso por aca");
 
-
-
         this.pelea(this.equipoMain.equipo[this.peleador], this.equipoRival.equipo[this.peleadorBot]);
+
         turn++;
+
         if (turn % 2 === 0) {
           break;
         }
       }
     }
-
 
     if (!this.alguienVivo(this.equipoMain) || !this.alguienVivo(this.equipoRival)) {
       this.ganador();
@@ -249,8 +226,9 @@ export class PestaniaCombateComponent implements OnInit {
   checkStstate(pkmn: Pokemon) {
     if (pkmn.isAlive) {
       return true;
+    } else {
+      return false;
     }
-    return false;
   }
 
   alguienVivo(team: EquipoPokemon) {
@@ -292,6 +270,7 @@ export class PestaniaCombateComponent implements OnInit {
 
   gotoSlector() {
     this.service.EquipoSeleccionado(this.equipoMain);
+    this.service.EquipoSeleccionadoBot(this.equipoRival);
     this.router.navigate(['/cambiar-pokemon']);
   }
 }

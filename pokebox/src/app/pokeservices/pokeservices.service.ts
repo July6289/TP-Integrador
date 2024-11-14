@@ -19,10 +19,6 @@ export class PokeservicesService {
     pokemones: []                                       // Pokémon iniciales vacíos
   }));
 
-  getNewCaja() {
-    return this.cajas;
-  }
-
   private selectedPokemonSubject = new BehaviorSubject<Pokemon | null>(null); // BehaviorSubject para el Pokémon seleccionado
   selectedPokemon$ = this.selectedPokemonSubject.asObservable(); // Observable para suscribirse a los cambios
 
@@ -52,9 +48,13 @@ export class PokeservicesService {
     })
   );
 
+  urlBase: string = 'https://pokeapi.co/api/v2';
+
   constructor(private http: HttpClient) { }
 
-  urlBase: string = 'https://pokeapi.co/api/v2';
+  getNewCaja() {
+    return this.cajas;
+  }
 
   getPokemonByName(nombrePokemon: string): Observable<Pokemon | undefined> {
     return this.http.get<Pokemon>(`${this.urlBase}/${'pokemon'}/${nombrePokemon}`).pipe(
@@ -84,7 +84,6 @@ export class PokeservicesService {
     this.esMachoSubject.next(esMacho);
     this.esShinySubject.next(esShiny);
   }
-
 
   getSelectedPokemon(): Pokemon | null {
     return this.selectedPokemonSubject.value; // Obtener el valor actual
