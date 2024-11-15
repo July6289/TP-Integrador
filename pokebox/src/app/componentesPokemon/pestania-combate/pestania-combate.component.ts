@@ -211,28 +211,28 @@ export class PestaniaCombateComponent implements OnInit {
   combate() {
 
     let turn = 0;
+    while (this.checkStstate(this.equipoMain.equipo[this.peleador]) && this.checkStstate(this.equipoRival.equipo[this.peleadorBot])) {
 
-    if (!this.checkStstate(this.equipoMain.equipo[this.peleador])) {
-      this.mensaje[this.mensaje.length] = " "
-      this.mensaje[this.mensaje.length] = "tu pokemon esta debilitado!"
-    } else if (!this.checkStstate(this.equipoRival.equipo[this.peleadorBot])) {
-      this.mensaje[this.mensaje.length] = " "
-      this.mensaje[this.mensaje.length] = "el pokemon rival esta debilitado!"
-    }
-    else {
-      while (this.checkStstate(this.equipoMain.equipo[this.peleador]) && this.checkStstate(this.equipoRival.equipo[this.peleadorBot])) {
+      this.pelea(this.equipoMain.equipo[this.peleador], this.equipoRival.equipo[this.peleadorBot]);
 
-        this.pelea(this.equipoMain.equipo[this.peleador], this.equipoRival.equipo[this.peleadorBot]);
+      turn++;
 
-        turn++;
-
-        if (!this.checkStstate(this.equipoMain.equipo[this.peleador]) || !this.checkStstate(this.equipoRival.equipo[this.peleadorBot]) || turn % 2 === 0) {
-          break;
-        }
+      if (!this.checkStstate(this.equipoMain.equipo[this.peleador]) || !this.checkStstate(this.equipoRival.equipo[this.peleadorBot]) || turn % 2 === 0) {
+        break;
       }
     }
 
-    if (!this.alguienVivo(this.equipoMain) || !this.alguienVivo(this.equipoRival)) {
+    if (!this.checkStstate(this.equipoMain.equipo[this.peleador])) {
+     /*this.mensaje[this.mensaje.length] = " "
+      this.mensaje[this.mensaje.length] = "tu pokemon esta debilitado!"*/
+      alert("tu pokemon esta debilitado!")
+    } else if (!this.checkStstate(this.equipoRival.equipo[this.peleadorBot])) {
+      /*this.mensaje[this.mensaje.length] = " "
+      this.mensaje[this.mensaje.length] = "el pokemon rival esta debilitado!"*/
+      alert("el pokemon rival esta debilitado!")
+    }
+
+    if (!this.alguienVivo(this.equipoMain, true) || !this.alguienVivo(this.equipoRival, false)) {
       this.ganador();
     }
   }
@@ -246,7 +246,7 @@ export class PestaniaCombateComponent implements OnInit {
     }
   }
 
-  alguienVivo(team: EquipoPokemon) {
+  alguienVivo(team: EquipoPokemon, flag: boolean) {
     let alive = false;
     if (team.equipo.length !== 0) {
       for (let i = 0; i < team.equipo.length; i++) {
@@ -258,12 +258,19 @@ export class PestaniaCombateComponent implements OnInit {
           this.deletePokemon(team);
 
           if (team.equipo.length !== 0) {
-            this.gotoSlector();
+            if (flag) {
+              this.gotoSlector();
+            }
+            else
+            {
+              /*this.mensaje[this.mensaje.length] = " "
+              this.mensaje[this.mensaje.length] = "el siguiente pokemon del rival es: " + team.equipo[0].name*/
+              alert("el siguiente pokemon del rival es: " + team.equipo[0].name)
+              this.gotoSlector();
+            }
           }
         }
       }
-
-      console.log(alive);
 
       return alive;
     }
@@ -273,17 +280,15 @@ export class PestaniaCombateComponent implements OnInit {
   }
 
   ganador() {
+
     if (this.equipoMain.equipo.length === 0) {
       alert("perdiste");
-
-      //el alert deberia tener un aceptar para volver al menu principal, preguntarle a nico como hacerlo
       this.toMainMenu()
     }
-    else if (this.equipoMain.equipo.length === 0) {
+    else if (this.equipoRival.equipo.length === 0) {
       alert("Ganaste el combate!");
 
       /* agregar un this.usuario.combatesGanados+=1 */
-      //igual que el de arriba
       this.toMainMenu()
     }
   }

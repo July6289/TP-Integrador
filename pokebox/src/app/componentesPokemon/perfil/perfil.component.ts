@@ -12,35 +12,34 @@ import { PokeservicesService } from '../../pokeservices/pokeservices.service';
   styleUrl: './perfil.component.css'
 })
 export class PerfilComponent implements OnInit {
-  ngOnInit(): void {
-    this.dbUsuarioId(this.datosDelId);
-  }
-
   pokeservice = inject(PokeservicesService);
   auth = inject(AuthService);
   usarioServicio = inject(UsuarioService);
+
   usuario: Usuario = {
     id: "",
-    box: this.pokeservice.cajas,
+    box: [],
     Username: "",
     Password: ""
 
   }
+
   datosDelId: string | undefined = this.auth.idDelUsuario;
+
+  ngOnInit(): void {
+    this.dbUsuarioId(this.datosDelId);
+  }
+
   dbUsuarioId(id: string | undefined) {
     this.usarioServicio.getUsuarioById(id).subscribe(
       {
         next: (valor: Usuario) => {
-          this.usuario = valor;
+          this.usuario.Username = valor.Username;
+          this.usuario.Password = valor.Password;
         },
         error: (e: Error) => {
           console.log(e.message);
-
-
         }
-
-
-
       }
     )
   }

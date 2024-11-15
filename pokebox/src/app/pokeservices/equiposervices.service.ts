@@ -29,6 +29,8 @@ export class EquipoPokemonService {
 
   selectedPokemon: number = 0;
 
+  turns:boolean =true;
+
   constructor(private pokeService: PokeservicesService) { }
 
   actualizarEquipo(nuevoEquipo: EquipoPokemon) {
@@ -69,8 +71,6 @@ export class EquipoPokemonService {
   EquipoSeleccionadoBot(equipoSeleccionado: EquipoPokemon) {
     this.pokeRival = equipoSeleccionado;
   }
-
-  turns:boolean =true;
 
   guardarTurno(t1:boolean)
   {
