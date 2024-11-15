@@ -1,7 +1,7 @@
 {
   "Usuarios": [
     {
-      "id": "720d",
+      "id": "e39d",
       "box": [
         {
           "imagen": "/assets/imagenes/cajas/1.png",
@@ -9,26 +9,26 @@
             {
               "forms": [
                 {
-                  "name": "bulbasaur",
-                  "url": "https://pokeapi.co/api/v2/pokemon-form/1/"
+                  "name": "venusaur",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/3/"
                 }
               ],
-              "id": 1,
+              "id": 3,
               "is_default": true,
-              "name": "bulbasaur",
+              "name": "venusaur",
               "species": {
-                "name": "bulbasaur",
-                "url": "https://pokeapi.co/api/v2/pokemon-species/1/"
+                "name": "venusaur",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/3/"
               },
               "sprites": {
-                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png",
-                "back_female": null,
-                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/1.png",
-                "back_shiny_female": null,
-                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-                "front_female": null,
-                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png",
-                "front_shiny_female": null
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/3.png",
+                "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/3.png",
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/3.png",
+                "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/3.png",
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+                "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/3.png",
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/3.png",
+                "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/3.png"
               },
               "types": [
                 {

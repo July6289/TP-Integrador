@@ -66,7 +66,6 @@ export class ListaEquipoPokemonComponent {
 
     setTimeout(() => {
       this.router.navigate(['/combate'])
-
     }, 1000);
     this.equipoPokemonService.EquipoSeleccionadoBot(this.equipoRival);
 

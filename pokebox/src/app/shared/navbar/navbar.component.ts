@@ -32,7 +32,7 @@ goToPerfil() {
 onLonginLogout(){
   if(this.textButton==='Iniciar Sesion'){
     this.textButton='Cerrar Sesion'
-    this.auth.logIn('')
+    this.auth.logIn()
     this.Router.navigateByUrl('registro');
   }else{
 

@@ -14,12 +14,8 @@ import { AuthService } from '../../../auth/service/auth.service';
   templateUrl: './pagina-logueo.component.html',
   styleUrl: './pagina-logueo.component.css'
 })
-export class PaginaLogueoComponent implements OnInit {
-  ngOnInit(): void {
-    console.log(this.auth.idDelUsuario)
-  }
-
-  constructor(private ctrl: ChangeDetectorRef) { }
+export class PaginaLogueoComponent {
+  constructor(private ctrl: ChangeDetectorRef, private auth: AuthService) { }
   validadorMensajeEspecifico: boolean = false;
   mensajeEspecifico: string = '';
   isLoggingButtonShowing: boolean = true;
@@ -31,7 +27,8 @@ export class PaginaLogueoComponent implements OnInit {
   pokeservice = inject(PokeservicesService);
   router = inject(Router);
   fb = inject(FormBuilder);
-  auth=inject(AuthService);
+  secretId: string = ""
+
   formulario = this.fb.nonNullable.group(
     {
       box: [[] as Caja[]], //un array vacio de cajas
@@ -48,6 +45,7 @@ export class PaginaLogueoComponent implements OnInit {
 
 
   }
+
   btLogueo() {
     this.validadorMensajeEspecifico = false;
 
@@ -56,6 +54,7 @@ export class PaginaLogueoComponent implements OnInit {
     this.isLoggingButtonShowing = false;
 
   }
+
   btVolver() {
     this.formulario.reset();
     this.isRegisterButtonShowing = true;
@@ -66,6 +65,7 @@ export class PaginaLogueoComponent implements OnInit {
     this.mensajeEspecifico = '';
 
   }
+
   addUsuario() {
     if (this.formulario.invalid) {
       console.log("Error");
@@ -77,7 +77,7 @@ export class PaginaLogueoComponent implements OnInit {
       this.usuarioService.getUsuariobyName(usuario.Username).subscribe(
         {
           next: (usuarioDato: Usuario[]) => {
-            if (usuarioDato.length > 0 && usuarioDato[0]!=undefined) {
+            if (usuarioDato.length > 0 && usuarioDato[0] != undefined) {
               this.mensajeEspecifico = 'Este usuario ya existe en el sistema';
               this.validadorMensajeEspecifico = true;
               console.log(usuarioDato[0]);
@@ -112,7 +112,6 @@ export class PaginaLogueoComponent implements OnInit {
   }
 
   checkLoggedUsuario() {
-
     if (this.formulario.invalid) {
       console.log("Error");
     }
@@ -122,14 +121,16 @@ export class PaginaLogueoComponent implements OnInit {
       this.usuarioService.getUsuariobyName(datosUsuario.Username).subscribe(
         {
           next: (usuario: Usuario[]) => {
-            if (usuario.length > 0) {
-              console.log('Usuario encontrado:', usuario[0]);
+            if (usuario.length !== 0) {
               if (usuario[0].Password.localeCompare(datosUsuario.Password) === 0) {
-                console.log(usuario[0]);
-                console.log(datosUsuario.Password);
-                this.auth.logIn(usuario[0].id);
-                console.log(this.auth.idDelUsuario);
-                this.router.navigate([`main-page`]);
+
+                if (usuario[0].id!==undefined) {
+                  this.secretId = usuario[0].id
+
+                  this.usuarioService.recibirId(this.secretId)
+                  this.auth.logIn()
+                  this.router.navigate([`main-page`]);
+                }
               }
               else {
                 this.validadorMensajeEspecifico = true;

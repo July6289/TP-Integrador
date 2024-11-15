@@ -1,10 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
-import { Caja } from '../../interfaces/interfaz-caja/interfazCaja.inteface';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { Observable, Subscription } from 'rxjs';
-import { AuthService } from '../../auth/service/auth.service';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 
@@ -24,14 +22,12 @@ export class CajaComponent implements OnInit, OnDestroy {
   spriteActual$: Observable<string | null>;
   indiceCaja: number = 0; // Índice de la caja actual
 
-  flag:boolean=false;
+  flag: boolean = false;
 
   posicion: number = 0;
-  auth = inject(AuthService);
   pokeservicio = inject(PokeservicesService);
-
+  secretId: string = ""
   usarioServicio = inject(UsuarioService);
-
   private valuesubscription!: Subscription;
 
 
@@ -40,11 +36,7 @@ export class CajaComponent implements OnInit, OnDestroy {
     box: this.pokeservicio.cajas,
     Username: "",
     Password: ""
-
   }
-
-  datosDelId: string | undefined = this.auth.idDelUsuario;
-
 
   constructor(private pokeService: PokeservicesService) {
     // Asigna el observable `spriteActual$` desde el servicio
@@ -53,7 +45,9 @@ export class CajaComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Referencia a las cajas en el servicio
-    this.dbUsuarioId(this.datosDelId)
+    this.secretId = this.usarioServicio.enviarId()
+
+    this.dbUsuarioId()
   }
 
   ngOnDestroy(): void {
@@ -63,11 +57,22 @@ export class CajaComponent implements OnInit, OnDestroy {
     }
   }
 
-  dbUsuarioId(id: string | undefined) {
-    this.usarioServicio.getUsuarioById(id).subscribe(
+  dbUsuarioId() {
+    console.log("hola mi id: ");
+
+    if(this.secretId){
+      console.log(this.secretId);
+    }
+    else
+    {
+      console.log("no cargo papi");
+
+    }
+
+    this.usarioServicio.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
-          this.usuario=valor;
+          this.usuario = valor;
 
           console.log(this.usuario);
 
@@ -83,8 +88,8 @@ export class CajaComponent implements OnInit, OnDestroy {
     console.log(this.usuario.Password);
     console.log(this.usuario.Username);
 
-    if (this.flag && this.usuario.Password!=="") {
-      this.usarioServicio.putUsuario(this.usuario, this.datosDelId).subscribe(
+    if (this.flag && this.usuario.Password !== "") {
+      this.usarioServicio.putUsuario(this.usuario, this.secretId).subscribe(
         {
           next: () => {
             console.log("Usuario Guardado");
@@ -117,7 +122,7 @@ export class CajaComponent implements OnInit, OnDestroy {
   agregarPokemon(pokemon: Pokemon) {
     if (this.usuario.box[this.indiceCaja].pokemones.length < this.MAX_POKEMON) {
       this.usuario.box[this.indiceCaja].pokemones.push(pokemon);
-      this.flag=true;
+      this.flag = true;
     } else {
       alert('No se pueden agregar más Pokémon a la caja. Límite alcanzado.');
     }
@@ -144,7 +149,7 @@ export class CajaComponent implements OnInit, OnDestroy {
   // Método para manejar el clic en el Pokémon
   onPokemonClick(pokemon: Pokemon): void {
     this.pokemonSeleccionado = pokemon;
-    this.flag=true;
+    this.flag = true;
     this.pokeService.setSelectedPokemon(pokemon); // Establecer el Pokémon seleccionado en el servicio
   }
 

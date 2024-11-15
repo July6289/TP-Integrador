@@ -11,6 +11,15 @@ export class UsuarioService {
   constructor() { }
   urlbase: string = 'http://localhost:3000/Usuarios';
   service = inject(HttpClient);
+  secretId: string = ""
+
+  recibirId(id: string) {
+    this.secretId = id
+  }
+
+  enviarId(){
+    return this.secretId;
+  }
 
   postUsuario(usuario: Usuario): Observable<Usuario> {
     return this.service.post<Usuario>(this.urlbase, usuario);
@@ -25,6 +34,6 @@ export class UsuarioService {
     return this.service.get<Usuario[]>(`${this.urlbase}?Username=${name}`);
   }
   putUsuario(usuario: Usuario, id: string | undefined): Observable<Usuario> {
-     return this.service.put<Usuario>(`${this.urlbase}/${id}`, usuario)
+    return this.service.put<Usuario>(`${this.urlbase}/${id}`, usuario)
   }
 }

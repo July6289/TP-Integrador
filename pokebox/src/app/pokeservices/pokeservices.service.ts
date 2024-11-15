@@ -171,7 +171,7 @@ export class PokeservicesService {
   }
 
   updatePokemonInCaja(updatedPokemon: Pokemon): void {
-    for (let caja of this.cajas) {
+    for (let caja of /*juli agrega la caja de usuario*/) {
       const pokemonIndex = caja.pokemones.findIndex(p => p.id === updatedPokemon.id);
       if (pokemonIndex !== -1) {
         // Actualizar las propiedades de género y estado shiny en el objeto Pokémon
