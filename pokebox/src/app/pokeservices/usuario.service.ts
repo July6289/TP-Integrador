@@ -35,6 +35,6 @@ export class UsuarioService {
     return this.service.get<Usuario[]>(`${this.urlbase}?Username=${name}`);
   }
   putUsuario(usuario: Usuario, id: string | undefined): Observable<Usuario> {
-    return this.service.put<Usuario>(`${this.urlbase}/${id}`, usuario)
+    return this.service.patch<Usuario>(`${this.urlbase}/${id}`, usuario)
   }
 }

@@ -13,7 +13,7 @@ import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 })
 export class PerfilComponent implements OnInit {
   pokeservice = inject(PokeservicesService);
-  auth = inject(AuthService);
+  id: string =""
   usarioServicio = inject(UsuarioService);
 
   usuario: Usuario = {
@@ -24,13 +24,12 @@ export class PerfilComponent implements OnInit {
 
   }
 
-  datosDelId: string | undefined = this.auth.idDelUsuario;
-
   ngOnInit(): void {
-    this.dbUsuarioId(this.datosDelId);
+    this.id=this.usarioServicio.enviarId()
+    this.dbUsuarioId(this.id);
   }
 
-  dbUsuarioId(id: string | undefined) {
+  dbUsuarioId(id: string) {
     this.usarioServicio.getUsuarioById(id).subscribe(
       {
         next: (valor: Usuario) => {

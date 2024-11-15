@@ -12,7 +12,7 @@ import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.inter
   providedIn: 'root'
 })
 
-export class PokeservicesService{
+export class PokeservicesService {
   readonly TOTAL_CAJAS = 32;  // Número total de cajas disponibles
 
   // Arreglo de cajas, accesible para cualquier componente
@@ -34,9 +34,8 @@ export class PokeservicesService{
 
   clave: string = ""
 
-  getid()
-  {
-    this.clave=this.usuarioService.enviarId()
+  getid() {
+    this.clave = this.usuarioService.enviarId()
   }
 
   usuario: Usuario = {
@@ -50,12 +49,10 @@ export class PokeservicesService{
     this.getid();
     console.log("thunder only happens when is reining", this.clave);
 
-
-
     this.usuarioService.getUsuarioById(this.clave).subscribe(
       {
         next: (valor: Usuario) => {
-          this.usuario=valor
+          this.usuario = valor
 
           this.updatePokemonInCaja(updatedPokemon)
         },
@@ -208,20 +205,34 @@ export class PokeservicesService{
   }
 
   updatePokemonInCaja(updatedPokemon: Pokemon): void {
-    console.log(this.usuario);
-
     for (let caja of this.usuario.box) {
       const pokemonIndex = caja.pokemones.findIndex(p => p.id === updatedPokemon.id);
       if (pokemonIndex !== -1) {
+        console.log(caja);
+
+
         // Actualizar las propiedades de género y estado shiny en el objeto Pokémon
         caja.pokemones[pokemonIndex] = {
           ...updatedPokemon,
           isMale: this.esMachoSubject.value, // Guardar el género actual
           isShiny: this.esShinySubject.value // Guardar el estado shiny actual
         };
+
         break;
       }
     }
+
+    this.usuarioService.putUsuario(this.usuario, this.clave).subscribe(
+      {
+        next: () => {
+          console.log("Usuario Guardado");
+        },
+        error: (e: Error) => {
+          console.log(e.message);
+        }
+      }
+    )
+    console.log(this.usuario.box[0].pokemones[1]);
   }
 
   //generar un equipo random

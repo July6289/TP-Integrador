@@ -28,7 +28,6 @@ export class CajaComponent implements OnInit {
   pokeservicio = inject(PokeservicesService);
   secretId: string = ""
   usarioServicio = inject(UsuarioService);
-  private valuesubscription!: Subscription;
 
 
   usuario: Usuario = {
@@ -51,23 +50,18 @@ export class CajaComponent implements OnInit {
   }
 
   dbUsuarioId() {
-    console.log("hola mi id: ");
-
-    if(this.secretId){
-      console.log(this.secretId);
-    }
-    else
-    {
-      console.log("no cargo papi");
-
-    }
+    console.log(this.secretId);
 
     this.usarioServicio.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
           this.usuario = valor;
 
-          console.log(this.usuario);
+          this.usuario.box.map((caja) => {
+            this.usuario.box[this.posicion].imagen = caja.imagen;
+            this.usuario.box[this.posicion].pokemones = caja.pokemones;
+            this.posicion = this.posicion + 1;
+          })
 
         },
         error: (e: Error) => {
@@ -78,8 +72,6 @@ export class CajaComponent implements OnInit {
   }
 
   dbGuardarDatos() {
-    console.log(this.usuario.Password);
-    console.log(this.usuario.Username);
 
     if (this.flag && this.usuario.Password !== "") {
       this.usarioServicio.putUsuario(this.usuario, this.secretId).subscribe(
