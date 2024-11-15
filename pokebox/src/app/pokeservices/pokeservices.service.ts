@@ -12,7 +12,7 @@ import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.inter
   providedIn: 'root'
 })
 
-export class PokeservicesService implements OnInit{
+export class PokeservicesService{
   readonly TOTAL_CAJAS = 32;  // Número total de cajas disponibles
 
   // Arreglo de cajas, accesible para cualquier componente
@@ -34,7 +34,8 @@ export class PokeservicesService implements OnInit{
 
   clave: string = ""
 
-  ngOnInit(): void {
+  getid()
+  {
     this.clave=this.usuarioService.enviarId()
   }
 
@@ -46,7 +47,10 @@ export class PokeservicesService implements OnInit{
   }
 
   getBox(updatedPokemon: Pokemon) {
-    console.log(this.clave);
+    this.getid();
+    console.log("thunder only happens when is reining", this.clave);
+
+
 
     this.usuarioService.getUsuarioById(this.clave).subscribe(
       {

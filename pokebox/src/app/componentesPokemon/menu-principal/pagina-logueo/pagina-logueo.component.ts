@@ -128,6 +128,8 @@ export class PaginaLogueoComponent {
                   this.secretId = usuario[0].id
 
                   this.usuarioService.recibirId(this.secretId)
+
+
                   this.auth.logIn()
                   this.router.navigate([`main-page`]);
                 }

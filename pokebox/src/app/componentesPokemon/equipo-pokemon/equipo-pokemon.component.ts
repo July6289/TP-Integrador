@@ -95,7 +95,7 @@ export class EquipoPokemonComponent {
         nombreValido = true;
       }
       else {
-        alert('el nombre debe tener entre 1 y 20 caracteres!')
+        alert('el nombre debe tener entre 1 y 20 caracteres!');
       }
     }
     }

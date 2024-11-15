@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { Observable } from 'rxjs';
+import { getLocaleMonthNames } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
