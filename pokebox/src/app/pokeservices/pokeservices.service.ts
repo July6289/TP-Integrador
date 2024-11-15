@@ -59,11 +59,6 @@ getBox(dato:Usuario){
 
 }
 
-
-
-
-
-
   // Este observable combinará los valores de selectedPokemon$, esMacho$ y esShiny$
   // para generar la URL correcta del sprite.
   spriteActual$: Observable<string | null> = combineLatest([
