@@ -53,7 +53,7 @@ export class InfoPokedexComponent implements OnInit {
   private applyChangesToPokemon(): void {
     if (this.selectedPokemon) {
       // Actualizar el Pokémon con los cambios en la caja
-      this.pokeService.updatePokemonInCaja(this.selectedPokemon);
+      this.pokeService.getBox(this.selectedPokemon);
       this.updateSprite();
     }
   }

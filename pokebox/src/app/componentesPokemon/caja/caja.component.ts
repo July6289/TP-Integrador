@@ -14,7 +14,7 @@ import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.in
   styleUrls: ['./caja.component.css']
 })
 
-export class CajaComponent implements OnInit, OnDestroy {
+export class CajaComponent implements OnInit {
   private readonly MAX_POKEMON = 30; // Límite máximo de Pokémon en cada caja
   pokemonSeleccionado: Pokemon | null = null;  // Índice del Pokémon seleccionado
 
@@ -48,13 +48,6 @@ export class CajaComponent implements OnInit, OnDestroy {
     this.secretId = this.usarioServicio.enviarId()
 
     this.dbUsuarioId()
-  }
-
-  ngOnDestroy(): void {
-    // Limpiar la suscripción cuando el componente se destruye
-    if (this.valuesubscription) {
-      this.valuesubscription.unsubscribe();
-    }
   }
 
   dbUsuarioId() {

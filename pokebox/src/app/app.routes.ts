@@ -16,8 +16,6 @@ export const routes: Routes = [
     path: 'perfil',
     component: PerfilComponent,
     canActivate:[authGuardFn]
-
-
   },
   {
     path: 'equipo-pokemon',
@@ -28,7 +26,6 @@ export const routes: Routes = [
     path: 'selector',
     component: ListaEquipoPokemonComponent,
     canActivate:[authGuardFn]
-
   },
   {
     path: 'main-page',
