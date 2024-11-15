@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, combineLatest, map, Observable, of, forkJoin } from 'rxjs';
 import { Generation } from '../interfaces/interfazpokemon/interfazGeneracion.interface';
 import { Pokemon, Species, Sprites, Type } from '../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { Caja } from '../interfaces/interfaz-caja/interfazCaja.inteface';
+import { UsuarioService } from './usuario.service';
+import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.interface';
 
 
 @Injectable({
@@ -19,6 +21,9 @@ export class PokeservicesService {
     pokemones: []                                       // Pokémon iniciales vacíos
   }));
 
+
+
+  usuarioService=inject(UsuarioService);
   private selectedPokemonSubject = new BehaviorSubject<Pokemon | null>(null); // BehaviorSubject para el Pokémon seleccionado
   selectedPokemon$ = this.selectedPokemonSubject.asObservable(); // Observable para suscribirse a los cambios
 
@@ -26,8 +31,38 @@ export class PokeservicesService {
   private esMachoSubject = new BehaviorSubject<boolean>(true); // true = macho, false = hembra
   private esShinySubject = new BehaviorSubject<boolean>(false); // true = shiny, false = no shiny
 
+
   esMacho$ = this.esMachoSubject.asObservable();
   esShiny$ = this.esShinySubject.asObservable();
+
+  clave:string|undefined=this.usuarioService.enviarId()
+
+  usuario:Usuario= {
+    id: "",
+    box: this.cajas,
+    Username: "",
+    Password: ""
+  }
+
+getBox(dato:Usuario){
+  this.usuarioService.getUsuarioById(this.clave).subscribe(
+    {
+      next: (valor: Usuario) => {
+         this.usuario=valor
+
+      },
+      error: (e: Error) => {
+        console.log(e.message);
+      }
+    }
+  )
+
+}
+
+
+
+
+
 
   // Este observable combinará los valores de selectedPokemon$, esMacho$ y esShiny$
   // para generar la URL correcta del sprite.
@@ -171,7 +206,9 @@ export class PokeservicesService {
   }
 
   updatePokemonInCaja(updatedPokemon: Pokemon): void {
-    for (let caja of /*juli agrega la caja de usuario*/) {
+        this.getBox(this.usuario);
+    console.log(this.usuario);
+    for (let caja of this.usuario.box ) {
       const pokemonIndex = caja.pokemones.findIndex(p => p.id === updatedPokemon.id);
       if (pokemonIndex !== -1) {
         // Actualizar las propiedades de género y estado shiny en el objeto Pokémon
