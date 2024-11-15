@@ -9,22 +9,22 @@ import { Observable } from 'rxjs';
 export class UsuarioService {
 
   constructor() { }
-  urlbase:string='http://localhost:3000/Usuarios';
-  service=inject(HttpClient);
+  urlbase: string = 'http://localhost:3000/Usuarios';
+  service = inject(HttpClient);
 
-  postUsuario(usuario:Usuario):Observable<Usuario>{
-    return this.service.post<Usuario>(this.urlbase,usuario);
-   }
-   getUsuarios():Observable<Usuario[]>{
+  postUsuario(usuario: Usuario): Observable<Usuario> {
+    return this.service.post<Usuario>(this.urlbase, usuario);
+  }
+  getUsuarios(): Observable<Usuario[]> {
     return this.service.get<Usuario[]>(this.urlbase)
-   }
-   getUsuarioById(id:string|undefined):Observable<Usuario>{
+  }
+  getUsuarioById(id: string | undefined): Observable<Usuario> {
     return this.service.get<Usuario>(`${this.urlbase}/${id}`);
-   }
-   getUsuariobyName(name: string): Observable<Usuario[]> {
+  }
+  getUsuariobyName(name: string): Observable<Usuario[]> {
     return this.service.get<Usuario[]>(`${this.urlbase}?Username=${name}`);
   }
-  putUsuario(usuario:Usuario,id:string|undefined):Observable<Usuario>{
-    return this.service.put<Usuario>(`${this.urlbase}/${id}`,usuario)
-   }
+  putUsuario(usuario: Usuario, id: string | undefined): Observable<Usuario> {
+     return this.service.put<Usuario>(`${this.urlbase}/${id}`, usuario)
+  }
 }
