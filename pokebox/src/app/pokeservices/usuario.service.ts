@@ -28,13 +28,13 @@ export class UsuarioService {
   getUsuarios(): Observable<Usuario[]> {
     return this.service.get<Usuario[]>(this.urlbase)
   }
-  getUsuarioById(id: string | undefined): Observable<Usuario> {
+  getUsuarioById(id: string | null): Observable<Usuario> {
     return this.service.get<Usuario>(`${this.urlbase}/${id}`);
   }
   getUsuariobyName(name: string): Observable<Usuario[]> {
     return this.service.get<Usuario[]>(`${this.urlbase}?Username=${name}`);
   }
-  putUsuario(usuario: Usuario, id: string | undefined): Observable<Usuario> {
+  putUsuario(usuario: Usuario, id: string | null): Observable<Usuario> {
     return this.service.patch<Usuario>(`${this.urlbase}/${id}`, usuario)
   }
 }

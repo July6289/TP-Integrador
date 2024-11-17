@@ -7,15 +7,21 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
 
   estoyLogeado:boolean=false;
-  idDelUsuario:string|undefined='';
-  private valueSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  guardarProgreso=this.valueSubject.asObservable();
+  idDelUsuario:string='';
 
-  setValue(newValue: boolean): void {
-    this.valueSubject.next(newValue);  // Cambia el valor y emite el cambio
+
+
+  getTokenValue()
+  {
+    return localStorage.getItem('token');
+
+
   }
 
+
+
   logIn(){
+
     this.estoyLogeado=true;
   }
   logOut(){

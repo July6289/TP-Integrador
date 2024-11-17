@@ -9,9 +9,16 @@ const authService=inject(AuthService)
 const router=inject(Router);
 if(authService.estoyLogeado||localStorage.getItem('token'))
 {
-  localStorage.setItem('token','1234we8we74w8e74')
+  let valor=localStorage.getItem('token');
+
+  if(valor==null)
+  { valor='datorandom';
+  }
+  localStorage.setItem('token',valor)
+
   return true
-}else
+}
+else
 {
   router.navigateByUrl('access-denied');
   return false;

@@ -26,7 +26,6 @@ localizador=inject(Location);
 Router= inject(Router);
 
 goToPerfil() {
-  this.auth.setValue(true);
   this.Router.navigate(['/perfil']);
 }
 onLonginLogout(){

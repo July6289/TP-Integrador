@@ -24,9 +24,8 @@ export class AppComponent implements OnInit  {
     this.router.events.subscribe(() => {
       // Aquí detectamos si estamos en una ruta en la que no queremos mostrar el Navbar
       const currentRoute = this.router.url;
-      this.showNavbar =!currentRoute.includes('registro')
-      this.showNavbar2=!currentRoute.includes('combate'); // Ejemplo de ruta para no mostrar el navbar
-      this.showNavbar3=!currentRoute.includes('cambiar-pokemon'); // Ejemplo de ruta para no mostrar el navbar
+      this.showNavbar =!currentRoute.includes('registro')// Ejemplo de ruta para no mostrar el navbar
+      this.showNavbar3=!currentRoute.includes('cambiar-pokemon');
 
     });
   }

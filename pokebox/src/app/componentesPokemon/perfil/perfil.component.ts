@@ -2,7 +2,6 @@ import { Component, OnInit, inject } from '@angular/core';
 import { AuthService } from '../../auth/service/auth.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
-import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 
 @Component({
   selector: 'perfil',
@@ -12,10 +11,8 @@ import { PokeservicesService } from '../../pokeservices/pokeservices.service';
   styleUrl: './perfil.component.css'
 })
 export class PerfilComponent implements OnInit {
-  pokeservice = inject(PokeservicesService);
-  id: string =""
+  id: string |null =""
   usarioServicio = inject(UsuarioService);
-
   usuario: Usuario = {
     id: "",
     box: [],
@@ -25,12 +22,12 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id=this.usarioServicio.enviarId()
-    this.dbUsuarioId(this.id);
+    this.id=localStorage.getItem('token');
+    this.dbUsuarioId();
   }
 
-  dbUsuarioId(id: string) {
-    this.usarioServicio.getUsuarioById(id).subscribe(
+  dbUsuarioId() {
+    this.usarioServicio.getUsuarioById(this.id).subscribe(
       {
         next: (valor: Usuario) => {
           this.usuario.Username = valor.Username;

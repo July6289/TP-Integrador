@@ -121,17 +121,13 @@ export class PaginaLogueoComponent {
       this.usuarioService.getUsuariobyName(datosUsuario.Username).subscribe(
         {
           next: (usuario: Usuario[]) => {
-            if (usuario.length !== 0) {
+            if (usuario.length != 0) {
               if (usuario[0].Password.localeCompare(datosUsuario.Password) === 0) {
 
                 if (usuario[0].id!==undefined) {
-                  this.secretId = usuario[0].id
-
-                  this.usuarioService.recibirId(this.secretId)
-
-
-                  this.auth.logIn()
+                  localStorage.setItem('token',usuario[0].id);
                   this.router.navigate([`main-page`]);
+
                 }
               }
               else {

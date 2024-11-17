@@ -5,6 +5,7 @@ import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.intefa
 import { Observable, Subscription } from 'rxjs';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { AuthService } from '../../auth/service/auth.service';
 
 @Component({
   selector: 'app-caja',
@@ -26,9 +27,9 @@ export class CajaComponent implements OnInit {
 
   posicion: number = 0;
   pokeservicio = inject(PokeservicesService);
-  secretId: string = ""
+  secretId: string| null = ""
   usarioServicio = inject(UsuarioService);
-
+  auth=inject(AuthService);
 
   usuario: Usuario = {
     id: "",
@@ -44,9 +45,13 @@ export class CajaComponent implements OnInit {
 
   ngOnInit(): void {
     // Referencia a las cajas en el servicio
-    this.secretId = this.usarioServicio.enviarId()
 
-    this.dbUsuarioId()
+      this.secretId = this.auth.getTokenValue();
+      console.log(this.secretId);
+      this.dbUsuarioId()
+      console.log("usuario: ",this.usuario);
+
+
   }
 
   dbUsuarioId() {
@@ -55,13 +60,19 @@ export class CajaComponent implements OnInit {
     this.usarioServicio.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
-          this.usuario = valor;
+          this.usuario.Username=valor.Username;
+          this.usuario.Password=valor.Password
+          this.usuario.id=valor.id
 
-          this.usuario.box.map((caja) => {
-            this.usuario.box[this.posicion].imagen = caja.imagen;
-            this.usuario.box[this.posicion].pokemones = caja.pokemones;
-            this.posicion = this.posicion + 1;
-          })
+            //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
+
+             this.usuario.box.map((caja) => {
+              this.usuario.box[this.posicion].imagen = caja.imagen;
+              this.usuario.box[this.posicion].pokemones = caja.pokemones;
+              this.posicion = this.posicion + 1;
+            })
+
+
 
         },
         error: (e: Error) => {
@@ -98,6 +109,7 @@ export class CajaComponent implements OnInit {
     return this.usuario.box[this.indiceCaja].imagen;
   }
 
+
   // Método getter para obtener el nombre de la caja actual
   get nombreCaja(): string {
     return `Caja ${this.indiceCaja + 1}`;
@@ -108,6 +120,7 @@ export class CajaComponent implements OnInit {
     if (this.usuario.box[this.indiceCaja].pokemones.length < this.MAX_POKEMON) {
       this.usuario.box[this.indiceCaja].pokemones.push(pokemon);
       this.flag = true;
+      this.dbGuardarDatos();
     } else {
       alert('No se pueden agregar más Pokémon a la caja. Límite alcanzado.');
     }
