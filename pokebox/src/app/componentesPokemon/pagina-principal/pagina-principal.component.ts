@@ -16,21 +16,9 @@ import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.intefa
   styleUrl: './pagina-principal.component.css'
 })
 
-export class PaginaPrincipalComponent implements OnInit {
+export class PaginaPrincipalComponent {
   constructor(private router: Router, private poke: PokeservicesService) { }
   color = 'brown';
-
-  pokemon: Pokemon[] =[]
-
-  ngOnInit(): void {
-
-    this.poke.getPokemonByName("pikachu").subscribe({
-      next:(pokemono: Pokemon | undefined)=>{
-        console.log(pokemono);
-      }
-    })
-
-  }
 
   goToCombate() {
     this.router.navigate(['/selector']);

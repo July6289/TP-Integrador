@@ -27,9 +27,9 @@ export class CajaComponent implements OnInit {
 
   posicion: number = 0;
   pokeservicio = inject(PokeservicesService);
-  secretId: string| null = ""
+  secretId: string | null = ""
   usarioServicio = inject(UsuarioService);
-  auth=inject(AuthService);
+  auth = inject(AuthService);
 
   usuario: Usuario = {
     id: "",
@@ -46,12 +46,10 @@ export class CajaComponent implements OnInit {
   ngOnInit(): void {
     // Referencia a las cajas en el servicio
 
-      this.secretId = this.auth.getTokenValue();
-      console.log(this.secretId);
-      this.dbUsuarioId()
-      console.log("usuario: ",this.usuario);
-
-
+    this.secretId = this.auth.getTokenValue();
+    console.log(this.secretId);
+    this.dbUsuarioId()
+    console.log("usuario: ", this.usuario);
   }
 
   dbUsuarioId() {
@@ -60,20 +58,18 @@ export class CajaComponent implements OnInit {
     this.usarioServicio.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
-          this.usuario.Username=valor.Username;
-          this.usuario.Password=valor.Password
-          this.usuario.id=valor.id
+          this.usuario.Username = valor.Username;
+          this.usuario.Password = valor.Password
+          this.usuario.id = valor.id
 
-            //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
+          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
 
-             this.usuario.box.map((caja) => {
-              this.usuario.box[this.posicion].imagen = caja.imagen;
-              this.usuario.box[this.posicion].pokemones = caja.pokemones;
-              this.posicion = this.posicion + 1;
-            })
+          valor.box.map((caja) => {
 
-
-
+            this.usuario.box[this.posicion].imagen = caja.imagen;
+            this.usuario.box[this.posicion].pokemones = caja.pokemones;
+            this.posicion = this.posicion + 1;
+          })
         },
         error: (e: Error) => {
           console.log(e.message);
