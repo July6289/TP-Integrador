@@ -32,10 +32,10 @@ export class PokeservicesService {
   esMacho$ = this.esMachoSubject.asObservable();
   esShiny$ = this.esShinySubject.asObservable();
 
-  clave: string = ""
+  clave: string | null = ""
 
   getid() {
-    this.clave = this.usuarioService.enviarId()
+    this.clave = localStorage.getItem('token')
   }
 
   usuario: Usuario = {
@@ -47,20 +47,26 @@ export class PokeservicesService {
 
   getBox(updatedPokemon: Pokemon) {
     this.getid();
-    console.log("thunder only happens when is reining", this.clave);
 
-    this.usuarioService.getUsuarioById(this.clave).subscribe(
-      {
-        next: (valor: Usuario) => {
-          this.usuario = valor
+    console.log("la clave es: " + this.clave);
 
-          this.updatePokemonInCaja(updatedPokemon)
-        },
-        error: (e: Error) => {
-          console.log(e.message);
+    if (this.clave !== "") {
+      this.usuarioService.getUsuarioById(this.clave).subscribe(
+        {
+          next: (valor: Usuario) => {
+            this.usuario = valor
+
+            this.updatePokemonInCaja(updatedPokemon)
+          },
+          error: (e: Error) => {
+            console.log(e.message);
+          }
         }
-      }
-    )
+      )
+    }
+    else {
+      console.log("no se puede");
+    }
   }
 
   // Este observable combinará los valores de selectedPokemon$, esMacho$ y esShiny$

@@ -9,18 +9,8 @@ import { getLocaleMonthNames } from '@angular/common';
 })
 export class UsuarioService {
 
-  constructor() { }
+  constructor(private service: HttpClient) { }
   urlbase: string = 'http://localhost:3000/Usuarios';
-  service = inject(HttpClient);
-  secretId: string = ""
-
-  recibirId(id: string) {
-    this.secretId = id
-  }
-
-  enviarId(){
-    return this.secretId;
-  }
 
   postUsuario(usuario: Usuario): Observable<Usuario> {
     return this.service.post<Usuario>(this.urlbase, usuario);

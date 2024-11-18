@@ -1,31 +1,24 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  estoyLogeado:boolean=false;
-  idDelUsuario:string='';
+  estoyLogeado: boolean = false;
+  idDelUsuario: string = '';
 
 
 
-  getTokenValue()
-  {
+  getTokenValue() {
     return localStorage.getItem('token');
-
-
   }
 
-
-
-  logIn(){
-
-    this.estoyLogeado=true;
+  logIn() {
+    this.estoyLogeado = true;
   }
-  logOut(){
-    this.estoyLogeado=false;
+  logOut() {
+    this.estoyLogeado = false;
   }
 
 }

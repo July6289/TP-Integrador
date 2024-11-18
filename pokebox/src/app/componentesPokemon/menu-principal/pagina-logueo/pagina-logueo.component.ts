@@ -27,7 +27,6 @@ export class PaginaLogueoComponent {
   pokeservice = inject(PokeservicesService);
   router = inject(Router);
   fb = inject(FormBuilder);
-  secretId: string = ""
 
   formulario = this.fb.nonNullable.group(
     {
@@ -126,8 +125,7 @@ export class PaginaLogueoComponent {
 
                 if (usuario[0].id!==undefined) {
                   localStorage.setItem('token',usuario[0].id);
-                  this.router.navigate([`main-page`]);
-
+                  this.router.navigate([`main-page`])
                 }
               }
               else {

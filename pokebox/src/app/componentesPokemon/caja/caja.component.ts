@@ -47,14 +47,10 @@ export class CajaComponent implements OnInit {
     // Referencia a las cajas en el servicio
 
     this.secretId = this.auth.getTokenValue();
-    console.log(this.secretId);
     this.dbUsuarioId()
-    console.log("usuario: ", this.usuario);
   }
 
   dbUsuarioId() {
-    console.log(this.secretId);
-
     this.usarioServicio.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
