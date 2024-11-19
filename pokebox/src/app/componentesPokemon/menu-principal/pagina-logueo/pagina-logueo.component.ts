@@ -36,7 +36,6 @@ export class PaginaLogueoComponent {
     }
   )
 
-
   btRegistro() {
     this.isRegisterButtonShowing = false;
     this.IsFormRegisterShowing = true;
@@ -124,7 +123,9 @@ export class PaginaLogueoComponent {
               if (usuario[0].Password.localeCompare(datosUsuario.Password) === 0) {
 
                 if (usuario[0].id !== undefined) {
+                  this.usuarioService.setSecretId(usuario[0].id)
                   localStorage.setItem('token', usuario[0].id);
+                  this.usuarioService.estoyLogeado=true
                   this.router.navigate([`main-page`])
                 }
               }

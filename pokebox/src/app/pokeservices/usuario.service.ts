@@ -10,25 +10,41 @@ export class UsuarioService {
 
   constructor(private service: HttpClient) { }
   urlbase: string = 'http://localhost:3000/Usuarios';
+  secretId:string|null=""
+  estoyLogeado:boolean=false
 
   postUsuario(usuario: Usuario): Observable<Usuario> {
     return this.service.post<Usuario>(this.urlbase, usuario);
   }
+
   getUsuarios(): Observable<Usuario[]> {
     return this.service.get<Usuario[]>(this.urlbase)
   }
+
   getUsuarioById(id: string | null): Observable<Usuario> {
     return this.service.get<Usuario>(`${this.urlbase}/${id}`);
   }
+
   getUsuariobyName(name: string): Observable<Usuario[]> {
     return this.service.get<Usuario[]>(`${this.urlbase}?Username=${name}`);
   }
-  putUsuario(usuario: Usuario, id: string | null): Observable<Usuario> {
+
+  putUsuario(usuario: Usuario, id: string): Observable<Usuario> {
     if (!id) {
       console.error('Error: El ID del usuario no está definido.');
       return throwError(() => new Error('El ID del usuario no está definido.'));
     }
     return this.service.patch<Usuario>(`${this.urlbase}/${id}`, usuario);
+  }
+
+  setSecretId(id: string | null)
+  {
+    this.secretId=id
+  }
+
+  getSecretId()
+  {
+    return this.secretId
   }
 
 }

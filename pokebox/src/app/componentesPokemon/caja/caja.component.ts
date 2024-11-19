@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { Observable } from 'rxjs';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { AuthService } from '../../auth/service/auth.service';
+import { CajaService } from '../../pokeservices/caja.service';
 
 @Component({
   selector: 'app-caja',
@@ -38,7 +39,7 @@ export class CajaComponent implements OnInit {
     Password: ""
   }
 
-  constructor(private pokeService: PokeservicesService, private cd: ChangeDetectorRef) {
+  constructor(private pokeService: PokeservicesService, private cajaService: CajaService) {
     // Asigna el observable `spriteActual$` desde el servicio
     this.spriteActual$ = this.pokeService.spriteActual$;
   }
@@ -78,19 +79,7 @@ export class CajaComponent implements OnInit {
   }
 
   dbGuardarDatos() {
-
-    if (this.flag && this.usuario.Password !== "") {
-      this.usarioServicio.putUsuario(this.usuario, this.secretId).subscribe(
-        {
-          next: () => {
-            console.log("Usuario Guardado");
-          },
-          error: (e: Error) => {
-            console.log(e.message);
-          }
-        }
-      )
-    }
+    this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
   }
 
   get pokemonesEnCaja(): Pokemon[] {
@@ -139,6 +128,8 @@ export class CajaComponent implements OnInit {
   onPokemonClick(pokemon: Pokemon): void {
     this.pokemonSeleccionado = pokemon;
     this.flag = true;
+    console.log(this.flag);
+
     this.pokeService.setSelectedPokemon(pokemon); // Establecer el Pokémon seleccionado en el servicio
   }
 

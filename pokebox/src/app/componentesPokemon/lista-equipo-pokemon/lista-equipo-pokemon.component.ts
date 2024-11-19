@@ -3,6 +3,10 @@ import { Component } from '@angular/core';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { NgFor, Location, NgIf } from '@angular/common';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
+import { CajaService } from '../../pokeservices/caja.service';
+import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { UsuarioService } from '../../pokeservices/usuario.service';
+import { AuthService } from '../../auth/service/auth.service';
 
 @Component({
   selector: 'app-lista-equipo-pokemon',
@@ -14,7 +18,7 @@ import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.i
 
 export class ListaEquipoPokemonComponent {
 
-  constructor(private router: Router, private equipoPokemonService: EquipoPokemonService, private location: Location) { }
+  constructor(private router: Router, private equipoPokemonService: EquipoPokemonService, private location: Location, private cajaService: CajaService, private usuarioService: UsuarioService, private auth: AuthService) { }
 
   poketeam: EquipoPokemon[] = [];
 
@@ -24,15 +28,59 @@ export class ListaEquipoPokemonComponent {
       equipo: []
     }
 
+  rutaCombate = true;
+
+  usuario: Usuario = {
+    id: "",
+    box: [],
+    Username: "",
+    Password: ""
+  }
+  posicion: number = 0;
+  secretId: string | null = ""
+
   ngOnInit() {
     // Suscribirse a todos los equipos
     this.equipoPokemonService.equipos$.subscribe(equipos => {
       this.poketeam = equipos;  // Actualiza el arreglo con todos los equipos
     });
+
+    this.secretId = this.auth.getTokenValue();
+    this.dbUsuarioId()
     this.checkRoute();
   }
 
-  rutaCombate = true;
+  dbUsuarioId() {
+    this.usuarioService.getUsuarioById(this.secretId).subscribe(
+      {
+        next: (valor: Usuario) => {
+          this.usuario.Username = valor.Username;
+          this.usuario.Password = valor.Password
+          this.usuario.id = valor.id
+
+          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
+
+          valor.box.map((caja) => {
+
+            this.usuario.box[this.posicion].imagen = caja.imagen;
+            this.usuario.box[this.posicion].pokemones = caja.pokemones;
+            this.posicion = this.posicion + 1;
+          })
+        },
+        error: (e: Error) => {
+          console.log(e.message);
+        }
+      }
+    )
+  }
+
+  llamarDbGuardarDatos(): void {
+    if (this.secretId === null) {
+      this.secretId = ""
+    }
+
+    this.cajaService.dbGuardarDatos(this.usuario, this.secretId);
+  }
 
   checkRoute(): void {
     this.rutaCombate = this.location.path().includes('/main-page');
@@ -68,7 +116,6 @@ export class ListaEquipoPokemonComponent {
     this.equipoPokemonService.EquipoSeleccionadoBot(this.equipoRival);
 
   }
-
 
   goToVisualizarpokemon(nombre: string) {
     console.log(`Navegando a equipo con nombre: ${nombre}`);

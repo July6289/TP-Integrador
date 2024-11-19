@@ -3,10 +3,10 @@
   <ul>
     @if (perfilActivo) {
     <li class="homePage"><a routerLink="/main-page">Home</a></li>
-    <button class="boton1" (click)="goToPerfil()" class="botoncin">
+    <button class="boton1" (click)="goToPerfil()" (click)="llamarDbGuardarDatos()" class="botoncin">
       <img class="imagenUsuario" src="assets/imagenes/images.png" alt="imagen usuario">
     </button>
-  }
+    }
   </ul>
-  <button class="boton2" (click)="onLonginLogout()">{{ textButton }}</button>
+  <button class="boton2" (click)="onLonginLogout()" (click)="llamarDbGuardarDatos()" >{{ textButton }}</button>
 </nav>
