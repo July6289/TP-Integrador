@@ -55,7 +55,8 @@
   }
 
   @if (isFormLoginShowing) {
-  <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="checkLoggedUsuario()" (keydown.enter)="checkLoggedUsuario()" >
+  <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="checkLoggedUsuario()"
+    (keydown.enter)="checkLoggedUsuario()">
 
     <label for="">Usuario:</label>
 
@@ -90,7 +91,7 @@
   </form>
   <div class="botones">
     <button class="SalirRegistro" (click)="btVolver()">Volver</button>
-    <button class="Confirmar"(click)="checkLoggedUsuario()" >Confirmar</button>
+    <button class="Confirmar" (click)="checkLoggedUsuario()">Confirmar</button>
   </div>
   }
 </div>

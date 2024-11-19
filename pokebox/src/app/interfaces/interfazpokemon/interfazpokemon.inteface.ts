@@ -9,8 +9,8 @@ export interface Pokemon {
   idEquipo?: number;
   isShiny?: boolean
   isMale?: boolean;
-  life?:number;
-  isAlive?:boolean;
+  life?: number;
+  isAlive?: boolean;
 }
 
 export interface Type {
@@ -33,5 +33,3 @@ export interface Sprites {
   front_shiny: string;
   front_shiny_female: string;
 }
-
-

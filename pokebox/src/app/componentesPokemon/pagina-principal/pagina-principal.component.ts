@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ListaEquipoPokemonComponent } from "../lista-equipo-pokemon/lista-equipo-pokemon.component";
 import { ListaPokemonComponent } from "../lista-pokemon/lista-pokemon.component";
 import { CajaComponent } from "../caja/caja.component";
@@ -6,7 +6,6 @@ import { InfoPokedexComponent } from "../info-pokedex/info-pokedex.component";
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
-import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 
 @Component({
   selector: 'pagina-principal',
@@ -23,5 +22,4 @@ export class PaginaPrincipalComponent {
   goToCombate() {
     this.router.navigate(['/selector']);
   }
-
 }

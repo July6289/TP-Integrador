@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, OnInit } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, combineLatest, map, Observable, of, forkJoin } from 'rxjs';
 import { Generation } from '../interfaces/interfazpokemon/interfazGeneracion.interface';
 import { Pokemon, Species, Sprites, Type } from '../interfaces/interfazpokemon/interfazpokemon.inteface';
@@ -21,6 +21,10 @@ export class PokeservicesService {
     pokemones: []                                       // Pokémon iniciales vacíos
   }));
 
+  // BehaviorSubject para emitir actualizaciones de cajas
+  private cajasSubject = new BehaviorSubject<Caja[]>(this.cajas);
+  cajas$ = this.cajasSubject.asObservable();
+
   usuarioService = inject(UsuarioService);
   private selectedPokemonSubject = new BehaviorSubject<Pokemon | null>(null); // BehaviorSubject para el Pokémon seleccionado
   selectedPokemon$ = this.selectedPokemonSubject.asObservable(); // Observable para suscribirse a los cambios
@@ -34,39 +38,11 @@ export class PokeservicesService {
 
   clave: string | null = ""
 
-  getid() {
-    this.clave = localStorage.getItem('token')
-  }
-
   usuario: Usuario = {
     id: "",
     box: [],
     Username: "",
     Password: ""
-  }
-
-  getBox(updatedPokemon: Pokemon) {
-    this.getid();
-
-    console.log("la clave es: " + this.clave);
-
-    if (this.clave !== "") {
-      this.usuarioService.getUsuarioById(this.clave).subscribe(
-        {
-          next: (valor: Usuario) => {
-            this.usuario = valor
-
-            this.updatePokemonInCaja(updatedPokemon)
-          },
-          error: (e: Error) => {
-            console.log(e.message);
-          }
-        }
-      )
-    }
-    else {
-      console.log("no se puede");
-    }
   }
 
   // Este observable combinará los valores de selectedPokemon$, esMacho$ y esShiny$
@@ -90,7 +66,35 @@ export class PokeservicesService {
 
   urlBase: string = 'https://pokeapi.co/api/v2';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    // Inicializar las cajas para evitar errores
+    this.usuario.box = Array.from({ length: this.TOTAL_CAJAS }, (_, index) => ({
+      imagen: `/assets/imagenes/cajas/${index + 1}.png`,
+      pokemones: [],
+    }));
+    this.cajasSubject.next(this.usuario.box); // Emitir cajas inicializadas
+  }
+
+  getid() {
+    this.clave = localStorage.getItem('token')
+  }
+
+  getBox(updatedPokemon: Pokemon) {
+    this.getid();
+
+    if (!this.clave) {
+      console.error('No se puede obtener la clave del usuario. Verifica la autenticación.');
+      return;
+    }
+
+    this.usuarioService.getUsuarioById(this.clave).subscribe({
+      next: (valor: Usuario) => {
+        this.usuario = valor;
+        this.updatePokemonInCaja(updatedPokemon);
+      },
+      error: (e: Error) => console.error('Error al obtener el usuario:', e.message),
+    });
+  }
 
   getNewCaja() {
     return this.cajas;
@@ -150,13 +154,13 @@ export class PokeservicesService {
   setSelectedPokemon(pokemon: Pokemon): void {
     this.selectedPokemonSubject.next(pokemon);
 
-    // Establecer esMacho y esShiny según el estado guardado en Caja
     const esMacho = pokemon.isMale ?? true; // Valor predeterminado si no está definido
-    const esShiny = pokemon.isShiny ?? false; // Valor predeterminado si no está definido
+    const esShiny = pokemon.isShiny ?? false;
 
     this.esMachoSubject.next(esMacho);
     this.esShinySubject.next(esShiny);
   }
+
 
   getSelectedPokemon(): Pokemon | null {
     return this.selectedPokemonSubject.value; // Obtener el valor actual
@@ -211,35 +215,44 @@ export class PokeservicesService {
   }
 
   updatePokemonInCaja(updatedPokemon: Pokemon): void {
+    if (!updatedPokemon) {
+      console.error('Error: No se proporcionó un Pokémon para actualizar.');
+      return;
+    }
+
+    if (!this.usuario?.box?.length) {
+      console.warn('Advertencia: No hay cajas inicializadas.');
+      return;
+    }
+
     for (let caja of this.usuario.box) {
       const pokemonIndex = caja.pokemones.findIndex(p => p.id === updatedPokemon.id);
+
       if (pokemonIndex !== -1) {
-        console.log(caja);
-
-
-        // Actualizar las propiedades de género y estado shiny en el objeto Pokémon
+        // Actualiza el Pokémon con las propiedades modificadas
         caja.pokemones[pokemonIndex] = {
-          ...updatedPokemon,
-          isMale: this.esMachoSubject.value, // Guardar el género actual
-          isShiny: this.esShinySubject.value // Guardar el estado shiny actual
+          ...caja.pokemones[pokemonIndex],
+          isMale: this.esMachoSubject.value,
+          isShiny: this.esShinySubject.value,
         };
 
+        console.log('Pokémon actualizado:', caja.pokemones[pokemonIndex]);
+
+        // Emitir actualización
+        this.cajasSubject.next(this.usuario.box);
         break;
       }
     }
 
-    this.usuarioService.putUsuario(this.usuario, this.clave).subscribe(
-      {
-        next: () => {
-          console.log("Usuario Guardado");
-        },
-        error: (e: Error) => {
-          console.log(e.message);
-        }
-      }
-    )
-    console.log(this.usuario.box[0].pokemones[1]);
+    // Guardar cambios en el backend si la clave está definida
+    if (this.clave) {
+      this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
+        next: () => console.log('Usuario guardado con éxito.'),
+        error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
+      });
+    }
   }
+
 
   //generar un equipo random
   getRandomPokemonTeam(): Observable<Pokemon[]> {

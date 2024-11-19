@@ -5,8 +5,6 @@ import { EquipoPokemonService } from '../../pokeservices/equiposervices.service'
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
 import { Router } from '@angular/router';
-import { cloneDeep } from 'lodash';
-
 
 @Component({
   selector: 'app-equipo-pokemon',
@@ -49,9 +47,7 @@ export class EquipoPokemonComponent {
     // Aquí puedes añadir la lógica que necesites para manejar el Pokémon seleccionado
   }
 
-
   agregarPokemon() {
-
     if (this.pokemonesEnEquipo.length < 6) {
       if (this.pokeaux[0] != null) {
         // Crear una copia del Pokémon y asignar un `id` único de tipo `number`
@@ -77,12 +73,10 @@ export class EquipoPokemonComponent {
 
   guardarEquipo() {
     let nombreValido = false;
-    if(this.pokemonesEnEquipo.length <6)
-    {
+    if (this.pokemonesEnEquipo.length < 6) {
       alert("Debes tener 6 Pokemon en el equipo!");
     }
-    else
-    {
+    else {
 
       const nombre = prompt('Ponle un nombre a tu equipo!', '');
       if (nombre && nombre.length <= 20) {
@@ -98,7 +92,7 @@ export class EquipoPokemonComponent {
         alert('el nombre debe tener entre 1 y 20 caracteres!');
       }
     }
-    }
+  }
 
 }
 

@@ -19,7 +19,7 @@ export class VisualizarEquipoComponent implements OnInit {
     private route: ActivatedRoute,
     private equipoPokemonService: EquipoPokemonService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Obtener el parámetro 'nombre' de la URL
@@ -29,11 +29,11 @@ export class VisualizarEquipoComponent implements OnInit {
     });
   }
 
-  gotoMainMenu(){
+  gotoMainMenu() {
     this.router.navigate(['/**']);
   }
 
-  gotoCombate(){
+  gotoCombate() {
     this.router.navigate(['/selector']);
   }
 

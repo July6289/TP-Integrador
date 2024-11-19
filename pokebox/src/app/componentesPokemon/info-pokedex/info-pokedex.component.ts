@@ -51,10 +51,14 @@ export class InfoPokedexComponent implements OnInit {
   }
 
   private applyChangesToPokemon(): void {
-    if (this.selectedPokemon) {
-      // Actualizar el Pokémon con los cambios en la caja
-      this.pokeService.getBox(this.selectedPokemon);
-      this.updateSprite();
+    if (!this.selectedPokemon) {
+      console.error('No hay un Pokémon seleccionado.');
+      return;
     }
+
+    // Llama al método para actualizar el Pokémon en la caja
+    this.pokeService.updatePokemonInCaja(this.selectedPokemon);
+    this.updateSprite(); // Actualiza el sprite visible
   }
+
 }

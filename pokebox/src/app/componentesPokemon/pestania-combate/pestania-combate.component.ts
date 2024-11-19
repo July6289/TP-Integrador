@@ -223,8 +223,8 @@ export class PestaniaCombateComponent implements OnInit {
     }
 
     if (!this.checkStstate(this.equipoMain.equipo[this.peleador])) {
-     /*this.mensaje[this.mensaje.length] = " "
-      this.mensaje[this.mensaje.length] = "tu pokemon esta debilitado!"*/
+      /*this.mensaje[this.mensaje.length] = " "
+       this.mensaje[this.mensaje.length] = "tu pokemon esta debilitado!"*/
       alert("tu pokemon esta debilitado!")
     } else if (!this.checkStstate(this.equipoRival.equipo[this.peleadorBot])) {
       /*this.mensaje[this.mensaje.length] = " "
@@ -261,8 +261,7 @@ export class PestaniaCombateComponent implements OnInit {
             if (flag) {
               this.gotoSlector();
             }
-            else
-            {
+            else {
               /*this.mensaje[this.mensaje.length] = " "
               this.mensaje[this.mensaje.length] = "el siguiente pokemon del rival es: " + team.equipo[0].name*/
               alert("el siguiente pokemon del rival es: " + team.equipo[0].name)

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { AuthService } from '../../auth/service/auth.service';
@@ -33,22 +33,25 @@ export class CajaComponent implements OnInit {
 
   usuario: Usuario = {
     id: "",
-    box: this.pokeservicio.cajas,
+    box: [],
     Username: "",
     Password: ""
   }
 
-  constructor(private pokeService: PokeservicesService) {
+  constructor(private pokeService: PokeservicesService, private cd: ChangeDetectorRef) {
     // Asigna el observable `spriteActual$` desde el servicio
     this.spriteActual$ = this.pokeService.spriteActual$;
   }
 
   ngOnInit(): void {
-    // Referencia a las cajas en el servicio
+    this.pokeService.cajas$.subscribe(cajas => {
+      this.usuario.box = cajas; // Actualiza las cajas en tiempo real
+    });
 
     this.secretId = this.auth.getTokenValue();
-    this.dbUsuarioId()
+    this.dbUsuarioId();
   }
+
 
   dbUsuarioId() {
     this.usarioServicio.getUsuarioById(this.secretId).subscribe(
@@ -90,17 +93,13 @@ export class CajaComponent implements OnInit {
     }
   }
 
-  // Método getter para obtener la lista de Pokémon de la caja actual
   get pokemonesEnCaja(): Pokemon[] {
-    return this.usuario.box[this.indiceCaja].pokemones;
+    return this.usuario.box?.[this.indiceCaja]?.pokemones || []; // Devolver array vacío si es indefinido
   }
 
-  // Método getter para obtener la imagen de la caja actual
   get imagenCaja(): string {
-
-    return this.usuario.box[this.indiceCaja].imagen;
+    return this.usuario.box?.[this.indiceCaja]?.imagen || '/assets/imagenes/cajas/1.png'; // Imagen por defecto
   }
-
 
   // Método getter para obtener el nombre de la caja actual
   get nombreCaja(): string {

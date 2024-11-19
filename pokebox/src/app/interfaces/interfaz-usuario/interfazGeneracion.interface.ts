@@ -1,9 +1,9 @@
 import { Caja } from "../interfaz-caja/interfazCaja.inteface";
 
 export interface Usuario {
-  id?:string;
+  id?: string;
   Username: string;
-  Password:string;
+  Password: string;
   box: Caja[];
   //combatesGanados: number;
 }

@@ -98,8 +98,10 @@
   padding: 1rem;
   display: flex;
   justify-content: center;
-  overflow-y: auto; /* Habilita la barra de desplazamiento vertical */
-  max-height: 100px; /* Ajusta la altura máxima de hud-right para que genere scroll */
+  overflow-y: auto;
+  /* Habilita la barra de desplazamiento vertical */
+  max-height: 100px;
+  /* Ajusta la altura máxima de hud-right para que genere scroll */
 }
 
 .pokemon-info {
@@ -191,7 +193,8 @@
 .narrador {
   font-size: 1.5rem;
   line-height: 1.5rem;
-  white-space: pre-line; /* Asegura que se respeten los saltos de línea */
+  white-space: pre-line;
+  /* Asegura que se respeten los saltos de línea */
 }
 
 /* Media queries para ajustar en pantallas medianas */

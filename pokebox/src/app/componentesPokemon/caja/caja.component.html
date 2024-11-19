@@ -6,15 +6,21 @@
   </div>
 
   <div class="caja-grid">
-    <img class="imagencaja" [src]="imagenCaja" alt="caja">
+    <div *ngIf="usuario.box && usuario.box.length > 0; else loading">
+      <img class="imagencaja" [src]="imagenCaja" alt="caja">
 
-    <div class="pokemon-grid">
-      <div *ngFor="let pokemon of pokemonesEnCaja" class="pokemon">
-        <!-- Mostrar sprite actual si el Pokémon está seleccionado; si no, mostrar el sprite por defecto -->
-        <img [src]="getSpriteUrl(pokemon)" [alt]="pokemon.name" class="pokemon-imagen" (click)="onPokemonClick(pokemon)"
-          [class.seleccionado]="pokemonSeleccionado === pokemon">
+      <div class="pokemon-grid">
+        <div *ngFor="let pokemon of pokemonesEnCaja" class="pokemon">
+          <!-- Mostrar sprite actual si el Pokémon está seleccionado; si no, mostrar el sprite por defecto -->
+          <img [src]="getSpriteUrl(pokemon)" [alt]="pokemon.name" class="pokemon-imagen"
+            (click)="onPokemonClick(pokemon)" [class.seleccionado]="pokemonSeleccionado === pokemon">
+        </div>
       </div>
     </div>
+
+    <ng-template #loading>
+      <p>Cargando cajas...</p>
+    </ng-template>
   </div>
 
   <div id="botonDer">

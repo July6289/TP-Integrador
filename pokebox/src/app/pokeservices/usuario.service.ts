@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.interface';
-import { Observable } from 'rxjs';
-import { getLocaleMonthNames } from '@angular/common';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +24,11 @@ export class UsuarioService {
     return this.service.get<Usuario[]>(`${this.urlbase}?Username=${name}`);
   }
   putUsuario(usuario: Usuario, id: string | null): Observable<Usuario> {
-    return this.service.patch<Usuario>(`${this.urlbase}/${id}`, usuario)
+    if (!id) {
+      console.error('Error: El ID del usuario no está definido.');
+      return throwError(() => new Error('El ID del usuario no está definido.'));
+    }
+    return this.service.patch<Usuario>(`${this.urlbase}/${id}`, usuario);
   }
+
 }

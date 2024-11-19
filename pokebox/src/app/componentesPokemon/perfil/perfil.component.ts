@@ -1,5 +1,4 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { AuthService } from '../../auth/service/auth.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 
@@ -11,7 +10,7 @@ import { UsuarioService } from '../../pokeservices/usuario.service';
   styleUrl: './perfil.component.css'
 })
 export class PerfilComponent implements OnInit {
-  id: string |null =""
+  id: string | null = ""
   usarioServicio = inject(UsuarioService);
   usuario: Usuario = {
     id: "",
@@ -22,7 +21,7 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id=localStorage.getItem('token');
+    this.id = localStorage.getItem('token');
     this.dbUsuarioId();
   }
 

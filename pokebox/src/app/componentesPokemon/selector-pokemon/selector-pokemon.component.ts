@@ -12,7 +12,7 @@ import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.i
   templateUrl: './selector-pokemon.component.html',
   styleUrl: './selector-pokemon.component.css'
 })
-export class SelectorPokemonComponent implements OnInit{
+export class SelectorPokemonComponent implements OnInit {
   pokemonesEnEquipo: EquipoPokemon =
     {
       nombre: '',
@@ -23,7 +23,7 @@ export class SelectorPokemonComponent implements OnInit{
     private equipoPokemonService: EquipoPokemonService,
     private router: Router
   ) { }
- 
+
 
   gotoCombate() {
     this.router.navigate(['/combate']);
@@ -56,12 +56,12 @@ export class SelectorPokemonComponent implements OnInit{
       this.router.navigate(['/combate']);
     }
   }
-  
+
   turns: boolean = true;
 
   ngOnInit(): void {
     this.pokemonesEnEquipo = this.equipoPokemonService.recibirEquipoPokemon();
-    this.turns= this.equipoPokemonService.getTurno();
+    this.turns = this.equipoPokemonService.getTurno();
 
   }
 

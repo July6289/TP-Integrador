@@ -29,7 +29,7 @@ export class EquipoPokemonService {
 
   selectedPokemon: number = 0;
 
-  turns:boolean =true;
+  turns: boolean = true;
 
   constructor(private pokeService: PokeservicesService) { }
 
@@ -72,13 +72,11 @@ export class EquipoPokemonService {
     this.pokeRival = equipoSeleccionado;
   }
 
-  guardarTurno(t1:boolean)
-  {
-    this.turns=t1;
+  guardarTurno(t1: boolean) {
+    this.turns = t1;
   }
 
-  getTurno():boolean
-  {
+  getTurno(): boolean {
     return this.turns;
   }
 

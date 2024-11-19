@@ -1,10 +1,8 @@
 import { Router, RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
-import { EquipoPokemonComponent } from "../equipo-pokemon/equipo-pokemon.component";
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { NgFor, Location, NgIf } from '@angular/common';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
-import { set } from 'lodash';
 
 @Component({
   selector: 'app-lista-equipo-pokemon',

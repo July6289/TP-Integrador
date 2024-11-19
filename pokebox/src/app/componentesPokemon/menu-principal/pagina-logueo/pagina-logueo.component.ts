@@ -123,8 +123,8 @@ export class PaginaLogueoComponent {
             if (usuario.length != 0) {
               if (usuario[0].Password.localeCompare(datosUsuario.Password) === 0) {
 
-                if (usuario[0].id!==undefined) {
-                  localStorage.setItem('token',usuario[0].id);
+                if (usuario[0].id !== undefined) {
+                  localStorage.setItem('token', usuario[0].id);
                   this.router.navigate([`main-page`])
                 }
               }
