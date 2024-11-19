@@ -10,7 +10,6 @@ export class UsuarioService {
 
   constructor(private service: HttpClient) { }
   urlbase: string = 'http://localhost:3000/Usuarios';
-  secretId:string|null=""
   estoyLogeado:boolean=false
 
   postUsuario(usuario: Usuario): Observable<Usuario> {
@@ -37,14 +36,5 @@ export class UsuarioService {
     return this.service.patch<Usuario>(`${this.urlbase}/${id}`, usuario);
   }
 
-  setSecretId(id: string | null)
-  {
-    this.secretId=id
-  }
-
-  getSecretId()
-  {
-    return this.secretId
-  }
 
 }

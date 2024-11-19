@@ -37,21 +37,21 @@ export class NavbarComponent implements OnInit {
     if (localStorage.getItem('token')) {
       this.textButton = 'Cerrar Sesion'
       this.perfilActivo = true;
+      this.dbUsuarioId();
     }
 
-    if (this.usuarioService.estoyLogeado && this.secretId) {
-      this.dbUsuarioId()
 
-      this.secretId = this.auth.getTokenValue();
-    }
   }
 
   dbUsuarioId() {
-    console.log(this.secretId);
+    this.secretId = this.auth.getTokenValue();
+
+    console.log(localStorage.getItem('token'));
 
     this.usuarioService.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
+          this.posicion=0;
           this.usuario.Username = valor.Username;
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
