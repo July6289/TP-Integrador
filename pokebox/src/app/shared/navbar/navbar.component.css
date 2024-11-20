@@ -3,15 +3,20 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.5rem 1rem;
+  /* Añade padding para mejor escalabilidad */
 }
 
 .imagenLogueo {
-  width: 25vh;
-  /* Ajusta el ancho de la imagen */
+  width: 20vh;
+  /* Escalable */
+  max-width: 150px;
+  /* Limita el tamaño máximo */
 }
 
 .homePage {
-  margin-right: 150px;
+  margin-right: 2rem;
+  /* Ajustado con unidad relativa */
 }
 
 ul,
@@ -19,7 +24,8 @@ li,
 a {
   text-decoration: none;
   margin-left: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  /* Reducido para escalabilidad */
   color: black;
 }
 
@@ -36,7 +42,7 @@ ul {
 }
 
 .boton1 {
-  margin-top: 100px;
+  margin-top: 2rem;
 }
 
 .boton2 {
@@ -50,6 +56,90 @@ ul {
 }
 
 .imagenUsuario {
-  width: 7vh;
+  width: 5vh;
+  /* Escalable */
+  max-width: 50px;
+  /* Limita el tamaño máximo */
   cursor: pointer;
+}
+
+/* Media Queries */
+
+/* Ajustes para pantallas medianas */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    /* Cambia la disposición a columna */
+    align-items: flex-start;
+    padding: 1rem;
+    /* Añade más espacio interno */
+  }
+
+  ul {
+    flex-direction: column;
+    /* Coloca los elementos en columna */
+    align-items: flex-start;
+  }
+
+  ul li {
+    margin-bottom: 0.5rem;
+    /* Espacio entre elementos */
+  }
+
+  .imagenLogueo {
+    width: 18vh;
+    max-width: 120px;
+  }
+
+  .homePage {
+    margin-right: 0;
+    /* Elimina el margen derecho fijo */
+  }
+
+  .boton2 {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+    /* Ajusta el tamaño en pantallas medianas */
+  }
+
+  .imagenUsuario {
+    width: 4vh;
+  }
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 480px) {
+  nav {
+    padding: 0.5rem;
+    /* Reduce el padding */
+  }
+
+  ul {
+    flex-direction: column;
+    /* Coloca los elementos en columna */
+    align-items: flex-start;
+  }
+
+  ul li {
+    font-size: 1.2rem;
+    /* Reduce el tamaño de fuente */
+    margin-bottom: 0.3rem;
+  }
+
+  .imagenLogueo {
+    width: 15vh;
+    max-width: 100px;
+    /* Reduce el tamaño máximo en pantallas pequeñas */
+  }
+
+  .boton2 {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    /* Reduce el padding */
+  }
+
+  .imagenUsuario {
+    width: 3.5vh;
+    max-width: 40px;
+  }
 }

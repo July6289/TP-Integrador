@@ -59,10 +59,12 @@ export class EquipoPokemonComponent {
         clonPokemon.isAlive = true;
         this.pokemonesEnEquipo.push(clonPokemon);
         this.pokeaux = [];
-      } else {
+      }
+      else {
         alert('No hay ningún Pokémon seleccionado!');
       }
-    } else {
+    }
+    else {
       alert('No puedes agregar más de 6 Pokémon al equipo.');
     }
   }

@@ -20,6 +20,9 @@
 .cajaCentral {
   flex: 2;
   background-color: #d3e9d7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .columnaDerecha {

@@ -2,7 +2,8 @@
   <fieldset class="teams">
     <ul>
       <li class="equipos" *ngFor="let item of poketeam; let i = index">
-        <span class="nombre-pokemon" (click)="llamarDbGuardarDatos()" (click)="goToVisualizarpokemon(item.nombre)">{{ item.nombre }}</span>
+        <span class="nombre-pokemon" (click)="llamarDbGuardarDatos()" (click)="goToVisualizarpokemon(item.nombre)">{{
+          item.nombre }}</span>
         <div class="botones-container">
           <button class="little" (click)="eliminarElemento(i)">Eliminar</button>
           <button class="little" (click)="cambiarNombreEquipo(i)">Cambiar Nombre</button>
@@ -15,14 +16,16 @@
 
 <div class="/selector" *ngIf="rutaCombate===false">
   <h1>Elija un Equipo Pokemon</h1>
-  <ul>
-    <li class="equipos" *ngFor="let item of poketeam; let i = index">
-      <span class="nombre-pokemon">{{ item.nombre }}</span>
-      <div class="botones-container">
-        <button class="big" (click)="goToVisualizarpokemon(item.nombre)">Detalles</button>
-        <button class="big" (click)="seleccionarEquipo(item)">Selecionar Equipo</button>
-      </div>
-    </li>
-  </ul>
+  <div class="selector">
+    <ul>
+      <li class="equipos" *ngFor="let item of poketeam; let i = index">
+        <span class="nombre-pokemon">{{ item.nombre }}</span>
+        <div class="botones-container">
+          <button class="big" (click)="goToVisualizarpokemon(item.nombre)">Detalles</button>
+          <button class="big" (click)="seleccionarEquipo(item)">Selecionar Equipo</button>
+        </div>
+      </li>
+    </ul>
+  </div>
   <button class="big" (click)="gotoMain()">Volver</button>
 </div>

@@ -9,36 +9,37 @@
   max-height: 50%;
   border-radius: 15px;
   background-color: #E5F9E0;
+  padding: 10px;
+  /* Añade padding para mejor espaciado */
 }
 
 .pokemon-imagen {
   width: 100%;
-  /* Tamaño de la imagen */
   margin-bottom: 8px;
-  /* Espacio entre la imagen y el botón */
 }
 
 .poketeam {
   background-color: #819875;
   width: 100%;
   flex: 2;
-  border-radius: 15PX;
+  border-radius: 15px;
 }
 
 .pokemon-grid {
   display: flex;
+  flex-wrap: wrap;
+  /* Permite que las tarjetas se ajusten a múltiples filas */
   gap: 10px;
   justify-content: center;
 }
 
 .pokemon {
-  margin-top: 2.55%;
+  margin-top: 2%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Centra la imagen y el botón */
   width: 120px;
-  /* Ancho de cada tarjeta de Pokémon */
+  /* Ancho base */
   padding: 10px;
   background-color: #819875;
   border-radius: 10px;
@@ -47,12 +48,12 @@
 
 .zonabotones {
   background-color: #E5F9E0;
-  flex: .5;
+  flex: 0.5;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10%;
-  border-radius: 15PX;
+  border-radius: 15px;
 }
 
 .agregar,
@@ -60,7 +61,8 @@
 .main,
 .eliminar {
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 1rem;
+  /* Tamaño escalable */
   background-color: white;
   border: 2px solid #4A7B59;
   transition-duration: 0.3s;
@@ -71,15 +73,16 @@
 .guardar,
 .main {
   width: 80%;
-  padding: 6px 15px 6px 15px;
-
+  padding: 0.5rem 1rem;
+  /* Ajuste proporcional */
 }
 
 .eliminar {
-  width: 10%;
-  display: flex;
-  justify-content: center;
-  padding: 5px 40px 5px 40px;
+  width: auto;
+  /* Ancho ajustable */
+  padding: 0.3rem 1rem;
+  /* Ajustado para pantallas pequeñas */
+  text-align: center;
 }
 
 .guardar:hover,
@@ -88,4 +91,65 @@
 .main:hover {
   background-color: #4A7B59;
   color: white;
+}
+
+/* Media Queries */
+
+/* Ajustes para pantallas medianas */
+@media (max-width: 768px) {
+  .pokemon {
+    width: 100px;
+    /* Reduce el tamaño en pantallas medianas */
+    padding: 8px;
+  }
+
+  .zonabotones {
+    gap: 5%;
+    /* Reduce el espacio entre botones */
+  }
+
+  .agregar,
+  .guardar,
+  .main {
+    width: 70%;
+    /* Reduce el ancho */
+    font-size: 0.9rem;
+    /* Reduce el tamaño de fuente */
+  }
+
+  .eliminar {
+    width: auto;
+    /* Deja que el ancho se ajuste automáticamente */
+    padding: 0.3rem 0.8rem;
+    /* Reduce el padding */
+  }
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 480px) {
+  .pokemon-grid {
+    gap: 5px;
+    /* Reduce el espacio entre tarjetas */
+  }
+
+  .pokemon {
+    width: 80px;
+    /* Reduce aún más el tamaño */
+    padding: 6px;
+  }
+
+  .agregar,
+  .guardar,
+  .main {
+    width: 100%;
+    /* Botones ocupan el ancho disponible */
+    font-size: 0.8rem;
+    padding: 0.4rem;
+  }
+
+  .eliminar {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    /* Reduce aún más el padding */
+  }
 }

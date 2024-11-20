@@ -47,7 +47,7 @@
 }
 
 .poketeam {
-  height: 100vh;
+  height: 93vh;
   box-sizing: border-box;
   /* Asegura que el padding y el border no incrementen el tamaño */
   background-image: url('/assets/imagenes/test2.jpg');
