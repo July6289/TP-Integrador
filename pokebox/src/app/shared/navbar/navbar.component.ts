@@ -46,23 +46,23 @@ export class NavbarComponent implements OnInit {
   dbUsuarioId() {
     this.secretId = this.auth.getTokenValue();
 
-    console.log(localStorage.getItem('token'));
-
     this.usuarioService.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
-          this.posicion=0;
+          this.posicion = 0;
           this.usuario.Username = valor.Username;
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
 
+          for (let i = 0; i < valor.box.length; i++) {
+            this.usuario.box[i] = valor.box[i]
+          }
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
 
           valor.box.map((caja) => {
-
             this.usuario.box[this.posicion].imagen = caja.imagen;
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
-            this.posicion = this.posicion + 1;
+            this.posicion++;
           })
         },
         error: (e: Error) => {

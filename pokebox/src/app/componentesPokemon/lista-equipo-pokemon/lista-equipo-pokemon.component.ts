@@ -58,13 +58,14 @@ export class ListaEquipoPokemonComponent {
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
 
-          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
+          for (let i = 0; i < valor.box.length; i++) {
+            this.usuario.box[i] = valor.box[i];
+          }
 
           valor.box.map((caja) => {
-
             this.usuario.box[this.posicion].imagen = caja.imagen;
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
-            this.posicion = this.posicion + 1;
+            this.posicion++;
           })
         },
         error: (e: Error) => {

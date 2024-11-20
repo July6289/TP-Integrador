@@ -236,8 +236,6 @@ export class PokeservicesService {
           isShiny: this.esShinySubject.value,
         };
 
-        console.log('Pokémon actualizado:', caja.pokemones[pokemonIndex]);
-
         // Emitir actualización
         this.cajasSubject.next(this.usuario.box);
         break;
