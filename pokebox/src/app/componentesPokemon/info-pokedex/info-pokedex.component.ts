@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { CommonModule } from '@angular/common';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
@@ -14,7 +14,11 @@ import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.intefa
 export class InfoPokedexComponent implements OnInit {
   selectedPokemon: Pokemon | null = null;
   spriteUrl: string = '';
+  @Output() guardarDatos = new EventEmitter<void>();
 
+  onGuardarDatos() {
+    this.guardarDatos.emit();
+  }
   constructor(private pokeService: PokeservicesService) { }
 
   ngOnInit(): void {
@@ -32,11 +36,15 @@ export class InfoPokedexComponent implements OnInit {
   cambiarAMacho(): void {
     this.pokeService.setEsMacho(true);
     this.applyChangesToPokemon();
+    this.onGuardarDatos();
+
   }
 
   cambiarAHembra(): void {
     this.pokeService.setEsMacho(false); // Llama a la lógica de verificación en el servicio
     this.applyChangesToPokemon();
+    this.onGuardarDatos();
+
   }
 
   cambiarAShiny(): void {
@@ -44,6 +52,10 @@ export class InfoPokedexComponent implements OnInit {
     const nuevoEstadoShiny = !this.pokeService.getEsShiny();
     this.pokeService.setEsShiny(nuevoEstadoShiny);
     this.applyChangesToPokemon();
+    this.onGuardarDatos();
+
+
+
   }
 
   private updateSprite(): void {

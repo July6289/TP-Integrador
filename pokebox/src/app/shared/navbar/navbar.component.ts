@@ -1,19 +1,21 @@
 import { Location } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../auth/service/auth.service';
 import { CajaService } from '../../pokeservices/caja.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
+import { CajaComponent } from '../../componentesPokemon/caja/caja.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink,],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit {
+
   textButton: string = 'Iniciar Sesion'
   perfilActivo: boolean = false;
   auth = inject(AuthService);
@@ -27,7 +29,8 @@ export class NavbarComponent implements OnInit {
     id: "",
     box: [],
     Username: "",
-    Password: ""
+    Password: "",
+    CombatesGanados:0,
   }
 
   secretId: string | null = ""
@@ -49,7 +52,6 @@ export class NavbarComponent implements OnInit {
     this.usuarioService.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
-          this.posicion = 0;
           this.usuario.Username = valor.Username;
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
@@ -91,10 +93,7 @@ export class NavbarComponent implements OnInit {
   }
 
   llamarDbGuardarDatos(): void {
-    if (this.secretId === null) {
-      this.secretId = ""
-    }
 
-    this.cajaService.dbGuardarDatos(this.usuario, this.secretId);
+    this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
   }
 }

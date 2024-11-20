@@ -288,6 +288,9 @@ export class PestaniaCombateComponent implements OnInit {
       alert("Ganaste el combate!");
 
       /* agregar un this.usuario.combatesGanados+=1 */
+
+
+
       this.toMainMenu()
     }
   }

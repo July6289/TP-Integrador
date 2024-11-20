@@ -36,8 +36,10 @@ export class CajaComponent implements OnInit {
     id: "",
     box: [],
     Username: "",
-    Password: ""
+    Password: "",
+    CombatesGanados:0,
   }
+
 
   constructor(private pokeService: PokeservicesService, private cajaService: CajaService) {
     // Asigna el observable `spriteActual$` desde el servicio
@@ -53,7 +55,10 @@ export class CajaComponent implements OnInit {
     this.dbUsuarioId();
   }
 
-
+  dameUsuario()
+  {
+    return this.usuario;
+  }
   dbUsuarioId() {
     this.usarioServicio.getUsuarioById(this.secretId).subscribe(
       {

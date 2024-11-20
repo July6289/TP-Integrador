@@ -11,12 +11,14 @@ import { UsuarioService } from '../../pokeservices/usuario.service';
 })
 export class PerfilComponent implements OnInit {
   id: string | null = ""
+  posicion:number=0;
   usarioServicio = inject(UsuarioService);
   usuario: Usuario = {
     id: "",
     box: [],
     Username: "",
-    Password: ""
+    Password: "",
+    CombatesGanados:0,
 
   }
 
@@ -25,12 +27,23 @@ export class PerfilComponent implements OnInit {
     this.dbUsuarioId();
   }
 
-  dbUsuarioId() {
+ dbUsuarioId() {
     this.usarioServicio.getUsuarioById(this.id).subscribe(
       {
         next: (valor: Usuario) => {
           this.usuario.Username = valor.Username;
-          this.usuario.Password = valor.Password;
+          this.usuario.Password = valor.Password
+          this.usuario.id = valor.id
+
+          for (let i = 0; i < valor.box.length; i++) {
+            this.usuario.box[i] = valor.box[i];
+          }
+
+          valor.box.map((caja) => {
+            this.usuario.box[this.posicion].imagen = caja.imagen;
+            this.usuario.box[this.posicion].pokemones = caja.pokemones;
+            this.posicion++;
+          })
         },
         error: (e: Error) => {
           console.log(e.message);
@@ -38,5 +51,6 @@ export class PerfilComponent implements OnInit {
       }
     )
   }
+
 
 }

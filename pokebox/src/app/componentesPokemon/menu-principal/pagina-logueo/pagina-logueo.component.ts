@@ -33,6 +33,7 @@ export class PaginaLogueoComponent {
       box: [[] as Caja[]], //un array vacio de cajas
       Username: ['', [Validators.required, Validators.minLength(6)]],
       Password: ['', [Validators.required, Validators.minLength(6)]],
+      CombatesGanados:0,
     }
   )
 

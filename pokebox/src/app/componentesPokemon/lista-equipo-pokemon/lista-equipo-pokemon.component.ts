@@ -34,7 +34,8 @@ export class ListaEquipoPokemonComponent {
     id: "",
     box: [],
     Username: "",
-    Password: ""
+    Password: "",
+    CombatesGanados:0,
   }
   posicion: number = 0;
   secretId: string | null = ""
