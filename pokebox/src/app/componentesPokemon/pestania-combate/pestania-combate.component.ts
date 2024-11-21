@@ -248,7 +248,6 @@ export class PestaniaCombateComponent implements OnInit {
 
     if (this.turno) {
       pokemonBot.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno)
-
       this.mensaje[this.mensaje.length] = " la vida del pokemon rival es: " + pokemonBot.life
       this.mensaje[this.mensaje.length] = " "
     }

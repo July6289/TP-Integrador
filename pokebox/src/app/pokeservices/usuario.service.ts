@@ -36,5 +36,8 @@ export class UsuarioService {
     return this.service.patch<Usuario>(`${this.urlbase}/${id}`, usuario);
   }
 
+  deleteUsuarioById(id:string|null):Observable<void>{
+    return this.service.delete<void>(`${this.urlbase}/${id}`);
+   }
 
 }

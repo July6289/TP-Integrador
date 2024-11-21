@@ -1,17 +1,25 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../auth/service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'perfil',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule,FormsModule],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.css'
 })
 export class PerfilComponent implements OnInit {
   id: string | null = ""
   posicion:number=0;
+  isModifyShowing:boolean=false;
+  validadorMensajeEspecifico:boolean=false;
+  MensajeEspecifico:string='';
+  isCardShowing:boolean=true;
+  isDeleteShowing:boolean=false
   usarioServicio = inject(UsuarioService);
   usuario: Usuario = {
     id: "",
@@ -21,7 +29,17 @@ export class PerfilComponent implements OnInit {
     CombatesGanados:0,
 
   }
+  fb = inject(FormBuilder);
 
+  auth=inject(AuthService);
+  usuarioService=inject(UsuarioService);
+  router=inject(Router);
+  formulario = this.fb.nonNullable.group(
+    {
+      Username: ['', [Validators.required, Validators.minLength(6)]],
+      Password: ['', [Validators.required, Validators.minLength(6)]],
+    }
+  )
   ngOnInit(): void {
     this.id = localStorage.getItem('token');
     this.dbUsuarioId();
@@ -51,6 +69,85 @@ export class PerfilComponent implements OnInit {
       }
     )
   }
+  toggleModify(){
+    this.isCardShowing=false;
+    this.isModifyShowing=true;
 
+  }
+  toogleDelete(){
+
+    this.isCardShowing=false;
+    this.isDeleteShowing=true;
+
+  }
+  cancelDelete(){
+    this.isCardShowing=true;
+    this.isDeleteShowing=false;
+  }
+  cancelar(){
+    this.isCardShowing=true;
+    this.isModifyShowing=false;
+  }
+  confirmDelete()
+  {
+    this.usuarioService.deleteUsuarioById(this.id).subscribe(
+      {
+        next:()=>{
+          console.log("usuario eliminado");
+          this.auth.logOut();
+          localStorage.clear();
+          this.router.navigate(['/registro']);
+        },
+        error:(e:Error)=>{
+          console.log(e);
+        }
+
+      }
+    )
+
+  }
+  addUsuario() {
+    if (this.formulario.invalid) {
+      console.log("Error");
+    }
+    else {
+      this.validadorMensajeEspecifico = true;
+      const datosFormulario = this.formulario.getRawValue();
+
+
+
+      this.usuarioService.getUsuariobyName(datosFormulario.Username).subscribe(
+        {
+          next: (usuarioDato: Usuario[]) => {
+            if (usuarioDato.length > 0 && usuarioDato[0] != undefined) {
+              this.MensajeEspecifico = 'Este usuario ya existe en el sistema';
+              this.validadorMensajeEspecifico = true;
+            }
+            else {
+              this.usuario.Username=datosFormulario.Username;
+              this.usuario.Password=datosFormulario.Password;
+              this.usuarioService.putUsuario(this.usuario,this.id).subscribe(
+                {
+                  next: () => {
+                    console.log("enviado con exito");
+                    this.isCardShowing=true;
+                    this.isModifyShowing=false;
+                    this.formulario.reset();
+                  },
+                  error: (e: Error) => {
+                    console.log(e.message);
+                    this.formulario.reset();
+                  }
+                }
+              )
+            }
+          },
+          error: (e: Error) => {
+            console.log(e.message);
+          }
+        }
+      )
+    }
+  }
 
 }

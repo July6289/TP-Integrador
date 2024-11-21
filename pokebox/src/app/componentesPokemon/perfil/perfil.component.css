@@ -1,19 +1,31 @@
+/* Estilo general para la vista completa */
 :host {
   height: 100vh;
   background-color: #4A7B59;
+  font-family: Arial, sans-serif;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
 }
 
+/* Estilos para la tarjeta de perfil */
 .user-card {
   width: 600px;
+  margin: 20px auto;
+  background-color: #f8f8f8;
   border-radius: 10px;
-  background: #f8f8f8;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   font-family: 'Arial', sans-serif;
-  margin: 20px auto;
+  transition: all 0.3s ease;
 }
-
-/* Cabecera del perfil */
+/* Estilo para el mini título en la sección de modificación */
+.modify-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4CAF50;
+  margin-bottom: 20px;
+}
 .user-card-header {
   background-color: #4CAF50;
   color: white;
@@ -25,15 +37,15 @@
   margin: 0;
 }
 
-/* Estilos del cuerpo del perfil */
+/* Estilos para el cuerpo del perfil */
 .user-card-body {
-  padding: 60px;
-  font-size: 20px;
+  padding: 30px;
+  font-size: 16px;
+  color: #333;
 }
 
-/* Cada bloque de información del usuario */
 .user-info {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .user-info label {
@@ -44,8 +56,117 @@
 .user-info span {
   display: block;
   margin-top: 5px;
-  color: #000000;
+  color: #000;
   font-size: 16px;
+}
+
+/* Botones de acción */
+.action-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-modify-account, .btn-delete-account {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+}
+
+.btn-modify-account {
+  background-color: #FF9800;
+  color: white;
+}
+
+.btn-modify-account:hover {
+  background-color: #FB8C00;
+}
+
+.btn-delete-account {
+  background-color: #F44336;
+  color: white;
+}
+
+.btn-delete-account:hover {
+  background-color: #E53935;
+}
+
+/* Estilos para el formulario de modificación */
+.modify-profile {
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.modify-profile form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.form-group input:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+.Error {
+  color: #F44336;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Botones para cancelar o confirmar */
+.botones {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.SalirRegistro, .Confirmar {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+}
+
+.SalirRegistro {
+  background-color: #9E9E9E;
+  color: white;
+}
+
+.SalirRegistro:hover {
+  background-color: #757575;
+}
+
+.Confirmar {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.Confirmar:hover {
+  background-color: #388E3C;
 }
 
 /* Efecto al pasar el mouse por encima del contenedor */
@@ -53,4 +174,54 @@
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
+}
+
+/*----------------------------------------------------------------------------------------------------------------*/
+/* Estilo para el modal de confirmación de eliminación */
+.delete-confirmation {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  text-align: center;
+}
+
+.delete-confirmation p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #F44336;
+  margin-bottom: 20px;
+}
+
+/* Estilos para los botones de confirmación y cancelación */
+.confirmation-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-confirm-delete, .btn-cancel-delete {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+}
+
+.btn-confirm-delete {
+  background-color: #F44336;
+  color: white;
+}
+
+.btn-confirm-delete:hover {
+  background-color: #D32F2F;
+}
+
+.btn-cancel-delete {
+  background-color: #9E9E9E;
+  color: white;
+}
+
+.btn-cancel-delete:hover {
+  background-color: #757575;
 }
