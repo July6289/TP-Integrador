@@ -27,6 +27,6 @@ Somos un equipo de 3 personas conformado por:
 - Lucas Hourcade (malotes-en-el-techo)
 - Nicolas Nieto (N1colasnieto)
 
-##Atencion
+## Atencion
 
 En el componente "caja", al inicializar el usuario, las cajas guardadas en el json aparecen como indefinidas generando un error en la consola, sin embargo, esto no es asi, ya que datos de las cajas se inicializan y guardan correctamente ya que se percibe una persistencia real en los pokemon de la caja.
