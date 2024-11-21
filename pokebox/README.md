@@ -2,26 +2,31 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.1.
 
-## Development server
+## Iniciar el Proyecto
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Para Iniciar el proyecto es necesario tener dos consolas activas, una levantara el json-server y otra el proyecto de Angular
 
-## Code scaffolding
+Lo primero de todo es verificar si nos encontramos en la ruta correcta, por ejemplo: "C:\Users\Usuario\Documents\GitHub\TP-Integrador\pokebox"
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Despues de situarnos en la carpeta correcta que debemos hacer es levantar un json-server (debes instalarlo previamente usando  `npm i -g json-server`), para esto, en la otra consola que abrimos, nos situaremos en la ruta donde se encuentra el archivo json de Usuarios (Por ejemplo: "C:\Users\Usuario\Documents\GitHub\TP-Integrador\pokebox\db". Si no te encuentras en esta carpeta y no sabes como abrirla en la consola usa el comando `cd` seguido se la ruta). Una vez alli usaremes el comando `json-server Usuario.json` para activar el servidor. Abre tu navegador y ve hacia `http://localhost:3000/` para comprobar si esta activo.
 
-## Build
+Luego de levantar el json-server, escribe en la consola principal el siguiente comando `ng serve -o` para levantar el proyecto de Angular. Abre el tu navegador y ve hacia `http://localhost:4200/`. La aplicacion se recargara automaricamente si haces un cambio en los archivos del programa.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Primeros pasos
 
-## Running unit tests
+Para poder usar la pagina web, es necesario tener una cuenta creada previamente, si no la tienes, apreta el boton "registrarse" y completa el formulario, una vez terminado puedes iniciar secion con el otro boton.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Combate
 
-## Running end-to-end tests
+para poder iniciar un combate es requisito que el se tenga como minimo un (1) equipo Pokemon previamente creado, por lo que es necesario que primero pases por la pestaña de creacion de equipos.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Sobre Nosotros
 
-## Further help
+Somos un equipo de 3 personas conformado por: 
+- Julian Auteri (July6289)
+- Lucas Hourcade (malotes-en-el-techo)
+- Nicolas Nieto (N1colasnieto)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+##Atencion
+
+En el componente "caja", al inicializar el usuario, las cajas guardadas en el json aparecen como indefinidas generando un error en la consola, sin embargo, esto no es asi, ya que datos de las cajas se inicializan y guardan correctamente ya que se percibe una persistencia real en los pokemon de la caja.
