@@ -55,7 +55,7 @@ export class NavbarComponent implements OnInit {
           this.usuario.Username = valor.Username;
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
-
+          this.usuario.CombatesGanados=valor.CombatesGanados;
           for (let i = 0; i < valor.box.length; i++) {
             this.usuario.box[i] = valor.box[i]
           }

@@ -1,7 +1,228 @@
 {
   "Usuarios": [
     {
-      "id": "9181",
+      "id": "6b83",
+      "box": [
+        {
+          "imagen": "/assets/imagenes/cajas/1.png",
+          "pokemones": [
+            {
+              "forms": [
+                {
+                  "name": "bulbasaur",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/1/"
+                }
+              ],
+              "id": 1,
+              "is_default": true,
+              "name": "bulbasaur",
+              "species": {
+                "name": "bulbasaur",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/1/"
+              },
+              "sprites": {
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png",
+                "back_female": null,
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/1.png",
+                "back_shiny_female": null,
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+                "front_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png",
+                "front_shiny_female": null
+              },
+              "types": [
+                {
+                  "slot": 1,
+                  "type": {
+                    "name": "grass",
+                    "url": "https://pokeapi.co/api/v2/type/12/"
+                  }
+                },
+                {
+                  "slot": 2,
+                  "type": {
+                    "name": "poison",
+                    "url": "https://pokeapi.co/api/v2/type/4/"
+                  }
+                }
+              ]
+            },
+            {
+              "forms": [
+                {
+                  "name": "venusaur",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/3/"
+                }
+              ],
+              "id": 3,
+              "is_default": true,
+              "name": "venusaur",
+              "species": {
+                "name": "venusaur",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/3/"
+              },
+              "sprites": {
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/3.png",
+                "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/3.png",
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/3.png",
+                "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/3.png",
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+                "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/3.png",
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/3.png",
+                "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/3.png"
+              },
+              "types": [
+                {
+                  "slot": 1,
+                  "type": {
+                    "name": "grass",
+                    "url": "https://pokeapi.co/api/v2/type/12/"
+                  }
+                },
+                {
+                  "slot": 2,
+                  "type": {
+                    "name": "poison",
+                    "url": "https://pokeapi.co/api/v2/type/4/"
+                  }
+                }
+              ],
+              "isMale": true,
+              "isShiny": true
+            }
+          ]
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/2.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/3.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/4.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/5.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/6.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/7.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/8.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/9.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/10.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/11.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/12.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/13.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/14.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/15.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/16.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/17.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/18.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/19.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/20.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/21.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/22.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/23.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/24.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/25.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/26.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/27.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/28.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/29.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/30.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/31.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/32.png",
+          "pokemones": []
+        }
+      ],
+      "Username": "miHuevos",
+      "Password": "miHuevos",
+      "CombatesGanados": 2
+    },
+    {
+      "id": "fd6d",
       "box": [
         {
           "imagen": "/assets/imagenes/cajas/1.png",
@@ -47,7 +268,7 @@
                 }
               ],
               "isMale": true,
-              "isShiny": false
+              "isShiny": true
             },
             {
               "forms": [
@@ -91,6 +312,49 @@
               ],
               "isMale": true,
               "isShiny": false
+            },
+            {
+              "forms": [
+                {
+                  "name": "venusaur",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/3/"
+                }
+              ],
+              "id": 3,
+              "is_default": true,
+              "name": "venusaur",
+              "species": {
+                "name": "venusaur",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/3/"
+              },
+              "sprites": {
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/3.png",
+                "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/3.png",
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/3.png",
+                "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/3.png",
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+                "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/3.png",
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/3.png",
+                "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/3.png"
+              },
+              "types": [
+                {
+                  "slot": 1,
+                  "type": {
+                    "name": "grass",
+                    "url": "https://pokeapi.co/api/v2/type/12/"
+                  }
+                },
+                {
+                  "slot": 2,
+                  "type": {
+                    "name": "poison",
+                    "url": "https://pokeapi.co/api/v2/type/4/"
+                  }
+                }
+              ],
+              "isMale": true,
+              "isShiny": true
             },
             {
               "forms": [
@@ -257,10 +521,10 @@
       ],
       "Username": "rodolfo",
       "Password": "rodolfo",
-      "CombatesGanados": 0
+      "CombatesGanados": 2
     },
     {
-      "id": "0fac",
+      "id": "624e",
       "box": [
         {
           "imagen": "/assets/imagenes/cajas/1.png",
@@ -391,8 +655,8 @@
           "pokemones": []
         }
       ],
-      "Username": "pepito",
-      "Password": "pepito",
+      "Username": "mateo1",
+      "Password": "mateo1",
       "CombatesGanados": 0
     }
   ]

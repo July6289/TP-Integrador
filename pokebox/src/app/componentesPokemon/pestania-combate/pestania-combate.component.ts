@@ -1,10 +1,15 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, inject, OnInit, SimpleChanges } from '@angular/core';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { authGuardFn } from '../../auth/guard/auth.guard-fn';
+import { UsuarioService } from '../../pokeservices/usuario.service';
+import { CajaService } from '../../pokeservices/caja.service';
+import { AuthService } from '../../auth/service/auth.service';
 
 @Component({
   selector: 'app-pestania-combate',
@@ -58,8 +63,24 @@ export class PestaniaCombateComponent implements OnInit {
 
   mensaje: string[] = [];
 
+  secretId:string|null='';
+  posicion:number=0;
+
+
+  usuario: Usuario = {
+    id: "",
+    box: [],
+    Username: "",
+    Password: "",
+    CombatesGanados:0,
+  }
+
   constructor(private service: EquipoPokemonService, private pokeservicesService: PokeservicesService, private router: Router) { }
 
+  cajaservice=inject(CajaService);
+
+  auth=inject(AuthService);
+  usuarioService=inject(UsuarioService);
   getpokemonFight() {
     this.peleador = this.service.getPosicionEquipo();
   }
@@ -68,6 +89,9 @@ export class PestaniaCombateComponent implements OnInit {
     this.getTeams()
 
     this.turno = this.service.getTurno();
+    this.secretId=localStorage.getItem('token');
+    this.dbUsuarioId()
+
   }
 
 
@@ -78,6 +102,37 @@ export class PestaniaCombateComponent implements OnInit {
     }
   }
 
+
+  dbUsuarioId() {
+    this.secretId = this.auth.getTokenValue();
+
+    this.usuarioService.getUsuarioById(this.secretId).subscribe(
+      {
+        next: (valor: Usuario) => {
+          this.usuario.Username = valor.Username;
+          this.usuario.Password = valor.Password
+          this.usuario.id = valor.id
+
+          console.log(valor.CombatesGanados);
+          this.usuario.CombatesGanados=valor.CombatesGanados;
+
+          for (let i = 0; i < valor.box.length; i++) {
+            this.usuario.box[i] = valor.box[i]
+          }
+          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
+
+          valor.box.map((caja) => {
+            this.usuario.box[this.posicion].imagen = caja.imagen;
+            this.usuario.box[this.posicion].pokemones = caja.pokemones;
+            this.posicion++;
+          })
+        },
+        error: (e: Error) => {
+          console.log(e.message);
+        }
+      }
+    )
+  }
   getTeams() {
     // Verifica compatibilidad antes de usar structuredClone
     if (typeof structuredClone === 'function') {
@@ -104,8 +159,13 @@ export class PestaniaCombateComponent implements OnInit {
     this.equipoRival.nombre = "";
     this.equipoRival.equipo = [];
     this.service.EquipoSeleccionadoBot(this.equipoRival);
+    this.cajaservice.dbGuardarDatos(this.usuario,this.secretId);
 
-    this.router.navigate(['/**']);
+
+      this.router.navigate(['/**']);
+
+
+
   }
 
   calcularAnchoVida(pokemon: Pokemon): string {
@@ -188,6 +248,7 @@ export class PestaniaCombateComponent implements OnInit {
 
     if (this.turno) {
       pokemonBot.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno)
+
       this.mensaje[this.mensaje.length] = " la vida del pokemon rival es: " + pokemonBot.life
       this.mensaje[this.mensaje.length] = " "
     }
@@ -287,11 +348,17 @@ export class PestaniaCombateComponent implements OnInit {
     else if (this.equipoRival.equipo.length === 0) {
       alert("Ganaste el combate!");
 
-      /* agregar un this.usuario.combatesGanados+=1 */
+
+        console.log("resultado:"+this.usuario.CombatesGanados)
+
+        this.usuario.CombatesGanados+=1;
+
+        /* agregar un this.usuario.combatesGanados+=1 */
 
 
 
-      this.toMainMenu()
+        this.toMainMenu()
+
     }
   }
 

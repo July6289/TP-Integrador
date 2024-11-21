@@ -28,7 +28,7 @@ export class UsuarioService {
     return this.service.get<Usuario[]>(`${this.urlbase}?Username=${name}`);
   }
 
-  putUsuario(usuario: Usuario, id: string): Observable<Usuario> {
+  putUsuario(usuario: Usuario, id: string|null): Observable<Usuario> {
     if (!id) {
       console.error('Error: El ID del usuario no está definido.');
       return throwError(() => new Error('El ID del usuario no está definido.'));

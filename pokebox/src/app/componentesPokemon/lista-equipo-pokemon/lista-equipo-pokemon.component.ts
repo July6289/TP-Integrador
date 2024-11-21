@@ -7,6 +7,7 @@ import { CajaService } from '../../pokeservices/caja.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { AuthService } from '../../auth/service/auth.service';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-lista-equipo-pokemon',
@@ -59,6 +60,7 @@ export class ListaEquipoPokemonComponent {
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
 
+          this.usuario.CombatesGanados=valor.CombatesGanados;
           for (let i = 0; i < valor.box.length; i++) {
             this.usuario.box[i] = valor.box[i];
           }
