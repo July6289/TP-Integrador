@@ -1,0 +1,14 @@
+<div class="reset-password-container">
+  <h2>Restablecer contraseña</h2>
+
+  <label for="new-password">Nueva contraseña:</label>
+  <input type="password" id="new-password" [(ngModel)]="newPassword" />
+  @if (isMessageShowing) {
+
+    <p>{{message}} </p>
+
+
+  }
+
+  <button (click)="onSubmit()">Restablecer</button>
+</div>

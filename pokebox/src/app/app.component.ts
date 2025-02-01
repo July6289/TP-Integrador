@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient} from '@angular/common/http';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, HttpClientModule, NavbarComponent],
+  imports: [RouterOutlet, CommonModule,NavbarComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -27,6 +27,8 @@ export class AppComponent implements OnInit  {
       this.showNavbar =!currentRoute.includes('registro')// Ejemplo de ruta para no mostrar el navbar
       this.showNavbar2=!currentRoute.includes('cambiar-pokemon');
       this.showNavbar3=!currentRoute.includes('combate');
+      this.showNavbar3=!currentRoute.includes('cambiar-contra');
+
 
     });
   }

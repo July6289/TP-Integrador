@@ -10,6 +10,7 @@ import { SelectorPokemonComponent } from './componentesPokemon/selector-pokemon/
 import { AccessDeniedPageComponent } from './auth/access-denied-page/access-denied-page.component';
 import { authGuardFnLogout } from './auth/guard/auth.guard-fn-logout';
 import { authGuardFn } from './auth/guard/auth.guard-fn';
+import { RecuperarContraComponent } from './componentesPokemon/recuperar-contra/recuperar-contra.component';
 
 export const routes: Routes = [
   {
@@ -56,6 +57,10 @@ export const routes: Routes = [
     path: 'cambiar-pokemon',
     component: SelectorPokemonComponent,
     canActivate:[authGuardFn]
+  },
+  {
+    path:'cambiar-contra',
+    component:RecuperarContraComponent,
   },
   {
     path: '**',

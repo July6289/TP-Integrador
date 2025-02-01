@@ -85,7 +85,8 @@ export class NavbarComponent implements OnInit {
       this.Router.navigateByUrl('registro');
     } else {
 
-      this.auth.logOut()
+      this.auth.logOut()//para el guard
+      this.auth.logLogout() //para firebase
       this.textButton = 'Iniciar Sesion'
       this.Router.navigateByUrl('registro');
       localStorage.clear();

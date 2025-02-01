@@ -11,8 +11,14 @@
         <span>{{ usuario.Username }}</span>
       </div>
       <div class="user-info">
+        @if (isLoggedWithouthGoogle) {
         <label>Contraseña:</label>
         <span>{{ usuario.Password }}</span>
+        }
+        @else {
+         <p>Usuario autenticado con Google</p>
+
+        }
       </div>
       <div class="user-info">
         <label>Combates Ganados:</label>
@@ -21,7 +27,11 @@
 
       <!-- Botones de acción -->
       <div class="action-buttons">
+        @if(isLoggedWithouthGoogle)
+      {
         <button class="btn-modify-account" (click)="toggleModify()">Modificar Perfil</button>
+      }
+
         <button class="btn-delete-account"  (click)="toogleDelete()" >Eliminar Cuenta</button>
       </div>
     </div>

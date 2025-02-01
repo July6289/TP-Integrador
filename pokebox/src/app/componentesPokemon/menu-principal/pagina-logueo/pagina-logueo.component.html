@@ -12,7 +12,7 @@
 
     <label for="">Usuario:</label>
 
-    <input type="text" value="''" formControlName="Username">
+    <input type="text" value="''" formControlName="Username" placeholder="example@gmail.com">
     @if (formulario.controls['Username'].getError('required')&&formulario.controls['Username'].touched) {
 
     <p class="Error">Se debe llenar el campo requerido</p>
@@ -26,7 +26,7 @@
 
     <label for="">Contraseña:</label>
 
-    <input type="password" formControlName="Password">
+    <input type="password" formControlName="Password" placeholder="password" >
     @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
 
     <p class="Error">Se debe llenar el campo requerido</p>
@@ -55,12 +55,10 @@
   }
 
   @if (isFormLoginShowing) {
-  <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="checkLoggedUsuario()"
-    (keydown.enter)="checkLoggedUsuario()">
+  <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="checkLoggedUsuario()" (keydown.enter)="checkLoggedUsuario()">
 
-    <label for="">Usuario:</label>
-
-    <input type="text" value="''" formControlName="Username">
+    <label for="usuario">Usuario:</label>
+    <input type="text" value="''" formControlName="Username" placeholder="example@gmail.com" id="usuario">
     @if (formulario.controls['Username'].getError('required')&&formulario.controls['Username'].touched) {
 
     <p class="Error">Campo requerido</p>
@@ -72,9 +70,9 @@
 
     }
 
-    <label for="">Contraseña:</label>
+    <label for="password">Contraseña:</label>
 
-    <input type="password" formControlName="Password">
+    <input type="password" formControlName="Password" placeholder="password" id="password">
     @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
 
     <p class="Error">Campo requerido</p>
@@ -88,10 +86,42 @@
     @if (validadorMensajeEspecifico) {
     <p class="Error">{{mensajeEspecifico}}</p>
     }
+    <button (click)="btOlvideContrasenia()">¿olvidaste tu contraseña?</button>
+
+    <button (click)="onClickGoogle()">Iniciar Sesion con Google</button>
   </form>
   <div class="botones">
     <button class="SalirRegistro" (click)="btVolver()">Volver</button>
     <button class="Confirmar" (click)="checkLoggedUsuario()">Confirmar</button>
   </div>
   }
+@if(isFormForgotPasswordShowing)
+{
+
+<form class="formOlvideContraseña" [formGroup]="formulario">
+
+
+
+  <p class="titulo">¿olvidaste tu contraseña?</p>
+
+  <p class="subtitulo">ingrese su correo electronico para crear una contraseña nueva</p>
+  <input type="text" value="''" formControlName="Username" placeholder="example@gmail.com">
+
+  @if (validadorMensajeEspecifico) {
+
+    <p class="mensaje">{{mensajeEspecifico}}</p>
+
+  }
+
+</form>
+
+<div class="botones">
+  <button class="SalirRegistro" (click)="btVolver()">Volver</button>
+  <button class="Confirmar" (click)="btEnviarGmail()">Enviar</button>
+</div>
+
+
+}
+
+
 </div>

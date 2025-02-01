@@ -1,9 +1,10 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, TestabilityRegistry, inject } from '@angular/core';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/service/auth.service';
 import { Router } from '@angular/router';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 @Component({
   selector: 'perfil',
@@ -19,7 +20,8 @@ export class PerfilComponent implements OnInit {
   validadorMensajeEspecifico:boolean=false;
   MensajeEspecifico:string='';
   isCardShowing:boolean=true;
-  isDeleteShowing:boolean=false
+  isDeleteShowing:boolean=false;
+  isLoggedWithouthGoogle:boolean=true;
   usarioServicio = inject(UsuarioService);
   usuario: Usuario = {
     id: "",
@@ -31,7 +33,7 @@ export class PerfilComponent implements OnInit {
   }
   fb = inject(FormBuilder);
 
-  auth=inject(AuthService);
+  authservice=inject(AuthService);
   usuarioService=inject(UsuarioService);
   router=inject(Router);
   formulario = this.fb.nonNullable.group(
@@ -42,7 +44,11 @@ export class PerfilComponent implements OnInit {
   )
   ngOnInit(): void {
     this.id = localStorage.getItem('token');
+    console.log(this.id)
     this.dbUsuarioId();
+
+
+
   }
 
  dbUsuarioId() {
@@ -50,8 +56,22 @@ export class PerfilComponent implements OnInit {
       {
         next: (valor: Usuario) => {
           this.usuario.Username = valor.Username;
-          this.usuario.Password = valor.Password
+         if(this.usuario.Password)
+          {
+            this.usuario.Password = valor.Password
+            this.isLoggedWithouthGoogle=true;
+          }
+          else
+          {
+             this.isLoggedWithouthGoogle=false;
+
+          }
+
           this.usuario.id = valor.id
+
+
+
+
           this.usuario.CombatesGanados=valor.CombatesGanados;
           for (let i = 0; i < valor.box.length; i++) {
             this.usuario.box[i] = valor.box[i];
@@ -90,11 +110,12 @@ export class PerfilComponent implements OnInit {
   }
   confirmDelete()
   {
+    this.authservice.BorrarUsuario();
     this.usuarioService.deleteUsuarioById(this.id).subscribe(
       {
         next:()=>{
           console.log("usuario eliminado");
-          this.auth.logOut();
+          this.authservice.logOut();
           localStorage.clear();
           this.router.navigate(['/registro']);
         },
