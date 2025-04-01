@@ -1,11 +1,9 @@
 <div class="totalidad">
   <div class="contenidoPagina">
+
     <div class="columnaIzquierda">
       <div class="infopokedex">
         <app-info-pokedex (guardarDatos)="guardarDatosDesdeInfoPokedex()"></app-info-pokedex>
-
-
-
       </div>
 
       <div class="listadeequipos">
@@ -16,8 +14,14 @@
         <button class="btnbattle" (click)="goToCombate(); caja.dbGuardarDatos()">Combate</button>
       </div>
     </div>
+
     <div class="cajaCentral">
+      <div class="favoritos">
+        <app-favoritos></app-favoritos>
+      </div>
+
       <app-caja #caja></app-caja>
+
     </div>
 
     <div class="columnaDerecha">

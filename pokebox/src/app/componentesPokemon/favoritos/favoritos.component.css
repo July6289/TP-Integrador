@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 13vh;
+}
+
+.rectangulo {
+  width: 90vh;
+  /* Ajusta el tamaño del rectángulo */
+  height: 11vh;
+  /* Ajusta el tamaño del rectángulo */
+  background-color: red;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 10px;
+  /* Opcional: bordes redondeados */
+}
+
+.circulo {
+  width: 9vh;
+  /* Tamaño de los círculos */
+  height: 9vh;
+  /* Tamaño de los círculos */
+  background-color: blue;
+  border-radius: 50%;
+}

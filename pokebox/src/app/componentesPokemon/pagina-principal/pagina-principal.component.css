@@ -22,7 +22,7 @@
   background-color: #d3e9d7;
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-direction: column;
 }
 
 .columnaDerecha {

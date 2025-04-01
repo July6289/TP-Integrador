@@ -7,11 +7,12 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { Caja } from '../../interfaces/interfaz-caja/interfazCaja.inteface';
+import { FavoritosComponent } from "../favoritos/favoritos.component";
 
 @Component({
   selector: 'pagina-principal',
   standalone: true,
-  imports: [ListaEquipoPokemonComponent, ListaPokemonComponent, CajaComponent, InfoPokedexComponent, CommonModule],
+  imports: [ListaEquipoPokemonComponent, ListaPokemonComponent, CajaComponent, InfoPokedexComponent, CommonModule, FavoritosComponent],
   templateUrl: './pagina-principal.component.html',
   styleUrl: './pagina-principal.component.css'
 })
