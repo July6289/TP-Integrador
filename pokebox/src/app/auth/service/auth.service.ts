@@ -1,18 +1,14 @@
 import { Injectable } from '@angular/core';
-import {createUserWithEmailAndPassword, deleteUser, getAuth, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, User} from 'firebase/auth'
+import { createUserWithEmailAndPassword, deleteUser, getAuth, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
   estoyLogeado: boolean = false;
   idDelUsuario: string = '';
 
-
-
-
-//metodos mios originales
+  //metodos mios originales
   getTokenValue() {
     return localStorage.getItem('token');
   }
@@ -24,51 +20,39 @@ export class AuthService {
     this.estoyLogeado = false;
   }
 
-
   //metodos del firebase
-  getAuth()
-{
-  return getAuth();
-
-}
-
-  register(user:Usuario)
-  {
-    if(user.Password!=null)
-    {
-    return createUserWithEmailAndPassword(getAuth(),user.Username,user.Password);
-   }
-   else
-   {
-    throw new Error("contrasenia nula");
-
-   }
-
-
-  }
-  logIn2(user:Usuario)
-  {
-    if(user.Password!=null)
-  {
-  return signInWithEmailAndPassword(getAuth(),user.Username,user.Password)
-  }
-  else
-  {
-   throw new Error("contrasenia nula");
+  getAuth() {
+    return getAuth();
 
   }
 
+  register(user: Usuario) {
+    if (user.Password != null) {
+      return createUserWithEmailAndPassword(getAuth(), user.Username, user.Password);
+    }
+    else {
+      throw new Error("contrasenia nula");
+    }
   }
 
-  logInGoogle(){
+  logIn2(user: Usuario) {
+    if (user.Password != null) {
+      return signInWithEmailAndPassword(getAuth(), user.Username, user.Password)
+    }
+    else {
+      throw new Error("contrasenia nula");
+    }
+  }
+
+  logInGoogle() {
     return signInWithPopup(getAuth(), new GoogleAuthProvider)
   }
 
-  logLogout(){
+  logLogout() {
     return signOut(getAuth());
   }
 
-   BorrarUsuario() {
+  BorrarUsuario() {
     const auth = getAuth();
     const user = auth.currentUser;
 
@@ -87,27 +71,22 @@ export class AuthService {
     }
   }
 
-  enviarCorreoRecuperación(email:string)
-  {
+  enviarCorreoRecuperación(email: string) {
     const actionCodeSettings = {
       url: 'http://localhost:4200/cambiar-contra', // Solo la URL necesaria
     };
-    const auth= getAuth(); // objeto de autenticación de firebase
-    sendPasswordResetEmail(auth,email,actionCodeSettings)
-    .then(() => {
-      console.log('Correo de recuperación enviado.');
-    })
-    .catch((error) => {
-      console.error('Error al enviar el correo:', error.message);
-    });
-
-
-
+    const auth = getAuth(); // objeto de autenticación de firebase
+    sendPasswordResetEmail(auth, email, actionCodeSettings)
+      .then(() => {
+        console.log('Correo de recuperación enviado.');
+      })
+      .catch((error) => {
+        console.error('Error al enviar el correo:', error.message);
+      });
   }
 
-  isAuthenticated():boolean{
-    const user=getAuth().currentUser;
-    return user!==null;
+  isAuthenticated(): boolean {
+    const user = getAuth().currentUser;
+    return user !== null;
   }
-
 }

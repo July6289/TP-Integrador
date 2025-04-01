@@ -10,7 +10,7 @@ export class UsuarioService {
 
   constructor(private service: HttpClient) { }
   urlbase: string = 'http://localhost:3000/Usuarios';
-  estoyLogeado:boolean=false
+  estoyLogeado: boolean = false
 
   postUsuario(usuario: Usuario): Observable<Usuario> {
     return this.service.post<Usuario>(this.urlbase, usuario);
@@ -28,7 +28,7 @@ export class UsuarioService {
     return this.service.get<Usuario[]>(`${this.urlbase}?Username=${name}`);
   }
 
-  putUsuario(usuario: Usuario, id: string|null): Observable<Usuario> {
+  putUsuario(usuario: Usuario, id: string | null): Observable<Usuario> {
     if (!id) {
       console.error('Error: El ID del usuario no está definido.');
       return throwError(() => new Error('El ID del usuario no está definido.'));
@@ -36,8 +36,7 @@ export class UsuarioService {
     return this.service.patch<Usuario>(`${this.urlbase}/${id}`, usuario);
   }
 
-  deleteUsuarioById(id:string|null):Observable<void>{
+  deleteUsuarioById(id: string | null): Observable<void> {
     return this.service.delete<void>(`${this.urlbase}/${id}`);
-   }
-
+  }
 }

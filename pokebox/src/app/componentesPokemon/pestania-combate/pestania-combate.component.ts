@@ -6,7 +6,6 @@ import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
-import { authGuardFn } from '../../auth/guard/auth.guard-fn';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { CajaService } from '../../pokeservices/caja.service';
 import { AuthService } from '../../auth/service/auth.service';
@@ -63,8 +62,8 @@ export class PestaniaCombateComponent implements OnInit {
 
   mensaje: string[] = [];
 
-  secretId:string|null='';
-  posicion:number=0;
+  secretId: string | null = '';
+  posicion: number = 0;
 
 
   usuario: Usuario = {
@@ -72,15 +71,15 @@ export class PestaniaCombateComponent implements OnInit {
     box: [],
     Username: "",
     Password: "",
-    CombatesGanados:0,
+    CombatesGanados: 0,
   }
 
   constructor(private service: EquipoPokemonService, private pokeservicesService: PokeservicesService, private router: Router) { }
 
-  cajaservice=inject(CajaService);
+  cajaservice = inject(CajaService);
 
-  auth=inject(AuthService);
-  usuarioService=inject(UsuarioService);
+  auth = inject(AuthService);
+  usuarioService = inject(UsuarioService);
   getpokemonFight() {
     this.peleador = this.service.getPosicionEquipo();
   }
@@ -89,7 +88,7 @@ export class PestaniaCombateComponent implements OnInit {
     this.getTeams()
 
     this.turno = this.service.getTurno();
-    this.secretId=localStorage.getItem('token');
+    this.secretId = localStorage.getItem('token');
     this.dbUsuarioId()
 
   }
@@ -114,7 +113,7 @@ export class PestaniaCombateComponent implements OnInit {
           this.usuario.id = valor.id
 
           console.log(valor.CombatesGanados);
-          this.usuario.CombatesGanados=valor.CombatesGanados;
+          this.usuario.CombatesGanados = valor.CombatesGanados;
 
           for (let i = 0; i < valor.box.length; i++) {
             this.usuario.box[i] = valor.box[i]
@@ -159,10 +158,10 @@ export class PestaniaCombateComponent implements OnInit {
     this.equipoRival.nombre = "";
     this.equipoRival.equipo = [];
     this.service.EquipoSeleccionadoBot(this.equipoRival);
-    this.cajaservice.dbGuardarDatos(this.usuario,this.secretId);
+    this.cajaservice.dbGuardarDatos(this.usuario, this.secretId);
 
 
-      this.router.navigate(['/**']);
+    this.router.navigate(['/**']);
 
 
 
@@ -283,12 +282,8 @@ export class PestaniaCombateComponent implements OnInit {
     }
 
     if (!this.checkStstate(this.equipoMain.equipo[this.peleador])) {
-      /*this.mensaje[this.mensaje.length] = " "
-       this.mensaje[this.mensaje.length] = "tu pokemon esta debilitado!"*/
       alert("tu pokemon esta debilitado!")
     } else if (!this.checkStstate(this.equipoRival.equipo[this.peleadorBot])) {
-      /*this.mensaje[this.mensaje.length] = " "
-      this.mensaje[this.mensaje.length] = "el pokemon rival esta debilitado!"*/
       alert("el pokemon rival esta debilitado!")
     }
 
@@ -322,8 +317,6 @@ export class PestaniaCombateComponent implements OnInit {
               this.gotoSlector();
             }
             else {
-              /*this.mensaje[this.mensaje.length] = " "
-              this.mensaje[this.mensaje.length] = "el siguiente pokemon del rival es: " + team.equipo[0].name*/
               alert("el siguiente pokemon del rival es: " + team.equipo[0].name)
               this.gotoSlector();
             }
@@ -346,18 +339,9 @@ export class PestaniaCombateComponent implements OnInit {
     }
     else if (this.equipoRival.equipo.length === 0) {
       alert("Ganaste el combate!");
-
-
-        console.log("resultado:"+this.usuario.CombatesGanados)
-
-        this.usuario.CombatesGanados+=1;
-
-        /* agregar un this.usuario.combatesGanados+=1 */
-
-
-
-        this.toMainMenu()
-
+      console.log("resultado:" + this.usuario.CombatesGanados)
+      this.usuario.CombatesGanados += 1;
+      this.toMainMenu()
     }
   }
 

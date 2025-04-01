@@ -6,7 +6,6 @@ import { InfoPokedexComponent } from "../info-pokedex/info-pokedex.component";
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
-import { Caja } from '../../interfaces/interfaz-caja/interfazCaja.inteface';
 import { FavoritosComponent } from "../favoritos/favoritos.component";
 
 @Component({

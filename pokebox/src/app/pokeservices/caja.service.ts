@@ -9,7 +9,7 @@ import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.inter
 export class CajaService {
   constructor(private usuarioService: UsuarioService) { }
 
-  dbGuardarDatos(usuario: Usuario, secretId: string|null): void {
+  dbGuardarDatos(usuario: Usuario, secretId: string | null): void {
     if (usuario.Password !== '') {
       this.usuarioService.putUsuario(usuario, secretId).subscribe({
         next: () => {

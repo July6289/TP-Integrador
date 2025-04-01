@@ -7,7 +7,6 @@ import { CajaService } from '../../pokeservices/caja.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { AuthService } from '../../auth/service/auth.service';
-import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-lista-equipo-pokemon',
