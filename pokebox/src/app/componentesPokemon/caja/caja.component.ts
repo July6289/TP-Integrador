@@ -37,9 +37,13 @@ export class CajaComponent implements OnInit {
     box: [],
     Username: "",
     Password: "",
-    CombatesGanados:0,
+    CombatesGanados: 0,
   }
 
+  mostrarMenu = false;
+  posX = 0;
+  posY = 0;
+  pokemonClickeado: Pokemon | null = null;
 
   constructor(private pokeService: PokeservicesService, private cajaService: CajaService) {
     // Asigna el observable `spriteActual$` desde el servicio
@@ -55,10 +59,10 @@ export class CajaComponent implements OnInit {
     this.dbUsuarioId();
   }
 
-  dameUsuario()
-  {
+  dameUsuario() {
     return this.usuario;
   }
+
   dbUsuarioId() {
     this.usarioServicio.getUsuarioById(this.secretId).subscribe(
       {
@@ -66,7 +70,7 @@ export class CajaComponent implements OnInit {
           this.usuario.Username = valor.Username;
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
-          this.usuario.CombatesGanados=valor.CombatesGanados;
+          this.usuario.CombatesGanados = valor.CombatesGanados;
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
 
 
@@ -88,7 +92,7 @@ export class CajaComponent implements OnInit {
   dbGuardarDatos() {
     this.dbUsuarioId();
 
-      this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
+    this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
 
 
   }
@@ -158,5 +162,24 @@ export class CajaComponent implements OnInit {
     } else {
       return pokemon.sprites.front_female || pokemon.sprites.front_default;
     }
+  }
+
+  onRightClick(event: MouseEvent, pokemon: Pokemon) {
+    event.preventDefault(); // Evita el menú contextual del navegador
+    this.mostrarMenu = true;
+    this.posX = event.clientX;
+    this.posY = event.clientY;
+    this.pokemonClickeado = pokemon;
+  }
+
+  agregarAFavoritos() {
+    if (this.pokemonClickeado) {
+      this.pokeservicio.agregarAFavoritos(this.pokemonClickeado);
+      this.mostrarMenu = false;
+    }
+  }
+
+  cerrarMenu() {
+    this.mostrarMenu = false;
   }
 }

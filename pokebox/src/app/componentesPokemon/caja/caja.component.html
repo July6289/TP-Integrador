@@ -14,6 +14,10 @@
           <!-- Mostrar sprite actual si el Pokémon está seleccionado; si no, mostrar el sprite por defecto -->
           <img [src]="getSpriteUrl(pokemon)" [alt]="pokemon.name" class="pokemon-imagen"
             (click)="onPokemonClick(pokemon)" [class.seleccionado]="pokemonSeleccionado === pokemon">
+
+          <div class="pokemon" (contextmenu)="onRightClick($event, pokemon)">
+            <img [src]="getSpriteUrl(pokemon)" [alt]="pokemon.name" class="pokemon-imagen">
+          </div>
         </div>
       </div>
     </div>
@@ -31,3 +35,8 @@
 </div>
 
 <footer class="nombrecaja">{{ nombreCaja }}</footer>
+
+<div *ngIf="mostrarMenu" class="context-menu" [style.top.px]="posY" [style.left.px]="posX">
+  <button (click)="agregarAFavoritos()">⭐ Agregar a Favoritos</button>
+  <button (click)="cerrarMenu()">❌ Cancelar</button>
+</div>

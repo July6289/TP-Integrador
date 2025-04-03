@@ -73,8 +73,8 @@
                   }
                 }
               ],
-              "isMale": true,
-              "isShiny": false
+              "isMale": false,
+              "isShiny": true
             }
           ]
         },
