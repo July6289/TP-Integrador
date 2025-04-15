@@ -46,7 +46,7 @@
 .btnbattle {
   border-radius: 8px;
   background-color: white;
-  border: 2px solid #4A7B59;
+  border: 2px solid #B0B0C3;
   transition-duration: 0.3s;
   cursor: pointer;
 }
@@ -61,7 +61,7 @@
 }
 
 .botoncin:hover {
-  background-color: #4A7B59;
+  background-color: #B0B0C3;
   color: white;
 }
 
@@ -84,7 +84,7 @@
 
 .infopokedex {
   flex: 1;
-  background-color: #BD2222;
+  background-color: #2C2C3E;
 }
 
 .listadeequipos {

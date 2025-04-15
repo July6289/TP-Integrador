@@ -10,7 +10,7 @@
   /* Ajusta el tamaño del rectángulo*/
   height: 11vh;
   /* Ajusta el tamaño del rectángulo*/
-  background-color: #BD2222;
+  background-color: #2C2C3E;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -22,7 +22,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: blue;
+  background-color: #B0B0C3;
   border-radius: 50%;
   width: 9vh;
   height: 9vh;
