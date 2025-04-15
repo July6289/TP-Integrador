@@ -19,7 +19,7 @@
 
 .cajaCentral {
   flex: 2;
-  background-color: #d3e9d7;
+  background-color:#4A4A4A;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -27,14 +27,14 @@
 
 .columnaDerecha {
   flex: 1;
-  background-color: #c2d6c4;
+  background-color:#4A4A4A;
 }
 
 /* Estilos de cabezal */
 .cabezal {
   display: flex;
   padding: 0.5rem;
-  background-color: #7FA185;
+  background-color:	#4A4A4A;
   box-sizing: border-box;
 }
 
@@ -72,7 +72,7 @@
 .columnaIzquierda {
   flex: 1;
   display: flex;
-  background-color: #a8b9a0;
+  background-color:	#4A4A4A;
   flex-direction: column;
   gap: 0.5rem;
 }
@@ -84,7 +84,7 @@
 
 .infopokedex {
   flex: 1;
-  background-color: #95A98B;
+  background-color: #BD2222;
 }
 
 .listadeequipos {
@@ -104,7 +104,7 @@
 }
 
 .btnbattle:hover {
-  background-color: #A52A2A;
+  background-color: #BD2222;
   color: white;
 }
 
