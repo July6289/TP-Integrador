@@ -1,23 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { PokeservicesService } from '../../pokeservices/pokeservices.service';
-import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
-import { Observable } from 'rxjs';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-favoritos',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './favoritos.component.html',
-  styleUrls: ['./favoritos.component.css']
+  styleUrl: './favoritos.component.css'
 })
-export class FavoritosComponent implements OnInit {
-  favoritos$: Observable<Pokemon[]>;
+export class FavoritosComponent {
 
-  constructor(private pokeService: PokeservicesService) {
-    this.favoritos$ = this.pokeService.favoritos$;
-  }
-
-  ngOnInit(): void {}
 }
-

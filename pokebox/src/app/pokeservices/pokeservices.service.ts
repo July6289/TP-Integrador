@@ -76,9 +76,6 @@ export class PokeservicesService {
     this.cajasSubject.next(this.usuario.box); // Emitir cajas inicializadas
   }
 
-  private favoritosSubject = new BehaviorSubject<Pokemon[]>([]);
-  favoritos$ = this.favoritosSubject.asObservable();
-
   getid() {
     this.clave = localStorage.getItem('token')
   }
@@ -255,6 +252,7 @@ export class PokeservicesService {
     }
   }
 
+
   //generar un equipo random
   getRandomPokemonTeam(): Observable<Pokemon[]> {
     const pokemonRequests: Observable<Pokemon | null>[] = [];
@@ -273,25 +271,5 @@ export class PokeservicesService {
     return forkJoin(pokemonRequests).pipe(
       map(results => results.filter((pokemon): pokemon is Pokemon => pokemon !== null))
     );
-  }
-
-  agregarAFavoritos(pokemon: Pokemon): void {
-    let favoritosActuales = this.favoritosSubject.value;
-
-    if (favoritosActuales.length >= 6) {
-      alert('¡No puedes agregar más de 6 Pokémon a favoritos!');
-      return;
-    }
-
-    // Verifica que el Pokémon no esté ya en favoritos
-    if (!favoritosActuales.find(p => p.id === pokemon.id)) {
-      this.favoritosSubject.next([...favoritosActuales, pokemon]);
-    } else {
-      alert('Este Pokémon ya está en favoritos.');
-    }
-  }
-
-  obtenerFavoritos(): Pokemon[] {
-    return this.favoritosSubject.value;
   }
 }

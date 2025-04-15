@@ -18,23 +18,11 @@
   /* Opcional: bordes redondeados */
 }
 
-/*.circulo {
+.circulo {
   width: 9vh;
-  /* Tamaño de los círculos
+  /* Tamaño de los círculos */
   height: 9vh;
-  /* Tamaño de los círculos
+  /* Tamaño de los círculos */
   background-color: blue;
   border-radius: 50%;
-}*/
-
-.circulo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.circulo img {
-  width: 80%;
-  height: auto;
-  object-fit: contain;
 }
