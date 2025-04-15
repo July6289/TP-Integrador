@@ -43,5 +43,13 @@ export class FavoritosComponent {
   closeContextMenu() {
     this.contextMenuVisible = false;
   }
+
+  getSpriteUrl(pokemon: Pokemon): string {
+    if (pokemon.isMale && pokemon.isShiny) return pokemon.sprites.front_shiny;
+    if (pokemon.isMale && !pokemon.isShiny) return pokemon.sprites.front_default;
+    if (!pokemon.isMale && pokemon.isShiny) return pokemon.sprites.front_shiny_female || pokemon.sprites.front_shiny;
+    if (!pokemon.isMale && !pokemon.isShiny) return pokemon.sprites.front_female || pokemon.sprites.front_default;
+    return pokemon.sprites.front_default;
+  }
 }
 
