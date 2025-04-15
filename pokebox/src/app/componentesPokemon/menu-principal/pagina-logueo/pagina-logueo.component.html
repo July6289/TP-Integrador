@@ -26,7 +26,7 @@
 
     <label for="">Contraseña:</label>
 
-    <input type="password" formControlName="Password" placeholder="password" >
+    <input type="password" formControlName="Password" placeholder="password">
     @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
 
     <p class="Error">Se debe llenar el campo requerido</p>
@@ -55,7 +55,8 @@
   }
 
   @if (isFormLoginShowing) {
-  <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="checkLoggedUsuario()" (keydown.enter)="checkLoggedUsuario()">
+  <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="checkLoggedUsuario()"
+    (keydown.enter)="checkLoggedUsuario()">
 
     <label for="usuario">Usuario:</label>
     <input type="text" value="''" formControlName="Username" placeholder="example@gmail.com" id="usuario">
@@ -95,33 +96,25 @@
     <button class="Confirmar" (click)="checkLoggedUsuario()">Confirmar</button>
   </div>
   }
-@if(isFormForgotPasswordShowing)
-{
+  @if(isFormForgotPasswordShowing)
+  {
 
-<form class="formOlvideContraseña" [formGroup]="formulario">
+  <form class="formOlvideContraseña" [formGroup]="formulario">
+    <p class="titulo">¿olvidaste tu contraseña?</p>
 
+    <p class="subtitulo">ingrese su correo electronico para crear una contraseña nueva</p>
+    <input type="text" value="''" formControlName="Username" placeholder="example@gmail.com">
 
-
-  <p class="titulo">¿olvidaste tu contraseña?</p>
-
-  <p class="subtitulo">ingrese su correo electronico para crear una contraseña nueva</p>
-  <input type="text" value="''" formControlName="Username" placeholder="example@gmail.com">
-
-  @if (validadorMensajeEspecifico) {
+    @if (validadorMensajeEspecifico) {
 
     <p class="mensaje">{{mensajeEspecifico}}</p>
 
+    }
+  </form>
+
+  <div class="botones">
+    <button class="SalirRegistro" (click)="btVolver()">Volver</button>
+    <button class="Confirmar" (click)="btEnviarGmail()">Enviar</button>
+  </div>
   }
-
-</form>
-
-<div class="botones">
-  <button class="SalirRegistro" (click)="btVolver()">Volver</button>
-  <button class="Confirmar" (click)="btEnviarGmail()">Enviar</button>
-</div>
-
-
-}
-
-
 </div>
