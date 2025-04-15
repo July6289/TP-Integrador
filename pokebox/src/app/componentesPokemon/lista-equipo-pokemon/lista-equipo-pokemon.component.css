@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  background-color: #95A98B;
+  background-color: #4A4A4A;
   box-sizing: border-box;
 }
 
@@ -17,7 +17,7 @@
 .little {
   border-radius: 8px;
   background-color: white;
-  border: 2px solid #4A7B59;
+  border: 2px solid #2C2C3E;
   transition-duration: 0.3s;
   cursor: pointer;
 }
@@ -46,7 +46,7 @@ button:hover {
 }
 
 .teams {
-  background-color: #95A98B;
+  background-color:#2C2C3E;
   overflow-y: auto;
   max-height: 50vh;
   /* Altura relativa al viewport */
@@ -58,7 +58,7 @@ button:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #4A7B59;
+  background-color: #2C2C3E;
 }
 
 .equipos {
@@ -68,7 +68,7 @@ button:hover {
   padding: 0.5rem;
   /* Ajuste proporcional */
   border-bottom: 1px solid #ddd;
-  background-color: #95A98B;
+  background-color: #2C2C3E;
 }
 
 .equipos:hover {
