@@ -274,21 +274,23 @@ export class PokeservicesService {
   private favoritosSubject = new BehaviorSubject<Pokemon[]>([]);
   favoritos$ = this.favoritosSubject.asObservable();
 
-  agregarAFavoritos(pokemon: Pokemon): void {
-    const actuales = this.favoritosSubject.value;
+  agregarAFavoritos(pokemon: Pokemon) {
+    const favoritosActuales = this.favoritosSubject.value;
 
-    // Validar cantidad y duplicados
-    if (actuales.length >= 6) {
-      alert('¡Ya tienes 6 Pokémon en favoritos!');
+    // Limite de 6
+    if (favoritosActuales.length >= 6) {
+      alert('Solo puedes tener 6 Pokémon en favoritos.');
       return;
     }
 
-    if (actuales.some(p => p.id === pokemon.id)) {
+    // Evitar duplicados por ID
+    if (favoritosActuales.find(p => p.id === pokemon.id)) {
       alert('Este Pokémon ya está en favoritos.');
       return;
     }
 
-    this.favoritosSubject.next([...actuales, pokemon]);
+    const clon = this.clonarPokemon(pokemon);
+    this.favoritosSubject.next([...favoritosActuales, clon]);
   }
 
   eliminarFavorito(pokemonId: number): void {
@@ -297,4 +299,11 @@ export class PokeservicesService {
     this.favoritosSubject.next(nuevos);
   }
 
+  clonarPokemon(pokemon: Pokemon): Pokemon {
+    return {
+      ...pokemon,
+      isShiny: this.esShinySubject.value,
+      isMale: this.esMachoSubject.value,
+    };
+  }
 }
