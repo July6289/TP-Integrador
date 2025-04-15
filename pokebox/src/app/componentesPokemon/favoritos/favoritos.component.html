@@ -1,9 +1,5 @@
 <div class="rectangulo">
-
-  <div class="circulo"></div>
-  <div class="circulo"></div>
-  <div class="circulo"></div>
-  <div class="circulo"></div>
-  <div class="circulo"></div>
-  <div class="circulo"></div>
+  <div class="circulo" *ngFor="let p of favoritos$ | async">
+    <img [src]="p.sprites.front_default" [alt]="p.name">
+  </div>
 </div>

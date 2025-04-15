@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { Observable } from 'rxjs';
@@ -7,6 +7,7 @@ import { UsuarioService } from '../../pokeservices/usuario.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { AuthService } from '../../auth/service/auth.service';
 import { CajaService } from '../../pokeservices/caja.service';
+
 
 @Component({
   selector: 'app-caja',
@@ -37,9 +38,8 @@ export class CajaComponent implements OnInit {
     box: [],
     Username: "",
     Password: "",
-    CombatesGanados:0,
+    CombatesGanados: 0,
   }
-
 
   constructor(private pokeService: PokeservicesService, private cajaService: CajaService) {
     // Asigna el observable `spriteActual$` desde el servicio
@@ -55,10 +55,10 @@ export class CajaComponent implements OnInit {
     this.dbUsuarioId();
   }
 
-  dameUsuario()
-  {
+  dameUsuario() {
     return this.usuario;
   }
+
   dbUsuarioId() {
     this.usarioServicio.getUsuarioById(this.secretId).subscribe(
       {
@@ -66,7 +66,7 @@ export class CajaComponent implements OnInit {
           this.usuario.Username = valor.Username;
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
-          this.usuario.CombatesGanados=valor.CombatesGanados;
+          this.usuario.CombatesGanados = valor.CombatesGanados;
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
 
 
@@ -87,10 +87,7 @@ export class CajaComponent implements OnInit {
 
   dbGuardarDatos() {
     this.dbUsuarioId();
-
-      this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
-
-
+    this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
   }
 
   get pokemonesEnCaja(): Pokemon[] {
@@ -139,8 +136,6 @@ export class CajaComponent implements OnInit {
   onPokemonClick(pokemon: Pokemon): void {
     this.pokemonSeleccionado = pokemon;
     this.flag = true;
-    console.log(this.flag);
-
     this.pokeService.setSelectedPokemon(pokemon); // Establecer el Pokémon seleccionado en el servicio
   }
 
@@ -159,4 +154,43 @@ export class CajaComponent implements OnInit {
       return pokemon.sprites.front_female || pokemon.sprites.front_default;
     }
   }
+
+  mostrarMenu: boolean = false;
+  contextPokemon: Pokemon | null = null;
+  contextMenuX: number = 0;
+  contextMenuY: number = 0;
+
+  // Evento click derecho
+  onRightClick(event: MouseEvent, pokemon: Pokemon) {
+    event.preventDefault();
+    this.contextPokemon = pokemon;
+    this.contextMenuX = event.clientX;
+    this.contextMenuY = event.clientY;
+    this.mostrarMenu = true;
+
+  }
+
+  // Agregar a favoritos
+  agregarAFavoritosDesdeMenu() {
+
+    if (this.contextPokemon) {
+      this.pokeservicio.agregarAFavoritos(this.contextPokemon);
+    }
+
+    this.mostrarMenu = false;
+  }
+
+  cerrarMenu() {
+    this.mostrarMenu = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+onClickOutside(event: MouseEvent) {
+  const target = event.target as HTMLElement;
+
+  // Cierra el menú solo si NO hizo click dentro del menú contextual
+  if (!target.closest('.context-menu')) {
+    this.mostrarMenu = false;
+  }
+}
 }
