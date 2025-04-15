@@ -162,7 +162,6 @@ export class PokeservicesService {
     this.esShinySubject.next(esShiny);
   }
 
-
   getSelectedPokemon(): Pokemon | null {
     return this.selectedPokemonSubject.value; // Obtener el valor actual
   }
@@ -252,7 +251,6 @@ export class PokeservicesService {
     }
   }
 
-
   //generar un equipo random
   getRandomPokemonTeam(): Observable<Pokemon[]> {
     const pokemonRequests: Observable<Pokemon | null>[] = [];
@@ -271,5 +269,25 @@ export class PokeservicesService {
     return forkJoin(pokemonRequests).pipe(
       map(results => results.filter((pokemon): pokemon is Pokemon => pokemon !== null))
     );
+  }
+
+  private favoritosSubject = new BehaviorSubject<Pokemon[]>([]);
+  favoritos$ = this.favoritosSubject.asObservable();
+
+  agregarAFavoritos(pokemon: Pokemon): void {
+    const actuales = this.favoritosSubject.value;
+
+    // Validar cantidad y duplicados
+    if (actuales.length >= 6) {
+      alert('¡Ya tienes 6 Pokémon en favoritos!');
+      return;
+    }
+
+    if (actuales.some(p => p.id === pokemon.id)) {
+      alert('Este Pokémon ya está en favoritos.');
+      return;
+    }
+
+    this.favoritosSubject.next([...actuales, pokemon]);
   }
 }

@@ -1,4 +1,5 @@
 <div class="caja-container">
+
   <div id="botonIz">
     <button class="Lbutton" (click)="cambiarCajaAnterior()">
       <img class="Limagen" src="/assets/imagenes/flecha_izquierda.png" alt="caja">
@@ -10,7 +11,7 @@
       <img class="imagencaja" [src]="imagenCaja" alt="caja">
 
       <div class="pokemon-grid">
-        <div *ngFor="let pokemon of pokemonesEnCaja" class="pokemon">
+        <div *ngFor="let pokemon of pokemonesEnCaja" class="pokemon" (contextmenu)="onRightClick($event, pokemon)">
           <!-- Mostrar sprite actual si el Pokémon está seleccionado; si no, mostrar el sprite por defecto -->
           <img [src]="getSpriteUrl(pokemon)" [alt]="pokemon.name" class="pokemon-imagen"
             (click)="onPokemonClick(pokemon)" [class.seleccionado]="pokemonSeleccionado === pokemon">
@@ -31,3 +32,10 @@
 </div>
 
 <footer class="nombrecaja">{{ nombreCaja }}</footer>
+
+<div *ngIf="mostrarMenu" class="context-menu"
+     [style.top.px]="contextMenuY"
+     [style.left.px]="contextMenuX">
+  <button (click)="agregarAFavoritosDesdeMenu()">⭐ Agregar a favoritos</button>
+</div>
+
