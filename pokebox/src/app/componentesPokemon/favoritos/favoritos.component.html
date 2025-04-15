@@ -1,5 +1,13 @@
 <div class="rectangulo">
-  <div class="circulo" *ngFor="let p of favoritos$ | async">
+  <div class="circulo" *ngFor="let p of favoritos$ | async" (contextmenu)="onRightClick($event, p)">
     <img [src]="p.sprites.front_default" [alt]="p.name">
   </div>
+</div>
+
+<!-- Menú contextual para eliminar -->
+<div *ngIf="contextMenuVisible" class="context-menu"
+     [style.top.px]="contextMenuY"
+     [style.left.px]="contextMenuX"
+     (click)="$event.stopPropagation()">
+  <button (click)="eliminarFavorito()">❌ Eliminar de favoritos</button>
 </div>

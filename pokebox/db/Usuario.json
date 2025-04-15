@@ -38,7 +38,9 @@
                     "url": "https://pokeapi.co/api/v2/type/10/"
                   }
                 }
-              ]
+              ],
+              "isMale": true,
+              "isShiny": true
             },
             {
               "forms": [

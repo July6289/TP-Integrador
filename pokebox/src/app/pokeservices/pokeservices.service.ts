@@ -290,4 +290,11 @@ export class PokeservicesService {
 
     this.favoritosSubject.next([...actuales, pokemon]);
   }
+
+  eliminarFavorito(pokemonId: number): void {
+    const actuales = this.favoritosSubject.value;
+    const nuevos = actuales.filter(p => p.id !== pokemonId);
+    this.favoritosSubject.next(nuevos);
+  }
+
 }

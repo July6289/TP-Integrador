@@ -172,7 +172,6 @@ export class CajaComponent implements OnInit {
 
   // Agregar a favoritos
   agregarAFavoritosDesdeMenu() {
-
     if (this.contextPokemon) {
       this.pokeservicio.agregarAFavoritos(this.contextPokemon);
     }
@@ -185,12 +184,12 @@ export class CajaComponent implements OnInit {
   }
 
   @HostListener('document:click', ['$event'])
-onClickOutside(event: MouseEvent) {
-  const target = event.target as HTMLElement;
+  onClickOutside(event: MouseEvent) {
+    const target = event.target as HTMLElement;
 
-  // Cierra el menú solo si NO hizo click dentro del menú contextual
-  if (!target.closest('.context-menu')) {
-    this.mostrarMenu = false;
+    // Cierra el menú solo si NO hizo click dentro del menú contextual
+    if (!target.closest('.context-menu')) {
+      this.mostrarMenu = false;
+    }
   }
-}
 }
