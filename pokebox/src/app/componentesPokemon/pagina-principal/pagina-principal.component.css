@@ -9,6 +9,7 @@
   /* Cambia a min-height para evitar problemas en pantallas móviles */
   display: flex;
   flex-direction: column;
+  background-color: #3f3f3f;
 }
 
 .contenidoPagina {
@@ -45,7 +46,7 @@
 .botoncin,
 .btnbattle {
   border-radius: 8px;
-  background-color: white;
+  background-color: #D6D6D6;
   border: 2px solid #B0B0C3;
   transition-duration: 0.3s;
   cursor: pointer;
