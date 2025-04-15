@@ -69,8 +69,6 @@ export class CajaComponent implements OnInit {
           this.usuario.CombatesGanados = valor.CombatesGanados;
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
 
-
-
           valor.box.map((caja) => {
 
             this.usuario.box[this.posicion].imagen = caja.imagen;
@@ -189,6 +187,20 @@ export class CajaComponent implements OnInit {
 
     // Cierra el menú solo si NO hizo click dentro del menú contextual
     if (!target.closest('.context-menu')) {
+      this.mostrarMenu = false;
+    }
+  }
+
+  eliminarDeCajaDesdeMenu() {
+    if (!this.contextPokemon) return;
+
+    const pokemones = this.usuario.box[this.indiceCaja].pokemones;
+
+    const index = pokemones.findIndex(p => p.id === this.contextPokemon!.id);
+
+    if (index !== -1) {
+      pokemones.splice(index, 1);
+      this.dbGuardarDatos(); // Guardamos el estado actualizado
       this.mostrarMenu = false;
     }
   }
