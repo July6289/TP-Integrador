@@ -23,7 +23,7 @@ export class RecuperarContraComponent implements OnInit {
   usuarioDato: Usuario = {
     id: "",
     box: [],
-    Username: "",
+    Email: "",
     Password: "",
     CombatesGanados: 0,
   }
@@ -67,7 +67,7 @@ export class RecuperarContraComponent implements OnInit {
               next: (usuarioDato: Usuario[]) => {
                 if (usuarioDato.length > 0 && usuarioDato[0] != undefined) {
                   this.usuarioDato = usuarioDato[0]
-                  this.usuarioDato.Username = this.email;
+                  this.usuarioDato.Email = this.email;
                   this.usuarioDato.Password = this.newPassword;
                   console.log(usuarioDato)
                   this.usuarioServicio.putUsuario(this.usuarioDato, this.usuarioDato.id ?? null).subscribe(//verifica si es indefinido o null o tiene valor

@@ -28,7 +28,7 @@ export class AuthService {
 
   register(user: Usuario) {
     if (user.Password != null) {
-      return createUserWithEmailAndPassword(getAuth(), user.Username, user.Password);
+      return createUserWithEmailAndPassword(getAuth(), user.Email, user.Password);
     }
     else {
       throw new Error("contrasenia nula");
@@ -37,7 +37,7 @@ export class AuthService {
 
   logIn2(user: Usuario) {
     if (user.Password != null) {
-      return signInWithEmailAndPassword(getAuth(), user.Username, user.Password)
+      return signInWithEmailAndPassword(getAuth(), user.Email, user.Password)
     }
     else {
       throw new Error("contrasenia nula");

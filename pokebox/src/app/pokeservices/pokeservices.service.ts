@@ -41,7 +41,7 @@ export class PokeservicesService {
   usuario: Usuario = {
     id: "",
     box: [],
-    Username: "",
+    Email: "",
     Password: "",
     CombatesGanados: 0
   }

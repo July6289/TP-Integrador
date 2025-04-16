@@ -8,7 +8,7 @@
       <!-- Información del usuario -->
       <div class="user-info">
         <label>Nombre de Usuario:</label>
-        <span>{{ usuario.Username }}</span>
+        <span>{{ usuario.Email }}</span>
       </div>
       <div class="user-info">
         @if (isLoggedWithouthGoogle) {
@@ -46,10 +46,10 @@
         <div class="form-group">
           <label for="">Usuario:</label>
           <input type="text" formControlName="Username" value="">
-          @if(formulario.controls['Username'].getError('required') && formulario.controls['Username'].touched) {
+          @if(formulario.controls['Email'].getError('required') && formulario.controls['Email'].touched) {
             <p class="Error">Campo requerido</p>
           }
-          @if(formulario.controls['Username'].getError('minlength') && formulario.controls['Username'].touched) {
+          @if(formulario.controls['Email'].getError('minlength') && formulario.controls['Email'].touched) {
             <p class="Error">El Usuario no puede contener menos de 6 letras</p>
           }
         </div>

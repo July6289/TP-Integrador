@@ -7,7 +7,6 @@
   overflow-y: auto;
 }
 a{
-  color: brown;
   text-decoration: none;
 
   font-size: large;
@@ -18,7 +17,77 @@ a{
 .imagenLogueo {
   display: flex;
 }
+.imagenGoogle{
+  width: 42px;  /* Tamaño pequeño */
+  height: 42px;
+  display: block;
+  margin: 0 auto; /* Centrar la imagen */
+  cursor: pointer;
 
+}
+a.olvideContraseña{
+
+margin-right: 60px;
+color: rgb(241, 72, 5);
+text-decoration: underline;
+cursor: pointer;
+}
+a.sinCuenta{
+
+color: rgb(229, 255, 0);
+text-decoration: underline;
+cursor: pointer;
+}
+
+
+
+button.imagenGoogle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white; /* O el color que desees */
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transición para el efecto */
+}
+
+/* Efecto al presionar el botón */
+button.imagenGoogle:active {
+  transform: scale(0.95); /* Escalar un poco el botón al hacer clic */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para dar un efecto de profundidad */
+}
+
+/* Efecto al poner el cursor sobre el botón */
+button.imagenGoogle:hover {
+  background-color: #f0f0f0; /* Fondo al pasar el cursor */
+  transform: scale(1.05); /* Agrandar el botón al pasar el cursor */
+}
+/* Efecto al enfocar el botón */
+button.imagenGoogle:focus {
+  outline: none; /* Eliminar el borde de enfoque predeterminado */
+  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.5); /* Resaltar el enfoque con un borde */
+}
+
+
+button.inicioSesion{
+  border: 2px solid #4A7B59;
+  border-radius: 8px;
+  padding: 15px 40px;
+  /* Tamaños más manejables */
+  font-size: 1.1rem;
+  background-color: white;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  width: 100%;
+  /* Hace que los botones ocupen el ancho disponible */
+  max-width: 300px;
+
+
+
+
+}
 .SalirRegistro {
   margin-left: 20%;
   margin-bottom: 50px;
@@ -90,11 +159,16 @@ label {
 
 .Error {
   font-size: 1rem;
-  color: red;
+  color: transparent;
   text-align: left;
   font-weight: bold;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  display: block;
+
+
+}
+
+.Error.visible {
+color:red;
 }
 
 input {
@@ -126,12 +200,10 @@ input {
   /* Hace que los botones ocupen el ancho disponible */
   max-width: 300px;
   /* Limita el tamaño en pantallas grandes */
-  margin-bottom: 20px;
 }
-
+.inicioSesion:hover,
 .Confirmar:hover,
 .SalirRegistro:hover,
-.IniciarSesion:hover,
 .Registarse:hover {
   background-color: #819875;
   color: white;
@@ -196,3 +268,4 @@ input {
     font-size: 0.875rem;
   }
 }
+

@@ -18,32 +18,42 @@ import { AuthService } from '../../../auth/service/auth.service';
 export class PaginaLogueoComponent {
   constructor(private ctrl: ChangeDetectorRef, private auth: AuthService) { }
   validadorMensajeEspecifico: boolean = false;
+
+
   mensajeEspecifico: string = '';
   isLoggingButtonShowing: boolean = true;
   isRegisterButtonShowing: boolean = true;
   isFormLoginShowing: boolean = false;
   IsFormRegisterShowing: boolean = false;
-  isFormForgotPasswordShowing: boolean = false;
-  idUsuario: string = "";
+
+
+  isFormForgotPasswordShowing:boolean=false;
+
+
+
+
+  idUsuario:string="";
+
   usuarioService = inject(UsuarioService);
   authservice = inject(AuthService);
   pokeservice = inject(PokeservicesService);
   router = inject(Router);
   fb = inject(FormBuilder);
+
   usuarioNuevo: Usuario = {
     id: "",
     box: [],
-    Username: "",
+    Email: "",
     Password: "",
-    CombatesGanados: 0,
+    CombatesGanados:0,
   }
   formulario = this.fb.nonNullable.group(
     {
-      id: [''],
+      id:[''],
       box: [[] as Caja[]], //un array vacio de cajas
-      Username: ['', [Validators.required, Validators.minLength(6)]],
+      Email: ['', [Validators.required, Validators.minLength(6)]],
       Password: ['', [Validators.required, Validators.minLength(6)]],
-      CombatesGanados: 0,
+      CombatesGanados:0,
     }
   )
 
@@ -51,10 +61,15 @@ export class PaginaLogueoComponent {
     this.isRegisterButtonShowing = false;
     this.IsFormRegisterShowing = true;
     this.isLoggingButtonShowing = false;
+
+
   }
 
   btLogueo() {
     this.validadorMensajeEspecifico = false;
+
+
+
     this.isRegisterButtonShowing = false;
     this.isFormLoginShowing = true;
     this.isLoggingButtonShowing = false;
@@ -68,84 +83,135 @@ export class PaginaLogueoComponent {
     this.isFormLoginShowing = false;
     this.isLoggingButtonShowing = true;
     this.validadorMensajeEspecifico = false;
-    this.isFormForgotPasswordShowing = false;
+    this.isFormForgotPasswordShowing=false;
     this.mensajeEspecifico = '';
-  }
 
-  btOlvideContrasenia() {
-    this.isFormForgotPasswordShowing = true;
-    this.isFormLoginShowing = false;
   }
+  btOlvideContrasenia(){
 
-  btEnviarGmail() {
-    const usuarioDato = this.formulario.getRawValue();
-    this.usuarioService.getUsuariobyName(usuarioDato.Username).subscribe(
-      {
-        next: (usuario: Usuario[]) => {
-          if (usuario.length != 0) {
-            if (usuario[0].Password == null)  //si la contrasenia es nulla,significa que estamos usando una de google, no podemos usar una de google
+    this.isFormForgotPasswordShowing=true;
+    this.isFormLoginShowing=false;
+
+  }
+  btEnviarGmail()
+  {
+
+      const usuarioDato=this.formulario.getRawValue();
+
+      this.usuarioService.getUsuariobyName(usuarioDato.Email).subscribe(
+        {
+          next: (usuario: Usuario[]) => {
+            if (usuario.length != 0) {
+              if(usuario[0].Password==null)  //si la contrasenia es nulla,significa que estamos usando una de google, no podemos usar una de google
+              {
+                this.validadorMensajeEspecifico=true
+                this.mensajeEspecifico='no se puede enviar un correo de recuperacion a una cuenta autenticada con google'
+              }
+              else{
+                this.authservice.enviarCorreoRecuperación(usuarioDato.Email);
+
+
+              }
+            }
+            else
             {
-              this.validadorMensajeEspecifico = true
-              this.mensajeEspecifico = 'no se puede enviar un correo de recuperacion a una cuenta autenticada con google'
+                this.validadorMensajeEspecifico=true
+                this.mensajeEspecifico='el usuario no existe en el sistema'
+
+
             }
-            else {
-              this.authservice.enviarCorreoRecuperación(usuarioDato.Username);
-            }
-          }
-          else {
-            this.validadorMensajeEspecifico = true
-            this.mensajeEspecifico = 'el usuario no existe en el sistema'
           }
         }
-      }
-    )
+      )
+
+
+
+
+
+
+
+
+
+
+
   }
 
-  onClickGoogle() {
-    const result = this.authservice.logInGoogle();
+  onClickGoogle(){
+
+
+    const result=this.authservice.logInGoogle();
     result.then(result => {
       const user = result.user;
       const email = user.email; // Extraer el correo del usuario
       console.log("Correo del usuario:", email);
       // Puedes guardar el email en tu JSON o manejarlo como prefieras
-      if (email != null) {
-        this.usuarioService.getUsuariobyName(email).subscribe(
-          {
-            next: (usuarioDato: Usuario[]) => {
-              if (usuarioDato[0] == undefined) {  //nos da a entender que el usuario no existe
-                this.idUsuario = getRandomAlphaNumeric(4);
-                this.usuarioNuevo.id = this.idUsuario;
-                this.usuarioNuevo.Username = email;
-                this.usuarioNuevo.Password = null;
-                this.usuarioService.postUsuario(this.usuarioNuevo).subscribe(
-                  {
-                    next: () => {
-                      console.log("usuario creado con exito");
+      if(email!=null)
+      {
+      this.usuarioService.getUsuariobyName(email).subscribe(
+        {
+          next: (usuarioDato: Usuario[]) => {
+            if (usuarioDato[0] == undefined) {  //nos da a entender que el usuario no existe
+              this.idUsuario=getRandomAlphaNumeric(4);
+              this.usuarioNuevo.id=this.idUsuario;
+              this.usuarioNuevo.Email=email;
+              this.usuarioNuevo.Password=null;
+              this.usuarioService.postUsuario(this.usuarioNuevo).subscribe(
+              {
+                next: () => {
+                  console.log("usuario creado con exito");
+
+
+
                       localStorage.setItem('token', this.idUsuario);
-                      this.usuarioService.estoyLogeado = true
-                      this.router.navigate([`main-page`])
-                    },
-                    error: (e: Error) => {
-                      console.log(e.message);
-                      this.formulario.reset();
-                    }
-                  }
-                )
-              }
-              else {
-                if (usuarioDato[0].id != undefined) {
-                  localStorage.setItem('token', usuarioDato[0].id);
-                  this.usuarioService.estoyLogeado = true
-                  this.router.navigate([`main-page`])
+                      this.usuarioService.estoyLogeado=true
+                       this.router.navigate([`main-page`])
+
+
+
+                },
+                error: (e: Error) => {
+                  console.log(e.message);
+                  this.formulario.reset();
                 }
               }
+            )
+
             }
-          })
-      }
+            else
+            {
+              if (usuarioDato[0].id != undefined) {
+                localStorage.setItem('token', usuarioDato[0].id);
+                this.usuarioService.estoyLogeado=true
+                this.router.navigate([`main-page`])
+              }
+
+
+
+
+            }
+
+
+
+
+
+
+          }
     })
-      .catch(error => {
-        console.error("Error al iniciar sesión con Google:", error);
-      });
+    }
+
+
+
+
+
+
+
+    })
+    .catch(error => {
+      console.error("Error al iniciar sesión con Google:", error);
+    });
+
+
+
   }
 
   addUsuario() {
@@ -156,7 +222,7 @@ export class PaginaLogueoComponent {
       this.validadorMensajeEspecifico = true;
       const usuario = this.formulario.getRawValue();
       usuario.box = this.pokeservice.cajas;
-      this.usuarioService.getUsuariobyName(usuario.Username).subscribe(
+      this.usuarioService.getUsuariobyName(usuario.Email).subscribe(
         {
           next: (usuarioDato: Usuario[]) => {
             if (usuarioDato.length > 0 && usuarioDato[0] != undefined) {
@@ -168,42 +234,67 @@ export class PaginaLogueoComponent {
               this.ctrl.detectChanges();
             }
             else {
+
               this.auth.register(usuario as Usuario)
-                .then((userCredential) => {
-                  // El registro fue exitoso
-                  console.log("Usuario registrado:", userCredential.user);
-                  //entonces lo puedo agregar al json
-                  console.log("llegue hasta aca");
-                  this.idUsuario = getRandomAlphaNumeric(4);
-                  usuario.id = this.idUsuario;
-                  this.usuarioService.postUsuario(usuario).subscribe(
-                    {
-                      next: () => {
-                        console.log("usuario creado con exito");
+              .then((userCredential) => {
+                // El registro fue exitoso
+                console.log("Usuario registrado:", userCredential.user);
+
+              //entonces lo puedo agregar al json
+
+                console.log("llegue hasta aca");
+
+                this.idUsuario=getRandomAlphaNumeric(4);
+                usuario.id=this.idUsuario;
+                this.usuarioService.postUsuario(usuario).subscribe(
+                {
+                  next: () => {
+                    console.log("usuario creado con exito");
+
+
+
                         localStorage.setItem('token', this.idUsuario);
                         this.authservice.logIn2(usuario);
-                        this.usuarioService.estoyLogeado = true
-                        this.router.navigate([`main-page`])
-                      },
-                      error: (e: Error) => {
-                        console.log(e.message);
-                        this.formulario.reset();
-                      }
-                    }
-                  )
-                })
-                .catch((error) => {
-                  // Manejar el error devuelto
-                  if (error.code === "auth/invalid-email") {
-                    console.error("El correo no tiene un formato válido.");
-                    this.validadorMensajeEspecifico = true;
-                    this.mensajeEspecifico = 'correo electronico inexistente.';
-                  } else if (error.code === "auth/email-already-in-use") {
-                    console.error("El correo ya está registrado.");
-                  } else {
-                    console.error("Error desconocido:", error.message);
+                        this.usuarioService.estoyLogeado=true
+                         this.router.navigate([`main-page`])
+
+
+
+                  },
+                  error: (e: Error) => {
+                    console.log(e.message);
+                    this.formulario.reset();
                   }
-                });
+                }
+              )
+
+
+              })
+              .catch((error) => {
+                // Manejar el error devuelto
+                if (error.code === "auth/invalid-email") {
+                  console.error("El correo no tiene un formato válido.");
+                  this.validadorMensajeEspecifico=true;
+                  this.mensajeEspecifico='correo electronico inexistente.';
+
+                } else if (error.code === "auth/email-already-in-use") {
+                  console.error("El correo ya está registrado.");
+                } else {
+                  console.error("Error desconocido:", error.message);
+                }
+              });
+
+
+
+
+
+
+
+
+
+
+
+
             }
           },
           error: (e: Error) => {
@@ -220,29 +311,34 @@ export class PaginaLogueoComponent {
     }
     else {
       const datosUsuario = this.formulario.getRawValue();
-      this.usuarioService.getUsuariobyName(datosUsuario.Username).subscribe(
+
+      this.usuarioService.getUsuariobyName(datosUsuario.Email).subscribe(
         {
           next: (usuario: Usuario[]) => {
             if (usuario.length != 0) {
-              if (usuario[0].Password != null)  //si la contrasenia es nulla,significa que estamos usando una de google, no podemos usar una de google
+              if(usuario[0].Password!=null)  //si la contrasenia es nulla,significa que estamos usando una de google, no podemos usar una de google
               {
-                if (usuario[0].Password.localeCompare(datosUsuario.Password) === 0) {
-                  if (usuario[0].id !== undefined) {
-                    localStorage.setItem('token', usuario[0].id);
-                    this.authservice.logIn2(datosUsuario);
-                    this.usuarioService.estoyLogeado = true
-                    this.router.navigate([`main-page`])
-                  }
-                }
-                else {
-                  this.validadorMensajeEspecifico = true;
-                  this.mensajeEspecifico = 'contraseña incorrecta, ingese nuevamente';
+              if (usuario[0].Password.localeCompare(datosUsuario.Password) === 0) {
+
+                if (usuario[0].id !== undefined) {
+                  localStorage.setItem('token', usuario[0].id);
+                  this.authservice.logIn2(datosUsuario);
+                  this.usuarioService.estoyLogeado=true
+                  this.router.navigate([`main-page`])
                 }
               }
               else {
                 this.validadorMensajeEspecifico = true;
-                this.mensajeEspecifico = 'usuario autenticado con google, no tiene contraseña propia';
+                this.mensajeEspecifico = 'contraseña incorrecta, ingese nuevamente';
               }
+            }
+            else
+            {
+              this.validadorMensajeEspecifico = true;
+              this.mensajeEspecifico = 'usuario autenticado con google, no tiene contraseña propia';
+
+            }
+
             }
             else {
               this.validadorMensajeEspecifico = true;
@@ -260,7 +356,7 @@ export class PaginaLogueoComponent {
   }
 }
 
-function getRandomAlphaNumeric(length: number) {
+function getRandomAlphaNumeric(length:number) {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
   for (let i = 0; i < length; i++) {

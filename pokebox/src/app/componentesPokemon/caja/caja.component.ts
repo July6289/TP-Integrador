@@ -36,7 +36,7 @@ export class CajaComponent implements OnInit {
   usuario: Usuario = {
     id: "",
     box: [],
-    Username: "",
+    Email: "",
     Password: "",
     CombatesGanados: 0,
   }
@@ -63,7 +63,7 @@ export class CajaComponent implements OnInit {
     this.usarioServicio.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
-          this.usuario.Username = valor.Username;
+          this.usuario.Email = valor.Email;
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;

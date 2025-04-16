@@ -10,37 +10,48 @@
 
   <form class="formularioRegistro" [formGroup]="formulario">
 
-    <label for="">Usuario:</label>
+    <label for="">Email:</label>
 
-    <input type="text" value="''" formControlName="Username" placeholder="example@gmail.com">
-    @if (formulario.controls['Username'].getError('required')&&formulario.controls['Username'].touched) {
-
-    <p class="Error">Se debe llenar el campo requerido</p>
+    <input type="text" value="" formControlName="Username" placeholder="example@gmail.com">
 
 
+    <p class="Error" [class.visible]="formulario.controls['Email'].touched&&formulario.controls['Email'].errors">
+
+
+    @if(formulario.controls['Email'].hasError('required'))
+      {
+
+        <span>Se debe llenar el campo requerido</span>
+      }
+
+
+    @if (formulario.controls['Email'].getError('minlength')) {
+    <span>El usuario no puede contener un minimo de 6 letras</span>
     }
-    @if (formulario.controls['Username'].getError('minlength')&&formulario.controls['Username'].touched) {
-    <p class="Error">El usuario no puede contener un minimo de 6 letras</p>
-
-    }
-
+    </p>
     <label for="">Contraseña:</label>
 
-    <input type="password" formControlName="Password" placeholder="password">
-    @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
+    <input type="password" formControlName="Password" placeholder="password" >
 
-    <p class="Error">Se debe llenar el campo requerido</p>
+    <p class="Error" [class.visible]="formulario.controls['Password'].touched">
+    @if (formulario.controls['Password'].getError('required')) {
+
+    <span> Se debe llenar el campo requerido</span>
 
 
     }
-    @if (formulario.controls['Password'].getError('minlength')&&formulario.controls['Password'].touched) {
-    <p class="Error">La contraseña no puede contener un minimo de 6 letras </p>
+    @if (formulario.controls['Password'].getError('minlength')) {
+    <span>La contraseña no puede contener un minimo de 6 letras </span>
 
     }
 
     @if (validadorMensajeEspecifico) {
-    <p class="Error">{{mensajeEspecifico}}</p>
+    <span>{{mensajeEspecifico}}</span>
     }
+    </p>
+
+
+
   </form>
   <div class="botones">
     <button class="SalirRegistro" (click)="btVolver()">Volver</button>
@@ -55,18 +66,17 @@
   }
 
   @if (isFormLoginShowing) {
-  <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="checkLoggedUsuario()"
-    (keydown.enter)="checkLoggedUsuario()">
+  <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="checkLoggedUsuario()" (keydown.enter)="checkLoggedUsuario()">
 
-    <label for="usuario">Usuario:</label>
-    <input type="text" value="''" formControlName="Username" placeholder="example@gmail.com" id="usuario">
-    @if (formulario.controls['Username'].getError('required')&&formulario.controls['Username'].touched) {
+    <label for="usuario">Email:</label>
+    <input type="text" value="" formControlName="Username" placeholder="example@gmail.com" id="usuario">
+    @if (formulario.controls['Email'].getError('required')&&formulario.controls['Email'].touched) {
 
     <p class="Error">Campo requerido</p>
 
 
     }
-    @if (formulario.controls['Username'].getError('minlength')&&formulario.controls['Username'].touched) {
+    @if (formulario.controls['Email'].getError('minlength')&&formulario.controls['Email'].touched) {
     <p class="Error">El Usuario no puede contener un minimo de 6 letras</p>
 
     }
@@ -87,34 +97,59 @@
     @if (validadorMensajeEspecifico) {
     <p class="Error">{{mensajeEspecifico}}</p>
     }
-    <button (click)="btOlvideContrasenia()">¿olvidaste tu contraseña?</button>
 
-    <button (click)="onClickGoogle()">Iniciar Sesion con Google</button>
-  </form>
-  <div class="botones">
-    <button class="SalirRegistro" (click)="btVolver()">Volver</button>
-    <button class="Confirmar" (click)="checkLoggedUsuario()">Confirmar</button>
+    <button class="inicioSesion" (click)="checkLoggedUsuario()">Iniciar Sesion</button>
+
+
+    <div class="olvideyCuenta">
+    <a class="olvideContraseña" (click)="btOlvideContrasenia()">¿olvidaste tu contraseña?</a>
+
+    <a class="sinCuenta">¿no tienes cuenta?</a>
+
   </div>
+
+
+  <a>o conectate con</a>
+
+    <button class="imagenGoogle" (click)="onClickGoogle()">
+      <img class="imagenGoogle" src="/assets/imagenes/GoogleIcon.png">
+
+    </button>
+
+
+
+
+
+  </form>
+
   }
-  @if(isFormForgotPasswordShowing)
-  {
+@if(isFormForgotPasswordShowing)
+{
 
-  <form class="formOlvideContraseña" [formGroup]="formulario">
-    <p class="titulo">¿olvidaste tu contraseña?</p>
+<form class="formOlvideContraseña" [formGroup]="formulario">
 
-    <p class="subtitulo">ingrese su correo electronico para crear una contraseña nueva</p>
-    <input type="text" value="''" formControlName="Username" placeholder="example@gmail.com">
 
-    @if (validadorMensajeEspecifico) {
+
+  <p class="titulo">¿olvidaste tu contraseña?</p>
+
+  <p class="subtitulo">ingrese su correo electronico para crear una contraseña nueva</p>
+  <input type="text" value="''" formControlName="Username" placeholder="example@gmail.com">
+
+  @if (validadorMensajeEspecifico) {
 
     <p class="mensaje">{{mensajeEspecifico}}</p>
 
-    }
-  </form>
-
-  <div class="botones">
-    <button class="SalirRegistro" (click)="btVolver()">Volver</button>
-    <button class="Confirmar" (click)="btEnviarGmail()">Enviar</button>
-  </div>
   }
+
+</form>
+
+<div class="botones">
+  <button class="SalirRegistro" (click)="btVolver()">Volver</button>
+  <button class="Confirmar" (click)="btEnviarGmail()">Enviar</button>
+</div>
+
+
+}
+
+
 </div>

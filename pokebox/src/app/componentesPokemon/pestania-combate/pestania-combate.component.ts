@@ -69,7 +69,7 @@ export class PestaniaCombateComponent implements OnInit {
   usuario: Usuario = {
     id: "",
     box: [],
-    Username: "",
+    Email: "",
     Password: "",
     CombatesGanados: 0,
   }
@@ -108,7 +108,7 @@ export class PestaniaCombateComponent implements OnInit {
     this.usuarioService.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
-          this.usuario.Username = valor.Username;
+          this.usuario.Email = valor.Email;
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
 

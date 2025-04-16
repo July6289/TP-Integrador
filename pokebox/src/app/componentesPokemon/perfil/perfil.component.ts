@@ -25,7 +25,7 @@ export class PerfilComponent implements OnInit {
   usuario: Usuario = {
     id: "",
     box: [],
-    Username: "",
+    Email: "",
     Password: "",
     CombatesGanados: 0,
   }
@@ -36,7 +36,7 @@ export class PerfilComponent implements OnInit {
   router = inject(Router);
   formulario = this.fb.nonNullable.group(
     {
-      Username: ['', [Validators.required, Validators.minLength(6)]],
+      Email: ['', [Validators.required, Validators.minLength(6)]],
       Password: ['', [Validators.required, Validators.minLength(6)]],
     }
   )
@@ -50,7 +50,7 @@ export class PerfilComponent implements OnInit {
     this.usarioServicio.getUsuarioById(this.id).subscribe(
       {
         next: (valor: Usuario) => {
-          this.usuario.Username = valor.Username;
+          this.usuario.Email = valor.Email;
 
           if (this.usuario.Password) {
             this.usuario.Password = valor.Password
@@ -117,7 +117,7 @@ export class PerfilComponent implements OnInit {
     else {
       this.validadorMensajeEspecifico = true;
       const datosFormulario = this.formulario.getRawValue();
-      this.usuarioService.getUsuariobyName(datosFormulario.Username).subscribe(
+      this.usuarioService.getUsuariobyName(datosFormulario.Email).subscribe(
         {
           next: (usuarioDato: Usuario[]) => {
             if (usuarioDato.length > 0 && usuarioDato[0] != undefined) {
@@ -125,7 +125,7 @@ export class PerfilComponent implements OnInit {
               this.validadorMensajeEspecifico = true;
             }
             else {
-              this.usuario.Username = datosFormulario.Username;
+              this.usuario.Email = datosFormulario.Email;
               this.usuario.Password = datosFormulario.Password;
               this.usuarioService.putUsuario(this.usuario, this.id).subscribe(
                 {
