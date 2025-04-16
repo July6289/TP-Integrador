@@ -1,11 +1,12 @@
 <div class="listaPokemon">
-  <app-lista-pokemon (pokemonAgregado)="seleccionarPokemon($event)"></app-lista-pokemon>
-
+  <app-lista-pokemon (pokemonAgregado)="seleccionarPokemon($event)"
+    (pokemonAgregadoDirectamente)="agregarPokemonDirecto($event)">
+  </app-lista-pokemon>
 </div>
 
 <div class="poketeam">
   <div class="pokemon-grid">
-    <div *ngFor="let pokemon of pokemonesEnEquipo" class="pokemon" (click)="pickPokemon(pokemon)" >
+    <div *ngFor="let pokemon of pokemonesEnEquipo" class="pokemon" (click)="pickPokemon(pokemon)">
       <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="pokemon-imagen">
       <button class="eliminar" (click)="eliminarPokemon(pokemon)">Eliminar Pokemon</button>
     </div>
@@ -18,7 +19,7 @@
   </div>
 
   <div>
-    <button class="guardar" (click)="guardarEquipo()" >Guardar Equipo</button>
+    <button class="guardar" (click)="guardarEquipo()">Guardar Equipo</button>
   </div>
   <div>
     <button class="main" (click)="goToMainPage()">Volver al Menu Principal</button>

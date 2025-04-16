@@ -25,8 +25,11 @@
     {
     <div class="pokemon" style="max-height: 38vh;">
       <img *ngFor="let pokemon of listaPokemon; let i = index" [src]="pokemon.sprites.front_default"
-        [alt]="pokemon.name" (click)="seleccionarPokemon2(i)" [class.seleccionado]="pokemonSeleccionado === i" />
+        [alt]="pokemon.name" (click)="seleccionarPokemon2(i)" (dblclick)="agregarDirectamenteAEequipo(i)"
+        [class.seleccionado]="pokemonSeleccionado === i" />
+
     </div>
+
     }
     @else {
     <p class="mensajeError">Error, ingrese datos validos</p>

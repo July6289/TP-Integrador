@@ -132,4 +132,11 @@ export class ListaPokemonComponent implements OnInit {
       this.pokemonSeleccionado = null;
     }, 100); // Delay suave
   }
+
+  @Output() pokemonAgregadoDirectamente = new EventEmitter<Pokemon>();
+
+  agregarDirectamenteAEequipo(indice: number): void {
+    const pokemon = this.listaPokemon[indice];
+    this.pokemonAgregadoDirectamente.emit(pokemon);
+  }
 }
