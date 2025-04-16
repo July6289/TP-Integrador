@@ -5,7 +5,8 @@
     @if(validacion){
     <div class="pokemon" style="max-height: 75vh;">
       <img *ngFor="let pokemon of listaPokemon; let i = index" [src]="pokemon.sprites.front_default"
-        [alt]="pokemon.name" (click)="seleccionarPokemon(i)" [class.seleccionado]="pokemonSeleccionado === i" />
+        [alt]="pokemon.name" (click)="seleccionarPokemon(i)" (dblclick)="agregarPokemonDirectamente(i)"
+        [class.seleccionado]="pokemonSeleccionado === i" />
     </div>
     }
     @else {

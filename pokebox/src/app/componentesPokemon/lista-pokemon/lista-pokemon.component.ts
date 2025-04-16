@@ -43,10 +43,10 @@ export class ListaPokemonComponent implements OnInit {
   validacion: boolean = true;
   mensajeError: string = '';
 
-
   seleccionarPokemon(indice: number) {
     this.pokemonSeleccionado = indice;
   }
+
   deseleccionar() {
     this.pokemonSeleccionado = null;
   }
@@ -121,5 +121,15 @@ export class ListaPokemonComponent implements OnInit {
       this.validacion = false;
       this.mensajeError = 'campos invalidos, ingrese datos validos';
     }
+  }
+
+  agregarPokemonDirectamente(indice: number): void {
+    this.pokemonSeleccionado = indice;
+    setTimeout(() => {
+      const pokemon = this.listaPokemon[indice];
+      this.pokemonAgregado.emit(pokemon);
+      this.listaPokemon.splice(indice, 1);
+      this.pokemonSeleccionado = null;
+    }, 100); // Delay suave
   }
 }
