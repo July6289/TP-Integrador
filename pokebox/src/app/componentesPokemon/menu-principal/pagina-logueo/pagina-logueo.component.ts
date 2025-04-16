@@ -21,9 +21,9 @@ export class PaginaLogueoComponent {
 
 
   mensajeEspecifico: string = '';
-  isLoggingButtonShowing: boolean = true;
-  isRegisterButtonShowing: boolean = true;
-  isFormLoginShowing: boolean = false;
+  isLoggingButtonShowing: boolean = false;
+  isRegisterButtonShowing: boolean = false;
+  isFormLoginShowing: boolean = true;
   IsFormRegisterShowing: boolean = false;
 
 
@@ -61,7 +61,7 @@ export class PaginaLogueoComponent {
     this.isRegisterButtonShowing = false;
     this.IsFormRegisterShowing = true;
     this.isLoggingButtonShowing = false;
-
+    this.isFormLoginShowing=false;
 
   }
 
@@ -69,7 +69,7 @@ export class PaginaLogueoComponent {
     this.validadorMensajeEspecifico = false;
 
 
-
+    this.IsFormRegisterShowing=false;
     this.isRegisterButtonShowing = false;
     this.isFormLoginShowing = true;
     this.isLoggingButtonShowing = false;

@@ -38,7 +38,12 @@ color: rgb(229, 255, 0);
 text-decoration: underline;
 cursor: pointer;
 }
+a.volverAlogueo{
 
+  color: rgb(255, 0, 0);
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 
 button.imagenGoogle {
@@ -71,7 +76,8 @@ button.imagenGoogle:focus {
 }
 
 
-button.inicioSesion{
+button.inicioSesion,
+.Registro{
   border: 2px solid #4A7B59;
   border-radius: 8px;
   padding: 15px 40px;
@@ -88,6 +94,7 @@ button.inicioSesion{
 
 
 }
+
 .SalirRegistro {
   margin-left: 20%;
   margin-bottom: 50px;
@@ -158,11 +165,11 @@ label {
 }
 
 .Error {
-  font-size: 1rem;
+  display: block;         /* Se comporta como un bloque (ocupa línea completa) */
+  min-height: 6px;      /* Deja espacio reservado incluso sin texto */
+  font-size: 16px;
   color: transparent;
-  text-align: left;
-  font-weight: bold;
-  display: block;
+  margin-top: 9px;
 
 
 }
@@ -264,8 +271,6 @@ input {
     font-size: 1rem;
   }
 
-  .Error {
-    font-size: 0.875rem;
-  }
+
 }
 
