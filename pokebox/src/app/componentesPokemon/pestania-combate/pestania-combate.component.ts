@@ -65,7 +65,6 @@ export class PestaniaCombateComponent implements OnInit {
   secretId: string | null = '';
   posicion: number = 0;
 
-
   usuario: Usuario = {
     id: "",
     box: [],
@@ -86,13 +85,10 @@ export class PestaniaCombateComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTeams()
-
     this.turno = this.service.getTurno();
     this.secretId = localStorage.getItem('token');
     this.dbUsuarioId()
-
   }
-
 
   ngOnChanges(changes: SimpleChanges): void {
     // Verificamos si el peleador actual no tiene un Pokémon asignado en equipoMain
@@ -100,7 +96,6 @@ export class PestaniaCombateComponent implements OnInit {
       this.gotoSlector(); // Llama automáticamente al método si no hay Pokémon seleccionado
     }
   }
-
 
   dbUsuarioId() {
     this.secretId = this.auth.getTokenValue();
@@ -132,6 +127,7 @@ export class PestaniaCombateComponent implements OnInit {
       }
     )
   }
+
   getTeams() {
     // Verifica compatibilidad antes de usar structuredClone
     if (typeof structuredClone === 'function') {
@@ -159,12 +155,7 @@ export class PestaniaCombateComponent implements OnInit {
     this.equipoRival.equipo = [];
     this.service.EquipoSeleccionadoBot(this.equipoRival);
     this.cajaservice.dbGuardarDatos(this.usuario, this.secretId);
-
-
     this.router.navigate(['/**']);
-
-
-
   }
 
   calcularAnchoVida(pokemon: Pokemon): string {
@@ -235,7 +226,6 @@ export class PestaniaCombateComponent implements OnInit {
       }
 
       this.mensaje[this.mensaje.length] = "te infligieron " + danio + " de daño"
-
     }
 
     return danio;
@@ -323,7 +313,6 @@ export class PestaniaCombateComponent implements OnInit {
           }
         }
       }
-
       return alive;
     }
     else {
@@ -332,7 +321,6 @@ export class PestaniaCombateComponent implements OnInit {
   }
 
   ganador() {
-
     if (this.equipoMain.equipo.length === 0) {
       alert("perdiste");
       this.toMainMenu()
