@@ -1,7 +1,7 @@
 {
   "Usuarios": [
     {
-      "id": "C3bN",
+      "id": "eOaU",
       "box": [
         {
           "imagen": "/assets/imagenes/cajas/1.png",
@@ -132,9 +132,9 @@
           "pokemones": []
         }
       ],
-      "Email": "auterijuli82@gmail.com",
-      "Password": "totito123",
-      "CombatesGanados": 0
+      "Email": "lucasivanhourcade@gmail.com",
+      "Password": null,
+      "CombatesGanados": 1
     }
   ]
 }

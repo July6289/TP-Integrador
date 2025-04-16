@@ -33,7 +33,6 @@ export class EquipoPokemonComponent {
     this.router.navigate(['/**']);
   }
 
-
   seleccionarPokemon(pokemon: Pokemon) {
     if (this.pokemonesEnEquipo.length < 6) {
       this.pokeaux = [pokemon];
@@ -93,6 +92,19 @@ export class EquipoPokemonComponent {
       else {
         alert('el nombre debe tener entre 1 y 20 caracteres!');
       }
+    }
+  }
+
+  agregarPokemonDirecto(pokemon: Pokemon) {
+    if (this.pokemonesEnEquipo.length < 6) {
+      const clonPokemon: Pokemon = {
+        ...pokemon,
+        id: Date.now() + Math.floor(Math.random() * 1000),
+        isAlive: true
+      };
+      this.pokemonesEnEquipo.push(clonPokemon);
+    } else {
+      alert('No puedes agregar más de 6 Pokémon al equipo.');
     }
   }
 
