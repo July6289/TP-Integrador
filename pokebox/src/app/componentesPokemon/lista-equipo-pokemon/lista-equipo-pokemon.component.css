@@ -16,10 +16,11 @@
 .big,
 .little {
   border-radius: 8px;
-  background-color: white;
-  border: 2px solid #2C2C3E;
+  background-color: #D6D6D6;
+  border: 2px solid #B0B0C3;
   transition-duration: 0.3s;
   cursor: pointer;
+  font-family: 'Winky Rough', cursive;
 }
 
 .big {
@@ -41,7 +42,7 @@
 }
 
 button:hover {
-  background-color: #4A7B59;
+  background-color: #B0B0C3;
   color: white;
 }
 
@@ -49,6 +50,8 @@ button:hover {
   background-color:#2C2C3E;
   overflow-y: auto;
   max-height: 50vh;
+  padding: 5px;
+  border-radius: 13px;
   /* Altura relativa al viewport */
 }
 
@@ -58,7 +61,7 @@ button:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #2C2C3E;
+  background-color: #B0B0C3;
 }
 
 .equipos {
@@ -72,11 +75,14 @@ button:hover {
 }
 
 .equipos:hover {
-  background-color: #4A7B59;
+  background-color: #B0B0C3;
 }
 
 .nombre-pokemon {
   padding: 0.5rem 1rem;
+  color: #D6D6D6;
+  font-family: 'Winky Rough', cursive;
+
   /* Ajustado para mejor escalabilidad */
 }
 

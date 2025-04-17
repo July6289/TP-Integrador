@@ -1,5 +1,5 @@
 <div *ngIf="rutaCombate===true">
-  <fieldset class="teams">
+  <div class="teams">
     <ul>
       <li class="equipos" *ngFor="let item of poketeam; let i = index">
         <span class="nombre-pokemon" (click)="llamarDbGuardarDatos()" (click)="goToVisualizarpokemon(item.nombre)">{{
@@ -11,7 +11,7 @@
       </li>
     </ul>
     <button class="big" (click)="llamarDbGuardarDatos()" (click)="goToCrearEquipo()">Agregar nuevo equipo</button>
-  </fieldset>
+  </div>
 </div>
 
 <div class="/selector" *ngIf="rutaCombate===false">

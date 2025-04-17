@@ -13,14 +13,14 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #4A7B59;
+  background-color: #B0B0C3;
 }
 
 .agregar,
 .buscar {
   border-radius: 8px;
-  background-color: white;
-  border: 2px solid #4A7B59;
+  background-color: #D6D6D6;
+  border: 2px solid #B0B0C3;
   transition-duration: 0.3s;
   cursor: pointer;
 }
@@ -33,10 +33,12 @@
   width: auto;
   /* Ancho ajustable */
   margin-left: 35%;
+  font-family: 'Winky Rough', cursive;
+
 }
 
 .agregar:hover {
-  background-color: #4A7B59;
+  background-color: #B0B0C3;
   color: white;
 }
 
@@ -53,10 +55,11 @@
 .buscar {
   padding: 5px 10px;
   font-size: 0.7rem;
+  font-family: 'Winky Rough', cursive;
 }
 
 .buscar:hover {
-  background-color: #4A7B59;
+  background-color: #B0B0C3;
   color: white;
 }
 

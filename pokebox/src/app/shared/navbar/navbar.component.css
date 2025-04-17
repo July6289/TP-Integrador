@@ -1,5 +1,5 @@
 nav {
-  background-color: #7FA185;
+  background-color: #4A4A4A;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,6 +17,61 @@ nav {
 .homePage {
   margin-right: 2rem;
   /* Ajustado con unidad relativa */
+}
+
+
+.homePage {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* Espacio entre imagen y texto */
+  border-radius: 8px;
+  background-color: #D6D6D6;
+  border: 2px solid #B0B0C3;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  font-family: 'Winky Rough', cursive;
+}
+
+.homePage {
+  /*padding: 0.5rem 1rem;*/
+  /* Unidades relativas para escalabilidad */
+  font-size: 1rem;
+  /* Escalable */
+}
+
+.boton2 {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 8px;
+  background-color: #D6D6D6;
+  border: 2px solid #B0B0C3;
+  transition-duration: 0.3s;
+  cursor: pointer;
+
+  font-family: 'Winky Rough', cursive;
+}
+
+
+.boton2:hover {
+  background-color: #BD2222;
+  color: white;
+}
+
+.homePage p {
+  margin: 0;
+  padding: 0;
+}
+
+button:hover {
+  background-color: #B0B0C3;
+  color: white;
+}
+
+.homePage img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
 }
 
 ul,
@@ -39,20 +94,6 @@ ul {
   padding: 0;
   display: flex;
   align-items: center;
-}
-
-.boton1 {
-  margin-top: 2rem;
-}
-
-.boton2 {
-  border: none;
-  font-size: 1rem;
-  background-color: red;
-  color: white;
-  padding: 0.5rem 1.2rem;
-  margin-right: 1rem;
-  cursor: pointer;
 }
 
 .imagenUsuario {

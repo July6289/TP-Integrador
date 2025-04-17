@@ -3,6 +3,7 @@
   justify-content: center;
   height: 100%;
   overflow: hidden;
+  border-radius: 13px;
 }
 
 .botones {
@@ -21,16 +22,18 @@
   padding: 0.5rem 0.8rem;
   /* Ajustado para escalabilidad */
   font-size: 1rem;
-  background-color: white;
-  border: 2px solid #4A7B59;
+  background-color: #D6D6D6;
+  border: 2px solid #B0B0C3;
   transition: background-color 0.3s, color 0.3s;
   cursor: pointer;
+  font-family: 'Winky Rough', cursive;
+
 }
 
 .macho:hover,
 .hembra:hover,
 .shiny:hover {
-  background-color: #4A7B59;
+  background-color: #B0B0C3;
   color: white;
 }
 
@@ -46,6 +49,8 @@
 
 .nombre {
   margin: 0.5rem 0;
+  color: #D6D6D6;
+  font-family: 'Winky Rough', cursive;
   /* Margen proporcional */
 }
 
