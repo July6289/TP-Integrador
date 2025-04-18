@@ -300,6 +300,7 @@ export class PokeservicesService {
   }
 
   clonarPokemon(pokemon: Pokemon): Pokemon {
+
     return {
       ...pokemon,
       isShiny: this.esShinySubject.value,

@@ -117,4 +117,22 @@ export class EquipoPokemonService {
   getPosicionEquipo() {
     return this.selectedPokemon;
   }
+
+  // equipoPokemonService.ts
+  private nombreRival = '';
+  private nombrePropio = '';
+
+  guardarNombresCombate(nombreJugador: string, nombreRival: string): void {
+    this.nombrePropio = nombreJugador;
+    this.nombreRival = nombreRival;
+  }
+
+  obtenerNombreJugador(): string {
+    return this.nombrePropio;
+  }
+
+  obtenerNombreRival(): string {
+    return this.nombreRival;
+  }
+
 }

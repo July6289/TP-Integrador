@@ -35,7 +35,6 @@
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s;
-
 }
 
 .pokemon-imagen {
@@ -107,6 +106,17 @@ button:hover {
   left: 0;
   margin: 10px;
   /* Espacio alrededor del botón */
+}
+
+.info-combate {
+  background-color: #fef9c3;
+  color: #6b4226;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 2px dashed #ecc94b;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.1rem;
 }
 
 /* Adaptaciones para pantallas medianas */

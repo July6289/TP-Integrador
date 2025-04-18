@@ -19,6 +19,7 @@ export class InfoPokedexComponent implements OnInit {
   onGuardarDatos() {
     this.guardarDatos.emit();
   }
+
   constructor(private pokeService: PokeservicesService) { }
 
   ngOnInit(): void {
@@ -26,6 +27,7 @@ export class InfoPokedexComponent implements OnInit {
     this.pokeService.selectedPokemon$.subscribe(pokemon => {
       this.selectedPokemon = pokemon;
       this.updateSprite();
+
     });
 
     // Suscribirse a los cambios de género y brillo
@@ -37,14 +39,12 @@ export class InfoPokedexComponent implements OnInit {
     this.pokeService.setEsMacho(true);
     this.applyChangesToPokemon();
     this.onGuardarDatos();
-
   }
 
   cambiarAHembra(): void {
     this.pokeService.setEsMacho(false); // Llama a la lógica de verificación en el servicio
     this.applyChangesToPokemon();
     this.onGuardarDatos();
-
   }
 
   cambiarAShiny(): void {
@@ -53,9 +53,6 @@ export class InfoPokedexComponent implements OnInit {
     this.pokeService.setEsShiny(nuevoEstadoShiny);
     this.applyChangesToPokemon();
     this.onGuardarDatos();
-
-
-
   }
 
   private updateSprite(): void {
@@ -72,5 +69,4 @@ export class InfoPokedexComponent implements OnInit {
     this.pokeService.updatePokemonInCaja(this.selectedPokemon);
     this.updateSprite(); // Actualiza el sprite visible
   }
-
 }

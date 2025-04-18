@@ -47,7 +47,6 @@ export class SelectorPokemonComponent implements OnInit {
     let aux = this.equipoPokemonService.getPosicionEquipo();
     console.log("hola", aux);
 
-
     if (index === aux) {
       alert("Ese pokemon esta en combate!");
     }
@@ -59,10 +58,16 @@ export class SelectorPokemonComponent implements OnInit {
 
   turns: boolean = true;
 
+  nombreJugadorActual: string = '';
+  nombreRivalActual: string = '';
+
   ngOnInit(): void {
     this.pokemonesEnEquipo = this.equipoPokemonService.recibirEquipoPokemon();
     this.turns = this.equipoPokemonService.getTurno();
 
+    // Cargamos los nombres del servicio
+    this.nombreJugadorActual = this.equipoPokemonService.obtenerNombreJugador();
+    this.nombreRivalActual = this.equipoPokemonService.obtenerNombreRival();
   }
 
   gotoMainMenu() {

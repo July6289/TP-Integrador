@@ -63,6 +63,7 @@ export class PestaniaCombateComponent implements OnInit {
   mensaje: string[] = [];
 
   secretId: string | null = '';
+
   posicion: number = 0;
 
   usuario: Usuario = {
@@ -99,15 +100,12 @@ export class PestaniaCombateComponent implements OnInit {
 
   dbUsuarioId() {
     this.secretId = this.auth.getTokenValue();
-
     this.usuarioService.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
           this.usuario.Email = valor.Email;
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
-
-          console.log(valor.CombatesGanados);
           this.usuario.CombatesGanados = valor.CombatesGanados;
 
           for (let i = 0; i < valor.box.length; i++) {
@@ -137,7 +135,6 @@ export class PestaniaCombateComponent implements OnInit {
     }
 
     this.equipoRival = JSON.parse(JSON.stringify(this.service.recibirEquipoPokemonRival()));
-
     this.getpokemonFight();
   }
 
@@ -258,12 +255,9 @@ export class PestaniaCombateComponent implements OnInit {
 
   /*------------------------------------------------------------------------------------------------------*/
   combate() {
-
     let turn = 0;
     while (this.checkStstate(this.equipoMain.equipo[this.peleador]) && this.checkStstate(this.equipoRival.equipo[this.peleadorBot])) {
-
       this.pelea(this.equipoMain.equipo[this.peleador], this.equipoRival.equipo[this.peleadorBot]);
-
       turn++;
 
       if (!this.checkStstate(this.equipoMain.equipo[this.peleador]) || !this.checkStstate(this.equipoRival.equipo[this.peleadorBot]) || turn % 2 === 0) {
@@ -295,7 +289,6 @@ export class PestaniaCombateComponent implements OnInit {
     let alive = false;
     if (team.equipo.length !== 0) {
       for (let i = 0; i < team.equipo.length; i++) {
-
         if (team.equipo[i].isAlive) {
           alive = true;
         }
@@ -343,6 +336,10 @@ export class PestaniaCombateComponent implements OnInit {
   }
 
   gotoSlector() {
+    const nombreJugador = this.equipoMain.equipo[this.peleador]?.name || '';
+    const nombreRival = this.equipoRival.equipo[this.peleadorBot]?.name || '';
+
+    this.service.guardarNombresCombate(nombreJugador, nombreRival); // 👈 guardar nombres
     this.service.EquipoSeleccionado(this.equipoMain);
     this.service.EquipoSeleccionadoBot(this.equipoRival);
     this.service.guardarTurno(!this.turno);

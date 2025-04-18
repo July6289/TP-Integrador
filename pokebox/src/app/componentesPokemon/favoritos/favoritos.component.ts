@@ -24,6 +24,8 @@ export class FavoritosComponent {
   }
 
   onRightClick(event: MouseEvent, pokemon: Pokemon) {
+    console.log(pokemon);
+
     event.preventDefault();
     this.selectedPokemon = pokemon;
     this.contextMenuX = event.clientX;

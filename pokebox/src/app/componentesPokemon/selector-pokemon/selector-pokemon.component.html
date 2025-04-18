@@ -1,5 +1,9 @@
 <div class="total">
   <div class="titulo">Seleccione Un Pokémon!</div>
+  <div class="info-combate">
+    <p>⚔️ Estás en combate contra <strong>{{nombreRivalActual | titlecase}}</strong></p>
+    <p>Tu Pokémon actual es <strong>{{nombreJugadorActual | titlecase}}</strong></p>
+  </div>
   <div class="convivan">
     <div class="boton-volver">
       <button (click)="goBack()"> volver</button>
