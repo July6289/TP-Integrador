@@ -7,6 +7,14 @@
   max-width: 100%;
 }
 
+.barra-gen{
+  border-radius: 10px;
+  padding: 6px;
+  width: 50%;
+  border: 2px solid #B0B0C3;
+  margin: 5px;
+}
+
 ::-webkit-scrollbar {
   background-color: rgb(146, 146, 146);
   width: 10px;

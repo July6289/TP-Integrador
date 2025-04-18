@@ -7,7 +7,7 @@
     <div *ngFor="let pokemon of pokemonesEnEquipo" class="pokemon">
       <img (click)="ponerMote(pokemon)" [src]="pokemon.sprites.front_default" [alt]="pokemon.name"
         class="pokemon-imagen">
-      <div>{{pokemon.name}}</div>
+      <div class="nombre-pokemon">{{pokemon.name}}</div>
     </div>
   </div>
   <div></div>

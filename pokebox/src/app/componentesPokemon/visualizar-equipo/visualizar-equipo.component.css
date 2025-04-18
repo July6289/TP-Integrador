@@ -1,12 +1,19 @@
 .pokemon-grid {
-  gap: 15px;
-  width: 90%;
+  gap: 20px;
+  width: 100%;
   margin-bottom: 20px;
   /* Para que los elementos se ajusten en múltiples líneas si es necesario */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   /* Diseño de grilla adaptable */
+  font-family: 'Winky Rough', cursive;
 
+}
+
+.nombre-pokemon
+{
+  color: #D6D6D6;
+  font-size: 1rem;
 }
 
 .pokemon-grid,
@@ -29,7 +36,7 @@
   height: 150px;
   /* Ancho de cada tarjeta de Pokémon */
   padding: 15px;
-  background-color: #819875;
+  background-color: #2C2C3E;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s;
@@ -50,28 +57,36 @@
   height: 93vh;
   box-sizing: border-box;
   /* Asegura que el padding y el border no incrementen el tamaño */
-  background-image: url('/assets/imagenes/test2.jpg');
+  background-image: url('/assets/imagenes/background7.webp');
   /* URL de tu imagen de fondo */
   background-size: cover;
   /* Asegura que la imagen cubra todo el contenedor */
   background-repeat: no-repeat;
   /* Evita que la imagen se repita */
   background-position: center;
+  font-family: 'Winky Rough', cursive;
+}
+
+.pokemon-imagen
+{
+  width: 150px;
+  height: 150px;
 }
 
 button {
   border-radius: 8px;
   padding: 10px 14px;
   font-size: 1rem;
-  background-color: white;
-  border: 2px solid #4A7B59;
+  background-color: #D6D6D6;
+  border: 2px solid #B0B0C3;
   transition-duration: 0.3s;
   /* Espacio entre las tarjetas y el botón */
   cursor: pointer;
+  font-family: 'Winky Rough', cursive;
 }
 
 button:hover {
-  background-color: #4A7B59;
+  background-color: #B0B0C3;
   color: white;
 }
 
@@ -92,6 +107,8 @@ button:hover {
   border-radius: 50px;
   /* Bordes redondeados */
   box-shadow: 0 10px 12px rgb(95, 95, 95, 1);
+  /* Borde solido y de color */
+  border: 2px solid #D6D6D6;
   /* Sombra suave */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   /* Sombra en el texto */

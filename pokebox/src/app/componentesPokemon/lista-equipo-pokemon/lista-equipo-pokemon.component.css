@@ -7,6 +7,11 @@
   box-sizing: border-box;
 }
 
+.titulo
+{
+  color: #D6D6D6;
+  font-family: 'Winky Rough', cursive;
+}
 .botones-container {
   display: flex;
   gap: 10px;
