@@ -300,11 +300,10 @@ export class PokeservicesService {
   }
 
   clonarPokemon(pokemon: Pokemon): Pokemon {
-
     return {
       ...pokemon,
-      isShiny: this.esShinySubject.value,
-      isMale: this.esMachoSubject.value,
+      isShiny: pokemon.isShiny ?? false,
+      isMale: pokemon.isMale ?? true,
     };
   }
 }

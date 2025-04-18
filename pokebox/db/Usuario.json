@@ -40,7 +40,7 @@
                 }
               ],
               "isMale": false,
-              "isShiny": false
+              "isShiny": true
             },
             {
               "forms": [
@@ -81,7 +81,9 @@
                     "url": "https://pokeapi.co/api/v2/type/3/"
                   }
                 }
-              ]
+              ],
+              "isMale": true,
+              "isShiny": false
             }
           ]
         },
