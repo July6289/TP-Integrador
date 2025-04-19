@@ -1,93 +1,45 @@
 <div class="user-card">
-  <!-- Condicional para mostrar el encabezado y el contenido del perfil -->
-  @if(isCardShowing) {
-    <div class="user-card-header">
-      <h2>Perfil de Usuario</h2>
+  <div class="user-card-header">
+    <h2>Perfil de Usuario</h2>
+  </div>
+  <div class="user-card-body">
+    <div class="user-content">
+      <!-- Columna izquierda - Información del usuario -->
+      <div class="user-info-list">
+        <div class="user-info">
+          <label>Email:</label>
+          <span>{{ usuario.Email }}</span>
+        </div>
+
+        <div class="user-info">
+          @if (isLoggedWithouthGoogle) {
+            <label>Contraseña:</label>
+            <span>{{ usuario.Password }}</span>
+          }
+          @else {
+            <p style="color: green">Usuario autenticado con Google!</p>
+          }
+        </div>
+
+        <div class="user-info">
+          <label>Combates Ganados:</label>
+          <span>{{ usuario.CombatesGanados }}</span>
+        </div>
+      </div>
+
+      <!-- Columna derecha - Imagen del entrenador -->
+      <div class="trainer-image-container">
+        <img class="Image-trainer" src="/assets/imagenes/entrenador_pokemon.png" alt="Imagen del entrenador">
+      </div>
     </div>
-    <div class="user-card-body">
-      <!-- Información del usuario -->
-      <div class="user-info">
-        <label>Email:</label>
-        <span>{{ usuario.Email }}</span>
-      </div>
-      <div class="user-info">
-        @if (isLoggedWithouthGoogle) {
-        <label>Contraseña:</label>
-        <span>{{ usuario.Password }}</span>
-        }
-        @else {
-         <p>Usuario autenticado con Google</p>
 
-        }
-      </div>
-      <div class="user-info">
-        <label>Combates Ganados:</label>
-        <span>{{ usuario.CombatesGanados }}</span>
-      </div>
-
-      <!-- Botones de acción -->
-      <div class="action-buttons">
-        @if(isLoggedWithouthGoogle)
+    <!-- Botones de acción -->
+    <div class="action-buttons">
+      @if(isLoggedWithouthGoogle)
       {
         <button class="btn-modify-account" (click)="toggleModify()">Modificar Perfil</button>
       }
-
-        <button class="btn-delete-account"  (click)="toogleDelete()" >Eliminar Cuenta</button>
-      </div>
+      <button class="btn-delete-account" (click)="toogleDelete()">Eliminar Cuenta</button>
     </div>
-  }
-
-  <!-- Formulario de modificación, solo se muestra si isModifyShowing es verdadero -->
-  @if(isModifyShowing) {
-    <div class="modify-profile">
-      <h3 class="modify-title">Modificando tu Perfil</h3>
-      <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="addUsuario()" (keydown.enter)="addUsuario()">
-        <!-- Campo de Usuario -->
-        <div class="form-group">
-          <label for="">Usuario:</label>
-          <input type="text" formControlName="Username" value="">
-          @if(formulario.controls['Email'].getError('required') && formulario.controls['Email'].touched) {
-            <p class="Error">Campo requerido</p>
-          }
-          @if(formulario.controls['Email'].getError('minlength') && formulario.controls['Email'].touched) {
-            <p class="Error">El Usuario no puede contener menos de 6 letras</p>
-          }
-        </div>
-
-        <!-- Campo de Contraseña -->
-        <div class="form-group">
-          <label for="">Contraseña:</label>
-          <input type="password" formControlName="Password" value="''">
-          @if(formulario.controls['Password'].getError('required') && formulario.controls['Password'].touched) {
-            <p class="Error">Campo requerido</p>
-          }
-          @if(formulario.controls['Password'].getError('minlength') && formulario.controls['Password'].touched) {
-            <p class="Error">La contraseña debe tener al menos 6 caracteres</p>
-          }
-        </div>
-
-        <!-- Mensaje de error adicional -->
-        @if(validadorMensajeEspecifico) {
-          <p class="Error">{{ MensajeEspecifico }}</p>
-        }
-
-        <!-- Botones para cancelar o confirmar cambios -->
-        <div class="botones">
-          <button class="SalirRegistro" (click)="cancelar()">Cancelar</button>
-          <button class="Confirmar" (click)="addUsuario()">Confirmar</button>
-        </div>
-      </form>
-    </div>
-  }
-
-<!-- Modal para confirmar la eliminación de cuenta -->
-  @if (isDeleteShowing) {
-    <div class="delete-confirmation">
-      <p>¿Estás seguro de que quieres eliminar tu cuenta?</p>
-      <div class="confirmation-buttons">
-        <button class="btn-confirm-delete" (click)="confirmDelete()">Sí, eliminar</button>
-        <button class="btn-cancel-delete" (click)="cancelDelete()">Cancelar</button>
-      </div>
-    </div>
-  }
+  </div>
 </div>
