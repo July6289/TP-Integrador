@@ -7,16 +7,49 @@
   box-sizing: border-box;
 }
 
+.full-background {
+  background-image: url('/assets/imagenes/test2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #4A4A4A;
+  height: 100%;
+  width: 100%;
+  display: flex;
+
+
+}
+
 .titulo
 {
   color: #D6D6D6;
   font-family: 'Winky Rough', cursive;
 }
+
 .botones-container {
   display: flex;
   gap: 10px;
   margin-left: auto;
 }
+
+.pokemon-banner {
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+  color: white;
+  font-family: 'Winky Rough', cursive;
+}
+
+.selector-con-fondo {
+
+  background-size: cover;
+  background-position: center;
+}
+
+
 
 .big,
 .little {
@@ -34,6 +67,7 @@
   font-size: 1rem;
   /* Escalable */
 }
+
 
 .little {
   padding: 0.25rem 0.5rem;
@@ -74,6 +108,7 @@ button:hover {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem;
+
   /* Ajuste proporcional */
   border-bottom: 1px solid #ddd;
   background-color: #2C2C3E;

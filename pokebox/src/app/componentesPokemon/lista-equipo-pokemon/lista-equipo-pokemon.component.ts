@@ -1,7 +1,7 @@
 import { Router, RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
-import { NgFor, Location, NgIf } from '@angular/common';
+import { NgFor, Location, NgIf, NgClass } from '@angular/common';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
 import { CajaService } from '../../pokeservices/caja.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
@@ -11,7 +11,7 @@ import { AuthService } from '../../auth/service/auth.service';
 @Component({
   selector: 'app-lista-equipo-pokemon',
   standalone: true,
-  imports: [RouterModule, NgFor, NgIf],
+  imports: [RouterModule, NgFor, NgIf, NgClass],
   templateUrl: './lista-equipo-pokemon.component.html',
   styleUrl: './lista-equipo-pokemon.component.css'
 })

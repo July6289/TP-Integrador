@@ -14,18 +14,23 @@
   </div>
 </div>
 
-<div class="/selector" *ngIf="rutaCombate===false">
-  <h1 class="titulo">Elija un Equipo Pokemon</h1>
+<div *ngIf="rutaCombate === false" [ngClass]="{ 'full-background': true }">
   <div class="selector">
-    <ul>
-      <li class="equipos" *ngFor="let item of poketeam; let i = index">
-        <span class="nombre-pokemon">{{ item.nombre }}</span>
-        <div class="botones-container">
-          <button class="big" (click)="goToVisualizarpokemon(item.nombre)">Detalles</button>
-          <button class="big" (click)="seleccionarEquipo(item)">Selecionar Equipo</button>
-        </div>
-      </li>
-    </ul>
+    <div class="pokemon-banner">
+      <h2>Elija un Equipo Pokemon</h2>
+      <div class="selector">
+        <ul>
+          <li class="equipos" *ngFor="let item of poketeam; let i = index">
+            <span class="nombre-pokemon">{{ item.nombre }}</span>
+            <div class="botones-container">
+              <button class="big" (click)="goToVisualizarpokemon(item.nombre)">Detalles</button>
+              <button class="big" (click)="seleccionarEquipo(item)">Selecionar Equipo</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <button class="big" (click)="gotoMain()">Volver</button>
+    </div>
   </div>
-  <button class="big" (click)="gotoMain()">Volver</button>
 </div>
+
