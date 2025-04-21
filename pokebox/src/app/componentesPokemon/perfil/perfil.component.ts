@@ -42,7 +42,6 @@ export class PerfilComponent implements OnInit {
   )
   ngOnInit(): void {
     this.id = localStorage.getItem('token');
-    console.log(this.id)
     this.dbUsuarioId();
   }
 
@@ -52,13 +51,16 @@ export class PerfilComponent implements OnInit {
         next: (valor: Usuario) => {
           this.usuario.Email = valor.Email;
 
-          if (this.usuario.Password) {
+          if (valor.Password===null) {
+            this.isLoggedWithouthGoogle = false; // Tiene cuenta de Google
+
+          }
+          else {
             this.usuario.Password = valor.Password
             this.isLoggedWithouthGoogle = true;
           }
-          else {
-            this.isLoggedWithouthGoogle = false;
-          }
+
+            console.log(this.isLoggedWithouthGoogle)
 
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;

@@ -62,10 +62,14 @@ export class PaginaLogueoComponent {
     this.IsFormRegisterShowing = true;
     this.isLoggingButtonShowing = false;
     this.isFormLoginShowing=false;
+    this.formulario.reset();
+
 
   }
 
   btLogueo() {
+    this.formulario.reset();
+
     this.validadorMensajeEspecifico = false;
 
 

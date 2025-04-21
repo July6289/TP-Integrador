@@ -24,8 +24,8 @@ export class UsuarioService {
     return this.service.get<Usuario>(`${this.urlbase}/${id}`);
   }
 
-  getUsuariobyName(name: string): Observable<Usuario[]> {
-    return this.service.get<Usuario[]>(`${this.urlbase}?Username=${name}`);
+  getUsuariobyName(Email: string): Observable<Usuario[]> {
+    return this.service.get<Usuario[]>(`${this.urlbase}?Email=${Email}`);
   }
 
   putUsuario(usuario: Usuario, id: string | null): Observable<Usuario> {

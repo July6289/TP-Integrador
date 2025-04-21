@@ -1,8 +1,10 @@
 <div class="user-card">
+
   <div class="user-card-header">
     <h2>Perfil de Usuario</h2>
   </div>
   <div class="user-card-body">
+    @if(isCardShowing){
     <div class="user-content">
       <!-- Columna izquierda - Información del usuario -->
       <div class="user-info-list">
@@ -40,6 +42,27 @@
         <button class="btn-modify-account" (click)="toggleModify()">Modificar Perfil</button>
       }
       <button class="btn-delete-account" (click)="toogleDelete()">Eliminar Cuenta</button>
+
+
+
+
+
     </div>
+    }
+
+
+
+
+    @if (isDeleteShowing) {
+      <div class="delete-confirmation">
+        <p>¿Estás seguro de que quieres eliminar tu cuenta?</p>
+        <div class="confirmation-buttons">
+          <button class="btn-confirm-delete" (click)="confirmDelete()">Sí, eliminar</button>
+          <button class="btn-cancel-delete" (click)="cancelDelete()">Cancelar</button>
+        </div>
+      </div>
+    }
   </div>
+
 </div>
+
