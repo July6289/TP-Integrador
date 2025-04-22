@@ -1,5 +1,6 @@
 <div *ngIf="rutaCombate===true">
   <div class="teams">
+    <button class="big" (click)="llamarDbGuardarDatos()" (click)="goToCrearEquipo()">Agregar nuevo equipo</button>
     <ul>
       <li class="equipos" *ngFor="let item of poketeam; let i = index">
         <span class="nombre-pokemon" (click)="llamarDbGuardarDatos()" (click)="goToVisualizarpokemon(item.nombre)">{{
@@ -10,7 +11,7 @@
         </div>
       </li>
     </ul>
-    <button class="big" (click)="llamarDbGuardarDatos()" (click)="goToCrearEquipo()">Agregar nuevo equipo</button>
+
   </div>
 </div>
 
