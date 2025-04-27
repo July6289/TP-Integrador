@@ -57,9 +57,7 @@ export class CajaComponent implements OnInit {
     this.dbUsuarioId();
     setTimeout(() => {
       if (this.usuario.ListaFavoritos.length > 0) {
-        this.usuario.ListaFavoritos.forEach(pokemonfavorito => {
-          this.pokeService.agregarAFavoritos(pokemonfavorito);
-        });
+        this.pokeService.setFavoritos(this.usuario.ListaFavoritos)
       }
     }, 300);
 
