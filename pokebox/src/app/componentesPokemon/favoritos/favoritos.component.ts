@@ -1,8 +1,10 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { Observable } from 'rxjs';
+import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { UsuarioService } from '../../pokeservices/usuario.service';
 
 @Component({
   selector: 'app-favoritos',
@@ -11,13 +13,23 @@ import { Observable } from 'rxjs';
   templateUrl: './favoritos.component.html',
   styleUrls: ['./favoritos.component.css']
 })
-export class FavoritosComponent {
+export class FavoritosComponent  {
   favoritos$: Observable<Pokemon[]>;
+  usarioServicio = inject(UsuarioService);
 
   contextMenuVisible = false;
   contextMenuX = 0;
   contextMenuY = 0;
   selectedPokemon: Pokemon | null = null;
+
+  usuario: Usuario = {
+      id: "",
+      box: [],
+      Email: "",
+      Password: "",
+      CombatesGanados: 0,
+      ListaFavoritos:[],
+    }
 
   constructor(private pokeService: PokeservicesService) {
     this.favoritos$ = this.pokeService.favoritos$;

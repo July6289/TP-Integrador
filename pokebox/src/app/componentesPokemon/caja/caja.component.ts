@@ -24,7 +24,6 @@ export class CajaComponent implements OnInit {
   // Cambia `spriteActual` a `spriteActual$` como Observable
   spriteActual$: Observable<string | null>;
   indiceCaja: number = 0; // Índice de la caja actual
-
   flag: boolean = false;
 
   posicion: number = 0;
@@ -39,11 +38,14 @@ export class CajaComponent implements OnInit {
     Email: "",
     Password: "",
     CombatesGanados: 0,
+    ListaFavoritos:[],
   }
 
   constructor(private pokeService: PokeservicesService, private cajaService: CajaService) {
     // Asigna el observable `spriteActual$` desde el servicio
     this.spriteActual$ = this.pokeService.spriteActual$;
+
+
   }
 
   ngOnInit(): void {
@@ -53,6 +55,16 @@ export class CajaComponent implements OnInit {
 
     this.secretId = this.auth.getTokenValue();
     this.dbUsuarioId();
+    setTimeout(() => {
+      if (this.usuario.ListaFavoritos.length > 0) {
+        this.usuario.ListaFavoritos.forEach(pokemonfavorito => {
+          this.pokeService.agregarAFavoritos(pokemonfavorito);
+        });
+      }
+    }, 300);
+
+
+
   }
 
   dameUsuario() {
@@ -74,6 +86,12 @@ export class CajaComponent implements OnInit {
             this.usuario.box[this.posicion].imagen = caja.imagen;
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
             this.posicion = this.posicion + 1;
+          })
+          this.posicion=0
+          valor.ListaFavoritos.map((pokemon)=>{
+          this.usuario.ListaFavoritos[this.posicion]=pokemon
+          this.posicion=this.posicion+1
+
           })
         },
         error: (e: Error) => {
@@ -172,6 +190,8 @@ export class CajaComponent implements OnInit {
   agregarAFavoritosDesdeMenu() {
     if (this.contextPokemon) {
       this.pokeservicio.agregarAFavoritos(this.contextPokemon);
+
+
     }
 
     this.mostrarMenu = false;

@@ -72,6 +72,7 @@ export class PestaniaCombateComponent implements OnInit {
     Email: "",
     Password: "",
     CombatesGanados: 0,
+    ListaFavoritos:[]
   }
 
   constructor(private service: EquipoPokemonService, private pokeservicesService: PokeservicesService, private router: Router) { }
@@ -118,6 +119,8 @@ export class PestaniaCombateComponent implements OnInit {
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
             this.posicion++;
           })
+
+          this.usuario.ListaFavoritos=valor.ListaFavoritos;
         },
         error: (e: Error) => {
           console.log(e.message);

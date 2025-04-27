@@ -31,6 +31,7 @@ export class NavbarComponent implements OnInit {
     Email: "",
     Password: "",
     CombatesGanados:0,
+    ListaFavoritos:[]
   }
 
   secretId: string | null = ""
@@ -66,6 +67,9 @@ export class NavbarComponent implements OnInit {
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
             this.posicion++;
           })
+
+          this.usuario.ListaFavoritos=valor.ListaFavoritos;
+
         },
         error: (e: Error) => {
           console.log(e.message);

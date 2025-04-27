@@ -1,4 +1,5 @@
 import { Caja } from "../interfaz-caja/interfazCaja.inteface";
+import { Pokemon } from "../interfazpokemon/interfazpokemon.inteface";
 
 export interface Usuario {
   id?: string;
@@ -6,7 +7,7 @@ export interface Usuario {
   Password: string | null;
   CombatesGanados: number;
   box: Caja[];
-
+  ListaFavoritos:Pokemon[];
 
 
   //combatesGanados: number;

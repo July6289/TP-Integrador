@@ -6,6 +6,7 @@ import { Pokemon, Species, Sprites, Type } from '../interfaces/interfazpokemon/i
 import { Caja } from '../interfaces/interfaz-caja/interfazCaja.inteface';
 import { UsuarioService } from './usuario.service';
 import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { FavoritosComponent } from '../componentesPokemon/favoritos/favoritos.component';
 
 
 @Injectable({
@@ -43,7 +44,10 @@ export class PokeservicesService {
     box: [],
     Email: "",
     Password: "",
-    CombatesGanados: 0
+    CombatesGanados: 0,
+    ListaFavoritos: []
+
+
   }
 
   // Este observable combinará los valores de selectedPokemon$, esMacho$ y esShiny$
@@ -274,6 +278,9 @@ export class PokeservicesService {
   private favoritosSubject = new BehaviorSubject<Pokemon[]>([]);
   favoritos$ = this.favoritosSubject.asObservable();
 
+  public setFavoritos(pokemons: Pokemon[]) {
+    this.favoritosSubject.next(pokemons);
+  }
   agregarAFavoritos(pokemon: Pokemon) {
     const favoritosActuales = this.favoritosSubject.value;
 
@@ -291,12 +298,54 @@ export class PokeservicesService {
 
     const clon = this.clonarPokemon(pokemon);
     this.favoritosSubject.next([...favoritosActuales, clon]);
+
+
+    this.getid()
+
+    this.usuarioService.getUsuarioById(this.clave).subscribe({
+      next:(valor: Usuario)=>{
+        this.usuario=valor
+        this.usuario.ListaFavoritos=this.favoritosSubject.value
+        console.log("llegaste")
+        this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
+          next: () => console.log('favoritos actualizado con éxito.'),
+          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
+        });
+      },
+      error: (e: Error) => console.error('Error al obtener el usuario para actualizar su lista de favoritos:', e.message),
+    });
+
+
+
   }
 
   eliminarFavorito(pokemonId: number): void {
     const actuales = this.favoritosSubject.value;
     const nuevos = actuales.filter(p => p.id !== pokemonId);
     this.favoritosSubject.next(nuevos);
+
+    this.getid()
+
+    this.usuarioService.getUsuarioById(this.clave).subscribe({
+      next:(valor: Usuario)=>{
+        this.usuario=valor
+
+        this.usuario.ListaFavoritos=this.favoritosSubject.value
+
+
+        this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
+          next: () => console.log('favorito eliminado con éxito.'),
+          error: (e: Error) => console.error('Error al actualizar el favorito:', e.message),
+        });
+      },
+      error: (e: Error) => console.error('Error al obtener el usuario para borrar un pokemon de su lista de favoritos:', e.message),
+    });
+
+
+
+
+
+
   }
 
   clonarPokemon(pokemon: Pokemon): Pokemon {

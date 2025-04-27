@@ -26,6 +26,7 @@ export class RecuperarContraComponent implements OnInit {
     Email: "",
     Password: "",
     CombatesGanados: 0,
+    ListaFavoritos:[],
   }
 
   authService = inject(AuthService);

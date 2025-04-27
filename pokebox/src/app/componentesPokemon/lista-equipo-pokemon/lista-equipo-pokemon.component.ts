@@ -36,6 +36,7 @@ export class ListaEquipoPokemonComponent {
     Email: "",
     Password: "",
     CombatesGanados:0,
+    ListaFavoritos:[]
   }
   posicion: number = 0;
   secretId: string | null = ""
