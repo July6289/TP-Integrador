@@ -82,6 +82,10 @@ export class NavbarComponent implements OnInit {
     this.Router.navigate(['/perfil']);
   }
 
+  goToObjetos() {
+    this.Router.navigate(['lista-objetos']);
+  }
+
   onLonginLogout() {
     if (this.textButton === 'Iniciar Sesion') {
       this.textButton = 'Cerrar Sesion'

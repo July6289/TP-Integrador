@@ -11,11 +11,17 @@ import { AccessDeniedPageComponent } from './auth/access-denied-page/access-deni
 import { authGuardFnLogout } from './auth/guard/auth.guard-fn-logout';
 import { authGuardFn } from './auth/guard/auth.guard-fn';
 import { RecuperarContraComponent } from './componentesPokemon/recuperar-contra/recuperar-contra.component';
+import { ListaObjetosComponent } from './componentesPokemon/lista-objetos/lista-objetos.component';
 
 export const routes: Routes = [
   {
     path: 'perfil',
     component: PerfilComponent,
+    canActivate:[authGuardFn]
+  },
+  {
+    path: 'lista-objetos',
+    component: ListaObjetosComponent,
     canActivate:[authGuardFn]
   },
   {

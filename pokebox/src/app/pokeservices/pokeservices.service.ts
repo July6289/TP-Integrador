@@ -306,7 +306,6 @@ export class PokeservicesService {
       next:(valor: Usuario)=>{
         this.usuario=valor
         this.usuario.ListaFavoritos=this.favoritosSubject.value
-        console.log("llegaste")
         this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
           next: () => console.log('favoritos actualizado con éxito.'),
           error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
@@ -314,9 +313,6 @@ export class PokeservicesService {
       },
       error: (e: Error) => console.error('Error al obtener el usuario para actualizar su lista de favoritos:', e.message),
     });
-
-
-
   }
 
   eliminarFavorito(pokemonId: number): void {
@@ -340,12 +336,6 @@ export class PokeservicesService {
       },
       error: (e: Error) => console.error('Error al obtener el usuario para borrar un pokemon de su lista de favoritos:', e.message),
     });
-
-
-
-
-
-
   }
 
   clonarPokemon(pokemon: Pokemon): Pokemon {
