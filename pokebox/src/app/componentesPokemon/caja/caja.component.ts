@@ -25,7 +25,7 @@ export class CajaComponent implements OnInit {
   spriteActual$: Observable<string | null>;
   indiceCaja: number = 0; // Índice de la caja actual
   flag: boolean = false;
-
+  ready:boolean=false;
   posicion: number = 0;
   pokeservicio = inject(PokeservicesService);
   secretId: string | null = ""
@@ -70,6 +70,7 @@ export class CajaComponent implements OnInit {
   }
 
   dbUsuarioId() {
+
     this.usarioServicio.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
@@ -84,13 +85,18 @@ export class CajaComponent implements OnInit {
             this.usuario.box[this.posicion].imagen = caja.imagen;
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
             this.posicion = this.posicion + 1;
+
           })
+          this.ready=true
+          if(this.ready)
+          {
           this.posicion=0
           valor.ListaFavoritos.map((pokemon)=>{
           this.usuario.ListaFavoritos[this.posicion]=pokemon
           this.posicion=this.posicion+1
 
           })
+        }
         },
         error: (e: Error) => {
           console.log(e.message);
@@ -101,7 +107,11 @@ export class CajaComponent implements OnInit {
 
   dbGuardarDatos() {
     this.dbUsuarioId();
-    this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
+
+    setTimeout(()=>{this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
+
+    },300)
+
   }
 
   get pokemonesEnCaja(): Pokemon[] {
