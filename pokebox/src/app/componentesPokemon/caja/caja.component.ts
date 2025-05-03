@@ -27,6 +27,7 @@ export class CajaComponent implements OnInit {
   flag: boolean = false;
   ready:boolean=false;
   posicion: number = 0;
+  posicion2:number=0;
   pokeservicio = inject(PokeservicesService);
   secretId: string | null = ""
   usarioServicio = inject(UsuarioService);
@@ -90,10 +91,9 @@ export class CajaComponent implements OnInit {
           this.ready=true
           if(this.ready)
           {
-          this.posicion=0
           valor.ListaFavoritos.map((pokemon)=>{
-          this.usuario.ListaFavoritos[this.posicion]=pokemon
-          this.posicion=this.posicion+1
+          this.usuario.ListaFavoritos[this.posicion2]=pokemon
+          this.posicion2=this.posicion2+1
 
           })
         }
@@ -108,9 +108,9 @@ export class CajaComponent implements OnInit {
   dbGuardarDatos() {
     this.dbUsuarioId();
 
-    setTimeout(()=>{this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
+   this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
 
-    },300)
+
 
   }
 
