@@ -1,0 +1,28 @@
+:host{
+  background-color: yellow;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.contenidoPagina
+{
+  display: flex;
+  height: 100%;
+}
+
+.info-objeto, .buscador-objeto, .inventario-objeto{
+  flex: 1;
+}
+
+.info-objeto{
+  background-color: red;
+}
+
+.buscador-objeto{
+  background-color: green;
+}
+
+.inventario-objeto{
+  background-color: blue;
+}

@@ -6,8 +6,6 @@ import { Pokemon, Species, Sprites, Type } from '../interfaces/interfazpokemon/i
 import { Caja } from '../interfaces/interfaz-caja/interfazCaja.inteface';
 import { UsuarioService } from './usuario.service';
 import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.interface';
-import { FavoritosComponent } from '../componentesPokemon/favoritos/favoritos.component';
-
 
 @Injectable({
   providedIn: 'root'
@@ -46,8 +44,6 @@ export class PokeservicesService {
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: []
-
-
   }
 
   // Este observable combinará los valores de selectedPokemon$, esMacho$ y esShiny$

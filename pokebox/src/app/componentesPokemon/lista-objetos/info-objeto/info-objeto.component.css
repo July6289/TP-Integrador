@@ -1,0 +1,35 @@
+:host {
+  height: 100%;
+  display: grid;
+}
+
+.base {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.nombre-objeto,
+.imagen-objeto,
+.descripcion-objeto {
+  flex: 1;
+  border-radius: 2vh;
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.nombre-objeto {
+  background-color: brown;
+}
+
+.imagen-objeto {
+  background-color: burlywood;
+}
+
+.descripcion-objeto {
+  background-color: blueviolet;
+}

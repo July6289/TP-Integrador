@@ -25,9 +25,9 @@ export class CajaComponent implements OnInit {
   spriteActual$: Observable<string | null>;
   indiceCaja: number = 0; // Índice de la caja actual
   flag: boolean = false;
-  ready:boolean=false;
+  ready: boolean = false;
   posicion: number = 0;
-  posicion2:number=0;
+  posicion2: number = 0;
   pokeservicio = inject(PokeservicesService);
   secretId: string | null = ""
   usarioServicio = inject(UsuarioService);
@@ -39,7 +39,7 @@ export class CajaComponent implements OnInit {
     Email: "",
     Password: "",
     CombatesGanados: 0,
-    ListaFavoritos:[],
+    ListaFavoritos: [],
   }
 
   constructor(private pokeService: PokeservicesService, private cajaService: CajaService) {
@@ -60,10 +60,7 @@ export class CajaComponent implements OnInit {
       if (this.usuario.ListaFavoritos.length > 0) {
         this.pokeService.setFavoritos(this.usuario.ListaFavoritos)
       }
-    }, 300);
-
-
-
+    }, 0);
   }
 
   dameUsuario() {
@@ -71,7 +68,6 @@ export class CajaComponent implements OnInit {
   }
 
   dbUsuarioId() {
-
     this.usarioServicio.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
@@ -88,15 +84,13 @@ export class CajaComponent implements OnInit {
             this.posicion = this.posicion + 1;
 
           })
-          this.ready=true
-          if(this.ready)
-          {
-          valor.ListaFavoritos.map((pokemon)=>{
-          this.usuario.ListaFavoritos[this.posicion2]=pokemon
-          this.posicion2=this.posicion2+1
-
-          })
-        }
+          this.ready = true
+          if (this.ready) {
+            valor.ListaFavoritos.map((pokemon) => {
+              this.usuario.ListaFavoritos[this.posicion2] = pokemon
+              this.posicion2 = this.posicion2 + 1
+            })
+          }
         },
         error: (e: Error) => {
           console.log(e.message);
@@ -107,11 +101,7 @@ export class CajaComponent implements OnInit {
 
   dbGuardarDatos() {
     this.dbUsuarioId();
-
-   this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
-
-
-
+    this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
   }
 
   get pokemonesEnCaja(): Pokemon[] {
