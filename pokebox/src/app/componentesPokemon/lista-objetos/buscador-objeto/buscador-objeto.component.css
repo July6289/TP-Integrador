@@ -1,3 +1,69 @@
-:host{
+:host {
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
 }
+
+.botones-container {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+button:hover {
+  background-color: #B0B0C3;
+  color: white;
+}
+
+.big,
+.little {
+  border-radius: 8px;
+  background-color: #D6D6D6;
+  border: 2px solid #B0B0C3;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  font-family: 'Winky Rough', cursive;
+}
+
+.big {
+  padding: 0.5rem 1rem;
+  /* Unidades relativas para escalabilidad */
+  font-size: 1rem;
+  /* Escalable */
+}
+
+.little {
+  padding: 0.25rem 0.5rem;
+  /* Ajuste proporcional */
+  font-size: 0.8rem;
+}
+
+.teams {
+  background-color:#2C2C3E;
+  max-height: 100%;
+  padding: 5px;
+  border-radius: 13px;
+  /* Altura relativa al viewport */
+}
+
+.equipos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  /* Ajuste proporcional */
+  border-bottom: 1px solid #ddd;
+  background-color: #2C2C3E;
+}
+
+.equipos:hover {
+  background-color: #B0B0C3;
+}
+
+.nombre-pokemon {
+  padding: 0.5rem 1rem;
+  color: #D6D6D6;
+  font-family: 'Winky Rough', cursive;
+  /* Ajustado para mejor escalabilidad */
+}
+

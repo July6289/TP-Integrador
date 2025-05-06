@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Objeto } from '../../../interfaces/objetos/objeto.interface';
 
 @Component({
   selector: 'app-inventario-objeto',
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './inventario-objeto.component.css'
 })
 export class InventarioObjetoComponent {
-
+  private pokeObjetos: Objeto = {
+    nombre: "",
+    descripcion:"",
+    generacion: 0,
+    sprite: ""
+  };
 }

@@ -3,6 +3,7 @@
   align-items: center;
   height: 100%;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .contenidoPagina
@@ -21,8 +22,19 @@
 
 .buscador-objeto{
   background-color: green;
+  overflow-y: auto;
 }
 
 .inventario-objeto{
   background-color: blue;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  background-color: rgb(146, 146, 146);
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #B0B0C3;
 }
