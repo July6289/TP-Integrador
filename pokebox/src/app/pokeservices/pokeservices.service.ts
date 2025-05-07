@@ -67,6 +67,7 @@ export class PokeservicesService {
 
   urlBase: string = 'https://pokeapi.co/api/v2';
 
+
   constructor(private http: HttpClient) {
     // Inicializar las cajas para evitar errores
     this.usuario.box = Array.from({ length: this.TOTAL_CAJAS }, (_, index) => ({
@@ -151,6 +152,7 @@ export class PokeservicesService {
       })
     );
   }
+
 
   setSelectedPokemon(pokemon: Pokemon): void {
     this.selectedPokemonSubject.next(pokemon);
