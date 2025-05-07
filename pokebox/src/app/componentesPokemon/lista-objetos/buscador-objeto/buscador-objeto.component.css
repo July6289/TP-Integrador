@@ -67,3 +67,9 @@ button:hover {
   /* Ajustado para mejor escalabilidad */
 }
 
+.barra-gen{
+  border-radius: 10px;
+  padding: 6px;
+  border: 2px solid #B0B0C3;
+  margin: 5px;
+}
