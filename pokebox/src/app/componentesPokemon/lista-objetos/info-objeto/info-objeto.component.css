@@ -8,7 +8,6 @@
   flex-direction: column;
 }
 
-
 .nombre-objeto,
 .imagen-objeto,
 .descripcion-objeto {
@@ -21,7 +20,6 @@
   justify-content: center;
 }
 
-
 .nombre-objeto {
   background-color: brown;
 }
@@ -32,4 +30,14 @@
 
 .descripcion-objeto {
   background-color: blueviolet;
+}
+
+@media (max-width: 768px) {
+  .nombre-objeto,
+  .imagen-objeto,
+  .descripcion-objeto {
+    flex-direction: column;
+    padding: 1rem;
+    font-size: 1rem;
+  }
 }

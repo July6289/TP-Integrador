@@ -15,19 +15,10 @@ app-pagina-principal {
   flex-direction: column;
 }
 
-/* Adaptación para pantallas medianas */
-@media (max-width: 768px) {
-  app-root,
-  app-pagina-principal {
-    padding: 10px;
-  }
-}
-
 /* Adaptación para pantallas pequeñas */
 @media (max-width: 480px) {
   app-root,
   app-pagina-principal {
     flex-direction: column;
-    padding: 5px;
   }
 }

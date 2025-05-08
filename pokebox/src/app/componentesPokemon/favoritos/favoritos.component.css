@@ -1,27 +1,26 @@
 :host {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 13vh;
+  justify-content: center;
+}
+
+:host,.circulo, .rectangulo{
+  display: flex;
+  align-items: center;
 }
 
 .rectangulo {
-  width: 85vh;
+  width: 42.2vw;
   /* Ajusta el tamaño del rectángulo*/
   height: 11vh;
   /* Ajusta el tamaño del rectángulo*/
   background-color: #2C2C3E;
-  display: flex;
   justify-content: space-evenly;
-  align-items: center;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   /* Opcional: bordes redondeados*/
 }
 
 .circulo {
-  display: flex;
   justify-content: center;
-  align-items: center;
   background-color: #B0B0C3;
   border-radius: 50%;
   width: 9vh;
@@ -38,17 +37,17 @@
 .context-menu {
   position: fixed;
   background-color: white;
-  border: 1px solid #ccc;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  border: 0.0625rem solid #ccc;
+  box-shadow: 0.125rem 0.125rem 0.5rem rgba(0, 0, 0, 0.2);
   z-index: 9999;
-  padding: 5px;
-  border-radius: 5px;
+  padding: 0.3125rem;
+  border-radius: 0.3125rem;
 }
 
 .context-menu button {
   background: none;
   border: none;
-  padding: 8px 10px;
+  padding: 0.5rem 0.625rem;
   cursor: pointer;
   text-align: left;
   width: 100%;
@@ -58,3 +57,22 @@
   background-color: #fdd;
   color: red;
 }
+
+@media (max-width: 600px) {
+  .rectangulo {
+    flex-direction: column;
+    width: 95vw;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .circulo {
+    width: 15vw;
+    height: 15vw;
+  }
+
+  .context-menu {
+    max-width: 90vw;
+  }
+}
+

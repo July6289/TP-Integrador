@@ -4,58 +4,32 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1rem;
+  max-width:100%;
   /* Añade padding para mejor escalabilidad */
 }
 
 .imagenLogueo {
   width: 20vh;
   /* Escalable */
-  max-width: 150px;
+  max-width: 9.375rem;
   /* Limita el tamaño máximo */
+}
+
+.homePage,.boton2 {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem; /* Espacio entre imagen y texto */
+  border-radius: 0.5rem;
+  background-color: #D6D6D6;
+  border: 0.125rem solid #B0B0C3;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  font-family: 'Winky Rough', cursive;
+  font-size: 1rem;
 }
 
 .homePage {
   margin-right: 2rem;
-  /* Ajustado con unidad relativa */
-}
-
-
-.homePage {
-  display: flex;
-  align-items: center;
-  gap: 4px; /* Espacio entre imagen y texto */
-  border-radius: 8px;
-  background-color: #D6D6D6;
-  border: 2px solid #B0B0C3;
-  transition-duration: 0.3s;
-  cursor: pointer;
-  font-family: 'Winky Rough', cursive;
-}
-
-.homePage {
-  /*padding: 0.5rem 1rem;*/
-  /* Unidades relativas para escalabilidad */
-  font-size: 1rem;
-  /* Escalable */
-}
-
-.boton2 {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  border-radius: 8px;
-  background-color: #D6D6D6;
-  border: 2px solid #B0B0C3;
-  transition-duration: 0.3s;
-  cursor: pointer;
-
-  font-family: 'Winky Rough', cursive;
-}
-
-
-.boton2:hover {
-  background-color: #BD2222;
-  color: white;
 }
 
 .homePage p {
@@ -63,15 +37,20 @@ nav {
   padding: 0;
 }
 
-button:hover {
-  background-color: #B0B0C3;
-  color: white;
-}
-
 .homePage img {
   width: 3rem;
   height: 3rem;
   object-fit: contain;
+}
+
+.boton2:hover {
+  background-color: #BD2222;
+  color: white;
+}
+
+button:hover {
+  background-color: #B0B0C3;
+  color: white;
 }
 
 ul,
@@ -97,9 +76,7 @@ ul {
 }
 
 .imagenUsuario {
-  width: 5vh;
-  /* Escalable */
-  max-width: 50px;
+  max-width: 3.125rem;
   /* Limita el tamaño máximo */
   cursor: pointer;
 }
@@ -109,11 +86,8 @@ ul {
 /* Ajustes para pantallas medianas */
 @media (max-width: 768px) {
   nav {
-    flex-direction: column;
     /* Cambia la disposición a columna */
     align-items: flex-start;
-    padding: 1rem;
-    /* Añade más espacio interno */
   }
 
   ul {
@@ -129,7 +103,7 @@ ul {
 
   .imagenLogueo {
     width: 18vh;
-    max-width: 120px;
+    max-width: 7.5rem;
   }
 
   .homePage {
@@ -141,10 +115,6 @@ ul {
     font-size: 0.9rem;
     padding: 0.4rem 1rem;
     /* Ajusta el tamaño en pantallas medianas */
-  }
-
-  .imagenUsuario {
-    width: 4vh;
   }
 }
 
@@ -169,7 +139,7 @@ ul {
 
   .imagenLogueo {
     width: 15vh;
-    max-width: 100px;
+    max-width: 6.25rem;
     /* Reduce el tamaño máximo en pantallas pequeñas */
   }
 
@@ -180,7 +150,6 @@ ul {
   }
 
   .imagenUsuario {
-    width: 3.5vh;
-    max-width: 40px;
+    max-width: 2.5rem;
   }
 }

@@ -1,7 +1,22 @@
 :host {
-  display: flex;
   flex-direction: column;
   box-sizing: border-box;
+}
+
+:host,
+.full-background,
+.botones-container,
+.selector,
+.pokemon-banner,
+.equipos {
+  display: flex;
+}
+
+.full-background,
+.selector,
+.pokemon-banner {
+  flex-direction: column;
+  width: 100%;
 }
 
 .full-background {
@@ -11,58 +26,40 @@
   background-repeat: no-repeat;
   background-color: #4A4A4A;
   min-height: 95vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center; /* CENTRADO VERTICAL */
+  justify-content: center;
+  /* CENTRADO VERTICAL */
   padding: 2rem 1rem;
   box-sizing: border-box;
 }
 
-/*.titulo
-{
-  color: #D6D6D6;
-  font-family: 'Winky Rough', cursive;
-}*/
-
 .botones-container {
-  display: flex;
-  gap: 10px;
+  gap: 0.625rem;
   margin-left: auto;
 }
 
 .selector {
-  width: 100%;
-  max-width: 900px;
+  max-width: 56.25rem;
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow-y: visible; /* si no es estrictamente necesario, evitalo */
+  overflow-y: visible;
+  /* si no es estrictamente necesario, evitalo */
 }
 
 .pokemon-banner {
-  width: 100%;
   flex: 1;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center; /* centro vertical */
-  padding: 20px;
+  justify-content: center;
+  /* centro vertical */
+  padding: 1.25rem;
   color: white;
   font-family: 'Winky Rough', cursive;
 }
 
-/*.selector-con-fondo {
-  background-size: cover;
-  background-position: center;
-}*/
-
 .big,
 .little {
-  border-radius: 8px;
+  border-radius: 0.5rem;
   background-color: #D6D6D6;
-  border: 2px solid #B0B0C3;
+  border: 0.125rem solid #B0B0C3;
   transition-duration: 0.3s;
   cursor: pointer;
   font-family: 'Winky Rough', cursive;
@@ -87,17 +84,17 @@ button:hover {
 }
 
 .teams {
-  background-color:#2C2C3E;
+  background-color: #2C2C3E;
   overflow-y: auto;
   max-height: 50vh;
-  padding: 5px;
-  border-radius: 13px;
+  padding: 0.3125rem;
+  border-radius: 0.8125rem;
   /* Altura relativa al viewport */
 }
 
 ::-webkit-scrollbar {
   background-color: rgb(146, 146, 146);
-  width: 10px;
+  width: 0.625rem;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -105,12 +102,11 @@ button:hover {
 }
 
 .equipos {
-  display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem;
   /* Ajuste proporcional */
-  border-bottom: 1px solid #ddd;
+  border-bottom: 0.0625rem solid #ddd;
   background-color: #2C2C3E;
 }
 
@@ -124,14 +120,6 @@ button:hover {
   font-family: 'Winky Rough', cursive;
   /* Ajustado para mejor escalabilidad */
 }
-
-/*.eliminar {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.9rem;
-  margin-left: auto;
-  margin-right: 0.5rem;
-}*/
-
 
 /* Media Queries */
 
@@ -162,7 +150,7 @@ button:hover {
   .botones-container {
     flex-wrap: wrap;
     /* Permite que los botones se envuelvan en lugar de desbordarse */
-    gap: 5px;
+    gap: 0.3125rem;
   }
 
   .big {
@@ -173,8 +161,6 @@ button:hover {
   }
 
   .little {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.4rem;
     width: 100%;
   }
 
@@ -190,7 +176,8 @@ button:hover {
     /* Texto más pequeño */
   }
 
-  .eliminar {
+  .eliminar,
+  .little {
     font-size: 0.7rem;
     padding: 0.2rem 0.4rem;
   }

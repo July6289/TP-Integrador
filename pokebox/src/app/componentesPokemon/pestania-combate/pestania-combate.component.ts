@@ -92,7 +92,7 @@ export class PestaniaCombateComponent implements OnInit {
     this.dbUsuarioId()
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     // Verificamos si el peleador actual no tiene un Pokémon asignado en equipoMain
     if (this.equipoMain.equipo[this.peleador] === undefined) {
       this.gotoSlector(); // Llama automáticamente al método si no hay Pokémon seleccionado

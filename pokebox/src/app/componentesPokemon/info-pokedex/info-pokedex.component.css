@@ -1,13 +1,18 @@
 :host {
-  display: flex;
   justify-content: center;
   height: 100%;
   overflow: hidden;
-  border-radius: 13px;
+  border-radius: 0.8125rem;
+}
+
+:host,
+.botones,
+.info,
+.pokemon {
+  display: flex;
 }
 
 .botones {
-  display: flex;
   gap: 1rem;
   /* Ajustado con una unidad relativa */
   margin-top: 1rem;
@@ -18,12 +23,12 @@
 .macho,
 .hembra,
 .shiny {
-  border-radius: 8px;
+  border-radius: 0.5rem;
   padding: 0.5rem 0.8rem;
   /* Ajustado para escalabilidad */
   font-size: 1rem;
   background-color: #D6D6D6;
-  border: 2px solid #B0B0C3;
+  border: 0.125rem solid #B0B0C3;
   transition: background-color 0.3s, color 0.3s;
   cursor: pointer;
   font-family: 'Winky Rough', cursive;
@@ -38,7 +43,6 @@
 }
 
 .info {
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -55,7 +59,6 @@
 }
 
 .pokemon {
-  display: flex;
   height: 15rem;
   max-width: 100%;
   /* Escalable */

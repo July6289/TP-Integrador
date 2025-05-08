@@ -1,6 +1,5 @@
 :host {
   display: flex;
-  flex-direction: column;
   box-sizing: border-box;
 }
 
@@ -55,4 +54,21 @@ button:hover {
   color: #D6D6D6;
   font-family: 'Winky Rough', cursive;
   /* Ajustado para mejor escalabilidad */
+}
+
+@media (max-width: 600px) {
+  .botones-container {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .little {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .nombre-pokemon {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
 }
