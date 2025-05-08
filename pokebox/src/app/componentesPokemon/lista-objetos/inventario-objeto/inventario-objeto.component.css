@@ -26,6 +26,12 @@ button:hover {
   font-size: 0.8rem;
 }
 
+.barra-gen{
+  border-radius: 0.625rem;
+  padding: 0.375rem;
+  border: 0.125rem solid #B0B0C3;
+  margin: 0.3125rem;
+}
 .teams {
   background-color:#2C2C3E;
   overflow-y: auto;

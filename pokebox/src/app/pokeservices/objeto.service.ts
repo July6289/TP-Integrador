@@ -37,4 +37,19 @@ export class ObjetoService {
     }
     this.inventarioSubject.next([...actual]);
   }
+
+  eliminarObjeto(nombre: string) {
+    const actual = this.inventarioSubject.getValue();
+    const actualizado = actual.filter(item => item.objeto.nombre !== nombre);
+    this.inventarioSubject.next(actualizado);
+  }
+
+  cambiarCantidad(nombre: string, nuevaCantidad: number) {
+    const actual = this.inventarioSubject.getValue();
+    const objeto = actual.find(item => item.objeto.nombre === nombre);
+    if (objeto) {
+      objeto.cantidad = nuevaCantidad;
+      this.inventarioSubject.next([...actual]);
+    }
+  }
 }

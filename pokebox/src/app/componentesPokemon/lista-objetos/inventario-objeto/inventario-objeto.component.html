@@ -5,8 +5,12 @@
       <span class="nombre-pokemon">{{ item.objeto.nombre }}</span>
       <span class="nombre-pokemon">{{ item.cantidad }}</span>
       <div class="botones-container">
-        <button class="little" >Cambiar cantidad</button>
-        <button class="little" >Eliminar</button>
+        <input type="number"
+               [(ngModel)]="cantidades[item.objeto.nombre]"
+               class="barra-gen"
+              />
+        <button class="little" (click)="cambiarCantidad(item.objeto.nombre)">Cambiar cantidad</button>
+        <button class="little" (click)="eliminar(item.objeto.nombre)">Eliminar</button>
       </div>
     </li>
   </ul>
