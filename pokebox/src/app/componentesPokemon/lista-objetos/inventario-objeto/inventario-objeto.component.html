@@ -1,18 +1,13 @@
 <div class="teams">
   <ul>
-    <li class="equipos">
-      <!-- centro <li class="equipos" *ngFor="let item of pokeObjetos; let i = index"> -->
-        <span class="nombre-pokemon">
-          imagen objeto</span>
-      <span class="nombre-pokemon">
-        nombre objeto</span>
-        <span class="nombre-pokemon">
-          cantidad</span>
+    <li class="equipos" *ngFor="let item of pokeObjetos">
+      <img [src]="item.objeto.sprite" alt="img" width="40" />
+      <span class="nombre-pokemon">{{ item.objeto.nombre }}</span>
+      <span class="nombre-pokemon">{{ item.cantidad }}</span>
       <div class="botones-container">
         <button class="little">Cambiar cantidad</button>
         <button class="little">Eliminar</button>
       </div>
-      <!--</li> -->
     </li>
   </ul>
 </div>
