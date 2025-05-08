@@ -3,7 +3,9 @@
   justify-content: center;
 }
 
-:host,.circulo, .rectangulo{
+:host,
+.circulo,
+.rectangulo {
   display: flex;
   align-items: center;
 }
@@ -75,4 +77,3 @@
     max-width: 90vw;
   }
 }
-

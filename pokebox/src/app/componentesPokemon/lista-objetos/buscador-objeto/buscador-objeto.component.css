@@ -39,7 +39,7 @@ button:hover {
 }
 
 .teams {
-  background-color:#2C2C3E;
+  background-color: #2C2C3E;
   max-height: 100%;
   padding: 0.3125rem;
   border-radius: 0.8125rem;
@@ -67,7 +67,7 @@ button:hover {
   /* Ajustado para mejor escalabilidad */
 }
 
-.barra-gen{
+.barra-gen {
   border-radius: 0.625rem;
   padding: 0.375rem;
   border: 0.125rem solid #B0B0C3;
@@ -80,7 +80,8 @@ button:hover {
     justify-content: center;
   }
 
-  .big, .little {
+  .big,
+  .little {
     width: 100%;
     font-size: 1rem;
   }

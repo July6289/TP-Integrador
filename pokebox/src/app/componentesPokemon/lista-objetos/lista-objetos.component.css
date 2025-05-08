@@ -1,4 +1,4 @@
-:host{
+:host {
   background-color: yellow;
   align-items: center;
   height: 100%;
@@ -6,33 +6,34 @@
   overflow-y: auto;
 }
 
-.contenidoPagina
-{
+.contenidoPagina {
   display: flex;
   height: 100%;
 }
 
-.info-objeto, .buscador-objeto, .inventario-objeto{
+.info-objeto,
+.buscador-objeto,
+.inventario-objeto {
   flex: 1;
 }
 
-.info-objeto{
+.info-objeto {
   background-color: red;
 }
 
-.buscador-objeto{
+.buscador-objeto {
   background-color: green;
   overflow-y: auto;
 }
 
-.inventario-objeto{
+.inventario-objeto {
   background-color: blue;
   overflow-y: auto;
 }
 
 ::-webkit-scrollbar {
   background-color: rgb(146, 146, 146);
-  width: 10px;
+  width: 0.625rem;
 }
 
 ::-webkit-scrollbar-thumb {

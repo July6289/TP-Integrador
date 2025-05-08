@@ -1,22 +1,22 @@
 .pokemon {
   /* Ajuste con unidad relativa para adaptarse a diferentes alturas de pantalla */
   overflow-y: auto;
-  border: 1px solid #ccc;
+  border: 0.0625rem solid #ccc;
   padding: 1%;
   margin-top: 1%;
   max-width: 100%;
 }
 
-.barra-gen{
-  border-radius: 10px;
-  padding: 6px;
-  border: 2px solid #B0B0C3;
-  margin: 5px;
+.barra-gen {
+  border-radius: 0.625rem;
+  padding: 0.375rem;
+  border: 0.125rem solid #B0B0C3;
+  margin: 0.3125rem;
 }
 
 ::-webkit-scrollbar {
   background-color: rgb(146, 146, 146);
-  width: 10px;
+  width: 0.625rem;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -25,16 +25,16 @@
 
 .agregar,
 .buscar {
-  border-radius: 8px;
+  border-radius: 0.5rem;
   background-color: #D6D6D6;
-  border: 2px solid #B0B0C3;
+  border: 0.125rem solid #B0B0C3;
   transition-duration: 0.3s;
   cursor: pointer;
 }
 
 /* Ajustes para el botón "agregar" */
 .agregar {
-  padding: 10px 12px;
+  padding: 0.625rem 0.75rem;
   font-size: 1rem;
   margin-top: 8%;
   width: auto;
@@ -44,15 +44,16 @@
 
 }
 
-.agregar:hover {
+.agregar:hover,
+.buscar:hover {
   background-color: #B0B0C3;
   color: white;
 }
 
 .seleccionado {
-  border-radius: 8px;
-  border: 1px solid blue;
-  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);
+  border-radius: 0.5rem;
+  border: 0.0625rem solid blue;
+  box-shadow: 0 0 0.3125rem rgba(0, 0, 255, 0.5);
 }
 
 .mensajeError {
@@ -60,45 +61,39 @@
 }
 
 .buscar {
-  padding: 5px 10px;
+  padding: 0.3125rem 0.625rem;
   font-size: 0.7rem;
   font-family: 'Winky Rough', cursive;
-}
-
-.buscar:hover {
-  background-color: #B0B0C3;
-  color: white;
 }
 
 @media (max-width: 768px) {
   .agregar {
     font-size: 0.9rem;
-    padding: 8px 10px;
+    padding: 0.5rem 0.625rem;
     margin-left: 25%;
   }
 
   .buscar {
     font-size: 0.9rem;
-    padding: 4px 8px;
+    padding: 0.25rem 0.5rem;
   }
 
   .pokemon {
     max-height: 60vh;
-
   }
 }
 
 @media (max-width: 480px) {
   .agregar {
     font-size: 0.3rem;
-    padding: 6px 8px;
+    padding: 0.375rem 0.5rem;
     margin-left: 15%;
     width: 70%;
   }
 
   .buscar {
     font-size: 0.3rem;
-    padding: 3px 6px;
+    padding: 0.1875 0.375rem;
   }
 
   .pokemon {
