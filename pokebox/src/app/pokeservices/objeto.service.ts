@@ -15,10 +15,20 @@ export class ObjetoService {
   private inventarioSubject = new BehaviorSubject<{ objeto: Objeto, cantidad: number }[]>([]);
   inventario$ = this.inventarioSubject.asObservable();
 
-  getItemByName(NombreItem: string): Observable<Objeto | undefined> {
-    return this.service.get<Objeto[]>(this.urlbase).pipe(
-      map(items => items.find(items => items.nombre.toLowerCase() === NombreItem.toLowerCase()))
-    );
+
+  normalizarTexto(texto: string): string {
+    return texto
+      .toLowerCase()
+      .normalize('NFD')           // Descompone letras con tildes
+      .replace(/[\u0300-\u036f]/g, ''); // Elimina marcas diacríticas (tildes)
+  }
+
+
+  getItemByName(NombreItem: string):Observable<Objeto|undefined>{
+    const nombreNormalizado=this.normalizarTexto(NombreItem)
+  return this.service.get<Objeto[]>(this.urlbase).pipe(
+    map(items=> items.find(items=>this.normalizarTexto(items.nombre)===nombreNormalizado))    //una forma mas comoda de devolver solo un objeto, de toda manera si no existe dara undefined
+  )
   }
 
   agregarObjeto(objeto: Objeto, cantidad: number) {
