@@ -17,6 +17,22 @@ export class InventarioObjetoComponent implements OnInit {
 
   constructor(private objetoService: ObjetoService) {}
 
+  editandoCantidad: { [nombre: string]: boolean } = {};
+
+cambiarCantidad(nombre: string) {
+  this.editandoCantidad[nombre] = true; // Muestra el input
+}
+
+guardarCantidad(nombre: string) {
+  const nuevaCantidad = this.cantidades[nombre];
+  if (nuevaCantidad > 0 && nuevaCantidad < 100) {
+    this.objetoService.cambiarCantidad(nombre, nuevaCantidad);
+    this.editandoCantidad[nombre] = false; // Oculta el input nuevamente
+  } else {
+    alert('Cantidad inválida');
+  }
+}
+
   ngOnInit(): void {
     this.objetoService.inventario$.subscribe(data => {
       this.pokeObjetos = data;
@@ -32,12 +48,5 @@ export class InventarioObjetoComponent implements OnInit {
     this.objetoService.eliminarObjeto(nombre);
   }
 
-  cambiarCantidad(nombre: string) {
-    const nuevaCantidad = this.cantidades[nombre];
-    if (nuevaCantidad > 0 && nuevaCantidad < 100) {
-      this.objetoService.cambiarCantidad(nombre, nuevaCantidad);
-    } else {
-      alert('Cantidad inválida');
-    }
-  }
+
 }

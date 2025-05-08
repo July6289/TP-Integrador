@@ -5,11 +5,19 @@
       <span class="nombre-pokemon">{{ item.objeto.nombre }}</span>
       <span class="nombre-pokemon">{{ item.cantidad }}</span>
       <div class="botones-container">
-        <input type="number"
-               [(ngModel)]="cantidades[item.objeto.nombre]"
-               class="barra-gen"
-              />
-        <button class="little" (click)="cambiarCantidad(item.objeto.nombre)">Cambiar cantidad</button>
+        <!-- Solo aparece el input si se está editando -->
+        <ng-container *ngIf="editandoCantidad[item.objeto.nombre]">
+          <input type="number"
+                [(ngModel)]="cantidades[item.objeto.nombre]"
+                class="barra-gen"/>
+          <button class="little" (click)="guardarCantidad(item.objeto.nombre)">Guardar</button>
+        </ng-container>
+
+        <!-- Mostrar botón Cambiar cantidad solo si NO se está editando -->
+        <button class="little"
+                *ngIf="!editandoCantidad[item.objeto.nombre]"
+                (click)="cambiarCantidad(item.objeto.nombre)">Cambiar cantidad</button>
+
         <button class="little" (click)="eliminar(item.objeto.nombre)">Eliminar</button>
       </div>
     </li>
