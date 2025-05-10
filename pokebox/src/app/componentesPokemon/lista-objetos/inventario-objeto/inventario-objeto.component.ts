@@ -48,5 +48,8 @@ guardarCantidad(nombre: string) {
     this.objetoService.eliminarObjeto(nombre);
   }
 
+  seleccionarObjeto(objeto: Objeto) {
+  this.objetoService.seleccionarObjeto(objeto);
+}
 
 }

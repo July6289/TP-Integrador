@@ -10,7 +10,7 @@ import { Objeto } from '../interfaces/objetos/objeto.interface';
 export class ObjetoService {
   private urlbase: string = 'http://localhost:3001/Objetos';
 
-  constructor(private service: HttpClient) {}
+  constructor(private service: HttpClient) { }
 
   private inventarioSubject = new BehaviorSubject<{ objeto: Objeto, cantidad: number }[]>([]);
   inventario$ = this.inventarioSubject.asObservable();
@@ -24,36 +24,35 @@ export class ObjetoService {
   }
 
 
-  getItemByName(NombreItem: string):Observable<Objeto|undefined>{
-    const nombreNormalizado=this.normalizarTexto(NombreItem)
-  return this.service.get<Objeto[]>(this.urlbase).pipe(
-    map(items=>
-      items.find(items=>
-        this.normalizarTexto(items.nombre)===nombreNormalizado))    //una forma mas comoda de devolver solo un objeto, de toda manera si no existe dara undefined
-  )
+  getItemByName(NombreItem: string): Observable<Objeto | undefined> {
+    const nombreNormalizado = this.normalizarTexto(NombreItem)
+    return this.service.get<Objeto[]>(this.urlbase).pipe(
+      map(items =>
+        items.find(items =>
+          this.normalizarTexto(items.nombre) === nombreNormalizado))    //una forma mas comoda de devolver solo un objeto, de toda manera si no existe dara undefined
+    )
   }
 
   getItemsByPartialName(partialName: string): Observable<Objeto[]> {
-  const nombreNormalizado = this.normalizarTexto(partialName);
-  return this.service.get<Objeto[]>(this.urlbase).pipe(
-    map(items =>
-      items.filter(item =>
-        this.normalizarTexto(item.nombre).includes(nombreNormalizado)
+    const nombreNormalizado = this.normalizarTexto(partialName);
+    return this.service.get<Objeto[]>(this.urlbase).pipe(
+      map(items =>
+        items.filter(item =>
+          this.normalizarTexto(item.nombre).includes(nombreNormalizado)
+        )
       )
-    )
-  );
-}
+    );
+  }
 
   agregarObjeto(objeto: Objeto, cantidad: number) {
     const actual = this.inventarioSubject.getValue();
     const existe = actual.find(o => o.objeto.nombre === objeto.nombre);
     if (existe) {
       existe.cantidad += cantidad;
-       if(existe.cantidad >= 99)
-       {
-        existe.cantidad=99;
+      if (existe.cantidad >= 99) {
+        existe.cantidad = 99;
         alert('Solo puedes llevar hasta 99 unidades del mismo objeto, los objetos restantes no fueron agregados');
-       }
+      }
 
     } else {
       actual.push({ objeto, cantidad });
@@ -74,5 +73,12 @@ export class ObjetoService {
       objeto.cantidad = nuevaCantidad;
       this.inventarioSubject.next([...actual]);
     }
+  }
+
+  private objetoSeleccionadoSubject = new BehaviorSubject<Objeto | null>(null);
+  objetoSeleccionado$ = this.objetoSeleccionadoSubject.asObservable();
+
+  seleccionarObjeto(objeto: Objeto) {
+    this.objetoSeleccionadoSubject.next(objeto);
   }
 }

@@ -1,11 +1,18 @@
-<div class="base">
+<div class="base" *ngIf="objetoSeleccionado">
   <div class="nombre-objeto">
-    <p>Superpocion</p>
+    <p>{{ objetoSeleccionado.nombre }}</p>
   </div>
+
   <div class="imagen-objeto">
-    <p>aca va una imagen</p>
+    <img class="imagen" [src]="objetoSeleccionado.sprite" alt="imagen del objeto" />
   </div>
+
   <div class="descripcion-objeto">
-    <p>Medicina en espray que cura heridas y restaura 60 PS de un Pokémon.</p>
+    <p>{{ objetoSeleccionado.descripcion }}</p>
   </div>
+</div>
+
+<!-- Por si no hay nada seleccionado todavía -->
+<div *ngIf="!objetoSeleccionado">
+  <p>Selecciona un objeto del inventario para ver detalles.</p>
 </div>

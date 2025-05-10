@@ -11,22 +11,21 @@
   height: 100%;
 }
 
-.info-objeto,
-.buscador-objeto,
-.inventario-objeto {
-  flex: 1;
-}
+
 
 .info-objeto {
+  flex: 1;
   background-color: red;
 }
 
 .buscador-objeto {
+  flex: 2;
   background-color: green;
   overflow-y: auto;
 }
 
 .inventario-objeto {
+  flex: 2;
   background-color: blue;
   overflow-y: auto;
 }

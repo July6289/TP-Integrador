@@ -1,6 +1,8 @@
 :host {
   height: 100%;
   display: grid;
+    font-family: 'Winky Rough', cursive;
+
 }
 
 .base {
@@ -21,15 +23,28 @@
 }
 
 .nombre-objeto {
+  flex: 0.3;
   background-color: brown;
+  font-size: 2rem;
 }
 
 .imagen-objeto {
+  flex: 1;
   background-color: burlywood;
 }
 
+.imagen
+{
+  width: 8rem;
+
+}
+
+
 .descripcion-objeto {
+  flex: 0.5;
   background-color: blueviolet;
+   font-size: 1.5rem;
+
 }
 
 @media (max-width: 768px) {

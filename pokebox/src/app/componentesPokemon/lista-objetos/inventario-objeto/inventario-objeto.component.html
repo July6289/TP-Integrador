@@ -1,9 +1,11 @@
 <div class="teams">
   <ul>
     <li class="equipos" *ngFor="let item of pokeObjetos">
-      <img [src]="item.objeto.sprite" alt="img" width="40" />
-      <span class="nombre-pokemon">{{ item.objeto.nombre }}</span>
-      <span class="nombre-pokemon">{{ item.cantidad }}</span>
+      <div class="objeto-unidad" (click)="seleccionarObjeto(item.objeto)">
+        <img [src]="item.objeto.sprite" alt="img" width="40" />
+        <span class="nombre-pokemon">{{ item.objeto.nombre }}</span>
+        <span class="nombre-pokemon">{{ item.cantidad }}</span>
+      </div>
       <div class="botones-container">
         <!-- Solo aparece el input si se está editando -->
         <ng-container *ngIf="editandoCantidad[item.objeto.nombre]">
