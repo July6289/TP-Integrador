@@ -27,9 +27,22 @@ export class ObjetoService {
   getItemByName(NombreItem: string):Observable<Objeto|undefined>{
     const nombreNormalizado=this.normalizarTexto(NombreItem)
   return this.service.get<Objeto[]>(this.urlbase).pipe(
-    map(items=> items.find(items=>this.normalizarTexto(items.nombre)===nombreNormalizado))    //una forma mas comoda de devolver solo un objeto, de toda manera si no existe dara undefined
+    map(items=>
+      items.find(items=>
+        this.normalizarTexto(items.nombre)===nombreNormalizado))    //una forma mas comoda de devolver solo un objeto, de toda manera si no existe dara undefined
   )
   }
+
+  getItemsByPartialName(partialName: string): Observable<Objeto[]> {
+  const nombreNormalizado = this.normalizarTexto(partialName);
+  return this.service.get<Objeto[]>(this.urlbase).pipe(
+    map(items =>
+      items.filter(item =>
+        this.normalizarTexto(item.nombre).includes(nombreNormalizado)
+      )
+    )
+  );
+}
 
   agregarObjeto(objeto: Objeto, cantidad: number) {
     const actual = this.inventarioSubject.getValue();

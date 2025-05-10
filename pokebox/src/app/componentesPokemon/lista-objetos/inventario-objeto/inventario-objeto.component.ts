@@ -25,7 +25,7 @@ cambiarCantidad(nombre: string) {
 
 guardarCantidad(nombre: string) {
   const nuevaCantidad = this.cantidades[nombre];
-  if (nuevaCantidad > 0 && nuevaCantidad < 100) {
+  if (nuevaCantidad > 0 && nuevaCantidad < 100 && nuevaCantidad%1==0) {
     this.objetoService.cambiarCantidad(nombre, nuevaCantidad);
     this.editandoCantidad[nombre] = false; // Oculta el input nuevamente
   } else {
