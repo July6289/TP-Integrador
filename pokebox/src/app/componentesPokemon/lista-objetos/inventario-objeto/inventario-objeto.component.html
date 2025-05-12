@@ -1,4 +1,4 @@
-<div class="teams">
+<div class="teams" *ngIf="pokeObjetos.length > 0" >
   <ul>
     <li class="equipos" *ngFor="let item of pokeObjetos">
       <div class="objeto-unidad" (click)="seleccionarObjeto(item.objeto)">
@@ -24,4 +24,8 @@
       </div>
     </li>
   </ul>
+</div>
+
+<div class="default" *ngIf="pokeObjetos.length === 0">
+  <p class="mensaje">No hay objetos en el inventario.</p>
 </div>

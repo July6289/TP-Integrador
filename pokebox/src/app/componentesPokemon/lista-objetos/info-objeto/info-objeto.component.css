@@ -1,8 +1,9 @@
 :host {
   height: 100%;
   display: grid;
-    font-family: 'Winky Rough', cursive;
-
+  font-family: 'Winky Rough', cursive;
+  background-color: #4A4A4A;
+  border-radius: 0.5rem;
 }
 
 .base {
@@ -10,41 +11,57 @@
   flex-direction: column;
 }
 
+.mensaje
+{
+  color: #D6D6D6;
+
+}
+
+.default
+{
+  align-content: center;
+  text-align: center;
+
+}
+
 .nombre-objeto,
 .imagen-objeto,
 .descripcion-objeto {
   flex: 1;
+  color: #D6D6D6;
   border-radius: 2vh;
+  border: 2px solid #B0B0C3;
   display: flex;
   align-content: center;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
+  background-color: #2C2C3E;
+  text-align: center;
+  margin: 1vh;
+
 }
 
 .nombre-objeto {
   flex: 0.3;
-  background-color: brown;
+
   font-size: 2rem;
 }
 
 .imagen-objeto {
   flex: 1;
-  background-color: burlywood;
 }
 
 .imagen
 {
   width: 8rem;
-
 }
 
 
 .descripcion-objeto {
   flex: 0.5;
-  background-color: blueviolet;
-   font-size: 1.5rem;
-
+  font-size: 1.5rem;
+  padding:1rem
 }
 
 @media (max-width: 768px) {
