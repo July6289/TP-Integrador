@@ -31,7 +31,8 @@ export class NavbarComponent implements OnInit {
     Email: "",
     Password: "",
     CombatesGanados:0,
-    ListaFavoritos:[]
+    ListaFavoritos:[],
+    ListaObjetos:[]
   }
 
   secretId: string | null = ""

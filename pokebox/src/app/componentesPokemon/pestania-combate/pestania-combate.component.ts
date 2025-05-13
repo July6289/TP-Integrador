@@ -72,7 +72,8 @@ export class PestaniaCombateComponent implements OnInit {
     Email: "",
     Password: "",
     CombatesGanados: 0,
-    ListaFavoritos:[]
+    ListaFavoritos:[],
+    ListaObjetos:[]
   }
 
   constructor(private service: EquipoPokemonService, private pokeservicesService: PokeservicesService, private router: Router) { }

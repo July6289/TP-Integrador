@@ -3,4 +3,6 @@ export interface Objeto {
   descripcion: string;
   generacion: number;
   sprite: string;
+  cantidad:number;
+
 }

@@ -43,7 +43,8 @@ export class PokeservicesService {
     Email: "",
     Password: "",
     CombatesGanados: 0,
-    ListaFavoritos: []
+    ListaFavoritos: [],
+    ListaObjetos:[]
   }
 
   // Este observable combinará los valores de selectedPokemon$, esMacho$ y esShiny$

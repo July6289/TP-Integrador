@@ -1,8 +1,10 @@
 // objeto.service.ts
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Objeto } from '../interfaces/objetos/objeto.interface';
+import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { UsuarioService } from './usuario.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,43 @@ export class ObjetoService {
 
   private inventarioSubject = new BehaviorSubject<{ objeto: Objeto, cantidad: number }[]>([]);
   inventario$ = this.inventarioSubject.asObservable();
+  public setInventario(objetos:Objeto[])
+{
+  console.log(objetos)
+   const nuevoInventario=objetos.map(obj=>({
+    objeto:obj,
+    cantidad:obj.cantidad
+   }))
+   setTimeout(() => {
+       this.inventarioSubject.next(nuevoInventario)
+         console.log("se cumplio")
 
+   }, 300);
+}
+
+ usuario: Usuario = {
+    id: "",
+    box: [],
+    Email: "",
+    Password: "",
+    CombatesGanados: 0,
+    ListaFavoritos: [],
+    ListaObjetos:[]
+  }
+  newObjeto:Objeto={
+    nombre:'',
+    descripcion:'',
+    generacion:0,
+    sprite:'',
+    cantidad:0
+  }
+clave:string|null=""
+
+  usuarioService = inject(UsuarioService);
+
+ getid() {
+    this.clave = localStorage.getItem('token')
+  }
 
   normalizarTexto(texto: string): string {
     return texto
@@ -47,23 +85,85 @@ export class ObjetoService {
   agregarObjeto(objeto: Objeto, cantidad: number) {
     const actual = this.inventarioSubject.getValue();
     const existe = actual.find(o => o.objeto.nombre === objeto.nombre);
+       this.getid()
+
+
+       this.usuarioService.getUsuarioById(this.clave).subscribe({
+      next:(valor: Usuario)=>{
+        this.usuario=valor
+
+      },
+      error: (e: Error) => console.error('Error al obtener el usuario para actualizar su lista de favoritos:', e.message),
+    });
+
+
     if (existe) {
       existe.cantidad += cantidad;
-      if (existe.cantidad >= 99) {
-        existe.cantidad = 99;
+      if (existe.cantidad < 99) {
+              existe.cantidad += cantidad;
+          const index=this.usuario.ListaObjetos.findIndex(e=>e.nombre===objeto.nombre)
+
+          this.usuario.ListaObjetos[index].cantidad+=cantidad;
+
+      }
+      else{
         alert('Solo puedes llevar hasta 99 unidades del mismo objeto, los objetos restantes no fueron agregados');
       }
 
     } else {
       actual.push({ objeto, cantidad });
+      this.newObjeto=objeto;
+      this.newObjeto.cantidad=cantidad
+      this.usuario.ListaObjetos.push(this.newObjeto)
+
+
+
+
+
+
+
     }
     this.inventarioSubject.next([...actual]);
+
+    this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
+          next: () => console.log('Lista de objetos actualizado con éxito.'),
+          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
+        });
+
+
+
   }
 
   eliminarObjeto(nombre: string) {
     const actual = this.inventarioSubject.getValue();
     const actualizado = actual.filter(item => item.objeto.nombre !== nombre);
     this.inventarioSubject.next(actualizado);
+
+    this.getid()
+
+    this.usuarioService.getUsuarioById(this.clave).subscribe({
+      next:(valor: Usuario)=>{
+        this.usuario=valor
+
+        this.usuario.ListaObjetos=this.usuario.ListaObjetos.filter(e=>e.nombre!==nombre)
+
+        this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
+          next: () => console.log('Objeto eliminado con exito.'),
+          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
+        });
+
+      },
+      error: (e: Error) => console.error('Error al obtener el usuario para eliminar su objeto:', e.message),
+    });
+
+
+
+
+
+
+
+
+
   }
 
   cambiarCantidad(nombre: string, nuevaCantidad: number) {
@@ -72,6 +172,24 @@ export class ObjetoService {
     if (objeto) {
       objeto.cantidad = nuevaCantidad;
       this.inventarioSubject.next([...actual]);
+
+      this.getid()
+
+       this.usuarioService.getUsuarioById(this.clave).subscribe({
+      next:(valor: Usuario)=>{
+        this.usuario=valor
+        const index=this.usuario.ListaObjetos.findIndex(e=>e.nombre===nombre)
+        this.usuario.ListaObjetos[index].cantidad=nuevaCantidad
+
+
+        this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
+          next: () => console.log('Lista de objetos actualizado con éxito.'),
+          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
+        });
+
+      },
+      error: (e: Error) => console.error('Error al obtener el usuario para actualizar su lista de objetos:', e.message),
+    });
     }
   }
 

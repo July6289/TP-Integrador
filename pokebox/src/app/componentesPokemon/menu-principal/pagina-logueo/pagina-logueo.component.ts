@@ -7,6 +7,7 @@ import { UsuarioService } from '../../../pokeservices/usuario.service';
 import { PokeservicesService } from '../../../pokeservices/pokeservices.service';
 import { AuthService } from '../../../auth/service/auth.service';
 import { Pokemon } from '../../../interfaces/interfazpokemon/interfazpokemon.inteface';
+import { Objeto } from '../../../interfaces/objetos/objeto.interface';
 
 @Component({
   selector: 'app-pagina-logueo',
@@ -47,7 +48,8 @@ export class PaginaLogueoComponent {
     Email: "",
     Password: "",
     CombatesGanados:0,
-    ListaFavoritos:[]
+    ListaFavoritos:[],
+    ListaObjetos:[]
   }
   formulario = this.fb.nonNullable.group(
     {
@@ -56,7 +58,8 @@ export class PaginaLogueoComponent {
       Email: ['', [Validators.required, Validators.minLength(6)]],
       Password: ['', [Validators.required, Validators.minLength(6)]],
       CombatesGanados:0,
-      ListaFavoritos:[[] as Pokemon[],]
+      ListaFavoritos:[[] as Pokemon[],],
+      ListaObjetos:[[] as Objeto[],]
     }
   )
 

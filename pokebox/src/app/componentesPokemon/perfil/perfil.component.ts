@@ -28,7 +28,8 @@ export class PerfilComponent implements OnInit {
     Email: "",
     Password: "",
     CombatesGanados: 0,
-    ListaFavoritos:[]
+    ListaFavoritos:[],
+    ListaObjetos:[]
   }
   fb = inject(FormBuilder);
 

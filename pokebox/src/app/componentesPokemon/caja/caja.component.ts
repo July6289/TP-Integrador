@@ -40,6 +40,7 @@ export class CajaComponent implements OnInit {
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: [],
+    ListaObjetos:[]
   }
 
   constructor(private pokeService: PokeservicesService, private cajaService: CajaService) {
