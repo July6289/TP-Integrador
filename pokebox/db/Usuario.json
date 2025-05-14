@@ -1,7 +1,7 @@
 {
   "Usuarios": [
     {
-      "id": "IERs",
+      "id": "JZU3",
       "box": [],
       "Email": "",
       "Password": "",
@@ -9,14 +9,32 @@
       "ListaFavoritos": [],
       "ListaObjetos": [
         {
-          "nombre": "Piedra agua",
-          "descripcion": "Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es de color azul.",
-          "generacion": "1",
-          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/1/14/latest/20230106130249/Piedra_agua_EP.png/32px-Piedra_agua_EP.png",
-          "id": "55a1",
-          "cantidad": 96
+          "nombre": "Pepino",
+          "descripcion": "Ingrediente ácido y amargo a la vez. Se recomienda combinarlo con algún otro de sabor fuerte para sacar el máximo partido a su intenso sabor a verdura.",
+          "generacion": "9",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/5/50/latest/20221126223913/Pepino_EP.png/32px-Pepino_EP.png",
+          "id": "52c1",
+          "cantidad": 1
         }
       ]
+    },
+    {
+      "id": "Vv0U",
+      "box": [],
+      "Email": "",
+      "Password": "",
+      "CombatesGanados": 0,
+      "ListaFavoritos": [],
+      "ListaObjetos": []
+    },
+    {
+      "id": "zP9h",
+      "box": [],
+      "Email": "lucasivanhourcade@gmail.com",
+      "Password": null,
+      "CombatesGanados": 0,
+      "ListaFavoritos": [],
+      "ListaObjetos": []
     }
   ]
 }

@@ -30,7 +30,7 @@
   flex: 1;
   color: #D6D6D6;
   border-radius: 2vh;
-  border: 2px solid #B0B0C3;
+  border: 0.125rem solid #B0B0C3;
   display: flex;
   align-content: center;
   flex-wrap: wrap;

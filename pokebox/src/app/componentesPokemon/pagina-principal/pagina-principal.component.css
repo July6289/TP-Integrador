@@ -1,43 +1,52 @@
 :host {
+  overflow-y: auto;
+  padding-top: 0.5rem;
+  background-color: #3f3f3f;
+}
+
+:host,
+.totalidad,
+.cajaCentral,
+.botoncin,
+.columnaIzquierda {
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  padding-top: .5rem;
-  background-color: #3f3f3f;
 }
 
 .totalidad {
   height: 100vh;
-  /* Cambia a min-height para evitar problemas en pantallas móviles */
-  display: flex;
-  flex-direction: column;
   background-color: #3f3f3f;
 }
 
 .contenidoPagina {
   display: flex;
   flex-grow: 1;
-  gap: 10px;
+  gap: 0.625rem;
+}
+
+.cajaCentral,
+.columnaDerecha,
+.cabezal,
+.columnaIzquierda {
+  background-color: #4A4A4A;
 }
 
 .cajaCentral {
   flex: 2;
-  background-color:#4A4A4A;
-  display: flex;
   align-items: center;
-  flex-direction: column;
 }
 
-.columnaDerecha {
+.columnaDerecha,
+.columnaIzquierda,
+.infopokedex,
+.listadeequipos {
   flex: 1;
-  background-color:#4A4A4A;
 }
 
 /* Estilos de cabezal */
 .cabezal {
   display: flex;
   padding: 0.5rem;
-  background-color:	#4A4A4A;
   box-sizing: border-box;
 }
 
@@ -47,9 +56,9 @@
 
 .botoncin,
 .btnbattle {
-  border-radius: 8px;
+  border-radius: 0.5rem;
   background-color: #D6D6D6;
-  border: 2px solid #B0B0C3;
+  border: 0.125rem solid #B0B0C3;
   transition-duration: 0.3s;
   cursor: pointer;
   font-family: 'Winky Rough', cursive;
@@ -57,8 +66,6 @@
 
 .botoncin {
   width: 80%;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   padding: 0.5rem;
   font-size: 1rem;
@@ -74,10 +81,6 @@
 }
 
 .columnaIzquierda {
-  flex: 1;
-  display: flex;
-  background-color:	#4A4A4A;
-  flex-direction: column;
   gap: 0.5rem;
 }
 
@@ -87,14 +90,9 @@
 }
 
 .infopokedex {
-  flex: 1;
   background-color: #2C2C3E;
-  border-radius: 15px;
-  border: 3px solid #4A4A4A;
-}
-
-.listadeequipos {
-  flex: 1;
+  border-radius: 0.9375rem;
+  border: 0.1875rem solid #4A4A4A;
 }
 
 .battle {
@@ -118,7 +116,6 @@
 @media (max-width: 768px) {
   .contenidoPagina {
     flex-direction: column;
-    /* Cambia a columna en pantallas medianas */
   }
 
   .botoncin {
@@ -136,20 +133,19 @@
 @media (max-width: 480px) {
   .contenidoPagina {
     flex-direction: column;
-    /* Cambia a columna en pantallas pequeñas */
     gap: 0;
   }
 
   .cajaCentral,
   .columnaDerecha,
-  .columnaIzquierda {
+  .columnaIzquierda,
+  .botoncin,
+  .btnbattle {
     width: 100%;
-    /* Asegura que ocupen el 100% del ancho en pantallas pequeñas */
   }
 
   .botoncin,
   .btnbattle {
-    width: 100%;
     font-size: 0.8rem;
     padding: 0.3rem 1rem;
   }

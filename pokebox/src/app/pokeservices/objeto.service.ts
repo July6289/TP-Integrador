@@ -16,41 +16,37 @@ export class ObjetoService {
 
   private inventarioSubject = new BehaviorSubject<{ objeto: Objeto, cantidad: number }[]>([]);
   inventario$ = this.inventarioSubject.asObservable();
-  public setInventario(objetos:Objeto[])
-{
-  console.log(objetos)
-   const nuevoInventario=objetos.map(obj=>({
-    objeto:obj,
-    cantidad:obj.cantidad
-   }))
-   setTimeout(() => {
-       this.inventarioSubject.next(nuevoInventario)
-         console.log("se cumplio")
+  public setInventario(objetos: Objeto[]) {
+    const nuevoInventario = objetos.map(obj => ({
+      objeto: obj,
+      cantidad: obj.cantidad
+    }))
+    setTimeout(() => {
+      this.inventarioSubject.next(nuevoInventario)
+    }, 300);
+  }
 
-   }, 300);
-}
-
- usuario: Usuario = {
+  usuario: Usuario = {
     id: "",
     box: [],
     Email: "",
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: [],
-    ListaObjetos:[]
+    ListaObjetos: []
   }
-  newObjeto:Objeto={
-    nombre:'',
-    descripcion:'',
-    generacion:0,
-    sprite:'',
-    cantidad:0
+  newObjeto: Objeto = {
+    nombre: '',
+    descripcion: '',
+    generacion: 0,
+    sprite: '',
+    cantidad: 0
   }
-clave:string|null=""
+  clave: string | null = ""
 
   usuarioService = inject(UsuarioService);
 
- getid() {
+  getid() {
     this.clave = localStorage.getItem('token')
   }
 
@@ -85,12 +81,12 @@ clave:string|null=""
   agregarObjeto(objeto: Objeto, cantidad: number) {
     const actual = this.inventarioSubject.getValue();
     const existe = actual.find(o => o.objeto.nombre === objeto.nombre);
-       this.getid()
+    this.getid()
 
 
-       this.usuarioService.getUsuarioById(this.clave).subscribe({
-      next:(valor: Usuario)=>{
-        this.usuario=valor
+    this.usuarioService.getUsuarioById(this.clave).subscribe({
+      next: (valor: Usuario) => {
+        this.usuario = valor
 
       },
       error: (e: Error) => console.error('Error al obtener el usuario para actualizar su lista de favoritos:', e.message),
@@ -100,20 +96,20 @@ clave:string|null=""
     if (existe) {
       existe.cantidad += cantidad;
       if (existe.cantidad < 99) {
-              existe.cantidad += cantidad;
-          const index=this.usuario.ListaObjetos.findIndex(e=>e.nombre===objeto.nombre)
+        existe.cantidad += cantidad;
+        const index = this.usuario.ListaObjetos.findIndex(e => e.nombre === objeto.nombre)
 
-          this.usuario.ListaObjetos[index].cantidad+=cantidad;
+        this.usuario.ListaObjetos[index].cantidad += cantidad;
 
       }
-      else{
+      else {
         alert('Solo puedes llevar hasta 99 unidades del mismo objeto, los objetos restantes no fueron agregados');
       }
 
     } else {
       actual.push({ objeto, cantidad });
-      this.newObjeto=objeto;
-      this.newObjeto.cantidad=cantidad
+      this.newObjeto = objeto;
+      this.newObjeto.cantidad = cantidad
       this.usuario.ListaObjetos.push(this.newObjeto)
 
 
@@ -126,9 +122,9 @@ clave:string|null=""
     this.inventarioSubject.next([...actual]);
 
     this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
-          next: () => console.log('Lista de objetos actualizado con éxito.'),
-          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
-        });
+      next: () => console.log('Lista de objetos actualizado con éxito.'),
+      error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
+    });
 
 
 
@@ -142,10 +138,10 @@ clave:string|null=""
     this.getid()
 
     this.usuarioService.getUsuarioById(this.clave).subscribe({
-      next:(valor: Usuario)=>{
-        this.usuario=valor
+      next: (valor: Usuario) => {
+        this.usuario = valor
 
-        this.usuario.ListaObjetos=this.usuario.ListaObjetos.filter(e=>e.nombre!==nombre)
+        this.usuario.ListaObjetos = this.usuario.ListaObjetos.filter(e => e.nombre !== nombre)
 
         this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
           next: () => console.log('Objeto eliminado con exito.'),
@@ -175,21 +171,21 @@ clave:string|null=""
 
       this.getid()
 
-       this.usuarioService.getUsuarioById(this.clave).subscribe({
-      next:(valor: Usuario)=>{
-        this.usuario=valor
-        const index=this.usuario.ListaObjetos.findIndex(e=>e.nombre===nombre)
-        this.usuario.ListaObjetos[index].cantidad=nuevaCantidad
+      this.usuarioService.getUsuarioById(this.clave).subscribe({
+        next: (valor: Usuario) => {
+          this.usuario = valor
+          const index = this.usuario.ListaObjetos.findIndex(e => e.nombre === nombre)
+          this.usuario.ListaObjetos[index].cantidad = nuevaCantidad
 
 
-        this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
-          next: () => console.log('Lista de objetos actualizado con éxito.'),
-          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
-        });
+          this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
+            next: () => console.log('Lista de objetos actualizado con éxito.'),
+            error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
+          });
 
-      },
-      error: (e: Error) => console.error('Error al obtener el usuario para actualizar su lista de objetos:', e.message),
-    });
+        },
+        error: (e: Error) => console.error('Error al obtener el usuario para actualizar su lista de objetos:', e.message),
+      });
     }
   }
 
