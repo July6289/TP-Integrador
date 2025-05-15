@@ -39,7 +39,6 @@
   position: fixed;
 }
 
-/* Ajuste para `.pokeimg` */
 .pokeimg-a {
   padding: 1rem;
   padding-left: 15%;
@@ -51,19 +50,14 @@
 .pokeimg-e {
   position: fixed;
   top: 16%;
-  /* Ajusta la posición vertical */
   right: 25%;
-  /* Margen derecho pequeño */
   width: 20%;
-  /* Controla el ancho de la imagen */
 }
 
 .pokemon-imagen,
 .pokemon-imagenFixed {
   width: 100%;
-  /* Asegura que la imagen ocupe el 100% del contenedor */
   padding: 0.5rem;
-  /* Espaciado opcional */
 }
 
 .pokemon-imagenFixed {
@@ -72,7 +66,6 @@
 
 .battle-enemy {
   width: 25%;
-  /* Ajustado a un tamaño más grande para pantallas medianas */
 }
 
 .battle-me {
@@ -80,8 +73,6 @@
   bottom: 30%;
   right: 0;
 }
-
-/* Ajustes de `.pokemon-imagen` para escalar con el contenedor */
 
 .battle-hud {
   display: flex;
@@ -94,7 +85,6 @@
 .hud-left,
 .hud-right {
   width: 50%;
-  /* Ocupa el 50% del ancho de battle-hud */
 }
 
 .hud-left {
@@ -108,9 +98,7 @@
   display: flex;
   justify-content: center;
   overflow-y: auto;
-  /* Habilita la barra de desplazamiento vertical */
   max-height: 100px;
-  /* Ajusta la altura máxima de hud-right para que genere scroll */
 }
 
 .pokemon-info {
@@ -186,13 +174,11 @@
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
-
 }
 
 .pokedead:hover {
   background-color: #757575;
 }
-
 
 .vistaEquipoPokemon {
   position: fixed;
@@ -203,7 +189,6 @@
   font-size: 1.5rem;
   line-height: 1.5rem;
   white-space: pre-line;
-  /* Asegura que se respeten los saltos de línea */
 }
 
 /* Media queries para ajustar en pantallas medianas */
@@ -212,9 +197,7 @@
   .battle-enemy,
   .battle-me {
     width: 35%;
-    /* Ajuste del ancho */
     bottom: 25%;
-    /* Ajuste de posición vertical */
   }
 
   .battle-hud {
@@ -234,15 +217,12 @@
   .battle-enemy,
   .battle-me {
     width: 50%;
-    /* Ajusta el ancho a un 50% */
     bottom: 20%;
-    /* Coloca más alto los elementos para pantallas pequeñas */
   }
 
   .battle-hud {
     padding: 0.75rem;
     width: calc(100% - 5px);
-    /* Reducir un poco el ancho para caber mejor */
   }
 
   .pokemon-info {
@@ -253,7 +233,6 @@
   .hp-label,
   .hp-numbers {
     font-size: 0.75rem;
-    /* Reduce el tamaño de fuente */
   }
 
   .option {

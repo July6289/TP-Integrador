@@ -1,18 +1,31 @@
-/* Estilo general para la vista completa */
 :host {
   height: 100vh;
   background-color: #3f3f3f;
-  font-family: Arial, sans-serif;
-  display: flex;
   margin: 0 auto;
   width: 100%;
+  overflow-y: auto;
+}
+
+:host,
+.user-content,
+.trainer-image-container,
+.action-buttons,
+.modify-profile form,
+.botones,
+.confirmation-buttons {
+  display: flex;
 }
 
 .user-content {
-  display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-  gap: 20px;
+  gap: 1.25rem;
+}
+
+.user-content,
+.action-buttons,
+.botones,
+.confirmation-buttons {
+  justify-content: space-between;
 }
 
 .user-info-list {
@@ -20,51 +33,60 @@
 }
 
 .trainer-image-container {
-  /* o lo que quieras como base fija */
   height: 30rem;
-  overflow: hidden; /* previene que la imagen grande rompa el contenedor */
-  display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   background-color: #2C2C3E;
-
 }
 
 .Image-trainer {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain; /* o "cover" si querés llenar más */
+  object-fit: contain;
   display: block;
 }
 
-
-/* Estilos para la tarjeta de perfil */
 .user-card {
   width: 60%;
   height: 80%;
-  margin: 20px auto;
+  margin: 1.25rem auto;
+  overflow-y: auto;
   background-color: #D6D6D6;
-  border-radius: 25px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 1.5625rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  font-family: 'Arial', sans-serif;
   transition: all 0.3s ease;
   font-family: 'Winky Rough', cursive;
 }
-/* Estilo para el mini título en la sección de modificación */
+
 .modify-title {
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 1.25rem;
   color: #4CAF50;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
+}
+
+.modify-title,
+.user-info label,
+.form-group label,
+.delete-confirmation p {
+  font-weight: bold;
+}
+
+.user-card-header,
+.btn-modify-account,
+.btn-delete-account,
+.SalirRegistro,
+.Confirmar,
+.btn-confirm-delete,
+.btn-cancel-delete {
+  color: white;
 }
 
 .user-card-header {
   background-color: #2C2C3E;
-  color: white;
   width: 100%;
-  padding: 15px;
+  padding: 0.9375rem 0.9375rem 0.9375rem 0;
   text-align: center;
   font-size: 1.5rem;
 }
@@ -73,50 +95,48 @@
   margin: 0;
 }
 
-/* Estilos para el cuerpo del perfil */
-.user-card-body {
-  padding: 30px;
-  font-size: 16px;
-  color: #333;
+.user-card-body,
+.modify-profile {
+  padding: 1.875rem;
 }
 
-.user-info {
-  margin-bottom: 20px;
-  font-size: 1;
-  color: rgb(6, 207, 73);
+.user-info,
+.form-group,
+.delete-confirmation p {
+  margin-bottom: 1.25rem;
 }
 
 .user-info label {
-  font-weight: bold;
   color: black;
   font-size: 2rem;
 }
 
 .user-info span {
   display: block;
-  margin-top: 5px;
+  margin-top: 0.3125rem;
   color: rgb(36, 36, 36);
   font-size: 1.5rem;
 }
 
-/* Botones de acción */
-.action-buttons {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
+.action-buttons,
+.modify-profile,
+.botones,
+.delete-confirmation {
+  margin-top: 1.25rem;
 }
 
-.btn-modify-account, .btn-delete-account {
-  padding: 10px 20px;
-  font-size: 16px;
+.btn-modify-account,
+.btn-delete-account,
+.SalirRegistro,
+.Confirmar {
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
   cursor: pointer;
-  border-radius: 5px;
-  border: none;
+  border-radius: 0.3125rem;
 }
 
 .btn-modify-account {
   background-color: #FF9800;
-  color: white;
 }
 
 .btn-modify-account:hover {
@@ -125,46 +145,31 @@
 
 .btn-delete-account {
   background-color: #B0B0C3;
-  border: 2px solid #B0B0C3;
-  color: white;
+  border: 0.125rem solid #B0B0C3;
   transition-duration: 0.3s;
 }
 
 .btn-delete-account:hover {
-
   background-color: #BD2222;
 }
 
-/* Estilos para el formulario de modificación */
-.modify-profile {
-  padding: 30px;
+.modify-profile,
+.delete-confirmation {
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 
 .modify-profile form {
-  display: flex;
   flex-direction: column;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  font-weight: bold;
-  color: #333;
 }
 
 .form-group input {
   width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 0.625rem;
+  margin-top: 0.3125rem;
+  border-radius: 0.3125rem;
+  border: 0.0625rem solid #ccc;
 }
 
 .form-group input:focus {
@@ -174,37 +179,22 @@
 
 .Error {
   color: #F44336;
-  font-size: 14px;
-  margin-top: 5px;
+  font-size: 0.875rem;
+  margin-top: 0.3125rem;
 }
 
-/* Botones para cancelar o confirmar */
-.botones {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.SalirRegistro, .Confirmar {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  border: none;
-}
-
-.SalirRegistro {
+.SalirRegistro,
+.btn-cancel-delete {
   background-color: #9E9E9E;
-  color: white;
 }
 
-.SalirRegistro:hover {
+.SalirRegistro:hover,
+.btn-cancel-delete:hover {
   background-color: #757575;
 }
 
 .Confirmar {
   background-color: #4CAF50;
-  color: white;
 }
 
 .Confirmar:hover {
@@ -213,57 +203,64 @@
 
 /* Efecto al pasar el mouse por encima del contenedor */
 .user-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-0.3125rem);
+  box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
 }
 
 /*----------------------------------------------------------------------------------------------------------------*/
-/* Estilo para el modal de confirmación de eliminación */
 .delete-confirmation {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  padding: 1.25rem;
   text-align: center;
 }
 
 .delete-confirmation p {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 1.125rem;
   color: #F44336;
-  margin-bottom: 20px;
 }
 
-/* Estilos para los botones de confirmación y cancelación */
-.confirmation-buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
-.btn-confirm-delete, .btn-cancel-delete {
-  padding: 10px 20px;
-  font-size: 16px;
+.btn-confirm-delete,
+.btn-cancel-delete {
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 0.3125rem;
   border: none;
 }
 
 .btn-confirm-delete {
   background-color: #F44336;
-  color: white;
 }
 
 .btn-confirm-delete:hover {
   background-color: #D32F2F;
 }
 
-.btn-cancel-delete {
-  background-color: #9E9E9E;
-  color: white;
-}
+@media (max-width: 768px) {
+  .user-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-.btn-cancel-delete:hover {
-  background-color: #757575;
+  .user-card {
+    width: 90%;
+    height: auto;
+  }
+
+  .trainer-image-container {
+    height: auto;
+  }
+
+  .user-info label,
+  .user-info span {
+    font-size: 1.2rem;
+  }
+
+  .btn-modify-account,
+  .btn-delete-account,
+  .Confirmar,
+  .SalirRegistro {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
 }

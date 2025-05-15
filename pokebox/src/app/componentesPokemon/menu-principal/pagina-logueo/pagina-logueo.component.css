@@ -1,116 +1,113 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   height: 100vh;
-  background-color:#4A4A4A;
+  background-color: #4A4A4A;
   overflow-y: auto;
   font-family: 'Winky Rough', cursive;
   color: white;
 }
-a{
+
+.imagenLogueo,
+button.imagenGoogle {
+  display: flex;
+}
+
+:host,
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a {
   text-decoration: none;
   font-size: large;
 }
-.imagenLogueo {
-  display: flex;
-}
-.imagenGoogle{
-  width: 42px;  /* Tamaño pequeño */
-  height: 42px;
+
+.imagenGoogle {
+  width: 2.625rem;
+  height: 2.625rem;
   display: block;
-  margin: 0 auto; /* Centrar la imagen */
+  margin: 0 auto;
+  /* Centrar la imagen */
+}
+
+.imagenGoogle,
+button.imagenGoogle,
+.botones {
   cursor: pointer;
-
 }
 
-a.olvideContraseña{
-margin-right: 60px;
-color: rgb(231, 0, 0);
-text-decoration: underline;
-cursor: pointer;
-}
-
-a.sinCuenta{
-color: rgb(229, 255, 0);
-text-decoration: underline;
-cursor: pointer;
-}
-
-a.volverAlogueo{
-  color: rgb(255, 0, 0);
+a.olvideContraseña,
+a.sinCuenta,
+a.volverAlogueo {
+  cursor: pointer;
   text-decoration: underline;
-  cursor: pointer;
 }
 
+a.olvideContraseña {
+  margin-right: 3.75rem;
+}
+
+a.sinCuenta {
+  color: rgb(229, 255, 0);
+}
+
+a.volverAlogueo,
+a.olvideContraseña,
+.Error.visible {
+  color: rgb(255, 0, 0);
+}
 
 button.imagenGoogle {
-  display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 15px;
-  background-color: white; /* O el color que desees */
+  border-radius: 0.9375rem;
+  background-color: white;
   border: none;
-  cursor: pointer;
-  padding: 5px;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transición para el efecto */
+  padding: 0.3125rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  /* Transición para el efecto */
 }
 
-/* Efecto al presionar el botón */
 button.imagenGoogle:active {
-  transform: scale(0.95); /* Escalar un poco el botón al hacer clic */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para dar un efecto de profundidad */
+  transform: scale(0.95);
+  /* Escalar un poco el botón al hacer clic */
+  box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+  /* Sombra para dar un efecto de profundidad */
 }
 
-/* Efecto al poner el cursor sobre el botón */
 button.imagenGoogle:hover {
-  background-color: #f0f0f0; /* Fondo al pasar el cursor */
-  transform: scale(1.05); /* Agrandar el botón al pasar el cursor */
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+  /* Agrandar el botón al pasar el cursor */
 }
+
 /* Efecto al enfocar el botón */
 button.imagenGoogle:focus {
-  outline: none; /* Eliminar el borde de enfoque predeterminado */
-  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.5); /* Resaltar el enfoque con un borde */
+  outline: none;
+  /* Eliminar el borde de enfoque predeterminado */
+  box-shadow: 0 0 0 0.125rem rgba(0, 122, 255, 0.5);
 }
-
 
 button.inicioSesion,
-.Registro{
-  border: 2px solid #B0B0C3;
-  border-radius: 8px;
-  padding: 15px 40px;
-  /* Tamaños más manejables */
-  font-size: 1.1rem;
-  background-color: #D6D6D6;
-  transition-duration: 0.3s;
-  cursor: pointer;
-  width: 100%;
-  /* Hace que los botones ocupen el ancho disponible */
-  max-width: 300px;
-  font-family: 'Winky Rough', cursive;
-}
-
+.Registro,
 .SalirRegistro,
 .Confirmar,
 .Registarse,
 .IniciarSesion {
-  border: 2px solid #B0B0C3;
-  border-radius: 8px;
-  padding: 15px 40px;
-  /* Tamaños más manejables */
+  cursor: pointer;
+  border: 0.125rem solid #B0B0C3;
+  border-radius: 0.5rem;
+  padding: 0.9375 2.5rem;
   font-size: 1.1rem;
   background-color: #D6D6D6;
   transition-duration: 0.3s;
-  cursor: pointer;
   width: 100%;
-  /* Hace que los botones ocupen el ancho disponible */
-  max-width: 300px;
-  /* Limita el tamaño en pantallas grandes */
+  max-width: 18.75rem;
   font-family: 'Winky Rough', cursive;
 }
 
-
+.IniciarSesion:hover,
 .Confirmar:hover,
 .SalirRegistro:hover,
 .Registarse:hover {
@@ -118,73 +115,49 @@ button.inicioSesion,
   color: white;
 }
 
-
-.IniciarSesion:hover
-{
-  background-color: #B0B0C3;
-  color: white;
-}
-
-
 .SalirRegistro {
   margin-left: 20%;
-  margin-bottom: 50px;
+  margin-bottom: 3.125rem;
 }
 
 .Confirmar {
   margin-left: 12%;
-  margin-bottom: 50px;
+  margin-bottom: 3.125rem;
 }
 
 .Registarse {
   margin-left: 35%;
-  margin-bottom: 50px;
+  margin-bottom: 3.125rem;
 }
 
 .IniciarSesion {
   margin-left: 35.1%;
 }
 
-
-.titulo{
-margin: 0 auto;
-font-size: 2.2rem;
-font-family: 'Arial';
-font-family: 'Winky Rough', cursive;
+.titulo {
+  margin: 0 auto;
+  font-size: 2.2rem;
+  font-family: 'Winky Rough', cursive;
 }
 
-.subtitulo{
-  font-size: 1.0rem;
+.subtitulo {
+  font-size: 1rem;
   font-family: 'Arial';
 }
 
-.formOlvideContraseña{
-  margin: 0 auto;
+.formularioRegistro,
+.formOlvideContraseña {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 20px;
+  align-items: center;
+  margin: 0 auto;
+  gap: 0.625rem;
+  padding: 1.25rem;
   background-color: #2C2C3E;
-  border-radius: 8px;
-  max-width: 500px;
-  align-items: center;
-  margin-bottom: 20px;
+  border-radius: 0.5rem;
+  max-width: 31.25rem;
+  margin-bottom: 1.25rem;
   width: 90%;
-}
-
-.formularioRegistro {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 20px;
-  background-color:#2C2C3E;
-  border-radius: 8px;
-  max-width: 500px;
-  align-items: center;
-  margin-bottom: 20px;
-  width: 90%;
-  /* Para que se adapte a la mayoría de pantallas */
 }
 
 label {
@@ -195,44 +168,28 @@ label {
 }
 
 .Error {
-  display: block;         /* Se comporta como un bloque (ocupa línea completa) */
-  min-height: 6px;      /* Deja espacio reservado incluso sin texto */
-  font-size: 16px;
+  display: block;
+  /* Se comporta como un bloque (ocupa línea completa) */
+  min-height: 0.375rem;
+  /* Deja espacio reservado incluso sin texto */
+  font-size: 1rem;
   color: transparent;
-  margin-top: 9px;
-
-
-}
-
-.Error.visible {
-color:red;
+  margin-top: 0.562rem;
 }
 
 input {
   font-size: large;
   flex: 2;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 0.625rem;
+  border: 0.0625rem solid #ccc;
+  border-radius: 0.3125rem;
   width: 100%;
-}
-
-.botones {
-  cursor: pointer;
-}
-
-
-.input-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 /* Media Queries para pantallas medianas */
 @media (max-width: 768px) {
   .formularioRegistro {
     width: 80%;
-    /* Reduce el ancho en pantallas medianas */
   }
 
   label {
@@ -244,7 +201,7 @@ input {
   .Registarse,
   .IniciarSesion {
     font-size: 1rem;
-    padding: 12px 30px;
+    padding: 0.75rem 1.875rem;
   }
 }
 
@@ -252,11 +209,11 @@ input {
 @media (max-width: 480px) {
   .formularioRegistro {
     width: 90%;
-    /* Asegura que el formulario se ajuste a pantallas pequeñas */
-    padding: 15px;
+    padding: 0.9375rem;
   }
 
-  label {
+  label,
+  input {
     font-size: 1rem;
   }
 
@@ -265,18 +222,10 @@ input {
   .Registarse,
   .IniciarSesion {
     font-size: 0.9rem;
-    padding: 10px 20px;
-    /* Ajusta el tamaño de padding en pantallas pequeñas */
+    padding: 0.625rem 1.25rem;
   }
 
   .imagenUsuario {
     width: 70%;
   }
-
-  input {
-    font-size: 1rem;
-  }
-
-
 }
-

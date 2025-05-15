@@ -36,23 +36,22 @@ export class ObjetoService {
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: [],
-    ListaObjetos:[]
+    ListaObjetos: []
   }
-  newObjeto:Objeto={
-    nombre:'',
-    descripcion:'',
-    generacion:0,
-    sprite:'',
-    cantidad:0
+  newObjeto: Objeto = {
+    nombre: '',
+    descripcion: '',
+    generacion: 0,
+    sprite: '',
+    cantidad: 0
   }
 clave:string|null=""
  posicion: number = 0;
   posicion2: number = 0;
   posicion3:number=0;
-  ready:boolean=false
   usuarioService = inject(UsuarioService);
 
- getid() {
+  getid() {
     this.clave = localStorage.getItem('token')
   }
 
@@ -138,10 +137,10 @@ clave:string|null=""
     this.getid()
 
     this.usuarioService.getUsuarioById(this.clave).subscribe({
-      next:(valor: Usuario)=>{
-        this.usuario=valor
+      next: (valor: Usuario) => {
+        this.usuario = valor
 
-        this.usuario.ListaObjetos=this.usuario.ListaObjetos.filter(e=>e.nombre!==nombre)
+        this.usuario.ListaObjetos = this.usuario.ListaObjetos.filter(e => e.nombre !== nombre)
 
         this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
           next: () => console.log('Objeto eliminado con exito.'),
@@ -172,21 +171,21 @@ clave:string|null=""
 
       this.getid()
 
-       this.usuarioService.getUsuarioById(this.clave).subscribe({
-      next:(valor: Usuario)=>{
-        this.usuario=valor
-        const index=this.usuario.ListaObjetos.findIndex(e=>e.nombre===nombre)
-        this.usuario.ListaObjetos[index].cantidad=nuevaCantidad
+      this.usuarioService.getUsuarioById(this.clave).subscribe({
+        next: (valor: Usuario) => {
+          this.usuario = valor
+          const index = this.usuario.ListaObjetos.findIndex(e => e.nombre === nombre)
+          this.usuario.ListaObjetos[index].cantidad = nuevaCantidad
 
 
-        this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
-          next: () => console.log('Lista de objetos actualizado con éxito.'),
-          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
-        });
+          this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
+            next: () => console.log('Lista de objetos actualizado con éxito.'),
+            error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
+          });
 
-      },
-      error: (e: Error) => console.error('Error al obtener el usuario para actualizar su lista de objetos:', e.message),
-    });
+        },
+        error: (e: Error) => console.error('Error al obtener el usuario para actualizar su lista de objetos:', e.message),
+      });
     }
   }
 
