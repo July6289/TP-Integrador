@@ -73,9 +73,14 @@ guardarCantidad(nombre: string) {
     this.dbUsuarioId()
 
     setTimeout(() => {
-          this.objetoService.setInventario(this.usuario.ListaObjetos)
+          if(this.usuario.ListaObjetos.length>0)
+          {
+              this.objetoService.setInventario(this.usuario.ListaObjetos)
 
-    }, 300);
+          }
+
+
+    }, 400);
 
 
 
@@ -104,17 +109,12 @@ dbUsuarioId() {
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
             this.posicion = this.posicion + 1;
           })
-          this.ready = true
-          if (this.ready) {
 
             valor.ListaFavoritos.map((pokemon) => {
               this.usuario.ListaFavoritos[this.posicion2] = pokemon
               this.posicion2 = this.posicion2 + 1
 
             })
-
-
-          }
 
 
                valor.ListaObjetos.map((objeto) => {

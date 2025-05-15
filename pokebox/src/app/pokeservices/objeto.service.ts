@@ -23,11 +23,10 @@ export class ObjetoService {
     objeto:obj,
     cantidad:obj.cantidad
    }))
-   setTimeout(() => {
-       this.inventarioSubject.next(nuevoInventario)
-         console.log("se cumplio")
 
-   }, 300);
+
+       this.inventarioSubject.next(nuevoInventario)
+
 }
 
  usuario: Usuario = {
@@ -47,7 +46,10 @@ export class ObjetoService {
     cantidad:0
   }
 clave:string|null=""
-
+ posicion: number = 0;
+  posicion2: number = 0;
+  posicion3:number=0;
+  ready:boolean=false
   usuarioService = inject(UsuarioService);
 
  getid() {
@@ -84,55 +86,49 @@ clave:string|null=""
 
   agregarObjeto(objeto: Objeto, cantidad: number) {
     const actual = this.inventarioSubject.getValue();
-    const existe = actual.find(o => o.objeto.nombre === objeto.nombre);
-       this.getid()
+  const existe = actual.find(o => o.objeto.nombre === objeto.nombre);
+  this.getid();
 
+  this.usuarioService.getUsuarioById(this.clave).subscribe({
+    next: (valor: Usuario) => {
+      this.usuario = valor;
 
-       this.usuarioService.getUsuarioById(this.clave).subscribe({
-      next:(valor: Usuario)=>{
-        this.usuario=valor
+      // Si ya existe en el inventarioSubject
+      if (existe) {
+        if (existe.cantidad < 99) {
+          existe.cantidad += cantidad;
 
-      },
-      error: (e: Error) => console.error('Error al obtener el usuario para actualizar su lista de favoritos:', e.message),
-    });
+          const index = this.usuario.ListaObjetos.findIndex(e => e.nombre === objeto.nombre);
+          if (index !== -1) {
+            this.usuario.ListaObjetos[index].cantidad += cantidad;
+          } else {
+            // Si no lo encuentra en ListaObjetos, lo agrega
+            this.usuario.ListaObjetos.push({ ...objeto, cantidad });
+          }
+        } else {
+          alert('Solo puedes llevar hasta 99 unidades del mismo objeto, los objetos restantes no fueron agregados');
+        }
+      } else {
+        actual.push({ objeto, cantidad });
 
-
-    if (existe) {
-      existe.cantidad += cantidad;
-      if (existe.cantidad < 99) {
-              existe.cantidad += cantidad;
-          const index=this.usuario.ListaObjetos.findIndex(e=>e.nombre===objeto.nombre)
-
-          this.usuario.ListaObjetos[index].cantidad+=cantidad;
-
+        const existeEnUsuario = this.usuario.ListaObjetos.find(e => e.nombre === objeto.nombre);
+        if (!existeEnUsuario) {
+          this.usuario.ListaObjetos.push({ ...objeto, cantidad });
+        }
       }
-      else{
-        alert('Solo puedes llevar hasta 99 unidades del mismo objeto, los objetos restantes no fueron agregados');
-      }
 
-    } else {
-      actual.push({ objeto, cantidad });
-      this.newObjeto=objeto;
-      this.newObjeto.cantidad=cantidad
-      this.usuario.ListaObjetos.push(this.newObjeto)
+      // Emitimos inventario actualizado
+      this.inventarioSubject.next([...actual]);
 
-
-
-
-
-
-
-    }
-    this.inventarioSubject.next([...actual]);
-
-    this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
-          next: () => console.log('Lista de objetos actualizado con éxito.'),
-          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
-        });
-
-
-
-  }
+      // Guardamos usuario actualizado
+      this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
+        next: () => console.log('Lista de objetos actualizada con éxito.'),
+        error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
+      });
+    },
+    error: (e: Error) => console.error('Error al obtener el usuario:', e.message),
+  });
+}
 
   eliminarObjeto(nombre: string) {
     const actual = this.inventarioSubject.getValue();
@@ -169,7 +165,8 @@ clave:string|null=""
   cambiarCantidad(nombre: string, nuevaCantidad: number) {
     const actual = this.inventarioSubject.getValue();
     const objeto = actual.find(item => item.objeto.nombre === nombre);
-    if (objeto) {
+
+    if (objeto!=undefined) {
       objeto.cantidad = nuevaCantidad;
       this.inventarioSubject.next([...actual]);
 

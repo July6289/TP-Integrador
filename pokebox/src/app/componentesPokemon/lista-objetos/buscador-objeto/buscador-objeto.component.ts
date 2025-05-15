@@ -43,7 +43,9 @@ export class BuscadorObjetoComponent implements OnInit {
 
   agregarAlInventario(objeto: Objeto) {
     if (this.cantidad > 0 && this.cantidad < 100 && this.cantidad % 1 === 0) {
+
       this.servicioObjeto.agregarObjeto(objeto, this.cantidad);
+
       this.nombreObjeto = '';
       this.objetosFiltrados = [];
       this.cantidad = 1;

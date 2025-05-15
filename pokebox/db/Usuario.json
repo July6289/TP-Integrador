@@ -1,20 +1,68 @@
 {
   "Usuarios": [
     {
-      "id": "IERs",
+      "id": "oOdO",
       "box": [],
-      "Email": "",
-      "Password": "",
+      "Email": "auterijuli82@gmail.com",
+      "Password": null,
       "CombatesGanados": 0,
       "ListaFavoritos": [],
       "ListaObjetos": [
+        {
+          "nombre": "Agua fresca",
+          "descripcion": "Agua de alto contenido mineral que restaura 30 PS de un Pokémon.",
+          "generacion": "1",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/a/ae/latest/20230115173952/Agua_fresca_EP.png/32px-Agua_fresca_EP.png",
+          "id": "aa66",
+          "cantidad": 8
+        },
         {
           "nombre": "Piedra agua",
           "descripcion": "Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es de color azul.",
           "generacion": "1",
           "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/1/14/latest/20230106130249/Piedra_agua_EP.png/32px-Piedra_agua_EP.png",
-          "id": "55a1",
-          "cantidad": 96
+          "id": "5894",
+          "cantidad": 7
+        },
+        {
+          "nombre": "Cinta aguante",
+          "descripcion": "El Pokémon que la lleva a veces resiste los golpes que potencialmente lo debilitarían y se queda con 1 PS.",
+          "generacion": "2",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/f/ff/latest/20230122140924/Cinta_aguante_EP.png/32px-Cinta_aguante_EP.png",
+          "id": "8048",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Baya Magua",
+          "descripcion": "Si la lleva un Pokémon y recibe un ataque especial, el atacante también recibe daño.",
+          "generacion": "4",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/2/2a/latest/20230919164057/Baya_Magua_EP.png/32px-Baya_Magua_EP.png",
+          "id": "1eff",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Pluma aguante",
+          "descripcion": "Pluma que aumenta un poco la defensa de base de un Pokémon.",
+          "generacion": "5",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/0/0d/latest/20230102183549/Pluma_aguante_EP.png/32px-Pluma_aguante_EP.png",
+          "id": "163c",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Mochi aguante",
+          "descripcion": "La masa de este mochi está preparada con bayas. Aumenta la defensa de base de un Pokémon.",
+          "generacion": "9",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/1/1d/latest/20230914212855/Mochi_aguante_EP.png/32px-Mochi_aguante_EP.png",
+          "id": "062f",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Disco agua",
+          "descripcion": "Disco de datos que contiene información relativa al tipo agua. Permite cambiar de tipo a cierto Pokémon.",
+          "generacion": "7",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/1/1c/latest/20161207210655/Disco_agua_%28Dream_World%29.png/32px-Disco_agua_%28Dream_World%29.png",
+          "id": "8d28",
+          "cantidad": 1
         }
       ]
     }

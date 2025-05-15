@@ -15,6 +15,9 @@ import { Router } from '@angular/router';
 export class PerfilComponent implements OnInit {
   id: string | null = ""
   posicion: number = 0;
+  posicion2: number = 0;
+  posicion3:number=0;
+
   isModifyShowing: boolean = false;
   validadorMensajeEspecifico: boolean = false;
   MensajeEspecifico: string = '';
@@ -44,7 +47,12 @@ export class PerfilComponent implements OnInit {
   )
   ngOnInit(): void {
     this.id = localStorage.getItem('token');
-    this.dbUsuarioId();
+  setTimeout(() => {
+        this.dbUsuarioId();
+        console.log(this.usuario)
+
+
+  }, 300);
   }
 
   dbUsuarioId() {
@@ -66,9 +74,7 @@ export class PerfilComponent implements OnInit {
 
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;
-          for (let i = 0; i < valor.box.length; i++) {
-            this.usuario.box[i] = valor.box[i];
-          }
+
 
           valor.box.map((caja) => {
             this.usuario.box[this.posicion].imagen = caja.imagen;
@@ -76,7 +82,19 @@ export class PerfilComponent implements OnInit {
             this.posicion++;
           })
 
-        this.usuario.ListaFavoritos=valor.ListaFavoritos
+       valor.ListaFavoritos.map((pokemon) => {
+              this.usuario.ListaFavoritos[this.posicion2] = pokemon
+              this.posicion2 = this.posicion2 + 1
+
+            })
+
+           valor.ListaObjetos.map((objeto) => {
+              this.usuario.ListaObjetos[this.posicion3] = objeto
+              this.posicion3 = this.posicion3 + 1
+
+            })
+
+
         },
         error: (e: Error) => {
           console.log(e.message);
