@@ -1,24 +1,25 @@
+:host
+{
+  overflow-y: auto;
+}
+
 nav {
   background-color: #4A4A4A;
-  display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 0.5rem 1rem;
-  max-width:100%;
-  /* Añade padding para mejor escalabilidad */
+  max-width: 100%;
 }
 
 .imagenLogueo {
   width: 20vh;
-  /* Escalable */
   max-width: 9.375rem;
-  /* Limita el tamaño máximo */
 }
 
-.homePage,.boton2 {
+.homePage,
+.boton2 {
   display: flex;
   align-items: center;
-  gap: 0.25rem; /* Espacio entre imagen y texto */
+  gap: 0.25rem;
   border-radius: 0.5rem;
   background-color: #D6D6D6;
   border: 0.125rem solid #B0B0C3;
@@ -32,7 +33,8 @@ nav {
   margin-right: 2rem;
 }
 
-.homePage p {
+.homePage p,
+ul {
   margin: 0;
   padding: 0;
 }
@@ -54,30 +56,21 @@ button:hover {
 }
 
 ul,
-li,
 a {
   text-decoration: none;
   margin-left: 1rem;
   font-size: 1.5rem;
-  /* Reducido para escalabilidad */
   color: black;
 }
 
 ul,
-li {
-  display: inline-block;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
+nav {
   display: flex;
   align-items: center;
 }
 
 .imagenUsuario {
   max-width: 3.125rem;
-  /* Limita el tamaño máximo */
   cursor: pointer;
 }
 
@@ -85,20 +78,16 @@ ul {
 
 /* Ajustes para pantallas medianas */
 @media (max-width: 768px) {
-  nav {
-    /* Cambia la disposición a columna */
+  nav,ul {
     align-items: flex-start;
   }
 
   ul {
-    flex-direction: column;
-    /* Coloca los elementos en columna */
-    align-items: flex-start;
+    gap: 1rem;
   }
 
-  ul li {
+  ul {
     margin-bottom: 0.5rem;
-    /* Espacio entre elementos */
   }
 
   .imagenLogueo {
@@ -108,13 +97,11 @@ ul {
 
   .homePage {
     margin-right: 0;
-    /* Elimina el margen derecho fijo */
   }
 
   .boton2 {
     font-size: 0.9rem;
     padding: 0.4rem 1rem;
-    /* Ajusta el tamaño en pantallas medianas */
   }
 }
 
@@ -122,31 +109,25 @@ ul {
 @media (max-width: 480px) {
   nav {
     padding: 0.5rem;
-    /* Reduce el padding */
   }
 
   ul {
     flex-direction: column;
-    /* Coloca los elementos en columna */
-    align-items: flex-start;
   }
 
-  ul li {
+  ul {
     font-size: 1.2rem;
-    /* Reduce el tamaño de fuente */
     margin-bottom: 0.3rem;
   }
 
   .imagenLogueo {
     width: 15vh;
     max-width: 6.25rem;
-    /* Reduce el tamaño máximo en pantallas pequeñas */
   }
 
   .boton2 {
     font-size: 0.8rem;
     padding: 0.3rem 0.8rem;
-    /* Reduce el padding */
   }
 
   .imagenUsuario {
