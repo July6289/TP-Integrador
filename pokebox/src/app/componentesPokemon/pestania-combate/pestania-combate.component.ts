@@ -66,6 +66,10 @@ export class PestaniaCombateComponent implements OnInit {
 
   posicion: number = 0;
 
+  posicion2:number=0;
+
+  posicion3:number=0;
+
   usuario: Usuario = {
     id: "",
     box: [],
@@ -110,9 +114,7 @@ export class PestaniaCombateComponent implements OnInit {
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;
 
-          for (let i = 0; i < valor.box.length; i++) {
-            this.usuario.box[i] = valor.box[i]
-          }
+
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
 
           valor.box.map((caja) => {
@@ -121,7 +123,17 @@ export class PestaniaCombateComponent implements OnInit {
             this.posicion++;
           })
 
-          this.usuario.ListaFavoritos=valor.ListaFavoritos;
+          valor.ListaFavoritos.map((pokemon) => {
+              this.usuario.ListaFavoritos[this.posicion2] = pokemon
+              this.posicion2 = this.posicion2 + 1
+            })
+
+
+           valor.ListaObjetos.map((objeto) => {
+              this.usuario.ListaObjetos[this.posicion3] = objeto
+              this.posicion3 = this.posicion3 + 1
+
+            })
         },
         error: (e: Error) => {
           console.log(e.message);

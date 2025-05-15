@@ -40,6 +40,8 @@ export class ListaEquipoPokemonComponent {
     ListaObjetos:[]
   }
   posicion: number = 0;
+  posicion2:number=0;
+  posicion3:number=0;
   secretId: string | null = ""
 
   ngOnInit() {
@@ -71,6 +73,23 @@ export class ListaEquipoPokemonComponent {
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
             this.posicion++;
           })
+
+          valor.ListaFavoritos.map((pokemon) => {
+              this.usuario.ListaFavoritos[this.posicion2] = pokemon
+              this.posicion2 = this.posicion2 + 1
+
+            })
+
+
+               valor.ListaObjetos.map((objeto) => {
+              this.usuario.ListaObjetos[this.posicion3] = objeto
+              this.posicion3 = this.posicion3 + 1
+
+            })
+
+
+
+
         },
         error: (e: Error) => {
           console.log(e.message);

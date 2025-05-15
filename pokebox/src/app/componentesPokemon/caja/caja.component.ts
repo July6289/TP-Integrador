@@ -25,9 +25,9 @@ export class CajaComponent implements OnInit {
   spriteActual$: Observable<string | null>;
   indiceCaja: number = 0; // Índice de la caja actual
   flag: boolean = false;
-  ready: boolean = false;
   posicion: number = 0;
   posicion2: number = 0;
+  posicion3:number=0;
   pokeservicio = inject(PokeservicesService);
   secretId: string | null = ""
   usarioServicio = inject(UsuarioService);
@@ -81,13 +81,20 @@ export class CajaComponent implements OnInit {
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
             this.posicion = this.posicion + 1;
           })
-          this.ready = true
-          if (this.ready) {
+
             valor.ListaFavoritos.map((pokemon) => {
               this.usuario.ListaFavoritos[this.posicion2] = pokemon
               this.posicion2 = this.posicion2 + 1
             })
-          }
+
+
+           valor.ListaObjetos.map((objeto) => {
+              this.usuario.ListaObjetos[this.posicion3] = objeto
+              this.posicion3 = this.posicion3 + 1
+
+            })
+
+
         },
         error: (e: Error) => {
           console.log(e.message);
