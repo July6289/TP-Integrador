@@ -63,28 +63,25 @@ export class ListaEquipoPokemonComponent {
           this.usuario.Email = valor.Email;
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
-
           this.usuario.CombatesGanados=valor.CombatesGanados;
 
-              valor.box.map((caja) => {
-              if(this.usuario.box[this.posicion])
-              {
-                       this.usuario.box[this.posicion].imagen = caja.imagen;
-                     this.usuario.box[this.posicion].pokemones = caja.pokemones;
-                    this.posicion = this.posicion + 1;
+          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
 
-              }
-              else
-              {
-                this.usuario.box[this.posicion] = {
-          imagen: caja.imagen,
-              pokemones: [...caja.pokemones]
-              };
+           //la forma definitiva de evitar el undefined
+            this.usuario.box=this.pokeservice.cajas
+          valor.box.map((caja) => {
 
-              }
+              this.usuario.box[this.posicion].imagen = caja.imagen;
+              this.usuario.box[this.posicion].pokemones = caja.pokemones;
+              this.posicion = this.posicion + 1;
+
+
           })
+
+
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
+
 
 
 
