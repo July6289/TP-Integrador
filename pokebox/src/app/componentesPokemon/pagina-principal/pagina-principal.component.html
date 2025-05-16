@@ -28,8 +28,10 @@
       <app-lista-pokemon (pokemonAgregado)="caja.agregarPokemon($event)"></app-lista-pokemon>
     </div>
   </div>
-
-  <app-tutorial *ngIf="mostrarTutorial" class="tutorial-overlay">
-    <button class="cerrar-btn" (click)="cerrarTutorial()">X</button>
-  </app-tutorial>
 </div>
+
+<div class="tutorial-overlay" *ngIf="mostrarTutorial">
+  <button class="cerrar-btn" (click)="cerrarTutorial()">X</button>
+  <app-tutorial></app-tutorial>
+</div>
+
