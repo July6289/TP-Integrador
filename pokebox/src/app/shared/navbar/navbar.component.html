@@ -15,9 +15,14 @@
       <img class="imagenUsuario" src="assets/imagenes/images.png" alt="imagen usuario">
       <p>Objetos</p>
     </button>
+
+    <button class="homePage" (click)="mostrarAyuda()">
+      <p>Ayuda</p>
+    </button>
+
     }
   </ul>
-  <button class="boton2" (click)="onLonginLogout()" (click)="llamarDbGuardarDatos()" >
+  <button class="boton2" (click)="onLonginLogout()" (click)="llamarDbGuardarDatos()">
     <img class="imagenUsuario" src="assets/imagenes/log_out.webp" alt="">
     <p>{{ textButton }}</p>
   </button>

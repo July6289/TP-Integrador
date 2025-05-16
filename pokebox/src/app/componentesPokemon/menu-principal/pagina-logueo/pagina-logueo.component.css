@@ -37,6 +37,11 @@ button.imagenGoogle,
   cursor: pointer;
 }
 
+.botones {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 a.olvideContraseña,
 a.sinCuenta,
 a.volverAlogueo {
@@ -115,16 +120,6 @@ button.inicioSesion,
   color: white;
 }
 
-.SalirRegistro {
-  margin-left: 20%;
-  margin-bottom: 3.125rem;
-}
-
-.Confirmar {
-  margin-left: 12%;
-  margin-bottom: 3.125rem;
-}
-
 .Registarse {
   margin-left: 35%;
   margin-bottom: 3.125rem;
@@ -157,7 +152,6 @@ button.inicioSesion,
   border-radius: 0.5rem;
   max-width: 31.25rem;
   margin-bottom: 1.25rem;
-  width: 90%;
 }
 
 label {

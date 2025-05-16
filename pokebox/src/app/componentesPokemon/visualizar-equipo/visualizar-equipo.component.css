@@ -1,17 +1,13 @@
 .pokemon-grid {
-  gap: 20px;
+  gap: 1.25rem;
   width: 100%;
-  margin-bottom: 20px;
-  /* Para que los elementos se ajusten en múltiples líneas si es necesario */
+  margin-bottom: 1.25rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  /* Diseño de grilla adaptable */
+  grid-template-columns: repeat(auto-fill, minmax(9.375rem, 1fr));
   font-family: 'Winky Rough', cursive;
-
 }
 
-.nombre-pokemon
-{
+.nombre-pokemon {
   color: #D6D6D6;
   font-size: 1rem;
 }
@@ -32,55 +28,43 @@
 
 .pokemon {
   margin-top: 2.55%;
-  width: 150px;
-  height: 150px;
-  /* Ancho de cada tarjeta de Pokémon */
-  padding: 15px;
+  padding: 0.9375rem;
   background-color: #2C2C3E;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 0.625rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
   transition: transform 0.2s;
   white-space: nowrap;
-  /* Impide que el texto se divida en varias líneas */
   overflow: hidden;
-  /* Oculta el texto que sobrepase los límites del contenedor */
   text-overflow: ellipsis;
-  /* Agrega "..." al final del texto si es demasiado largo */
 }
 
 .pokemon:hover {
   transform: scale(1.05);
-  /* Efecto de aumento al pasar el mouse */
 }
 
 .poketeam {
   height: 93vh;
   box-sizing: border-box;
-  /* Asegura que el padding y el border no incrementen el tamaño */
   background-image: url('/assets/imagenes/background7.webp');
-  /* URL de tu imagen de fondo */
   background-size: cover;
-  /* Asegura que la imagen cubra todo el contenedor */
   background-repeat: no-repeat;
-  /* Evita que la imagen se repita */
   background-position: center;
   font-family: 'Winky Rough', cursive;
 }
 
-.pokemon-imagen
-{
-  width: 150px;
-  height: 150px;
+.pokemon-imagen,
+.pokemon {
+  width: 9.375rem;
+  height: 9.375rem;
 }
 
 button {
-  border-radius: 8px;
-  padding: 10px 14px;
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.875rem;
   font-size: 1rem;
   background-color: #D6D6D6;
-  border: 2px solid #B0B0C3;
+  border: 0.125rem solid #B0B0C3;
   transition-duration: 0.3s;
-  /* Espacio entre las tarjetas y el botón */
   cursor: pointer;
   font-family: 'Winky Rough', cursive;
 }
@@ -91,67 +75,55 @@ button:hover {
 }
 
 .boton-volver {
-  gap: 15px;
-  /* Espacio entre los botones */
+  gap: 0.9375rem;
 }
 
 .nombreEquipo {
   font-size: 3rem;
-  /* Tamaño de la fuente */
   font-weight: bold;
-  /* Negrita */
   color: white;
-  /* Color del texto */
-  padding: 20px;
-  /* Espaciado alrededor del título */
-  border-radius: 50px;
-  /* Bordes redondeados */
-  box-shadow: 0 10px 12px rgb(95, 95, 95, 1);
-  /* Borde solido y de color */
-  border: 2px solid #D6D6D6;
-  /* Sombra suave */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  /* Sombra en el texto */
+  padding: 1.25rem;
+  border-radius: 3.125rem;
+  box-shadow: 0 0.625rem 0.75rem rgb(95, 95, 95, 1);
+  border: 0.125rem solid #D6D6D6;
+  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
 }
 
 /* Media Queries para ajustar el diseño en pantallas medianas */
 @media (max-width: 768px) {
   .pokemon {
-    width: 120px;
-    /* Ajuste de tamaño en pantallas medianas */
-    height: 120px;
+    width: 7.5rem;
+    height: 7.5rem;
   }
 
   .nombreEquipo {
     font-size: 2rem;
-    padding: 15px;
+    padding: 0.9375rem;
   }
 }
 
 /* Media Queries para pantallas pequeñas */
 @media (max-width: 480px) {
   .pokemon-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    /* Ajuste de columnas */
+    grid-template-columns: repeat(auto-fill, minmax(6.25rem, 1fr));
   }
 
   .pokemon {
-    width: 100px;
-    height: 100px;
+    width: 6.25rem;
+    height: 6.25rem;
   }
 
   .nombreEquipo {
     font-size: 1.5rem;
-    padding: 10px;
+    padding: 0.625rem;
   }
 
   .poketeam {
-    padding: 20px;
-    /* Ajuste de padding en contenedor principal */
+    padding: 1.25rem;
   }
 
   button {
     font-size: 0.9rem;
-    padding: 8px 10px;
+    padding: 0.5rem 0.625rem;
   }
 }

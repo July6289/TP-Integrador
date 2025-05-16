@@ -1,5 +1,5 @@
 <div class="teams">
-  <input type="text" class="barra-gen" [(ngModel)]="nombreObjeto" placeholder="pon el nombre del objeto">
+  <input type="text" class="barra-gen" (keydown.enter)="buscarObjeto()" [(ngModel)]="nombreObjeto" placeholder="pon el nombre del objeto">
   <button class="big" (click)="buscarObjeto()">Buscar</button>
 
   <ul>
@@ -7,7 +7,7 @@
       <img class="imagen" [src]="objeto.sprite">
       <span class="nombre-pokemon">{{ objeto.nombre }}</span>
       <div class="botones-container">
-        <input type="number" [(ngModel)]="cantidad" class="barra-gen" placeholder="Seleccionar cantidad">
+        <input type="number" [(ngModel)]="objeto.cantidad"  (keydown.enter)="agregarAlInventario(objeto)" class="barra-gen" placeholder="Seleccionar cantidad">
         <button class="little" (click)="agregarAlInventario(objeto)">Agregar</button>
       </div>
     </li>

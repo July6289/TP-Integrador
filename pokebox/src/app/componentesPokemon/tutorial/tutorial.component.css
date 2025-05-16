@@ -1,0 +1,30 @@
+.hola {
+  background-color: blue
+}
+
+.tutorial-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  z-index: 1000;
+  border: 2px solid black;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.75);
+}
+
+.cerrar-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
