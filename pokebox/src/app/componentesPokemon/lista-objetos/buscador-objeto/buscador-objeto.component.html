@@ -1,5 +1,5 @@
 <div class="teams">
-  <input type="text" class="barra-gen" [(ngModel)]="nombreObjeto" placeholder="pon el nombre del objeto">
+  <input type="text" class="barra-gen" (keydown.enter)="buscarObjeto()" [(ngModel)]="nombreObjeto" placeholder="pon el nombre del objeto">
   <button class="big" (click)="buscarObjeto()">Buscar</button>
 
   <ul>

@@ -1,6 +1,6 @@
 <div class="/main-page" *ngIf="mostrarBotonAgregar">
   <div id="input">
-    <input type="number" class="barra-gen" [(ngModel)]="this.numeroGeneracion" placeholder="pon el n° de la generacion">
+    <input type="number" class="barra-gen" (keydown.enter)="buscarPokemonPorGeneracion()" [(ngModel)]="this.numeroGeneracion" placeholder="pon el n° de la generacion">
     <button class="buscar" (click)="buscarPokemonPorGeneracion()"> <i class="fas fa-search"></i>Buscar</button>
     @if(validacion){
     <div class="pokemon" style="max-height: 75vh;">
@@ -19,7 +19,7 @@
 <div class="/equipo-pokemon" *ngIf="mostrarBotonAgregar===false">
 
   <div id="input">
-    <input type="number" class="barra-gen" [(ngModel)]="this.numeroGeneracion" placeholder="pon el n° de la generacion">
+    <input type="number" class="barra-gen" (keydown.enter)="buscarPokemonPorGeneracion()" [(ngModel)]="this.numeroGeneracion" placeholder="pon el n° de la generacion">
     <button class="buscar" (click)="buscarPokemonPorGeneracion()"> <i class="fas fa-search"></i>Buscar</button>
     @if(validacion)
     {
