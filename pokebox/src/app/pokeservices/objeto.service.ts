@@ -36,8 +36,10 @@ export class ObjetoService {
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: [],
-    ListaObjetos: []
+    ListaObjetos: [],
+    ListaEquipos:[]
   }
+
   newObjeto: Objeto = {
     nombre: '',
     descripcion: '',

@@ -76,7 +76,8 @@ export class PestaniaCombateComponent implements OnInit {
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos:[],
-    ListaObjetos:[]
+    ListaObjetos:[],
+    ListaEquipos:[]
   }
 
   constructor(private service: EquipoPokemonService, private pokeservicesService: PokeservicesService, private router: Router) { }
@@ -132,6 +133,8 @@ export class PestaniaCombateComponent implements OnInit {
 
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
+          this.usuario.ListaEquipos=[...valor.ListaEquipos]
+
         },
         error: (e: Error) => {
           console.log(e.message);

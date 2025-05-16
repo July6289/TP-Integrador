@@ -1,4 +1,5 @@
 import { Caja } from "../interfaz-caja/interfazCaja.inteface";
+import { EquipoPokemon } from "../interfazpokemon/interfazEquipo.interface";
 import { Pokemon } from "../interfazpokemon/interfazpokemon.inteface";
 import { Objeto } from "../objetos/objeto.interface";
 
@@ -9,7 +10,7 @@ export interface Usuario {
   CombatesGanados: number;
   box: Caja[];
   ListaFavoritos:Pokemon[];
-  ListaObjetos:Objeto[]
-
+  ListaObjetos:Objeto[];
+  ListaEquipos:EquipoPokemon[]
   //combatesGanados: number;
 }

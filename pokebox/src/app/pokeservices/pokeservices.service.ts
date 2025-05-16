@@ -44,7 +44,8 @@ export class PokeservicesService {
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: [],
-    ListaObjetos:[]
+    ListaObjetos:[],
+    ListaEquipos:[]
   }
 
   // Este observable combinará los valores de selectedPokemon$, esMacho$ y esShiny$
@@ -305,6 +306,8 @@ export class PokeservicesService {
       next:(valor: Usuario)=>{
         this.usuario=valor
         this.usuario.ListaFavoritos=this.favoritosSubject.value
+          this.usuario.ListaEquipos=[...valor.ListaEquipos]
+
         this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
           next: () => console.log('favoritos actualizado con éxito.'),
           error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
@@ -327,6 +330,7 @@ export class PokeservicesService {
 
         this.usuario.ListaFavoritos=this.favoritosSubject.value
 
+         this.usuario.ListaEquipos=[...valor.ListaEquipos]
 
         this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
           next: () => console.log('favorito eliminado con éxito.'),

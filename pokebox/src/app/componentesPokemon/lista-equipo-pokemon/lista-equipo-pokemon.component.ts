@@ -38,7 +38,8 @@ export class ListaEquipoPokemonComponent {
     Password: "",
     CombatesGanados:0,
     ListaFavoritos:[],
-    ListaObjetos:[]
+    ListaObjetos:[],
+    ListaEquipos:[]
   }
   posicion: number = 0;
 
@@ -53,6 +54,14 @@ export class ListaEquipoPokemonComponent {
 
     this.secretId = this.auth.getTokenValue();
     this.dbUsuarioId()
+
+    setTimeout(() => {
+      if (this.usuario.ListaEquipos.length > 0) {
+        this.equipoPokemonService.setEquipo(this.usuario.ListaEquipos)
+      }
+    }, 300);
+
+
     this.checkRoute();
   }
 
@@ -81,6 +90,7 @@ export class ListaEquipoPokemonComponent {
 
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
+          this.usuario.ListaEquipos=[...valor.ListaEquipos]
 
 
 

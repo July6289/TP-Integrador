@@ -41,7 +41,8 @@ export class InventarioObjetoComponent implements OnInit {
         Password: "",
         CombatesGanados: 0,
         ListaFavoritos:[],
-        ListaObjetos:[]
+        ListaObjetos:[],
+        ListaEquipos:[]
       }
 
 cambiarCantidad(nombre: string) {
@@ -116,6 +117,7 @@ dbUsuarioId() {
 
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
+          this.usuario.ListaEquipos=[...valor.ListaEquipos]
 
 
 

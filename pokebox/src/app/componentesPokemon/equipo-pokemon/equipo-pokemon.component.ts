@@ -86,6 +86,7 @@ export class EquipoPokemonComponent {
           equipo: this.pokemonesEnEquipo
         };
         this.equipoPokemonService.actualizarEquipo(this.equipoPokemon);  // Actualiza el equipo en el arreglo
+
         this.pokemonesEnEquipo = [];
         nombreValido = true;
       }

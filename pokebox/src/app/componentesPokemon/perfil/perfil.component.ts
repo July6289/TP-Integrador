@@ -33,7 +33,8 @@ export class PerfilComponent implements OnInit {
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos:[],
-    ListaObjetos:[]
+    ListaObjetos:[],
+    ListaEquipos:[]
   }
   fb = inject(FormBuilder);
 
@@ -90,6 +91,8 @@ export class PerfilComponent implements OnInit {
 
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
+          this.usuario.ListaEquipos=[...valor.ListaEquipos]
+
         },
         error: (e: Error) => {
           console.log(e.message);

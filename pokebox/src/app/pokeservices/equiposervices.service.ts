@@ -1,9 +1,11 @@
 // equiposervices.service.ts
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { EquipoPokemon } from '../interfaces/interfazpokemon/interfazEquipo.interface';
 import { PokeservicesService } from './pokeservices.service';
 import { Pokemon } from '../interfaces/interfazpokemon/interfazpokemon.inteface';
+import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { UsuarioService } from './usuario.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,17 @@ export class EquipoPokemonService {
   private equiposSubject = new BehaviorSubject<EquipoPokemon[]>(this.equipos);
   equipos$ = this.equiposSubject.asObservable();
 
+  usuario: Usuario = {
+      id: "",
+      box: [],
+      Email: "",
+      Password: "",
+      CombatesGanados: 0,
+      ListaFavoritos: [],
+      ListaObjetos: [],
+      ListaEquipos:[]
+    }
+clave:string|null=''
   poketeam: EquipoPokemon =
     {
       nombre: "",
@@ -31,20 +44,67 @@ export class EquipoPokemonService {
 
   turns: boolean = true;
 
+  usuarioService=inject(UsuarioService)
   constructor(private pokeService: PokeservicesService) { }
+
+  getid() {
+    this.clave = localStorage.getItem('token')
+  }
+ public setEquipo(equipo:EquipoPokemon[])
+{
+   const nuevoEquipo=equipo.map(equ=>({
+    nombre:equ.nombre,
+    equipo:[...equ.equipo]
+   }))
+
+
+       this.equiposSubject.next(nuevoEquipo)
+
+}
 
   actualizarEquipo(nuevoEquipo: EquipoPokemon) {
     this.equipos.push(nuevoEquipo);
     this.equiposSubject.next([...this.equipos]);  // Emitir copia del arreglo actualizado
-  }
+    this.getid()
+    this.usuarioService.getUsuarioById(this.clave).subscribe({
+      next: (valor: Usuario) => {
+        this.usuario = valor
+        this.usuario.ListaEquipos=[...this.equipos]
 
-  obtenerEquipos() {
-    return this.equipos;  // Retorna el arreglo completo
+        this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
+          next: () => console.log('equipos actualizado con exito.'),
+          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
+        });
+
+      },
+      error: (e: Error) => console.error('Error al obtener el usuario para actualizar el equipo:', e.message),
+    });
+
   }
 
   eliminarEquipo(index: number) {
     this.equipos.splice(index, 1);
     this.equiposSubject.next([...this.equipos]);  // Emitir copia del arreglo actualizado tras eliminación
+      this.getid()
+
+ this.usuarioService.getUsuarioById(this.clave).subscribe({
+      next: (valor: Usuario) => {
+        this.usuario = valor
+        this.usuario.ListaEquipos=[...this.equipos]
+
+        this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
+          next: () => console.log('equipos eliminado.'),
+          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
+        });
+
+      },
+      error: (e: Error) => console.error('Error al obtener el usuario para eliminar el equipo:', e.message),
+    });
+
+
+
+
+
   }
 
   eliminarpokemonPerdedor(index: number, pokeEquipo: EquipoPokemon): EquipoPokemon {
@@ -56,7 +116,33 @@ export class EquipoPokemonService {
     if (this.equipos[index]) {
       this.equipos[index].nombre = nuevoNombre;
       this.equiposSubject.next([...this.equipos]); // Emitir copia actualizada
+
+      this.getid()
+      this.usuarioService.getUsuarioById(this.clave).subscribe({
+      next: (valor: Usuario) => {
+        this.usuario = valor
+        this.usuario.ListaEquipos=[...this.equipos]
+
+        this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
+          next: () => console.log('equipos eliminado.'),
+          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
+        });
+
+      },
+      error: (e: Error) => console.error('Error al obtener el usuario para eliminar el equipo:', e.message),
+    });
+
+
+
+
+
+
     }
+
+
+
+
+
   }
 
   // Método para obtener un equipo por su nombre

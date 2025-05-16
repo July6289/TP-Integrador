@@ -29,7 +29,8 @@ export class FavoritosComponent  {
       Password: "",
       CombatesGanados: 0,
       ListaFavoritos:[],
-      ListaObjetos:[]
+      ListaObjetos:[],
+      ListaEquipos:[]
     }
 
   constructor(private pokeService: PokeservicesService) {
