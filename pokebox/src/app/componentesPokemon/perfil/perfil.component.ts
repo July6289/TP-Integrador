@@ -4,6 +4,7 @@ import { UsuarioService } from '../../pokeservices/usuario.service';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/service/auth.service';
 import { Router } from '@angular/router';
+import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 
 @Component({
   selector: 'perfil',
@@ -15,8 +16,7 @@ import { Router } from '@angular/router';
 export class PerfilComponent implements OnInit {
   id: string | null = ""
   posicion: number = 0;
-  posicion2: number = 0;
-  posicion3:number=0;
+
 
   isModifyShowing: boolean = false;
   validadorMensajeEspecifico: boolean = false;
@@ -25,6 +25,7 @@ export class PerfilComponent implements OnInit {
   isDeleteShowing: boolean = false;
   isLoggedWithouthGoogle: boolean = true;
   usarioServicio = inject(UsuarioService);
+  pokeservice=inject(PokeservicesService)
   usuario: Usuario = {
     id: "",
     box: [],
@@ -76,25 +77,19 @@ export class PerfilComponent implements OnInit {
           this.usuario.CombatesGanados = valor.CombatesGanados;
 
 
+            this.usuario.box=this.pokeservice.cajas
           valor.box.map((caja) => {
-            this.usuario.box[this.posicion].imagen = caja.imagen;
-            this.usuario.box[this.posicion].pokemones = caja.pokemones;
-            this.posicion++;
+
+              this.usuario.box[this.posicion].imagen = caja.imagen;
+              this.usuario.box[this.posicion].pokemones = caja.pokemones;
+              this.posicion = this.posicion + 1;
+
+
           })
 
-       valor.ListaFavoritos.map((pokemon) => {
-              this.usuario.ListaFavoritos[this.posicion2] = pokemon
-              this.posicion2 = this.posicion2 + 1
 
-            })
-
-           valor.ListaObjetos.map((objeto) => {
-              this.usuario.ListaObjetos[this.posicion3] = objeto
-              this.posicion3 = this.posicion3 + 1
-
-            })
-
-
+          this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
+          this.usuario.ListaObjetos = [...valor.ListaObjetos];
         },
         error: (e: Error) => {
           console.log(e.message);

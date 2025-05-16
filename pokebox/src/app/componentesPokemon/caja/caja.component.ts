@@ -26,11 +26,10 @@ export class CajaComponent implements OnInit {
   indiceCaja: number = 0; // Índice de la caja actual
   flag: boolean = false;
   posicion: number = 0;
-  posicion2: number = 0;
-  posicion3:number=0;
   pokeservicio = inject(PokeservicesService);
   secretId: string | null = ""
   usarioServicio = inject(UsuarioService);
+  pokeservice=inject(PokeservicesService)
   auth = inject(AuthService);
 
   usuario: Usuario = {
@@ -76,23 +75,22 @@ export class CajaComponent implements OnInit {
           this.usuario.CombatesGanados = valor.CombatesGanados;
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
 
+           //la forma definitiva de evitar el undefined
+            this.usuario.box=this.pokeservice.cajas
           valor.box.map((caja) => {
-            this.usuario.box[this.posicion].imagen = caja.imagen;
-            this.usuario.box[this.posicion].pokemones = caja.pokemones;
-            this.posicion = this.posicion + 1;
+
+              this.usuario.box[this.posicion].imagen = caja.imagen;
+              this.usuario.box[this.posicion].pokemones = caja.pokemones;
+              this.posicion = this.posicion + 1;
+
+
           })
 
-            valor.ListaFavoritos.map((pokemon) => {
-              this.usuario.ListaFavoritos[this.posicion2] = pokemon
-              this.posicion2 = this.posicion2 + 1
-            })
+
+          this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
+          this.usuario.ListaObjetos = [...valor.ListaObjetos];
 
 
-           valor.ListaObjetos.map((objeto) => {
-              this.usuario.ListaObjetos[this.posicion3] = objeto
-              this.posicion3 = this.posicion3 + 1
-
-            })
 
 
         },
@@ -104,7 +102,6 @@ export class CajaComponent implements OnInit {
   }
 
   dbGuardarDatos() {
-    this.dbUsuarioId();
     this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
   }
 
@@ -124,6 +121,7 @@ export class CajaComponent implements OnInit {
   // Método para agregar un Pokémon a la caja actual
   agregarPokemon(pokemon: Pokemon) {
     if (this.usuario.box[this.indiceCaja].pokemones.length < this.MAX_POKEMON) {
+      console.log(pokemon)
       this.usuario.box[this.indiceCaja].pokemones.push(pokemon);
       this.flag = true;
       this.dbGuardarDatos();

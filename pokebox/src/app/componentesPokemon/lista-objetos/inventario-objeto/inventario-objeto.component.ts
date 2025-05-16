@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { Usuario } from '../../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { AuthService } from '../../../auth/service/auth.service';
 import { UsuarioService } from '../../../pokeservices/usuario.service';
+import { PokeservicesService } from '../../../pokeservices/pokeservices.service';
 
 @Component({
   selector: 'app-inventario-objeto',
@@ -25,14 +26,13 @@ export class InventarioObjetoComponent implements OnInit {
 
   id:string|null=''
   posicion: number = 0;
-  posicion2: number = 0;
-  posicion3:number=0;
+
   ready: boolean = false;
   ready2:boolean=false;
 
   auth = inject(AuthService);
   usarioServicio = inject(UsuarioService);
-
+  pokeservice=inject(PokeservicesService)
 
   usuario: Usuario = {
         id: "",
@@ -103,25 +103,19 @@ dbUsuarioId() {
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
-
+          this.usuario.box=this.pokeservice.cajas
           valor.box.map((caja) => {
-            this.usuario.box[this.posicion].imagen = caja.imagen;
-            this.usuario.box[this.posicion].pokemones = caja.pokemones;
-            this.posicion = this.posicion + 1;
+
+              this.usuario.box[this.posicion].imagen = caja.imagen;
+              this.usuario.box[this.posicion].pokemones = caja.pokemones;
+              this.posicion = this.posicion + 1;
+
+
           })
 
-            valor.ListaFavoritos.map((pokemon) => {
-              this.usuario.ListaFavoritos[this.posicion2] = pokemon
-              this.posicion2 = this.posicion2 + 1
 
-            })
-
-
-               valor.ListaObjetos.map((objeto) => {
-              this.usuario.ListaObjetos[this.posicion3] = objeto
-              this.posicion3 = this.posicion3 + 1
-
-            })
+          this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
+          this.usuario.ListaObjetos = [...valor.ListaObjetos];
 
 
 

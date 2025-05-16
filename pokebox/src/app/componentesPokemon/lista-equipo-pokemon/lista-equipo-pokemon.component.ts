@@ -1,5 +1,5 @@
 import { Router, RouterModule } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { NgFor, Location, NgIf, NgClass } from '@angular/common';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
@@ -7,6 +7,7 @@ import { CajaService } from '../../pokeservices/caja.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { AuthService } from '../../auth/service/auth.service';
+import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 
 @Component({
   selector: 'app-lista-equipo-pokemon',
@@ -40,8 +41,8 @@ export class ListaEquipoPokemonComponent {
     ListaObjetos:[]
   }
   posicion: number = 0;
-  posicion2:number=0;
-  posicion3:number=0;
+
+  pokeservice=inject(PokeservicesService)
   secretId: string | null = ""
 
   ngOnInit() {
@@ -64,29 +65,26 @@ export class ListaEquipoPokemonComponent {
           this.usuario.id = valor.id
 
           this.usuario.CombatesGanados=valor.CombatesGanados;
-          for (let i = 0; i < valor.box.length; i++) {
-            this.usuario.box[i] = valor.box[i];
-          }
 
-          valor.box.map((caja) => {
-            this.usuario.box[this.posicion].imagen = caja.imagen;
-            this.usuario.box[this.posicion].pokemones = caja.pokemones;
-            this.posicion++;
+              valor.box.map((caja) => {
+              if(this.usuario.box[this.posicion])
+              {
+                       this.usuario.box[this.posicion].imagen = caja.imagen;
+                     this.usuario.box[this.posicion].pokemones = caja.pokemones;
+                    this.posicion = this.posicion + 1;
+
+              }
+              else
+              {
+                this.usuario.box[this.posicion] = {
+          imagen: caja.imagen,
+              pokemones: [...caja.pokemones]
+              };
+
+              }
           })
-
-          valor.ListaFavoritos.map((pokemon) => {
-              this.usuario.ListaFavoritos[this.posicion2] = pokemon
-              this.posicion2 = this.posicion2 + 1
-
-            })
-
-
-               valor.ListaObjetos.map((objeto) => {
-              this.usuario.ListaObjetos[this.posicion3] = objeto
-              this.posicion3 = this.posicion3 + 1
-
-            })
-
+          this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
+          this.usuario.ListaObjetos = [...valor.ListaObjetos];
 
 
 
