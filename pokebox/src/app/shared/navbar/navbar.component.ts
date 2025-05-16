@@ -5,12 +5,13 @@ import { AuthService } from '../../auth/service/auth.service';
 import { CajaService } from '../../pokeservices/caja.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
-import { CajaComponent } from '../../componentesPokemon/caja/caja.component';
+import { TutorialComponent } from '../../componentesPokemon/tutorial/tutorial.component';
+import { TutorialService } from '../../pokeservices/tutorial.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink,],
+  imports: [RouterLink, TutorialComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -44,8 +45,6 @@ export class NavbarComponent implements OnInit {
       this.perfilActivo = true;
       this.dbUsuarioId();
     }
-
-
   }
 
   dbUsuarioId() {
@@ -103,7 +102,12 @@ export class NavbarComponent implements OnInit {
   }
 
   llamarDbGuardarDatos(): void {
-
     this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
+  }
+
+  tutorialService = inject(TutorialService);
+
+  mostrarAyuda() {
+    this.tutorialService.mostrarTutorial();
   }
 }
