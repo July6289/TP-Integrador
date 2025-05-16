@@ -9,9 +9,7 @@
       <div class="botones-container">
         <!-- Solo aparece el input si se está editando -->
         <ng-container *ngIf="editandoCantidad[item.objeto.nombre]">
-          <input type="number"
-                [(ngModel)]="cantidades[item.objeto.nombre]"
-                class="barra-gen"/>
+          <input type="number" [(ngModel)]="cantidades[item.objeto.nombre]" (keydown.enter)="guardarCantidad(item.objeto.nombre)" class="barra-gen"/>
           <button class="little" (click)="guardarCantidad(item.objeto.nombre)">Guardar</button>
         </ng-container>
 

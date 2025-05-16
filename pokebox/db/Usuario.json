@@ -8,6 +8,40 @@
       "CombatesGanados": 1,
       "ListaFavoritos": [],
       "ListaObjetos": []
+    },
+    {
+      "id": "bpeu",
+      "box": [],
+      "Email": "nicolasnietoid@gmail.com",
+      "Password": null,
+      "CombatesGanados": 0,
+      "ListaFavoritos": [],
+      "ListaObjetos": [
+        {
+          "nombre": "Pepinillo",
+          "descripcion": "Un ingrediente de sabor muy ácido que se prepara encurtiéndolo en una salmuera a base de vinagre y especias.",
+          "generacion": "9",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/5/51/latest/20221126223928/Pepinillo_EP.png/32px-Pepinillo_EP.png",
+          "id": "a79e",
+          "cantidad": 34
+        },
+        {
+          "nombre": "Pepino",
+          "descripcion": "Ingrediente ácido y amargo a la vez. Se recomienda combinarlo con algún otro de sabor fuerte para sacar el máximo partido a su intenso sabor a verdura.",
+          "generacion": "9",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/5/50/latest/20221126223913/Pepino_EP.png/32px-Pepino_EP.png",
+          "id": "176f",
+          "cantidad": 37
+        },
+        {
+          "nombre": "Agua fresca",
+          "descripcion": "Agua de alto contenido mineral que restaura 30 PS de un Pokémon.",
+          "generacion": "1",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/a/ae/latest/20230115173952/Agua_fresca_EP.png/32px-Agua_fresca_EP.png",
+          "id": "9dee",
+          "cantidad": 12
+        }
+      ]
     }
   ]
 }

@@ -24,35 +24,39 @@ export class BuscadorObjetoComponent implements OnInit {
   }
 
     buscarObjeto() {
-    if (this.nombreObjeto.length > 0) {
-      this.servicioObjeto.getItemsByPartialName(this.nombreObjeto).subscribe({
-        next: (objetos) => {
-          this.objetosFiltrados = objetos;
-          if (objetos.length === 0) {
-            alert('No se encontraron objetos que coincidan');
-          }
-        },
-        error: () => {
-          alert('Error al buscar objetos');
+  if (this.nombreObjeto.length > 0) {
+    this.servicioObjeto.getItemsByPartialName(this.nombreObjeto).subscribe({
+      next: (objetos) => {
+        // Agregar la propiedad cantidad a cada objeto
+        this.objetosFiltrados = objetos.map(obj => ({
+          ...obj,
+          cantidad: 1 // default
+        }));
+
+        if (this.objetosFiltrados.length === 0) {
+          alert('No se encontraron objetos que coincidan');
         }
-      });
-    } else {
-      alert('No ingresó nada');
-    }
+      },
+      error: () => {
+        alert('Error al buscar objetos');
+      }
+    });
+  } else {
+    alert('No ingresó nada');
   }
+}
 
-  agregarAlInventario(objeto: Objeto) {
-    if (this.cantidad > 0 && this.cantidad < 100 && this.cantidad % 1 === 0) {
 
-      this.servicioObjeto.agregarObjeto(objeto, this.cantidad);
+  agregarAlInventario(objeto: Objeto & { cantidad: number }) {
+  const cantidad = objeto.cantidad;
 
-      this.nombreObjeto = '';
-      this.objetosFiltrados = [];
-      this.cantidad = 1;
-    } else {
-      alert('Cantidad incorrecta');
-    }
+  if (cantidad > 0 && cantidad < 100 && cantidad % 1 === 0) {
+    this.servicioObjeto.agregarObjeto(objeto, cantidad);
+
+  } else {
+    alert('Cantidad incorrecta');
   }
+}
 
 }
 

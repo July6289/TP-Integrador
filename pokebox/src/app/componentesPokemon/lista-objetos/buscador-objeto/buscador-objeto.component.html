@@ -7,7 +7,7 @@
       <img class="imagen" [src]="objeto.sprite">
       <span class="nombre-pokemon">{{ objeto.nombre }}</span>
       <div class="botones-container">
-        <input type="number" [(ngModel)]="cantidad" class="barra-gen" placeholder="Seleccionar cantidad">
+        <input type="number" [(ngModel)]="objeto.cantidad"  (keydown.enter)="agregarAlInventario(objeto)" class="barra-gen" placeholder="Seleccionar cantidad">
         <button class="little" (click)="agregarAlInventario(objeto)">Agregar</button>
       </div>
     </li>
