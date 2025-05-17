@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
+
 export class TutorialService {
   private mostrarTutorialSubject = new BehaviorSubject<boolean>(false);
   mostrarTutorial$ = this.mostrarTutorialSubject.asObservable();

@@ -10,6 +10,7 @@ import { CommonModule, NgIf } from '@angular/common';
   templateUrl: './info-objeto.component.html',
   styleUrl: './info-objeto.component.css'
 })
+
 export class InfoObjetoComponent implements OnInit {
   objetoSeleccionado: Objeto | null = null;
 

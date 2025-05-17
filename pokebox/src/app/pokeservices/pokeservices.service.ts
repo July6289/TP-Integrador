@@ -19,24 +19,18 @@ export class PokeservicesService {
     imagen: `/assets/imagenes/cajas/${index + 1}.png`, // Ruta de imagen dinámica
     pokemones: []                                       // Pokémon iniciales vacíos
   }));
-
   // BehaviorSubject para emitir actualizaciones de cajas
   private cajasSubject = new BehaviorSubject<Caja[]>(this.cajas);
   cajas$ = this.cajasSubject.asObservable();
-
   usuarioService = inject(UsuarioService);
   private selectedPokemonSubject = new BehaviorSubject<Pokemon | null>(null); // BehaviorSubject para el Pokémon seleccionado
   selectedPokemon$ = this.selectedPokemonSubject.asObservable(); // Observable para suscribirse a los cambios
-
   // Nueva propiedad para mantener el sprite actual del Pokémon seleccionado
   private esMachoSubject = new BehaviorSubject<boolean>(true); // true = macho, false = hembra
   private esShinySubject = new BehaviorSubject<boolean>(false); // true = shiny, false = no shiny
-
   esMacho$ = this.esMachoSubject.asObservable();
   esShiny$ = this.esShinySubject.asObservable();
-
   clave: string | null = ""
-
   usuario: Usuario = {
     id: "",
     box: [],
@@ -44,12 +38,10 @@ export class PokeservicesService {
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: [],
-    ListaObjetos:[],
-    ListaEquipos:[]
+    ListaObjetos: [],
+    ListaEquipos: []
   }
-
-  // Este observable combinará los valores de selectedPokemon$, esMacho$ y esShiny$
-  // para generar la URL correcta del sprite.
+  // Este observable combinará los valores de selectedPokemon$, esMacho$ y esShiny$ para generar la URL correcta del sprite.
   spriteActual$: Observable<string | null> = combineLatest([
     this.selectedPokemon$,
     this.esMacho$,
@@ -57,7 +49,6 @@ export class PokeservicesService {
   ]).pipe(
     map(([pokemon, esMacho, esShiny]) => {
       if (!pokemon) return null; // Si no hay un Pokémon seleccionado, devuelve null
-
       // Elige el sprite de acuerdo a las propiedades esMacho y esShiny
       if (esMacho && esShiny) return pokemon.sprites.front_shiny;
       if (esMacho && !esShiny) return pokemon.sprites.front_default;
@@ -66,9 +57,7 @@ export class PokeservicesService {
       return null;
     })
   );
-
   urlBase: string = 'https://pokeapi.co/api/v2';
-
 
   constructor(private http: HttpClient) {
     // Inicializar las cajas para evitar errores
@@ -83,27 +72,6 @@ export class PokeservicesService {
     this.clave = localStorage.getItem('token')
   }
 
-  getBox(updatedPokemon: Pokemon) {
-    this.getid();
-
-    if (!this.clave) {
-      console.error('No se puede obtener la clave del usuario. Verifica la autenticación.');
-      return;
-    }
-
-    this.usuarioService.getUsuarioById(this.clave).subscribe({
-      next: (valor: Usuario) => {
-        this.usuario = valor;
-        this.updatePokemonInCaja(updatedPokemon);
-      },
-      error: (e: Error) => console.error('Error al obtener el usuario:', e.message),
-    });
-  }
-
-  getNewCaja() {
-    return this.cajas;
-  }
-
   getPokemonByName(nombrePokemon: string): Observable<Pokemon | undefined> {
     return this.http.get<any>(`${this.urlBase}/pokemon/${nombrePokemon}`).pipe(
       map((data) => ({
@@ -111,16 +79,13 @@ export class PokeservicesService {
           name: form.name,
           url: form.url
         })) as Species[],
-
         id: data.id,
         is_default: data.is_default,
         name: data.name,
-
         species: {
           name: data.species.name,
           url: data.species.url
         } as Species,
-
         sprites: {
           back_default: data.sprites.back_default,
           back_female: data.sprites.back_female,
@@ -131,7 +96,6 @@ export class PokeservicesService {
           front_shiny: data.sprites.front_shiny,
           front_shiny_female: data.sprites.front_shiny_female
         } as Sprites,
-
         types: data.types.map((typeData: any) => ({
           slot: typeData.slot,
           type: {
@@ -155,13 +119,10 @@ export class PokeservicesService {
     );
   }
 
-
   setSelectedPokemon(pokemon: Pokemon): void {
     this.selectedPokemonSubject.next(pokemon);
-
     const esMacho = pokemon.isMale ?? true; // Valor predeterminado si no está definido
     const esShiny = pokemon.isShiny ?? false;
-
     this.esMachoSubject.next(esMacho);
     this.esShinySubject.next(esShiny);
   }
@@ -192,7 +153,6 @@ export class PokeservicesService {
 
     const esMacho = this.esMachoSubject.value;
     const esShiny = this.esShinySubject.value;
-
     if (esMacho && esShiny) {
       return pokemon.sprites.front_shiny;
     } else if (!esMacho && esShiny) {
@@ -231,7 +191,6 @@ export class PokeservicesService {
 
     for (let caja of this.usuario.box) {
       const pokemonIndex = caja.pokemones.findIndex(p => p.id === updatedPokemon.id);
-
       if (pokemonIndex !== -1) {
         // Actualiza el Pokémon con las propiedades modificadas
         caja.pokemones[pokemonIndex] = {
@@ -239,7 +198,6 @@ export class PokeservicesService {
           isMale: this.esMachoSubject.value,
           isShiny: this.esShinySubject.value,
         };
-
         // Emitir actualización
         this.cajasSubject.next(this.usuario.box);
         break;
@@ -258,7 +216,6 @@ export class PokeservicesService {
   //generar un equipo random
   getRandomPokemonTeam(): Observable<Pokemon[]> {
     const pokemonRequests: Observable<Pokemon | null>[] = [];
-
     // Generar 6 IDs aleatorios de Pokémon entre 1 y 1025
     for (let i = 0; i < 6; i++) {
       const randomId = Math.floor(Math.random() * 1025) + 1;
@@ -281,9 +238,9 @@ export class PokeservicesService {
   public setFavoritos(pokemons: Pokemon[]) {
     this.favoritosSubject.next(pokemons);
   }
+
   agregarAFavoritos(pokemon: Pokemon) {
     const favoritosActuales = this.favoritosSubject.value;
-
     // Limite de 6
     if (favoritosActuales.length >= 6) {
       alert('Solo puedes tener 6 Pokémon en favoritos.');
@@ -298,16 +255,12 @@ export class PokeservicesService {
 
     const clon = this.clonarPokemon(pokemon);
     this.favoritosSubject.next([...favoritosActuales, clon]);
-
-
     this.getid()
-
     this.usuarioService.getUsuarioById(this.clave).subscribe({
-      next:(valor: Usuario)=>{
-        this.usuario=valor
-        this.usuario.ListaFavoritos=this.favoritosSubject.value
-          this.usuario.ListaEquipos=[...valor.ListaEquipos]
-
+      next: (valor: Usuario) => {
+        this.usuario = valor
+        this.usuario.ListaFavoritos = this.favoritosSubject.value
+        this.usuario.ListaEquipos = [...valor.ListaEquipos]
         this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
           next: () => console.log('favoritos actualizado con éxito.'),
           error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
@@ -321,17 +274,12 @@ export class PokeservicesService {
     const actuales = this.favoritosSubject.value;
     const nuevos = actuales.filter(p => p.id !== pokemonId);
     this.favoritosSubject.next(nuevos);
-
     this.getid()
-
     this.usuarioService.getUsuarioById(this.clave).subscribe({
-      next:(valor: Usuario)=>{
-        this.usuario=valor
-
-        this.usuario.ListaFavoritos=this.favoritosSubject.value
-
-         this.usuario.ListaEquipos=[...valor.ListaEquipos]
-
+      next: (valor: Usuario) => {
+        this.usuario = valor
+        this.usuario.ListaFavoritos = this.favoritosSubject.value
+        this.usuario.ListaEquipos = [...valor.ListaEquipos]
         this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
           next: () => console.log('favorito eliminado con éxito.'),
           error: (e: Error) => console.error('Error al actualizar el favorito:', e.message),

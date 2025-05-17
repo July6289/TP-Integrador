@@ -6,6 +6,7 @@ import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.inter
 @Injectable({
   providedIn: 'root', // Proveer en la raíz
 })
+
 export class CajaService {
   constructor(private usuarioService: UsuarioService) { }
 

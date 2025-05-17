@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, SimpleChanges } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
@@ -9,7 +9,6 @@ import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.in
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { CajaService } from '../../pokeservices/caja.service';
 import { AuthService } from '../../auth/service/auth.service';
-import { bootstrapApplication } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pestania-combate',
@@ -40,52 +39,40 @@ export class PestaniaCombateComponent implements OnInit {
     [1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 0.5, 0.5],//siniestro
     [1.0, 2.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 1.0],//hada
   ]
-
   private tablaTiposNombres: string[] = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
-
   equipoMain: EquipoPokemon =
     {
       nombre: "",
       equipo: []
     }
-
   equipoRival: EquipoPokemon =
     {
       nombre: "",
       equipo: []
     }
-
   peleador: number = 0;
-
   peleadorBot: number = 0;
-
   turno: boolean = true;
-
   mensaje: string[] = [];
-
   secretId: string | null = '';
-
   posicion: number = 0;
-
-    pokeservice=inject(PokeservicesService)
-
+  pokeservice = inject(PokeservicesService)
   usuario: Usuario = {
     id: "",
     box: [],
     Email: "",
     Password: "",
     CombatesGanados: 0,
-    ListaFavoritos:[],
-    ListaObjetos:[],
-    ListaEquipos:[]
+    ListaFavoritos: [],
+    ListaObjetos: [],
+    ListaEquipos: []
   }
-
-  constructor(private service: EquipoPokemonService, private pokeservicesService: PokeservicesService, private router: Router) { }
-
   cajaservice = inject(CajaService);
-
   auth = inject(AuthService);
   usuarioService = inject(UsuarioService);
+
+  constructor(private service: EquipoPokemonService, private router: Router) { }
+
   getpokemonFight() {
     this.peleador = this.service.getPosicionEquipo();
   }
@@ -94,17 +81,7 @@ export class PestaniaCombateComponent implements OnInit {
     this.getTeams()
     this.turno = this.service.getTurno();
     this.secretId = localStorage.getItem('token');
-
-          this.dbUsuarioId()
-
-
-  }
-
-  ngOnChanges(): void {
-    // Verificamos si el peleador actual no tiene un Pokémon asignado en equipoMain
-    if (this.equipoMain.equipo[this.peleador] === undefined) {
-      this.gotoSlector(); // Llama automáticamente al método si no hay Pokémon seleccionado
-    }
+    this.dbUsuarioId()
   }
 
   dbUsuarioId() {
@@ -116,25 +93,16 @@ export class PestaniaCombateComponent implements OnInit {
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;
-
-
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
-
-      this.usuario.box=this.pokeservice.cajas
+          this.usuario.box = this.pokeservice.cajas
           valor.box.map((caja) => {
-
-              this.usuario.box[this.posicion].imagen = caja.imagen;
-              this.usuario.box[this.posicion].pokemones = caja.pokemones;
-              this.posicion = this.posicion + 1;
-
-
+            this.usuario.box[this.posicion].imagen = caja.imagen;
+            this.usuario.box[this.posicion].pokemones = caja.pokemones;
+            this.posicion = this.posicion + 1;
           })
-
-
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
-          this.usuario.ListaEquipos=[...valor.ListaEquipos]
-
+          this.usuario.ListaEquipos = [...valor.ListaEquipos]
         },
         error: (e: Error) => {
           console.log(e.message);
@@ -248,7 +216,6 @@ export class PestaniaCombateComponent implements OnInit {
   pelea(pokemonJugador: Pokemon, pokemonBot: Pokemon) {
     pokemonJugador.life = this.inicializarVidas(pokemonJugador)
     pokemonBot.life = this.inicializarVidas(pokemonBot)
-
     if (this.turno) {
       pokemonBot.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno)
       this.mensaje[this.mensaje.length] = " la vida del pokemon rival es: " + pokemonBot.life
@@ -261,7 +228,6 @@ export class PestaniaCombateComponent implements OnInit {
     }
 
     this.turno = !this.turno;
-
     if (pokemonJugador.life <= 0) {
       pokemonJugador.isAlive = false;
     }
@@ -311,7 +277,6 @@ export class PestaniaCombateComponent implements OnInit {
         }
         else {
           this.deletePokemon(team);
-
           if (team.equipo.length !== 0) {
             if (flag) {
               this.gotoSlector();
@@ -323,6 +288,7 @@ export class PestaniaCombateComponent implements OnInit {
           }
         }
       }
+
       return alive;
     }
     else {
@@ -337,7 +303,6 @@ export class PestaniaCombateComponent implements OnInit {
     }
     else if (this.equipoRival.equipo.length === 0) {
       alert("Ganaste el combate!");
-      console.log("resultado:" + this.usuario.CombatesGanados)
       this.usuario.CombatesGanados += 1;
       this.toMainMenu()
     }
@@ -355,8 +320,7 @@ export class PestaniaCombateComponent implements OnInit {
   gotoSlector() {
     const nombreJugador = this.equipoMain.equipo[this.peleador]?.name || '';
     const nombreRival = this.equipoRival.equipo[this.peleadorBot]?.name || '';
-
-    this.service.guardarNombresCombate(nombreJugador, nombreRival); // 👈 guardar nombres
+    this.service.guardarNombresCombate(nombreJugador, nombreRival);
     this.service.EquipoSeleccionado(this.equipoMain);
     this.service.EquipoSeleccionadoBot(this.equipoRival);
     this.service.guardarTurno(!this.turno);

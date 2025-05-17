@@ -11,15 +11,12 @@ import { EquipoPokemonService } from '../../pokeservices/equiposervices.service'
   templateUrl: './visualizar-equipo.component.html',
   styleUrl: './visualizar-equipo.component.css'
 })
+
 export class VisualizarEquipoComponent implements OnInit {
   pokemonesEnEquipo: Pokemon[] = [];
   nombreEquipo: string = '';
 
-  constructor(
-    private route: ActivatedRoute,
-    private equipoPokemonService: EquipoPokemonService,
-    private router: Router
-  ) { }
+  constructor(private route: ActivatedRoute, private equipoPokemonService: EquipoPokemonService, private router: Router) { }
 
   ngOnInit(): void {
     // Obtener el parámetro 'nombre' de la URL
@@ -55,9 +52,6 @@ export class VisualizarEquipoComponent implements OnInit {
       this.pokemonesEnEquipo = equipo.equipo;
     } else {
       console.error('Equipo no encontrado');
-      // Aquí podrías mostrar un mensaje de error o redirigir a otra página si el equipo no se encuentra
     }
   }
-
-
 }

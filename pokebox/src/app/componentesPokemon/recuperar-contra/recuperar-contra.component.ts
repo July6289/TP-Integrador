@@ -14,6 +14,7 @@ import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.in
   templateUrl: './recuperar-contra.component.html',
   styleUrl: './recuperar-contra.component.css'
 })
+
 export class RecuperarContraComponent implements OnInit {
   newPassword: string = '';
   message: string = '';
@@ -26,14 +27,14 @@ export class RecuperarContraComponent implements OnInit {
     Email: "",
     Password: "",
     CombatesGanados: 0,
-    ListaFavoritos:[],
-    ListaObjetos:[],
-    ListaEquipos:[]
+    ListaFavoritos: [],
+    ListaObjetos: [],
+    ListaEquipos: []
   }
-
   authService = inject(AuthService);
   auth = this.authService.getAuth();
   usuarioServicio = inject(UsuarioService);
+
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -49,6 +50,7 @@ export class RecuperarContraComponent implements OnInit {
         .catch(error => {
           this.message = `Error: Código inválido o expirado.`;
           this.isMessageShowing = true;
+          console.log(error);
         });
     } else {
       this.message = 'Enlace de verificación inválido.';

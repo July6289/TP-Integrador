@@ -27,7 +27,6 @@ export class InfoPokedexComponent implements OnInit {
     this.pokeService.selectedPokemon$.subscribe(pokemon => {
       this.selectedPokemon = pokemon;
       this.updateSprite();
-
     });
 
     // Suscribirse a los cambios de género y brillo

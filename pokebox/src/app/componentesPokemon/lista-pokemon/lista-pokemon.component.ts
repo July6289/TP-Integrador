@@ -20,7 +20,6 @@ export class ListaPokemonComponent implements OnInit {
   pokemonSeleccionado: number | null = null;
   @Output() pokemonAgregado = new EventEmitter<Pokemon>();
   mostrarBotonAgregar = true;
-  @Input() deseleccionarPokemon!: () => void;
 
   constructor(private router: Router, private location: Location) { }  // Inyecta Location
 
@@ -47,10 +46,6 @@ export class ListaPokemonComponent implements OnInit {
     this.pokemonSeleccionado = indice;
   }
 
-  deseleccionar() {
-    this.pokemonSeleccionado = null;
-  }
-
   seleccionarPokemon2(indice: number) {
     this.pokemonSeleccionado = indice;
 
@@ -61,15 +56,6 @@ export class ListaPokemonComponent implements OnInit {
       setTimeout(() => {
         this.pokemonSeleccionado = null;
       }, 1300);
-    }
-  }
-
-  agregarPokemonAEquipo() {
-    if (this.pokemonSeleccionado !== null) {
-      const pokemon = this.listaPokemon[this.pokemonSeleccionado];
-      this.pokemonAgregado.emit(pokemon); // Emite el Pokémon seleccionado
-      this.listaPokemon.splice(this.pokemonSeleccionado, 1); // Elimina el Pokémon de la lista
-      this.pokemonSeleccionado = null; // Reinicia la selección
     }
   }
 
@@ -85,7 +71,6 @@ export class ListaPokemonComponent implements OnInit {
   buscarPokemonPorGeneracion() {
     if (this.numeroGeneracion != undefined) {
       if (this.numeroGeneracion <= 0) {
-
         this.validacion = false;
         this.mensajeError = 'numero de generacion invalido';
       }

@@ -10,6 +10,7 @@ import { BuscadorObjetoComponent } from "./buscador-objeto/buscador-objeto.compo
   templateUrl: './lista-objetos.component.html',
   styleUrl: './lista-objetos.component.css'
 })
+
 export class ListaObjetosComponent {
 
 }

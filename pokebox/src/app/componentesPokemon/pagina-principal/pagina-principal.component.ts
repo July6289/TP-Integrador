@@ -23,8 +23,6 @@ export class PaginaPrincipalComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private tutorialService: TutorialService) { }
 
-  color = 'brown';
-
   goToCombate() {
     this.router.navigate(['/selector']);
   }

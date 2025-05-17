@@ -29,7 +29,7 @@ export class CajaComponent implements OnInit {
   pokeservicio = inject(PokeservicesService);
   secretId: string | null = ""
   usarioServicio = inject(UsuarioService);
-  pokeservice=inject(PokeservicesService)
+  pokeservice = inject(PokeservicesService)
   auth = inject(AuthService);
 
   usuario: Usuario = {
@@ -39,8 +39,8 @@ export class CajaComponent implements OnInit {
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: [],
-    ListaObjetos:[],
-    ListaEquipos:[]
+    ListaObjetos: [],
+    ListaEquipos: []
   }
 
   constructor(private pokeService: PokeservicesService, private cajaService: CajaService) {
@@ -62,10 +62,6 @@ export class CajaComponent implements OnInit {
     }, 300);
   }
 
-  dameUsuario() {
-    return this.usuario;
-  }
-
   dbUsuarioId() {
     this.usarioServicio.getUsuarioById(this.secretId).subscribe(
       {
@@ -76,24 +72,18 @@ export class CajaComponent implements OnInit {
           this.usuario.CombatesGanados = valor.CombatesGanados;
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
 
-           //la forma definitiva de evitar el undefined
-            this.usuario.box=this.pokeservice.cajas
+          //la forma definitiva de evitar el undefined
+          this.usuario.box = this.pokeservice.cajas
           valor.box.map((caja) => {
 
-              this.usuario.box[this.posicion].imagen = caja.imagen;
-              this.usuario.box[this.posicion].pokemones = caja.pokemones;
-              this.posicion = this.posicion + 1;
-
-
+            this.usuario.box[this.posicion].imagen = caja.imagen;
+            this.usuario.box[this.posicion].pokemones = caja.pokemones;
+            this.posicion = this.posicion + 1;
           })
-
 
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
-          this.usuario.ListaEquipos=[...valor.ListaEquipos]
-
-
-
+          this.usuario.ListaEquipos = [...valor.ListaEquipos]
         },
         error: (e: Error) => {
           console.log(e.message);
@@ -160,7 +150,6 @@ export class CajaComponent implements OnInit {
     if (pokemon.isMale === undefined || pokemon.isShiny === undefined) {
       return pokemon.sprites.front_default; // Sprite por defecto si no hay configuración
     }
-
     if (pokemon.isMale && pokemon.isShiny) {
       return pokemon.sprites.front_shiny;
     } else if (pokemon.isMale && !pokemon.isShiny) {
@@ -184,7 +173,6 @@ export class CajaComponent implements OnInit {
     this.contextMenuX = event.clientX;
     this.contextMenuY = event.clientY;
     this.mostrarMenu = true;
-
   }
 
   // Agregar a favoritos
@@ -193,10 +181,6 @@ export class CajaComponent implements OnInit {
       this.pokeservicio.agregarAFavoritos(this.contextPokemon);
     }
 
-    this.mostrarMenu = false;
-  }
-
-  cerrarMenu() {
     this.mostrarMenu = false;
   }
 

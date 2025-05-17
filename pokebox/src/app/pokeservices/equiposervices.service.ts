@@ -10,57 +10,50 @@ import { UsuarioService } from './usuario.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class EquipoPokemonService {
   private equipos: EquipoPokemon[] = [];
   private equiposSubject = new BehaviorSubject<EquipoPokemon[]>(this.equipos);
   equipos$ = this.equiposSubject.asObservable();
-
   usuario: Usuario = {
-      id: "",
-      box: [],
-      Email: "",
-      Password: "",
-      CombatesGanados: 0,
-      ListaFavoritos: [],
-      ListaObjetos: [],
-      ListaEquipos:[]
-    }
-clave:string|null=''
+    id: "",
+    box: [],
+    Email: "",
+    Password: "",
+    CombatesGanados: 0,
+    ListaFavoritos: [],
+    ListaObjetos: [],
+    ListaEquipos: []
+  }
+  clave: string | null = ''
   poketeam: EquipoPokemon =
     {
       nombre: "",
       equipo: []
     }
-
   pokeRival: EquipoPokemon =
     {
       nombre: "",
       equipo: []
     }
-
   pokemonTeam: Pokemon[] = [];
-
   selectedPokemon: number = 0;
-
   turns: boolean = true;
+  usuarioService = inject(UsuarioService)
 
-  usuarioService=inject(UsuarioService)
   constructor(private pokeService: PokeservicesService) { }
 
   getid() {
     this.clave = localStorage.getItem('token')
   }
- public setEquipo(equipo:EquipoPokemon[])
-{
-   const nuevoEquipo=equipo.map(equ=>({
-    nombre:equ.nombre,
-    equipo:[...equ.equipo]
-   }))
 
-
-       this.equiposSubject.next(nuevoEquipo)
-
-}
+  public setEquipo(equipo: EquipoPokemon[]) {
+    const nuevoEquipo = equipo.map(equ => ({
+      nombre: equ.nombre,
+      equipo: [...equ.equipo]
+    }))
+    this.equiposSubject.next(nuevoEquipo)
+  }
 
   actualizarEquipo(nuevoEquipo: EquipoPokemon) {
     this.equipos.push(nuevoEquipo);
@@ -69,42 +62,31 @@ clave:string|null=''
     this.usuarioService.getUsuarioById(this.clave).subscribe({
       next: (valor: Usuario) => {
         this.usuario = valor
-        this.usuario.ListaEquipos=[...this.equipos]
-
+        this.usuario.ListaEquipos = [...this.equipos]
         this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
           next: () => console.log('equipos actualizado con exito.'),
           error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
         });
-
       },
       error: (e: Error) => console.error('Error al obtener el usuario para actualizar el equipo:', e.message),
     });
-
   }
 
   eliminarEquipo(index: number) {
     this.equipos.splice(index, 1);
     this.equiposSubject.next([...this.equipos]);  // Emitir copia del arreglo actualizado tras eliminación
-      this.getid()
-
- this.usuarioService.getUsuarioById(this.clave).subscribe({
+    this.getid()
+    this.usuarioService.getUsuarioById(this.clave).subscribe({
       next: (valor: Usuario) => {
         this.usuario = valor
-        this.usuario.ListaEquipos=[...this.equipos]
-
+        this.usuario.ListaEquipos = [...this.equipos]
         this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
           next: () => console.log('equipos eliminado.'),
           error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
         });
-
       },
       error: (e: Error) => console.error('Error al obtener el usuario para eliminar el equipo:', e.message),
     });
-
-
-
-
-
   }
 
   eliminarpokemonPerdedor(index: number, pokeEquipo: EquipoPokemon): EquipoPokemon {
@@ -116,33 +98,19 @@ clave:string|null=''
     if (this.equipos[index]) {
       this.equipos[index].nombre = nuevoNombre;
       this.equiposSubject.next([...this.equipos]); // Emitir copia actualizada
-
       this.getid()
       this.usuarioService.getUsuarioById(this.clave).subscribe({
-      next: (valor: Usuario) => {
-        this.usuario = valor
-        this.usuario.ListaEquipos=[...this.equipos]
-
-        this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
-          next: () => console.log('equipos eliminado.'),
-          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
-        });
-
-      },
-      error: (e: Error) => console.error('Error al obtener el usuario para eliminar el equipo:', e.message),
-    });
-
-
-
-
-
-
+        next: (valor: Usuario) => {
+          this.usuario = valor
+          this.usuario.ListaEquipos = [...this.equipos]
+          this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
+            next: () => console.log('equipos eliminado.'),
+            error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
+          });
+        },
+        error: (e: Error) => console.error('Error al obtener el usuario para eliminar el equipo:', e.message),
+      });
     }
-
-
-
-
-
   }
 
   // Método para obtener un equipo por su nombre
@@ -175,7 +143,6 @@ clave:string|null=''
       this.pokeService.getRandomPokemonTeam().subscribe({
         next: (team) => {
           this.pokemonTeam = team;
-
           for (let i = 0; i < this.pokemonTeam.length; i++) {
             this.pokemonTeam[i].isAlive = true;
           }
@@ -186,12 +153,9 @@ clave:string|null=''
           }
         }
       })
-      console.log("sexto rival");
       return this.pokeRival;
     }
     else {
-      console.log("septimo rival");
-      console.log(this.pokeRival);
       return this.pokeRival;
     }
   }
@@ -220,5 +184,4 @@ clave:string|null=''
   obtenerNombreRival(): string {
     return this.nombreRival;
   }
-
 }

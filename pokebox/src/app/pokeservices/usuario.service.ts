@@ -6,18 +6,15 @@ import { Observable, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
 
-  constructor(private service: HttpClient) { }
+export class UsuarioService {
   urlbase: string = 'http://localhost:3000/Usuarios';
   estoyLogeado: boolean = false
 
+  constructor(private service: HttpClient) { }
+
   postUsuario(usuario: Usuario): Observable<Usuario> {
     return this.service.post<Usuario>(this.urlbase, usuario);
-  }
-
-  getUsuarios(): Observable<Usuario[]> {
-    return this.service.get<Usuario[]>(this.urlbase)
   }
 
   getUsuarioById(id: string | null): Observable<Usuario> {
@@ -33,6 +30,7 @@ export class UsuarioService {
       console.error('Error: El ID del usuario no está definido.');
       return throwError(() => new Error('El ID del usuario no está definido.'));
     }
+
     return this.service.patch<Usuario>(`${this.urlbase}/${id}`, usuario);
   }
 

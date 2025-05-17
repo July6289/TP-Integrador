@@ -15,49 +15,42 @@ import { PokeservicesService } from '../../../pokeservices/pokeservices.service'
   templateUrl: './inventario-objeto.component.html',
   styleUrl: './inventario-objeto.component.css'
 })
+
 export class InventarioObjetoComponent implements OnInit {
   pokeObjetos: { objeto: Objeto, cantidad: number }[] = [];
   cantidades: { [nombre: string]: number } = {};
-
-  constructor(private objetoService: ObjetoService) {}
-
   editandoCantidad: { [nombre: string]: boolean } = {};
-
-
-  id:string|null=''
+  id: string | null = ''
   posicion: number = 0;
-
-  ready: boolean = false;
-  ready2:boolean=false;
-
   auth = inject(AuthService);
   usarioServicio = inject(UsuarioService);
-  pokeservice=inject(PokeservicesService)
-
+  pokeservice = inject(PokeservicesService)
   usuario: Usuario = {
-        id: "",
-        box: [],
-        Email: "",
-        Password: "",
-        CombatesGanados: 0,
-        ListaFavoritos:[],
-        ListaObjetos:[],
-        ListaEquipos:[]
-      }
-
-cambiarCantidad(nombre: string) {
-  this.editandoCantidad[nombre] = true; // Muestra el input
-}
-
-guardarCantidad(nombre: string) {
-  const nuevaCantidad = this.cantidades[nombre];
-  if (nuevaCantidad > 0 && nuevaCantidad < 100 && nuevaCantidad%1==0) {
-    this.objetoService.cambiarCantidad(nombre, nuevaCantidad);
-    this.editandoCantidad[nombre] = false; // Oculta el input nuevamente
-  } else {
-    alert('Cantidad inválida');
+    id: "",
+    box: [],
+    Email: "",
+    Password: "",
+    CombatesGanados: 0,
+    ListaFavoritos: [],
+    ListaObjetos: [],
+    ListaEquipos: []
   }
-}
+
+  constructor(private objetoService: ObjetoService) { }
+
+  cambiarCantidad(nombre: string) {
+    this.editandoCantidad[nombre] = true; // Muestra el input
+  }
+
+  guardarCantidad(nombre: string) {
+    const nuevaCantidad = this.cantidades[nombre];
+    if (nuevaCantidad > 0 && nuevaCantidad < 100 && nuevaCantidad % 1 == 0) {
+      this.objetoService.cambiarCantidad(nombre, nuevaCantidad);
+      this.editandoCantidad[nombre] = false; // Oculta el input nuevamente
+    } else {
+      alert('Cantidad inválida');
+    }
+  }
 
   ngOnInit(): void {
     this.objetoService.inventario$.subscribe(data => {
@@ -68,23 +61,14 @@ guardarCantidad(nombre: string) {
         this.cantidades[item.objeto.nombre] = item.cantidad;
       });
     });
-
     this.id = this.auth.getTokenValue();
-
     this.dbUsuarioId()
 
     setTimeout(() => {
-          if(this.usuario.ListaObjetos.length>0)
-          {
-              this.objetoService.setInventario(this.usuario.ListaObjetos)
-
-          }
-
-
+      if (this.usuario.ListaObjetos.length > 0) {
+        this.objetoService.setInventario(this.usuario.ListaObjetos)
+      }
     }, 400);
-
-
-
   }
 
   eliminar(nombre: string) {
@@ -92,10 +76,10 @@ guardarCantidad(nombre: string) {
   }
 
   seleccionarObjeto(objeto: Objeto) {
-  this.objetoService.seleccionarObjeto(objeto);
-}
+    this.objetoService.seleccionarObjeto(objeto);
+  }
 
-dbUsuarioId() {
+  dbUsuarioId() {
     this.usarioServicio.getUsuarioById(this.id).subscribe(
       {
         next: (valor: Usuario) => {
@@ -104,26 +88,15 @@ dbUsuarioId() {
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
-          this.usuario.box=this.pokeservice.cajas
+          this.usuario.box = this.pokeservice.cajas
           valor.box.map((caja) => {
-
-              this.usuario.box[this.posicion].imagen = caja.imagen;
-              this.usuario.box[this.posicion].pokemones = caja.pokemones;
-              this.posicion = this.posicion + 1;
-
-
+            this.usuario.box[this.posicion].imagen = caja.imagen;
+            this.usuario.box[this.posicion].pokemones = caja.pokemones;
+            this.posicion = this.posicion + 1;
           })
-
-
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
-          this.usuario.ListaEquipos=[...valor.ListaEquipos]
-
-
-
-
-
-
+          this.usuario.ListaEquipos = [...valor.ListaEquipos]
         },
         error: (e: Error) => {
           console.log(e.message);
@@ -131,5 +104,4 @@ dbUsuarioId() {
       }
     )
   }
-
 }

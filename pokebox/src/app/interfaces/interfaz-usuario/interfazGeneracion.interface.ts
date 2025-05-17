@@ -9,8 +9,8 @@ export interface Usuario {
   Password: string | null;
   CombatesGanados: number;
   box: Caja[];
-  ListaFavoritos:Pokemon[];
-  ListaObjetos:Objeto[];
-  ListaEquipos:EquipoPokemon[]
+  ListaFavoritos: Pokemon[];
+  ListaObjetos: Objeto[];
+  ListaEquipos: EquipoPokemon[]
   //combatesGanados: number;
 }

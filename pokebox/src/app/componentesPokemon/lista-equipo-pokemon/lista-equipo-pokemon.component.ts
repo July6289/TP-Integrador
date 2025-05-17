@@ -22,28 +22,24 @@ export class ListaEquipoPokemonComponent {
   constructor(private router: Router, private equipoPokemonService: EquipoPokemonService, private location: Location, private cajaService: CajaService, private usuarioService: UsuarioService, private auth: AuthService) { }
 
   poketeam: EquipoPokemon[] = [];
-
   equipoRival: EquipoPokemon =
     {
       nombre: "",
       equipo: []
     }
-
   rutaCombate = true;
-
   usuario: Usuario = {
     id: "",
     box: [],
     Email: "",
     Password: "",
-    CombatesGanados:0,
-    ListaFavoritos:[],
-    ListaObjetos:[],
-    ListaEquipos:[]
+    CombatesGanados: 0,
+    ListaFavoritos: [],
+    ListaObjetos: [],
+    ListaEquipos: []
   }
   posicion: number = 0;
-
-  pokeservice=inject(PokeservicesService)
+  pokeservice = inject(PokeservicesService)
   secretId: string | null = ""
 
   ngOnInit() {
@@ -61,7 +57,6 @@ export class ListaEquipoPokemonComponent {
       }
     }, 300);
 
-
     this.checkRoute();
   }
 
@@ -72,29 +67,20 @@ export class ListaEquipoPokemonComponent {
           this.usuario.Email = valor.Email;
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
-          this.usuario.CombatesGanados=valor.CombatesGanados;
+          this.usuario.CombatesGanados = valor.CombatesGanados;
 
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
 
-           //la forma definitiva de evitar el undefined
-            this.usuario.box=this.pokeservice.cajas
+          //la forma definitiva de evitar el undefined
+          this.usuario.box = this.pokeservice.cajas
           valor.box.map((caja) => {
-
-              this.usuario.box[this.posicion].imagen = caja.imagen;
-              this.usuario.box[this.posicion].pokemones = caja.pokemones;
-              this.posicion = this.posicion + 1;
-
-
+            this.usuario.box[this.posicion].imagen = caja.imagen;
+            this.usuario.box[this.posicion].pokemones = caja.pokemones;
+            this.posicion = this.posicion + 1;
           })
-
-
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
-          this.usuario.ListaEquipos=[...valor.ListaEquipos]
-
-
-
-
+          this.usuario.ListaEquipos = [...valor.ListaEquipos]
         },
         error: (e: Error) => {
           console.log(e.message);
@@ -130,7 +116,6 @@ export class ListaEquipoPokemonComponent {
 
   seleccionarEquipo(team: EquipoPokemon) {
     this.equipoPokemonService.EquipoSeleccionado(team);
-
     this.equipoRival.nombre = "";
     this.equipoRival.equipo = [];
     this.equipoPokemonService.EquipoSeleccionadoBot(this.equipoRival);
@@ -142,8 +127,8 @@ export class ListaEquipoPokemonComponent {
     setTimeout(() => {
       this.router.navigate(['/combate'])
     }, 1000);
-    this.equipoPokemonService.EquipoSeleccionadoBot(this.equipoRival);
 
+    this.equipoPokemonService.EquipoSeleccionadoBot(this.equipoRival);
   }
 
   goToVisualizarpokemon(nombre: string) {

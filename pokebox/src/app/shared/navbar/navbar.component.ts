@@ -5,42 +5,37 @@ import { AuthService } from '../../auth/service/auth.service';
 import { CajaService } from '../../pokeservices/caja.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
-import { TutorialComponent } from '../../componentesPokemon/tutorial/tutorial.component';
 import { TutorialService } from '../../pokeservices/tutorial.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, TutorialComponent],
+  imports: [RouterLink],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent implements OnInit {
 
+export class NavbarComponent implements OnInit {
   textButton: string = 'Iniciar Sesion'
   perfilActivo: boolean = false;
   auth = inject(AuthService);
-  localizador = inject(Location);
   Router = inject(Router);
   cajaService = inject(CajaService);
   usuarioService = inject(UsuarioService)
   posicion: number = 0;
-
   usuario: Usuario = {
     id: "",
     box: [],
     Email: "",
     Password: "",
-    CombatesGanados:0,
-    ListaFavoritos:[],
-    ListaObjetos:[],
-    ListaEquipos:[]
+    CombatesGanados: 0,
+    ListaFavoritos: [],
+    ListaObjetos: [],
+    ListaEquipos: []
   }
-
   secretId: string | null = ""
 
   ngOnInit(): void {
-
     if (localStorage.getItem('token')) {
       this.textButton = 'Cerrar Sesion'
       this.perfilActivo = true;
@@ -50,27 +45,24 @@ export class NavbarComponent implements OnInit {
 
   dbUsuarioId() {
     this.secretId = this.auth.getTokenValue();
-
     this.usuarioService.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
           this.usuario.Email = valor.Email;
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
-          this.usuario.CombatesGanados=valor.CombatesGanados;
+          this.usuario.CombatesGanados = valor.CombatesGanados;
           for (let i = 0; i < valor.box.length; i++) {
             this.usuario.box[i] = valor.box[i]
           }
-          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
 
+          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
           valor.box.map((caja) => {
             this.usuario.box[this.posicion].imagen = caja.imagen;
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
             this.posicion++;
           })
-
-          this.usuario.ListaFavoritos=valor.ListaFavoritos;
-
+          this.usuario.ListaFavoritos = valor.ListaFavoritos;
         },
         error: (e: Error) => {
           console.log(e.message);
@@ -93,7 +85,6 @@ export class NavbarComponent implements OnInit {
       this.auth.logIn()
       this.Router.navigateByUrl('registro');
     } else {
-
       this.auth.logOut()//para el guard
       this.auth.logLogout() //para firebase
       this.textButton = 'Iniciar Sesion'

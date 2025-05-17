@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
   templateUrl: './tutorial.component.html',
   styleUrl: './tutorial.component.css'
 })
+
 export class TutorialComponent {
 
 }

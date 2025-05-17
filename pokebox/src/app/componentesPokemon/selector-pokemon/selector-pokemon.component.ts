@@ -12,6 +12,7 @@ import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.i
   templateUrl: './selector-pokemon.component.html',
   styleUrl: './selector-pokemon.component.css'
 })
+
 export class SelectorPokemonComponent implements OnInit {
   pokemonesEnEquipo: EquipoPokemon =
     {
@@ -19,15 +20,7 @@ export class SelectorPokemonComponent implements OnInit {
       equipo: []
     };
 
-  constructor(
-    private equipoPokemonService: EquipoPokemonService,
-    private router: Router
-  ) { }
-
-
-  gotoCombate() {
-    this.router.navigate(['/combate']);
-  }
+  constructor(private equipoPokemonService: EquipoPokemonService, private router: Router) { }
 
   goBack() {
     this.equipoPokemonService.guardarTurno(!this.turns);
@@ -35,9 +28,7 @@ export class SelectorPokemonComponent implements OnInit {
   }
 
   seleccionar(pokemon: Pokemon) {
-    console.log(pokemon.name);
     let index = 0;
-
     for (let i = 0; i < this.pokemonesEnEquipo.equipo.length; i++) {
       if (this.pokemonesEnEquipo.equipo[i] === pokemon) {
         index = i;
@@ -45,8 +36,6 @@ export class SelectorPokemonComponent implements OnInit {
     }
 
     let aux = this.equipoPokemonService.getPosicionEquipo();
-    console.log("hola", aux);
-
     if (index === aux) {
       alert("Ese pokemon esta en combate!");
     }
@@ -57,21 +46,15 @@ export class SelectorPokemonComponent implements OnInit {
   }
 
   turns: boolean = true;
-
   nombreJugadorActual: string = '';
   nombreRivalActual: string = '';
 
   ngOnInit(): void {
     this.pokemonesEnEquipo = this.equipoPokemonService.recibirEquipoPokemon();
     this.turns = this.equipoPokemonService.getTurno();
-
     // Cargamos los nombres del servicio
     this.nombreJugadorActual = this.equipoPokemonService.obtenerNombreJugador();
     this.nombreRivalActual = this.equipoPokemonService.obtenerNombreRival();
-  }
-
-  gotoMainMenu() {
-    this.router.navigate(['/**']);
   }
 
   getTypeClass(type: string): string {
@@ -112,7 +95,6 @@ export class SelectorPokemonComponent implements OnInit {
         return 'type-dark';
       case 'fairy':
         return 'type-fairy';
-      // Agrega más casos según los tipos de Pokémon que tengas
       default:
         return 'type-default';
     }
