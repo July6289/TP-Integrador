@@ -1,5 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { AuthService } from '../service/auth.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-access-denied-page',
@@ -8,7 +7,7 @@ import { AuthService } from '../service/auth.service';
   templateUrl: './access-denied-page.component.html',
   styleUrl: './access-denied-page.component.css'
 })
-export class AccessDeniedPageComponent{
 
+export class AccessDeniedPageComponent {
 
 }

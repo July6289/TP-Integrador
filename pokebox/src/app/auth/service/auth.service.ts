@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { createUserWithEmailAndPassword, deleteUser, getAuth, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   estoyLogeado: boolean = false;
   idDelUsuario: string = '';
@@ -23,7 +25,6 @@ export class AuthService {
   //metodos del firebase
   getAuth() {
     return getAuth();
-
   }
 
   register(user: Usuario) {

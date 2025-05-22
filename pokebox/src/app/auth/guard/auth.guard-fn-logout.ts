@@ -1,17 +1,13 @@
 import { inject } from "@angular/core"
 import { Router } from "@angular/router"
 
-export const authGuardFnLogout=()=>{
+export const authGuardFnLogout = () => {
+  const router = inject(Router);
 
-const router=inject(Router);
-if(!localStorage.getItem('token'))
-{
-  return true
-}else
-{
-  router.navigateByUrl('registro');
-  return false;
-}
-
-
+  if (!localStorage.getItem('token')) {
+    return true
+  } else {
+    router.navigateByUrl('registro');
+    return false;
+  }
 }
