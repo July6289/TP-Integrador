@@ -17,6 +17,7 @@ import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 export class PerfilComponent implements OnInit {
   id: string | null = ""
   posicion: number = 0;
+  posicion2:number=0;
   isModifyShowing: boolean = false;
   validadorMensajeEspecifico: boolean = false;
   MensajeEspecifico: string = '';
@@ -77,7 +78,11 @@ export class PerfilComponent implements OnInit {
           })
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
-          this.usuario.ListaEquipos = [...valor.ListaEquipos]
+
+          this.usuario.ListaEquipos = valor.ListaEquipos.map(equipo => ({
+           nombre: equipo.nombre,
+          equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
+          }));
         },
         error: (e: Error) => {
           console.log(e.message);

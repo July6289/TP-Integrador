@@ -1,10 +1,13 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, importProvidersFrom, inject, OnInit, Output } from '@angular/core';
 import { ListaPokemonComponent } from "../lista-pokemon/lista-pokemon.component";
 import { CommonModule } from '@angular/common';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
 import { Router } from '@angular/router';
+import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { PokeservicesService } from '../../pokeservices/pokeservices.service';
+import { UsuarioService } from '../../pokeservices/usuario.service';
 
 @Component({
   selector: 'app-equipo-pokemon',
@@ -13,7 +16,7 @@ import { Router } from '@angular/router';
   templateUrl: './equipo-pokemon.component.html',
   styleUrls: ['./equipo-pokemon.component.css'] // Corrige 'styleUrl' a 'styleUrls'
 })
-export class EquipoPokemonComponent {
+export class EquipoPokemonComponent implements OnInit {
 
   @Output() pokemonSeleccionado = new EventEmitter<Pokemon>(); // Emisor para el Pokémon seleccionado
   @Output() equipoSeleccionado = new EventEmitter<EquipoPokemon>(); // Emisor para el Pokémon seleccionado
@@ -24,9 +27,61 @@ export class EquipoPokemonComponent {
       nombre: "",
       equipo: []
     }
-
+usuario: Usuario = {
+    id: "",
+    box: [],
+    Email: "",
+    Password: "",
+    CombatesGanados: 0,
+    ListaFavoritos: [],
+    ListaObjetos: [],
+    ListaEquipos: []
+  }
+  posicion: number = 0;
+  posicion2:number= 0;
+  pokeservice = inject(PokeservicesService)
+  usuarioService=inject(UsuarioService)
+  secretId: string | null = ""
   constructor(private equipoPokemonService: EquipoPokemonService, private router: Router) { }
+  ngOnInit(): void {
 
+    this.dbUsuarioId
+    setTimeout(() => {
+      if (this.usuario.ListaEquipos.length > 0) {
+        this.equipoPokemonService.setEquipo(this.usuario.ListaEquipos)
+      }
+    }, 400);
+  }
+dbUsuarioId() {
+    this.usuarioService.getUsuarioById(this.secretId).subscribe(
+      {
+        next: (valor: Usuario) => {
+          this.usuario.Email = valor.Email;
+          this.usuario.Password = valor.Password
+          this.usuario.id = valor.id
+          this.usuario.CombatesGanados = valor.CombatesGanados;
+
+          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
+
+          //la forma definitiva de evitar el undefined
+            this.usuario.box = valor.box.map((caja, index) => ({
+  imagen: caja.imagen || `/assets/imagenes/cajas/${index + 1}.png`,
+  pokemones: [...(caja.pokemones || [])] // clon defensivo y protección
+}));
+          this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
+          this.usuario.ListaObjetos = [...valor.ListaObjetos];
+
+           this.usuario.ListaEquipos = valor.ListaEquipos.map(equipo => ({
+           nombre: equipo.nombre,
+          equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
+          }));
+        },
+        error: (e: Error) => {
+          console.log(e.message);
+        }
+      }
+    )
+  }
   goToMainPage() {
     this.router.navigate(['/**']);
   }
@@ -72,7 +127,6 @@ export class EquipoPokemonComponent {
 
   guardarEquipo() {
     let nombreValido = false;
-
     if (this.pokemonesEnEquipo.length < 6) {
       alert("Debes tener 6 Pokemon en el equipo!");
     }

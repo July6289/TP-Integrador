@@ -1,8 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
+import { UsuarioService } from '../../pokeservices/usuario.service';
+import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 
 @Component({
   selector: 'app-visualizar-equipo',
@@ -15,16 +18,77 @@ import { EquipoPokemonService } from '../../pokeservices/equiposervices.service'
 export class VisualizarEquipoComponent implements OnInit {
   pokemonesEnEquipo: Pokemon[] = [];
   nombreEquipo: string = '';
-
+  posicion:number=0;
+  posicion2:number=0;
+  clave:string|null=''
+  id:string|null='';
   constructor(private route: ActivatedRoute, private equipoPokemonService: EquipoPokemonService, private router: Router) { }
 
+
+  usuario: Usuario = {
+      id: "",
+      box: [],
+      Email: "",
+      Password: "",
+      CombatesGanados: 0,
+      ListaFavoritos: [],
+      ListaObjetos: [],
+      ListaEquipos: []
+    }
+  usuarioServicio=inject(UsuarioService)
+  pokeservice=inject(PokeservicesService)
   ngOnInit(): void {
     // Obtener el parámetro 'nombre' de la URL
-    this.route.paramMap.subscribe(params => {
+        this.id=localStorage.getItem('token')
+    this.usuarioServicio.getUsuarioById(this.id).subscribe(
+      {
+        next: (valor: Usuario) => {
+          this.usuario.Email = valor.Email;
+          this.usuario.Password = valor.Password
+          this.usuario.id = valor.id
+          this.usuario.CombatesGanados = valor.CombatesGanados;
+          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
+          this.usuario.box = this.pokeservice.cajas
+
+
+          valor.box.map((caja) => {
+            this.usuario.box[this.posicion].imagen = caja.imagen;
+            this.usuario.box[this.posicion].pokemones = caja.pokemones;
+            this.posicion = this.posicion + 1;
+          })
+          this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
+          this.usuario.ListaObjetos = [...valor.ListaObjetos];
+
+
+         this.usuario.ListaEquipos = valor.ListaEquipos.map(equipo => ({
+           nombre: equipo.nombre,
+          equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
+          }));
+
+              console.log(this.usuario.ListaEquipos)
+
+            this.equipoPokemonService.setEquipo(this.usuario.ListaEquipos)
+
+                this.route.paramMap.subscribe(params => {
       this.nombreEquipo = params.get('nombre')!;
       this.obtenerEquipo(this.nombreEquipo);
     });
+
+        },
+        error: (e: Error) => {
+          console.log(e.message);
+        }
+      }
+    )
+
+
+
+
+
+
+
   }
+
 
   gotoMainMenu() {
     this.router.navigate(['/**']);

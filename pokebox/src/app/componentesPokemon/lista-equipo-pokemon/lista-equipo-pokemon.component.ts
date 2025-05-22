@@ -1,5 +1,5 @@
 import { Router, RouterModule } from '@angular/router';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { NgFor, Location, NgIf, NgClass } from '@angular/common';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
@@ -17,7 +17,7 @@ import { PokeservicesService } from '../../pokeservices/pokeservices.service';
   styleUrl: './lista-equipo-pokemon.component.css'
 })
 
-export class ListaEquipoPokemonComponent {
+export class ListaEquipoPokemonComponent implements OnInit {
 
   constructor(private router: Router, private equipoPokemonService: EquipoPokemonService, private location: Location, private cajaService: CajaService, private usuarioService: UsuarioService, private auth: AuthService) { }
 
@@ -39,6 +39,7 @@ export class ListaEquipoPokemonComponent {
     ListaEquipos: []
   }
   posicion: number = 0;
+  posicion2:number=0
   pokeservice = inject(PokeservicesService)
   secretId: string | null = ""
 
@@ -80,8 +81,13 @@ export class ListaEquipoPokemonComponent {
           })
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
-          this.usuario.ListaEquipos = [...valor.ListaEquipos]
+
+          this.usuario.ListaEquipos = valor.ListaEquipos.map(equipo => ({
+           nombre: equipo.nombre,
+          equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
+          }));
         },
+
         error: (e: Error) => {
           console.log(e.message);
         }

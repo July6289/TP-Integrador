@@ -22,6 +22,7 @@ export class InventarioObjetoComponent implements OnInit {
   editandoCantidad: { [nombre: string]: boolean } = {};
   id: string | null = ''
   posicion: number = 0;
+  posicion2:number=0;
   auth = inject(AuthService);
   usarioServicio = inject(UsuarioService);
   pokeservice = inject(PokeservicesService)
@@ -96,7 +97,11 @@ export class InventarioObjetoComponent implements OnInit {
           })
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
-          this.usuario.ListaEquipos = [...valor.ListaEquipos]
+
+          this.usuario.ListaEquipos = valor.ListaEquipos.map(equipo => ({
+           nombre: equipo.nombre,
+          equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
+          }));
         },
         error: (e: Error) => {
           console.log(e.message);
