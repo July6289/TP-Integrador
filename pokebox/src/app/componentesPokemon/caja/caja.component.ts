@@ -7,6 +7,7 @@ import { UsuarioService } from '../../pokeservices/usuario.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { AuthService } from '../../auth/service/auth.service';
 import { CajaService } from '../../pokeservices/caja.service';
+import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class CajaComponent implements OnInit {
   indiceCaja: number = 0; // Índice de la caja actual
   flag: boolean = false;
   posicion: number = 0;
+  posicion2:number=0;
   pokeservicio = inject(PokeservicesService);
   secretId: string | null = ""
   usarioServicio = inject(UsuarioService);
@@ -40,7 +42,7 @@ export class CajaComponent implements OnInit {
     CombatesGanados: 0,
     ListaFavoritos: [],
     ListaObjetos: [],
-    ListaEquipos: []
+    ListaEquipos: [] as EquipoPokemon[]
   }
 
   constructor(private pokeService: PokeservicesService, private cajaService: CajaService) {
@@ -83,7 +85,11 @@ export class CajaComponent implements OnInit {
 
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
-          this.usuario.ListaEquipos = [...valor.ListaEquipos]
+
+         this.usuario.ListaEquipos = valor.ListaEquipos.map(equipo => ({
+           nombre: equipo.nombre,
+          equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
+          }));
         },
         error: (e: Error) => {
           console.log(e.message);

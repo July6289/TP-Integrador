@@ -52,7 +52,8 @@ export class EquipoPokemonService {
       nombre: equ.nombre,
       equipo: [...equ.equipo]
     }))
-    this.equiposSubject.next(nuevoEquipo)
+    this.equipos=nuevoEquipo
+    this.equiposSubject.next([...this.equipos])
   }
 
   actualizarEquipo(nuevoEquipo: EquipoPokemon) {
@@ -62,7 +63,8 @@ export class EquipoPokemonService {
     this.usuarioService.getUsuarioById(this.clave).subscribe({
       next: (valor: Usuario) => {
         this.usuario = valor
-        this.usuario.ListaEquipos = [...this.equipos]
+        console.log(this.equiposSubject.value)
+        this.usuario.ListaEquipos = [...this.equiposSubject.value]
         this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
           next: () => console.log('equipos actualizado con exito.'),
           error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
@@ -104,7 +106,7 @@ export class EquipoPokemonService {
           this.usuario = valor
           this.usuario.ListaEquipos = [...this.equipos]
           this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
-            next: () => console.log('equipos eliminado.'),
+            next: () => console.log('nombre del equipo actualizado.'),
             error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
           });
         },
