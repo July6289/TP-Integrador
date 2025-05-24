@@ -64,8 +64,10 @@ export class InfoPokedexComponent implements OnInit {
       return;
     }
 
-    // Llama al método para actualizar el Pokémon en la caja
-    this.pokeService.updatePokemonInCaja(this.selectedPokemon);
-    this.updateSprite(); // Actualiza el sprite visible
+    this.selectedPokemon.isMale = this.pokeService.getEsMachoActual();
+    this.selectedPokemon.isShiny = this.pokeService.getEsShinyActual();
+
+    this.pokeService.updatePokemonInCaja(this.selectedPokemon); // Guardar en usuario + back
+    this.updateSprite();
   }
 }

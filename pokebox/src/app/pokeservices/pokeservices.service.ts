@@ -199,7 +199,7 @@ export class PokeservicesService {
           isShiny: this.esShinySubject.value,
         };
         // Emitir actualización
-        this.cajasSubject.next(this.usuario.box);
+        this.cajasSubject.next([...this.usuario.box]);
         break;
       }
     }
@@ -296,4 +296,13 @@ export class PokeservicesService {
       isMale: pokemon.isMale ?? true,
     };
   }
+
+  getEsMachoActual(): boolean {
+    return this.esMachoSubject.value;
+  }
+
+  getEsShinyActual(): boolean {
+    return this.esShinySubject.value;
+  }
+
 }
