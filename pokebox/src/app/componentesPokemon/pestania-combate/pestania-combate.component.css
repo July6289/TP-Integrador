@@ -1,6 +1,7 @@
 :host {
   overflow-x: hidden;
   max-width: 100vh;
+  font-family: 'Winky Rough', cursive;
 }
 
 ::-webkit-scrollbar {

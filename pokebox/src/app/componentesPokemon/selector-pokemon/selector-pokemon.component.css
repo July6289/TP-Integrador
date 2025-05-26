@@ -3,6 +3,7 @@
   gap: 0.9375rem;
   width: 100%;
   padding-right: 1.25rem;
+  font-family: 'Winky Rough', cursive;
 }
 
 .pokemon-grid,
@@ -29,10 +30,12 @@
 }
 
 .pokemon {
+  font-family: 'Winky Rough', cursive;
+  color: #f0f0f0;
   flex-direction: row;
   align-items: center;
   gap: 0.9375rem;
-  background-color: #819875;
+  background-color: #2C2C3E;
   width: 50%;
   margin-left: auto;
   border-radius: 0.625rem;
