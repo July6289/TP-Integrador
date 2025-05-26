@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tutorial',
@@ -9,13 +9,17 @@ import { Component } from '@angular/core';
   styleUrl: './tutorial.component.css'
 })
 
-export class TutorialComponent {
+export class TutorialComponent implements OnInit {
   protected pagina = {
     titulo: "",
     imagen: "",
     texto: "",
     nroPagina: 1
   };
+
+  ngOnInit(): void {
+    this.menuPaginas();
+  }
 
   cambiarPaginaAdelante() {
     if (this.pagina.nroPagina <= 19) {
