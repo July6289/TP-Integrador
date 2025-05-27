@@ -1,26 +1,50 @@
 <div class="total">
   <div class="titulo">Seleccione Un Pokémon!</div>
+
   <div class="info-combate">
-    <p>⚔️ Estás en combate contra <strong>{{nombreRivalActual | titlecase}}</strong></p>
-    <p>Tu Pokémon actual es <strong>{{nombreJugadorActual | titlecase}}</strong></p>
+    <p>⚔️ Estás en combate contra <strong>{{ nombreRivalActual | titlecase }}</strong></p>
+    <p>Tu Pokémon actual es <strong>{{ nombreJugadorActual | titlecase }}</strong></p>
   </div>
-  <div class="convivan">
-    <div class="boton-volver">
-      <button (click)="goBack()"> volver</button>
+
+  <div class="layout-combate">
+    <!-- Pokémon actual (grande) -->
+    <div class="pokemon-actual">
+      <ng-container *ngIf="pokemonesEnEquipo.equipo[posicionPokemonActual] as pokemon">
+        <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="pokemon-imagen-grande">
+        <div class="pokemon-nombre-grande">{{ pokemon.name }}</div>
+        <div class="pokemon-vida">{{pokemon.life}}/16</div>
+        <div class="pokemon-tipos">
+          <div *ngFor="let tipo of pokemon.types" [ngClass]="getTypeClass(tipo.type.name)" class="pokemon-tipo">
+            {{ tipo.type.name }}
+          </div>
+        </div>
+      </ng-container>
     </div>
-    <div class="poketeam">
-      <div *ngFor="let pokemon of pokemonesEnEquipo.equipo" class="pokemon">
-        <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="pokemon-imagen">
-        <div class="pokemon-info">
-          <div class="pokemon-nombre">{{pokemon.name}}</div>
+
+    <!-- Resto del equipo -->
+    <div class="equipo-pequeno">
+      <div *ngFor="let pokemon of pokemonesEnEquipo.equipo; let i = index"
+           class="pokemon-mini"
+           [class.actual]="i === posicionPokemonActual">
+
+        <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="pokemon-imagen-mini">
+
+        <div class="pokemon-info-mini">
+          <div class="pokemon-nombre-mini">{{ pokemon.name }}</div>
+          <div class="pokemon-vida">{{pokemon.life}}/16</div>
           <div class="pokemon-tipos">
-            <div *ngFor="let tipos of pokemon.types" [ngClass]="getTypeClass(tipos.type.name)" class="pokemon-tipo">
-              {{tipos.type.name}}
+            <div *ngFor="let tipo of pokemon.types" [ngClass]="getTypeClass(tipo.type.name)" class="pokemon-tipo">
+              {{ tipo.type.name }}
             </div>
           </div>
-          <button class="select" (click)="seleccionar(pokemon)">Elegir Pokemon</button>
+          <button class="select" (click)="seleccionar(pokemon)">Elegir Pokémon</button>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Botón volver -->
+  <div class="zona-boton-volver">
+    <button class="boton-volver" (click)="goBack()">volver</button>
   </div>
 </div>
