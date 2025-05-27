@@ -36,15 +36,16 @@
   align-items: center;
   gap: 0.9375rem;
   background-color: #2C2C3E;
-  width: 50%;
+  width: 40%;
   margin-left: auto;
   border-radius: 0.625rem;
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
   transition: transform 0.2s;
+  padding: 1rem;
 }
 
 .pokemon-imagen {
-  width: 5rem;
+  width: 6rem;
 }
 
 .pokemon-nombre {
@@ -104,6 +105,7 @@ button {
   /* Espacio alrededor del botón */
 }
 
+
 .info-combate {
   background-color: #fef9c3;
   color: #6b4226;
@@ -128,7 +130,7 @@ button {
   }
 
   .pokemon-imagen {
-    width: 3.75rem;
+    width: 4.75rem;
   }
 }
 

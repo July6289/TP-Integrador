@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass, NgFor } from '@angular/common';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
 
 @Component({
   selector: 'app-selector-pokemon',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgFor, NgClass],
   templateUrl: './selector-pokemon.component.html',
   styleUrl: './selector-pokemon.component.css'
 })
@@ -21,6 +21,10 @@ export class SelectorPokemonComponent implements OnInit {
     };
 
   constructor(private equipoPokemonService: EquipoPokemonService, private router: Router) { }
+
+  get posicionPokemonActual() {
+  return this.equipoPokemonService.getPosicionEquipo();
+}
 
   goBack() {
     this.equipoPokemonService.guardarTurno(!this.turns);
