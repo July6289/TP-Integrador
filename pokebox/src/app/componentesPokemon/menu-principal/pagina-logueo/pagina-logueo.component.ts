@@ -22,8 +22,6 @@ export class PaginaLogueoComponent {
   constructor(private ctrl: ChangeDetectorRef, private auth: AuthService) { }
   validadorMensajeEspecifico: boolean = false;
   mensajeEspecifico: string = '';
-  isLoggingButtonShowing: boolean = false;
-  isRegisterButtonShowing: boolean = false;
   isFormLoginShowing: boolean = true;
   IsFormRegisterShowing: boolean = false;
   isFormForgotPasswordShowing: boolean = false;
@@ -57,9 +55,7 @@ export class PaginaLogueoComponent {
   )
 
   btRegistro() {
-    this.isRegisterButtonShowing = false;
     this.IsFormRegisterShowing = true;
-    this.isLoggingButtonShowing = false;
     this.isFormLoginShowing = false;
     this.formulario.reset();
   }
@@ -68,17 +64,13 @@ export class PaginaLogueoComponent {
     this.formulario.reset();
     this.validadorMensajeEspecifico = false;
     this.IsFormRegisterShowing = false;
-    this.isRegisterButtonShowing = false;
     this.isFormLoginShowing = true;
-    this.isLoggingButtonShowing = false;
   }
 
   btVolver() {
     this.formulario.reset();
-    this.isRegisterButtonShowing = true;
     this.IsFormRegisterShowing = false;
-    this.isFormLoginShowing = false;
-    this.isLoggingButtonShowing = true;
+    this.isFormLoginShowing = true;
     this.validadorMensajeEspecifico = false;
     this.isFormForgotPasswordShowing = false;
     this.mensajeEspecifico = '';

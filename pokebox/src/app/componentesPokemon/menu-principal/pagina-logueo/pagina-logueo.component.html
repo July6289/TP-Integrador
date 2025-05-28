@@ -1,10 +1,6 @@
 <div>
   <img class="imagenLogueo" src="\assets\imagenes\Pokebox-4-11-2024(1).png" alt="imagen usuario">
 
-  @if (isRegisterButtonShowing) {
-  <button (click)="btRegistro()" class="Registarse">Registrarse</button>
-
-  }
   @if (IsFormRegisterShowing) {
 
 
@@ -59,13 +55,6 @@
   </form>
 
   }
-
-  @if (isLoggingButtonShowing) {
-
-  <button (click)="btLogueo()" class="IniciarSesion">Iniciar Sesion</button>
-
-  }
-
   @if (isFormLoginShowing) {
   <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="checkLoggedUsuario()" (keydown.enter)="checkLoggedUsuario()">
 

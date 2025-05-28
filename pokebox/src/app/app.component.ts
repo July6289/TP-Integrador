@@ -16,7 +16,6 @@ export class AppComponent implements OnInit  {
 
   showNavbar: boolean = true;
   showNavbar2:boolean=true;
-  showNavbar3:boolean=true;
 
   constructor(private router: Router) {}
 
@@ -25,9 +24,7 @@ export class AppComponent implements OnInit  {
       // Aquí detectamos si estamos en una ruta en la que no queremos mostrar el Navbar
       const currentRoute = this.router.url;
       this.showNavbar =!currentRoute.includes('registro')// Ejemplo de ruta para no mostrar el navbar
-      this.showNavbar2=!currentRoute.includes('cambiar-pokemon');
-      this.showNavbar3=!currentRoute.includes('combate');
-      this.showNavbar3=!currentRoute.includes('cambiar-contra');
+      this.showNavbar2=!currentRoute.includes('cambiar-contra');
 
 
     });
