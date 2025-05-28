@@ -1,23 +1,30 @@
 :host
 {
    font-family: 'Winky Rough', cursive;
-   background-image: url('/assets/imagenes/selector.avif');
-    background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+   background-image: url('/assets/imagenes/selector.webp');
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
    width: auto;
    height: 100vh;
 }
+
+
 .layout-combate {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
   flex-wrap: wrap;
 
+  padding-inline: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
+
 .pokemon-actual {
-  flex: 1 1 40%;
+  flex: 1 1 35%;
   background-color: #2C2C3E;
   border-radius: 0.625rem;
   padding: 1rem;
@@ -38,7 +45,7 @@
 }
 
 .equipo-pequeno {
-  flex: 1 1 55%;
+  flex: 1 1 60%;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -62,7 +69,7 @@
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
   color: #D6D6D6;
   transition: transform 0.2s;
-gap: 0.5rem;
+
 }
 
 .pokemon-mini.actual {
@@ -106,6 +113,9 @@ button.boton-volver {
   width: 100%;
   max-width: 5rem;
   font-family: 'Winky Rough', cursive;
+  margin-top: 5rem;
+  margin-left: 90rem;
+
 }
 
 button.boton-volver:hover {
@@ -123,8 +133,11 @@ button.boton-volver:hover {
   transition-duration: 0.3s;
   width: 100%;
   max-width: 8rem;
+  margin: 0.4rem;
+  padding: 0.3rem;
   font-family: "Winky Rough", cursive;
 }
+
 .select:hover{
   background-color: #B0B0C3;
   color: white;
