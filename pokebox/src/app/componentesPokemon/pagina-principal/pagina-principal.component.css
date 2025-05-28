@@ -148,7 +148,6 @@
   z-index: 1000;
 }
 
-
 /* Media queries para pantallas medianas */
 @media (max-width: 768px) {
   .contenidoPagina {

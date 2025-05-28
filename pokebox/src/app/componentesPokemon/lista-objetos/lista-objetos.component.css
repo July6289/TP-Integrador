@@ -4,7 +4,42 @@
   height: 100%;
   box-sizing: border-box;
   overflow-y: auto;
+}
 
+.tutorial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.tutorial-overlay app-tutorial {
+  position: relative;
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.75);
+}
+
+.cerrar-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  z-index: 1000;
 }
 
 .contenidoPagina {
@@ -14,8 +49,7 @@
 
 .info-objeto,
 .buscador-objeto,
-.inventario-objeto
-{
+.inventario-objeto {
   margin: 0.5%;
   border-radius: 0.5rem;
 }
@@ -34,7 +68,7 @@
 
 .inventario-objeto {
   flex: 2;
-  background-color:  #645f5f;
+  background-color: #645f5f;
   overflow-y: auto;
 }
 

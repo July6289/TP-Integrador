@@ -1,30 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { CommonModule, NgClass, NgFor } from '@angular/common';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
+import { TutorialComponent } from '../tutorial/tutorial.component';
+import { TutorialService } from '../../pokeservices/tutorial.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-selector-pokemon',
   standalone: true,
-  imports: [CommonModule, NgFor, NgClass],
+  imports: [CommonModule, NgFor, NgClass, TutorialComponent],
   templateUrl: './selector-pokemon.component.html',
   styleUrl: './selector-pokemon.component.css'
 })
 
-export class SelectorPokemonComponent implements OnInit {
+export class SelectorPokemonComponent implements OnInit, OnDestroy {
   pokemonesEnEquipo: EquipoPokemon =
     {
       nombre: '',
       equipo: []
     };
+  turns: boolean = true;
+  nombreJugadorActual: string = '';
+  nombreRivalActual: string = '';
+  mostrarTutorial: boolean = false;
+  private tutorialSub?: Subscription;
 
-  constructor(private equipoPokemonService: EquipoPokemonService, private router: Router) { }
+  constructor(private equipoPokemonService: EquipoPokemonService, private router: Router, private tutorialService: TutorialService) { }
+
+  ngOnInit(): void {
+    this.tutorialSub = this.tutorialService.mostrarTutorial$.subscribe(
+      mostrar => this.mostrarTutorial = mostrar
+    );
+    this.pokemonesEnEquipo = this.equipoPokemonService.recibirEquipoPokemon();
+    this.turns = this.equipoPokemonService.getTurno();
+    // Cargamos los nombres del servicio
+    this.nombreJugadorActual = this.equipoPokemonService.obtenerNombreJugador();
+    this.nombreRivalActual = this.equipoPokemonService.obtenerNombreRival();
+  }
+
+  cerrarTutorial() {
+    this.tutorialService.ocultarTutorial();
+  }
+
+  ngOnDestroy() {
+    this.tutorialSub?.unsubscribe();
+  }
 
   get posicionPokemonActual() {
-  return this.equipoPokemonService.getPosicionEquipo();
-}
+    return this.equipoPokemonService.getPosicionEquipo();
+  }
 
   goBack() {
     this.equipoPokemonService.guardarTurno(!this.turns);
@@ -47,18 +74,6 @@ export class SelectorPokemonComponent implements OnInit {
       this.equipoPokemonService.setPosicionEquipo(index);
       this.router.navigate(['/combate']);
     }
-  }
-
-  turns: boolean = true;
-  nombreJugadorActual: string = '';
-  nombreRivalActual: string = '';
-
-  ngOnInit(): void {
-    this.pokemonesEnEquipo = this.equipoPokemonService.recibirEquipoPokemon();
-    this.turns = this.equipoPokemonService.getTurno();
-    // Cargamos los nombres del servicio
-    this.nombreJugadorActual = this.equipoPokemonService.obtenerNombreJugador();
-    this.nombreRivalActual = this.equipoPokemonService.obtenerNombreRival();
   }
 
   getTypeClass(type: string): string {

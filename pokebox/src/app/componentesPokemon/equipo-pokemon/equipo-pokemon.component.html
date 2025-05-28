@@ -25,3 +25,8 @@
     <button class="main" (click)="goToMainPage()">Volver al Menu Principal</button>
   </div>
 </footer>
+
+<div class="tutorial-overlay" *ngIf="mostrarTutorial">
+  <button class="cerrar-btn" (click)="cerrarTutorial()">X</button>
+  <app-tutorial></app-tutorial>
+</div>

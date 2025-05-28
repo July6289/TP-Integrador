@@ -1,21 +1,54 @@
-:host
-{
-   font-family: 'Winky Rough', cursive;
-   background-image: url('/assets/imagenes/selector.webp');
-   background-size: cover;
-   background-repeat: no-repeat;
-   background-position: center;
-   width: auto;
-   height: 100vh;
+:host {
+  font-family: 'Winky Rough', cursive;
+  background-image: url('/assets/imagenes/selector.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: auto;
+  height: 100vh;
 }
 
+.tutorial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.tutorial-overlay app-tutorial {
+  position: relative;
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.75);
+}
+
+.cerrar-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  z-index: 1000;
+}
 
 .layout-combate {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
   flex-wrap: wrap;
-
   padding-inline: 1rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -29,7 +62,7 @@
   border-radius: 0.625rem;
   padding: 1rem;
   margin-right: 1rem;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   color: #D6D6D6;
   text-align: center;
 }
@@ -123,8 +156,7 @@ button.boton-volver:hover {
   color: white;
 }
 
-.select
-{
+.select {
   cursor: pointer;
   border: 0.125rem solid #B0B0C3;
   border-radius: 0.5rem;
@@ -138,7 +170,7 @@ button.boton-volver:hover {
   font-family: "Winky Rough", cursive;
 }
 
-.select:hover{
+.select:hover {
   background-color: #B0B0C3;
   color: white;
 }

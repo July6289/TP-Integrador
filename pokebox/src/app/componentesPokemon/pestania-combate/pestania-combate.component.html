@@ -1,105 +1,112 @@
-<div class="background-battle">
-  <img class="imagenFondoCombate" src="/assets/imagenes/fondo-combate.png" alt="combate">
-</div>
+<div class="tutorial">
+  <div class="background-battle">
+    <img class="imagenFondoCombate" src="/assets/imagenes/fondo-combate.png" alt="combate">
+  </div>
 
-<div class="battle-enemy">
-  <div class="pokemon-info">
-    <div class="info">
+  <div class="battle-enemy">
+    <div class="pokemon-info">
+      <div class="info">
+        @if(this.equipoRival.equipo[peleadorBot] !== undefined)
+        {
+        <div class="pokemon-name">{{this.equipoRival.equipo[peleadorBot].name}}</div>
+        }
+      </div>
+      <div class="hp-bar">
+        <div class="hp-label">HP</div>
+        <div class="hp-bar-container">
+          @if(this.equipoRival.equipo[peleadorBot].life !== undefined)
+          {
+          <div class="hp-bar-fill" [style.width]="calcularAnchoVida(equipoRival.equipo[peleadorBot])"></div>
+          }
+          @else {
+          <div class="hp-bar-fill" style="width: 100%"></div>
+          }
+        </div>
+      </div>
       @if(this.equipoRival.equipo[peleadorBot] !== undefined)
       {
-      <div class="pokemon-name">{{this.equipoRival.equipo[peleadorBot].name}}</div>
+      @if(this.equipoMain.equipo[peleador].life !== undefined)
+      {
+      <div class="hp-numbers">{{this.equipoRival.equipo[peleadorBot].life}} / 16 </div>
+      }
+      @else {
+      <div class="hp-numbers">16 / 16 </div>
+      }
       }
     </div>
-    <div class="hp-bar">
-      <div class="hp-label">HP</div>
-      <div class="hp-bar-container">
-        @if(this.equipoRival.equipo[peleadorBot].life !== undefined)
+  </div>
+
+  <div class="battle-me">
+    <div class="pokemon-info">
+      <div class="info">
+        @if(this.equipoMain.equipo[peleador] !== undefined)
         {
-        <div class="hp-bar-fill" [style.width]="calcularAnchoVida(equipoRival.equipo[peleadorBot])"></div>
-        }
-        @else {
-        <div class="hp-bar-fill" style="width: 100%"></div>
+        <div class="pokemon-name">{{this.equipoMain.equipo[peleador].name}}</div>
         }
       </div>
-    </div>
-    @if(this.equipoRival.equipo[peleadorBot] !== undefined)
-    {
-    @if(this.equipoMain.equipo[peleador].life !== undefined)
-    {
-    <div class="hp-numbers">{{this.equipoRival.equipo[peleadorBot].life}} / 16 </div>
-    }
-    @else {
-    <div class="hp-numbers">16 / 16 </div>
-    }
-    }
-  </div>
-</div>
-
-<div class="battle-me">
-  <div class="pokemon-info">
-    <div class="info">
+      <div class="hp-bar">
+        <div class="hp-label">HP</div>
+        <div class="hp-bar-container">
+          @if(this.equipoMain.equipo[peleador].life !== undefined)
+          {
+          <div class="hp-bar-fill" [style.width]="calcularAnchoVida(equipoMain.equipo[peleador])"></div>
+          }
+          @else {
+          <div class="hp-bar-fill" style="width: 100%"></div>
+          }
+        </div>
+      </div>
       @if(this.equipoMain.equipo[peleador] !== undefined)
       {
-      <div class="pokemon-name">{{this.equipoMain.equipo[peleador].name}}</div>
+      @if(this.equipoMain.equipo[peleador].life !== undefined)
+      {
+      <div class="hp-numbers">{{this.equipoMain.equipo[peleador].life}} / 16 </div>
+      }
+      @else {
+      <div class="hp-numbers">16 / 16 </div>
+      }
       }
     </div>
-    <div class="hp-bar">
-      <div class="hp-label">HP</div>
-      <div class="hp-bar-container">
-        @if(this.equipoMain.equipo[peleador].life !== undefined)
-        {
-        <div class="hp-bar-fill" [style.width]="calcularAnchoVida(equipoMain.equipo[peleador])"></div>
-        }
-        @else {
-        <div class="hp-bar-fill" style="width: 100%"></div>
+  </div>
+
+  <div class="pokeimg-e" (mouseup)="getTeams()">
+    <img [src]="this.equipoRival.equipo[peleadorBot].sprites.front_default"
+      [alt]="this.equipoRival.equipo[peleadorBot].name" class="pokemon-imagen">
+  </div>
+
+  <div class="pokeimg-a">
+    @if(this.equipoMain.equipo[peleador].sprites.back_default!== null)
+    {
+    <img [src]="this.equipoMain.equipo[peleador].sprites.back_default" [alt]="this.equipoMain.equipo[peleador].name"
+      class="pokemon-imagen">
+    }
+    @else {
+    <img [src]="this.equipoMain.equipo[peleador].sprites.front_default" [alt]="this.equipoMain.equipo[peleador].name"
+      class="pokemon-imagenFixed">
+    }
+  </div>
+
+  <div class="battle-hud">
+    <div class="hud-left">
+      <div class="options">
+        <button class="option" (click)="combate()">FIGHT</button>
+        <button class="option" (click)="gotoSlector()">POKÉMON</button>
+        <button class="option" (click)="toMainMenu()">RUN</button>
+      </div>
+    </div>
+
+    <!-- Columna derecha con el narrador -->
+    <div class="hud-right">
+      <div class="narrador">
+        @for (i of this.mensaje; track $index) {
+        {{i}}<br>
         }
       </div>
     </div>
-    @if(this.equipoMain.equipo[peleador] !== undefined)
-    {
-    @if(this.equipoMain.equipo[peleador].life !== undefined)
-    {
-    <div class="hp-numbers">{{this.equipoMain.equipo[peleador].life}} / 16 </div>
-    }
-    @else {
-    <div class="hp-numbers">16 / 16 </div>
-    }
-    }
   </div>
 </div>
 
-<div class="pokeimg-e" (mouseup)="getTeams()">
-  <img [src]="this.equipoRival.equipo[peleadorBot].sprites.front_default"
-    [alt]="this.equipoRival.equipo[peleadorBot].name" class="pokemon-imagen">
-</div>
-
-<div class="pokeimg-a">
-  @if(this.equipoMain.equipo[peleador].sprites.back_default!== null)
-  {
-  <img [src]="this.equipoMain.equipo[peleador].sprites.back_default" [alt]="this.equipoMain.equipo[peleador].name"
-    class="pokemon-imagen">
-  }
-  @else {
-  <img [src]="this.equipoMain.equipo[peleador].sprites.front_default" [alt]="this.equipoMain.equipo[peleador].name"
-    class="pokemon-imagenFixed">
-  }
-</div>
-
-<div class="battle-hud">
-  <div class="hud-left">
-    <div class="options">
-      <button class="option" (click)="combate()">FIGHT</button>
-      <button class="option" (click)="gotoSlector()">POKÉMON</button>
-      <button class="option" (click)="toMainMenu()">RUN</button>
-    </div>
-  </div>
-
-  <!-- Columna derecha con el narrador -->
-  <div class="hud-right">
-    <div class="narrador">
-      @for (i of this.mensaje; track $index) {
-      {{i}}<br>
-      }
-    </div>
-  </div>
+<div class="tutorial-overlay" *ngIf="mostrarTutorial">
+  <button class="cerrar-btn" (click)="cerrarTutorial()">X</button>
+  <app-tutorial></app-tutorial>
 </div>

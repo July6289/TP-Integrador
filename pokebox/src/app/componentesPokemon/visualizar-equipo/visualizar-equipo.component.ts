@@ -1,45 +1,54 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
+import { TutorialComponent } from '../tutorial/tutorial.component';
+import { TutorialService } from '../../pokeservices/tutorial.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-visualizar-equipo',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TutorialComponent],
   templateUrl: './visualizar-equipo.component.html',
   styleUrl: './visualizar-equipo.component.css'
 })
 
-export class VisualizarEquipoComponent implements OnInit {
+export class VisualizarEquipoComponent implements OnInit, OnDestroy {
   pokemonesEnEquipo: Pokemon[] = [];
   nombreEquipo: string = '';
-  posicion:number=0;
-  posicion2:number=0;
-  clave:string|null=''
-  id:string|null='';
-  constructor(private route: ActivatedRoute, private equipoPokemonService: EquipoPokemonService, private router: Router) { }
-
-
+  posicion: number = 0;
+  posicion2: number = 0;
+  clave: string | null = ''
+  id: string | null = '';
   usuario: Usuario = {
-      id: "",
-      box: [],
-      Email: "",
-      Password: "",
-      CombatesGanados: 0,
-      ListaFavoritos: [],
-      ListaObjetos: [],
-      ListaEquipos: []
-    }
-  usuarioServicio=inject(UsuarioService)
-  pokeservice=inject(PokeservicesService)
+    id: "",
+    box: [],
+    Email: "",
+    Password: "",
+    CombatesGanados: 0,
+    ListaFavoritos: [],
+    ListaObjetos: [],
+    ListaEquipos: []
+  }
+  usuarioServicio = inject(UsuarioService)
+  pokeservice = inject(PokeservicesService)
+    mostrarTutorial: boolean = false;
+    private tutorialSub?: Subscription;
+
+  constructor(private route: ActivatedRoute, private equipoPokemonService: EquipoPokemonService, private router: Router, private tutorialService: TutorialService) { }
+
   ngOnInit(): void {
+    this.tutorialSub = this.tutorialService.mostrarTutorial$.subscribe(
+      mostrar => this.mostrarTutorial = mostrar
+    );
+
     // Obtener el parámetro 'nombre' de la URL
-        this.id=localStorage.getItem('token')
+    this.id = localStorage.getItem('token')
     this.usuarioServicio.getUsuarioById(this.id).subscribe(
       {
         next: (valor: Usuario) => {
@@ -60,19 +69,19 @@ export class VisualizarEquipoComponent implements OnInit {
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
 
 
-         this.usuario.ListaEquipos = valor.ListaEquipos.map(equipo => ({
-           nombre: equipo.nombre,
-          equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
+          this.usuario.ListaEquipos = valor.ListaEquipos.map(equipo => ({
+            nombre: equipo.nombre,
+            equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
           }));
 
-              console.log(this.usuario.ListaEquipos)
+          console.log(this.usuario.ListaEquipos)
 
-            this.equipoPokemonService.setEquipo(this.usuario.ListaEquipos)
+          this.equipoPokemonService.setEquipo(this.usuario.ListaEquipos)
 
-                this.route.paramMap.subscribe(params => {
-      this.nombreEquipo = params.get('nombre')!;
-      this.obtenerEquipo(this.nombreEquipo);
-    });
+          this.route.paramMap.subscribe(params => {
+            this.nombreEquipo = params.get('nombre')!;
+            this.obtenerEquipo(this.nombreEquipo);
+          });
 
         },
         error: (e: Error) => {
@@ -89,6 +98,13 @@ export class VisualizarEquipoComponent implements OnInit {
 
   }
 
+  cerrarTutorial() {
+    this.tutorialService.ocultarTutorial();
+  }
+
+  ngOnDestroy() {
+    this.tutorialSub?.unsubscribe();
+  }
 
   gotoMainMenu() {
     this.router.navigate(['/**']);

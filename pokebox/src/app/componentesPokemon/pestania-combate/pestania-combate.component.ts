@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
@@ -9,15 +9,18 @@ import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.in
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { CajaService } from '../../pokeservices/caja.service';
 import { AuthService } from '../../auth/service/auth.service';
+import { TutorialComponent } from '../tutorial/tutorial.component';
+import { Subscription } from 'rxjs';
+import { TutorialService } from '../../pokeservices/tutorial.service';
 
 @Component({
   selector: 'app-pestania-combate',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TutorialComponent],
   templateUrl: './pestania-combate.component.html',
   styleUrl: './pestania-combate.component.css'
 })
-export class PestaniaCombateComponent implements OnInit {
+export class PestaniaCombateComponent implements OnInit, OnDestroy {
   private tablaTiposValores: number[][] = [
     /*n    l    vo   ve   t    r    b   fa   ac   fu   ag   pl    e   ps   hi    d    s   ha         */
     [1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 0.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],//normal
@@ -70,18 +73,31 @@ export class PestaniaCombateComponent implements OnInit {
   cajaservice = inject(CajaService);
   auth = inject(AuthService);
   usuarioService = inject(UsuarioService);
+  mostrarTutorial: boolean = false;
+  private tutorialSub?: Subscription;
 
-  constructor(private service: EquipoPokemonService, private router: Router) { }
+  constructor(private service: EquipoPokemonService, private router: Router, private tutorialService: TutorialService) { }
 
   getpokemonFight() {
     this.peleador = this.service.getPosicionEquipo();
   }
 
   ngOnInit(): void {
+    this.tutorialSub = this.tutorialService.mostrarTutorial$.subscribe(
+      mostrar => this.mostrarTutorial = mostrar
+    );
     this.getTeams()
     this.turno = this.service.getTurno();
     this.secretId = localStorage.getItem('token');
     this.dbUsuarioId()
+  }
+
+  cerrarTutorial() {
+    this.tutorialService.ocultarTutorial();
+  }
+
+  ngOnDestroy() {
+    this.tutorialSub?.unsubscribe();
   }
 
   dbUsuarioId() {

@@ -3,7 +3,7 @@
     <button class="big" (click)="llamarDbGuardarDatos()" (click)="goToCrearEquipo()">Agregar nuevo equipo</button>
     <ul>
       <li class="equipos" *ngFor="let item of poketeam; let i = index">
-        <span class="nombre-pokemon"  (click)="goToVisualizarpokemon(item.nombre)">{{
+        <span class="nombre-pokemon" (click)="goToVisualizarpokemon(item.nombre)">{{
           item.nombre }}</span>
         <div class="botones-container">
           <button class="little" (click)="eliminarElemento(i)">Eliminar</button>
@@ -34,3 +34,7 @@
   </div>
 </div>
 
+<div class="tutorial-overlay" *ngIf="mostrarTutorial">
+  <button class="cerrar-btn" (click)="cerrarTutorial()">X</button>
+  <app-tutorial></app-tutorial>
+</div>

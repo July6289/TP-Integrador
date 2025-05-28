@@ -1,13 +1,18 @@
-  <div class="contenidoPagina">
-      <div class="info-objeto"> <!-- izquierda -->
-        <app-info-objeto></app-info-objeto>
-      </div>
-
-      <div class="inventario-objeto"> <!-- centro -->
-        <app-inventario-objeto></app-inventario-objeto>
-      </div>
-
-    <div class="buscador-objeto"> <!-- derecha -->
-      <app-buscador-objeto></app-buscador-objeto>
-    </div>
+<div class="contenidoPagina">
+  <div class="info-objeto"> <!-- izquierda -->
+    <app-info-objeto></app-info-objeto>
   </div>
+
+  <div class="inventario-objeto"> <!-- centro -->
+    <app-inventario-objeto></app-inventario-objeto>
+  </div>
+
+  <div class="buscador-objeto"> <!-- derecha -->
+    <app-buscador-objeto></app-buscador-objeto>
+  </div>
+</div>
+
+<div class="tutorial-overlay" *ngIf="mostrarTutorial">
+  <button class="cerrar-btn" (click)="cerrarTutorial()">X</button>
+  <app-tutorial></app-tutorial>
+</div>

@@ -23,9 +23,8 @@
 
     <!-- Resto del equipo -->
     <div class="equipo-pequeno">
-      <div *ngFor="let pokemon of pokemonesEnEquipo.equipo; let i = index"
-           class="pokemon-mini"
-           [class.actual]="i === posicionPokemonActual">
+      <div *ngFor="let pokemon of pokemonesEnEquipo.equipo; let i = index" class="pokemon-mini"
+        [class.actual]="i === posicionPokemonActual">
 
         <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="pokemon-imagen-mini">
 
@@ -47,4 +46,9 @@
   <div class="zona-boton-volver">
     <button class="boton-volver" (click)="goBack()">volver</button>
   </div>
+</div>
+
+<div class="tutorial-overlay" *ngIf="mostrarTutorial">
+  <button class="cerrar-btn" (click)="cerrarTutorial()">X</button>
+  <app-tutorial></app-tutorial>
 </div>

@@ -1,23 +1,27 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/service/auth.service';
 import { Router } from '@angular/router';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
+import { TutorialComponent } from '../tutorial/tutorial.component';
+import { TutorialService } from '../../pokeservices/tutorial.service';
+import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'perfil',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule, TutorialComponent, CommonModule],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.css'
 })
 
-export class PerfilComponent implements OnInit {
+export class PerfilComponent implements OnInit, OnDestroy {
   id: string | null = ""
   posicion: number = 0;
-  posicion2:number=0;
+  posicion2: number = 0;
   isModifyShowing: boolean = false;
   validadorMensajeEspecifico: boolean = false;
   MensajeEspecifico: string = '';
@@ -46,13 +50,29 @@ export class PerfilComponent implements OnInit {
       Password: ['', [Validators.required, Validators.minLength(6)]],
     }
   )
+  mostrarTutorial: boolean = false;
+  private tutorialSub?: Subscription;
+
+
+  constructor(private tutorialService: TutorialService) { }
 
   ngOnInit(): void {
+    this.tutorialSub = this.tutorialService.mostrarTutorial$.subscribe(
+      mostrar => this.mostrarTutorial = mostrar
+    );
     this.id = localStorage.getItem('token');
     setTimeout(() => {
       this.dbUsuarioId();
       console.log(this.usuario)
     }, 300);
+  }
+
+  cerrarTutorial() {
+    this.tutorialService.ocultarTutorial();
+  }
+
+  ngOnDestroy() {
+    this.tutorialSub?.unsubscribe();
   }
 
   dbUsuarioId() {
@@ -80,8 +100,8 @@ export class PerfilComponent implements OnInit {
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
 
           this.usuario.ListaEquipos = valor.ListaEquipos.map(equipo => ({
-           nombre: equipo.nombre,
-          equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
+            nombre: equipo.nombre,
+            equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
           }));
         },
         error: (e: Error) => {

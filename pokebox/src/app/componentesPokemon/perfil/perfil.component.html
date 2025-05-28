@@ -1,5 +1,4 @@
 <div class="user-card">
-
   <div class="user-card-header">
     <h2>Perfil de Usuario</h2>
   </div>
@@ -55,5 +54,9 @@
     </div>
     }
   </div>
+</div>
 
+<div class="tutorial-overlay" *ngIf="mostrarTutorial">
+  <button class="cerrar-btn" (click)="cerrarTutorial()">X</button>
+  <app-tutorial></app-tutorial>
 </div>

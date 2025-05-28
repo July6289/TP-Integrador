@@ -1,5 +1,5 @@
 import { Router, RouterModule } from '@angular/router';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { NgFor, Location, NgIf, NgClass } from '@angular/common';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
@@ -8,18 +8,21 @@ import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.in
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { AuthService } from '../../auth/service/auth.service';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
+import { Subscription } from 'rxjs';
+import { TutorialService } from '../../pokeservices/tutorial.service';
+import { TutorialComponent } from '../tutorial/tutorial.component';
 
 @Component({
   selector: 'app-lista-equipo-pokemon',
   standalone: true,
-  imports: [RouterModule, NgFor, NgIf, NgClass],
+  imports: [RouterModule, NgFor, NgIf, NgClass, TutorialComponent],
   templateUrl: './lista-equipo-pokemon.component.html',
   styleUrl: './lista-equipo-pokemon.component.css'
 })
 
-export class ListaEquipoPokemonComponent implements OnInit {
+export class ListaEquipoPokemonComponent implements OnInit, OnDestroy {
 
-  constructor(private router: Router, private equipoPokemonService: EquipoPokemonService, private location: Location, private cajaService: CajaService, private usuarioService: UsuarioService, private auth: AuthService) { }
+  constructor(private router: Router, private equipoPokemonService: EquipoPokemonService, private location: Location, private cajaService: CajaService, private usuarioService: UsuarioService, private auth: AuthService, private tutorialService: TutorialService) { }
 
   poketeam: EquipoPokemon[] = [];
   equipoRival: EquipoPokemon =
@@ -39,11 +42,17 @@ export class ListaEquipoPokemonComponent implements OnInit {
     ListaEquipos: []
   }
   posicion: number = 0;
-  posicion2:number=0
+  posicion2: number = 0
   pokeservice = inject(PokeservicesService)
   secretId: string | null = ""
+  mostrarTutorial: boolean = false;
+  private tutorialSub?: Subscription;
 
   ngOnInit() {
+    this.tutorialSub = this.tutorialService.mostrarTutorial$.subscribe(
+      mostrar => this.mostrarTutorial = mostrar
+    );
+
     // Suscribirse a todos los equipos
     this.equipoPokemonService.equipos$.subscribe(equipos => {
       this.poketeam = equipos;  // Actualiza el arreglo con todos los equipos
@@ -83,8 +92,8 @@ export class ListaEquipoPokemonComponent implements OnInit {
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
 
           this.usuario.ListaEquipos = valor.ListaEquipos.map(equipo => ({
-           nombre: equipo.nombre,
-          equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
+            nombre: equipo.nombre,
+            equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
           }));
         },
 
@@ -149,5 +158,13 @@ export class ListaEquipoPokemonComponent implements OnInit {
     } else {
       alert('El nombre debe tener entre 1 y 14 caracteres.');
     }
+  }
+
+  cerrarTutorial() {
+    this.tutorialService.ocultarTutorial();
+  }
+
+  ngOnDestroy() {
+    this.tutorialSub?.unsubscribe();
   }
 }
