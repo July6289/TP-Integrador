@@ -11,7 +11,8 @@ nav {
 }
 
 .homePage,
-.boton2 {
+.boton2,
+.helpPage {
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -22,7 +23,9 @@ nav {
   cursor: pointer;
   font-family: 'Winky Rough', cursive;
   font-size: 1rem;
+  line-height: 1;
 }
+
 
 .homePage {
   margin-right: 2rem;
@@ -64,8 +67,15 @@ nav {
   align-items: center;
 }
 
+.imagenHelp
+{
+  max-width: 3.125rem;
+  max-height: 2.6rem;
+  cursor: pointer;
+}
 .imagenUsuario {
   max-width: 3.125rem;
+  max-height: 3.125rem;
   cursor: pointer;
 }
 
