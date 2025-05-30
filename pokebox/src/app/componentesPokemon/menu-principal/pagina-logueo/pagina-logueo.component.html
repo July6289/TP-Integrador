@@ -4,12 +4,16 @@
   @if (IsFormRegisterShowing) {
 
 
-  <form class="formularioRegistro" [formGroup]="formulario">
+  <form class="formulario" [formGroup]="formulario">
+    <h1 class="titulo">Registrarse</h1>
 
-    <label for="">Email:</label>
 
-    <input type="text" value="" formControlName="Email" placeholder="example@gmail.com">
+    <div class="input-contenedor">
 
+    <i class="fa-solid fa-envelope icon" style="color: #000000;"></i>
+    <input type="text" value="" formControlName="Email" placeholder="Correo electronico">
+
+    </div>
 
     <p class="Error" [class.visible]="formulario.controls['Email'].touched&&formulario.controls['Email'].errors">
 
@@ -25,10 +29,14 @@
     <span>El usuario no puede contener un minimo de 6 letras</span>
     }
     </p>
-    <label for="">Contraseña:</label>
+    <div class="input-contenedor">
+    <i class="fa-solid fa-key" style="color: #000000;"></i>
 
-    <input type="password" formControlName="Password" placeholder="password" >
+    <input [type]="changetype?'password':'text'" formControlName="Password" placeholder="Contraseña" id="password">
+        <span class="eyeicon"(click)="viewpass()" > <i [ngClass]="visible?'fa-solid fa-eye':'fa-solid fa-eye-slash'"></i>
 
+    </span>
+      </div>
     <p class="Error" [class.visible]="formulario.controls['Password'].touched">
     @if (formulario.controls['Password'].getError('required')) {
 
@@ -41,11 +49,10 @@
 
     }
 
-    @if (validadorMensajeEspecifico) {
+    @if (validadorMensajeEspecifico&&!formulario.invalid) {
     <span>{{mensajeEspecifico}}</span>
     }
     </p>
-
     <button (click)="addUsuario()" class="Registro">Registrarse</button>
     <div class="olvideyCuenta">
 
@@ -56,11 +63,13 @@
 
   }
   @if (isFormLoginShowing) {
-  <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="checkLoggedUsuario()" (keydown.enter)="checkLoggedUsuario()">
+  <form class="formulario" [formGroup]="formulario" (ngSubmit)="checkLoggedUsuario()" (keydown.enter)="checkLoggedUsuario()">
+    <h1 class="titulo">Iniciar Sesión</h1>
 
-    <label for="usuario">Email:</label>
-    <input type="text" value="" formControlName="Email" placeholder="example@gmail.com" id="usuario">
-
+    <div class="input-contenedor">
+    <i class="fa-solid fa-envelope icon" style="color: #000000;"></i>
+    <input type="text" value="" formControlName="Email" placeholder="Correo electronico" id="usuario">
+    </div>
     <p class="Error" [class.visible]="formulario.controls['Email'].touched&&formulario.controls['Email'].errors">
 
     @if (formulario.controls['Email'].getError('required')&&formulario.controls['Email'].touched) {
@@ -74,10 +83,13 @@
 
     }
     </p>
+    <div class="input-contenedor">
+      <i class="fa-solid fa-key icon" ></i>
+    <input [type]="changetype?'password':'text'" formControlName="Password" placeholder="Contraseña" id="password">
+        <span class="eyeicon"(click)="viewpass()" > <i [ngClass]="visible?'fa-solid fa-eye':'fa-solid fa-eye-slash'"></i>
 
-    <label for="password">Contraseña:</label>
-
-    <input type="password" formControlName="Password" placeholder="password" id="password">
+    </span>
+    </div>
     <p class="Error" [class.visible]="formulario.controls['Password'].touched">
 
     @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
@@ -90,7 +102,7 @@
     <span>La contraseña no puede contener un minimo de 6 letras</span>
 
     }
-    @if (validadorMensajeEspecifico) {
+    @if (validadorMensajeEspecifico&&!formulario.invalid) {
     <span>{{mensajeEspecifico}}</span>
     }
     </p>

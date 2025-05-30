@@ -9,11 +9,12 @@ import { AuthService } from '../../../auth/service/auth.service';
 import { Pokemon } from '../../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { Objeto } from '../../../interfaces/objetos/objeto.interface';
 import { EquipoPokemon } from '../../../interfaces/interfazpokemon/interfazEquipo.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-pagina-logueo',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule,],
+  imports: [ReactiveFormsModule, RouterModule,CommonModule],
   templateUrl: './pagina-logueo.component.html',
   styleUrl: './pagina-logueo.component.css'
 })
@@ -21,6 +22,8 @@ import { EquipoPokemon } from '../../../interfaces/interfazpokemon/interfazEquip
 export class PaginaLogueoComponent {
   constructor(private ctrl: ChangeDetectorRef, private auth: AuthService) { }
   validadorMensajeEspecifico: boolean = false;
+  visible:boolean=true;
+  changetype:boolean=true;
   mensajeEspecifico: string = '';
   isFormLoginShowing: boolean = true;
   IsFormRegisterShowing: boolean = false;
@@ -53,6 +56,12 @@ export class PaginaLogueoComponent {
       ListaEquipos: [[] as EquipoPokemon[],]
     }
   )
+
+  viewpass(){
+    this.visible=!this.visible
+    this.changetype=!this.changetype
+  }
+
 
   btRegistro() {
     this.IsFormRegisterShowing = true;
@@ -214,11 +223,14 @@ export class PaginaLogueoComponent {
   }
 
   checkLoggedUsuario() {
+    this.validadorMensajeEspecifico = false;
+this.mensajeEspecifico = '';
+          const datosUsuario = this.formulario.getRawValue();
+
     if (this.formulario.invalid) {
       console.log("Error");
     }
     else {
-      const datosUsuario = this.formulario.getRawValue();
       this.usuarioService.getUsuariobyName(datosUsuario.Email).subscribe(
         {
           next: (usuario: Usuario[]) => {
