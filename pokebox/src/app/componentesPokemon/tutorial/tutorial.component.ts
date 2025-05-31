@@ -47,12 +47,12 @@ export class TutorialComponent implements OnInit {
     switch (this.pagina.nroPagina) {
       case 1:
         this.pagina.titulo = "Introducción";
-        this.pagina.imagen = "/assets/imagenes/tutorial/1.png";
-        this.pagina.texto = "Bienvenido a pokebox, en esta página podrás hacer un seguimiento de tu partida en el navegador de tu pc. Podrás guardar los pokémon que hayas capturado así como los objetos que lleves en la mochila e incluso hacer simulaciones de combate básicas para aprender y entender mejor cómo jugar de forma más efectiva.";
+        this.pagina.imagen = "/assets/imagenes/tutorial/1.1.png";
+        this.pagina.texto = "Me presento, mi nombre es el Profesor Oak. Bienvenido a pokebox! En esta página podrás hacer un seguimiento de tu partida en el navegador de tu pc. Podrás guardar los pokémon que hayas capturado así como los objetos que lleves en la mochila e incluso hacer simulaciones de combate básicas para aprender y entender mejor cómo jugar de forma más efectiva.";
         break;
       case 2:
         this.pagina.titulo = "Lista de pokémon";
-        this.pagina.imagen = "/assets/imagenes/tutorial/2.png";
+        this.pagina.imagen = "/assets/imagenes/tutorial/2.2.png";
         this.pagina.texto = "Para guardar los pokémon que quieras deberás usar la lista pokemon que funciona buscando pokemon por generación.\nA la derecha de la página, verás un rectángulo donde podrás escribir el número de esta y, al apretar el botón “buscar”, o presionando enter en tu teclado, te mostrará los pokémon originarios de la región correspondiente. Al hacer un click podrás seleccionarlo y luego apretar el botón que está debajo de la lista o haciendo doble click para así ingresarlo a la caja; esta se encuentra en la parte central de la pantalla.";
         break;
       case 3:

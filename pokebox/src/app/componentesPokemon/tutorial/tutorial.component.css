@@ -30,6 +30,8 @@
 {
   font-size: 2.4rem;
 }
+
+
 .texto p {
   font-size: 1.2rem;
   color: #1a1a1a;
@@ -60,7 +62,8 @@
 }
 
 .imagen {
-  max-width: 25rem;
+  max-width: 29vw;
+
   width: 100%;
   height: auto;
 }
