@@ -207,7 +207,7 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
         danio = 2 * this.tablaTiposValores[indiceTipos.jugadorTipo1][indiceTipos.botTipo1];
       }
 
-      this.mensaje[this.mensaje.length] = this.equipoMain.equipo[idPeleador].name+ " infligió " + danio + " de daño a " + this.equipoRival.equipo[idBot].name;
+      this.mensaje[this.mensaje.length] = this.equipoMain.equipo[idPeleador].name + " infligió " + danio + " de daño a " + this.equipoRival.equipo[idBot].name;
     }
     else {
       if (indiceTipos.jugadorTipo2 !== -1 && indiceTipos.botTipo2 !== -1) {
@@ -223,7 +223,7 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
         danio = 2 * this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo1];
       }
 
-      this.mensaje[this.mensaje.length] =  this.equipoRival.equipo[idBot].name + " infligió " + danio + " de daño a " + this.equipoMain.equipo[idPeleador].name;
+      this.mensaje[this.mensaje.length] = this.equipoRival.equipo[idBot].name + " infligió " + danio + " de daño a " + this.equipoMain.equipo[idPeleador].name;
     }
 
     return danio;
@@ -346,4 +346,3 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
     this.router.navigate(['/cambiar-pokemon']);
   }
 }
- 
