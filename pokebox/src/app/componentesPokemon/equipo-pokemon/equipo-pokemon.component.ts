@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-equipo-pokemon',
   standalone: true,
-  imports: [ListaPokemonComponent, CommonModule, TutorialComponent],
+  imports: [ListaPokemonComponent, CommonModule],
   templateUrl: './equipo-pokemon.component.html',
   styleUrls: ['./equipo-pokemon.component.css'] // Corrige 'styleUrl' a 'styleUrls'
 })

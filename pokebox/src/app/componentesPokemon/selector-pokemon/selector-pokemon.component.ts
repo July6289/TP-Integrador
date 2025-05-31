@@ -4,14 +4,13 @@ import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.intefa
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { CommonModule, NgClass, NgFor } from '@angular/common';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
-import { TutorialComponent } from '../tutorial/tutorial.component';
 import { TutorialService } from '../../pokeservices/tutorial.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-selector-pokemon',
   standalone: true,
-  imports: [CommonModule, NgFor, NgClass, TutorialComponent],
+  imports: [CommonModule, NgFor, NgClass],
   templateUrl: './selector-pokemon.component.html',
   styleUrl: './selector-pokemon.component.css'
 })
@@ -39,6 +38,13 @@ export class SelectorPokemonComponent implements OnInit, OnDestroy {
     // Cargamos los nombres del servicio
     this.nombreJugadorActual = this.equipoPokemonService.obtenerNombreJugador();
     this.nombreRivalActual = this.equipoPokemonService.obtenerNombreRival();
+
+
+    if (this.pokemonesEnEquipo.equipo[0].life == undefined) {
+      for (let i = 0; i < this.pokemonesEnEquipo.equipo.length; i++) {
+        this.pokemonesEnEquipo.equipo[i].life = 16;
+      }
+    }
   }
 
   cerrarTutorial() {

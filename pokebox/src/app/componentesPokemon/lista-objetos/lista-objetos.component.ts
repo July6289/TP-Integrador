@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-lista-objetos',
   standalone: true,
-  imports: [InfoObjetoComponent, InventarioObjetoComponent, BuscadorObjetoComponent, CommonModule, TutorialComponent],
+  imports: [InfoObjetoComponent, InventarioObjetoComponent, BuscadorObjetoComponent, CommonModule],
   templateUrl: './lista-objetos.component.html',
   styleUrl: './lista-objetos.component.css'
 })

@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-visualizar-equipo',
   standalone: true,
-  imports: [CommonModule, TutorialComponent],
+  imports: [CommonModule],
   templateUrl: './visualizar-equipo.component.html',
   styleUrl: './visualizar-equipo.component.css'
 })
