@@ -16,7 +16,7 @@ import { TutorialService } from '../../pokeservices/tutorial.service';
 @Component({
   selector: 'app-pestania-combate',
   standalone: true,
-  imports: [CommonModule, TutorialComponent],
+  imports: [CommonModule],
   templateUrl: './pestania-combate.component.html',
   styleUrl: './pestania-combate.component.css'
 })

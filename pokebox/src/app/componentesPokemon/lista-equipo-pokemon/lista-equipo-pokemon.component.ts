@@ -15,7 +15,7 @@ import { TutorialComponent } from '../tutorial/tutorial.component';
 @Component({
   selector: 'app-lista-equipo-pokemon',
   standalone: true,
-  imports: [RouterModule, NgFor, NgIf, NgClass, TutorialComponent],
+  imports: [RouterModule, NgFor, NgIf, NgClass],
   templateUrl: './lista-equipo-pokemon.component.html',
   styleUrl: './lista-equipo-pokemon.component.css'
 })

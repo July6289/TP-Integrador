@@ -13,7 +13,7 @@ import { TutorialComponent } from '../tutorial/tutorial.component';
 @Component({
   selector: 'pagina-principal',
   standalone: true,
-  imports: [ListaEquipoPokemonComponent, ListaPokemonComponent, CajaComponent, InfoPokedexComponent, CommonModule, FavoritosComponent, TutorialComponent],
+  imports: [ListaEquipoPokemonComponent, ListaPokemonComponent, CajaComponent, InfoPokedexComponent, CommonModule, FavoritosComponent],
   templateUrl: './pagina-principal.component.html',
   styleUrl: './pagina-principal.component.css'
 })

@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'perfil',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, TutorialComponent, CommonModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.css'
 })
