@@ -48,7 +48,7 @@ export class TutorialComponent implements OnInit {
       case 1:
         this.pagina.titulo = "Introducción";
         this.pagina.imagen = "/assets/imagenes/tutorial/1.1.png";
-        this.pagina.texto = "Me presento, mi nombre es el Profesor Oak. Bienvenido a pokebox! En esta página podrás hacer un seguimiento de tu partida en el navegador de tu pc. Podrás guardar los pokémon que hayas capturado así como los objetos que lleves en la mochila e incluso hacer simulaciones de combate básicas para aprender y entender mejor cómo jugar de forma más efectiva.";
+        this.pagina.texto = "Me presento, mi nombre es Oak, pero todos me dicen el Profesor Oak. Bienvenido a pokebox! En esta página podrás hacer un seguimiento de tu partida en el navegador de tu pc. Podrás guardar los pokémon que hayas capturado así como los objetos que lleves en la mochila e incluso hacer simulaciones de combate básicas para aprender y entender mejor cómo jugar de forma más efectiva. Te estaré acompañando para mostrarte todo.";
         break;
       case 2:
         this.pagina.titulo = "Lista de pokémon";
