@@ -1,23 +1,27 @@
 :host {
-  flex-direction: column;
   box-sizing: border-box;
+  height: 100%;
+
 }
 
-:host,
-.full-background,
+
+.titulo
+{
+  font-size: 3rem;
+}
+
+.selector{
+  overflow-y: auto;
+}
+
 .botones-container,
 .selector,
 .pokemon-banner,
-.equipos {
+.equipos,
+.a-selector  {
   display: flex;
 }
 
-.full-background,
-.selector,
-.pokemon-banner {
-  flex-direction: column;
-  width: 100%;
-}
 
 .full-background {
   background-image: url('/assets/imagenes/test2.jpg');
@@ -25,9 +29,12 @@
   background-position: center;
   background-repeat: no-repeat;
   background-color: #4A4A4A;
-  min-height: 95vh;
   align-items: center;
+  object-fit: contain;
+  display: flex;
   justify-content: center;
+  max-height: 150vh;
+  min-height: 100%;
   /* CENTRADO VERTICAL */
   padding: 2rem 1rem;
   box-sizing: border-box;
@@ -38,11 +45,20 @@
   margin-left: auto;
 }
 
-.selector {
+.selector,
+.a-selector {
   max-width: 56.25rem;
   flex: 1;
   overflow-y: visible;
   /* si no es estrictamente necesario, evitalo */
+}
+
+
+.selector,
+.pokemon-banner,
+.a-selector  {
+  flex-direction: column;
+  width: 100%;
 }
 
 .pokemon-banner {

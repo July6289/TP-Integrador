@@ -17,9 +17,9 @@
 <div *ngIf="rutaCombate === false" [ngClass]="{ 'full-background': true }">
   <div class="selector">
     <div class="pokemon-banner">
-      <h2>Elija un Equipo Pokemon</h2>
-      <div class="selector">
-        <ul>
+      <h2  class="titulo">Elija un Equipo Pokemon</h2>
+      <div class="a-selector">
+        <ul class="teams">
           <li class="equipos" *ngFor="let item of poketeam; let i = index">
             <span class="nombre-pokemon">{{ item.nombre }}</span>
             <div class="botones-container">
