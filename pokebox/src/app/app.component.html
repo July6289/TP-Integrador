@@ -4,3 +4,8 @@
   }
   <link href="https://fonts.googleapis.com/css2?family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 <router-outlet></router-outlet>
+
+<div class="tutorial-overlay" *ngIf="mostrarTutorial ">
+  <button class="cerrar-btn" (click)="cerrarTutorial()">X</button>
+  <app-tutorial></app-tutorial>
+</div>

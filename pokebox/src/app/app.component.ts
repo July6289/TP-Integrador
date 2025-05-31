@@ -1,23 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { provideHttpClient} from '@angular/common/http';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { TutorialComponent } from './componentesPokemon/tutorial/tutorial.component';
+import { Subscription } from 'rxjs';
+import { TutorialService } from './pokeservices/tutorial.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule,NavbarComponent],
+  imports: [RouterOutlet, CommonModule,NavbarComponent, TutorialComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit  {
+export class AppComponent implements OnInit, OnDestroy  {
 
   showNavbar: boolean = true;
   showNavbar2:boolean=true;
 
-  constructor(private router: Router) {}
+  mostrarTutorial = false;
+  private sub?: Subscription;
+
+  constructor(private router: Router, private tutorialService: TutorialService) {}
 
   ngOnInit(): void {
     this.router.events.subscribe(() => {
@@ -28,6 +34,17 @@ export class AppComponent implements OnInit  {
 
 
     });
+    this.sub = this.tutorialService.mostrarTutorial$.subscribe(
+      mostrar => this.mostrarTutorial = mostrar
+    );
+  }
+
+  cerrarTutorial() {
+    this.tutorialService.ocultarTutorial();
+  }
+
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
   }
 }
 
