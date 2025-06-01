@@ -6,6 +6,7 @@ import { CajaService } from '../../pokeservices/caja.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { TutorialService } from '../../pokeservices/tutorial.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -18,15 +19,16 @@ import { TutorialService } from '../../pokeservices/tutorial.service';
 export class NavbarComponent implements OnInit {
   textButton: string = 'Iniciar Sesion'
   perfilActivo: boolean = false;
+  mensajeActivo:boolean=false;
   auth = inject(AuthService);
   Router = inject(Router);
   cajaService = inject(CajaService);
-  usuarioService = inject(UsuarioService)
   posicion: number = 0;
   usuario: Usuario = {
     id: "",
     box: [],
     Email: "",
+    Username:"",
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: [],
@@ -35,12 +37,32 @@ export class NavbarComponent implements OnInit {
   }
   secretId: string | null = ""
 
+ constructor(private usuarioService:UsuarioService ) {
+
+  }
+
   ngOnInit(): void {
+    this.usuarioService.activadorMensaje$.subscribe(
+      dato=> {this.mensajeActivo=dato
+              console.log('Estado del mensaje:', dato);
+  }
+)
+
     if (localStorage.getItem('token')) {
       this.textButton = 'Cerrar Sesion'
       this.perfilActivo = true;
       this.dbUsuarioId();
     }
+      console.log("dato es",this.mensajeActivo)
+
+
+
+  }
+
+
+  public activarMensaje()
+  {
+    this.mensajeActivo=true
   }
 
   dbUsuarioId() {
@@ -49,6 +71,7 @@ export class NavbarComponent implements OnInit {
       {
         next: (valor: Usuario) => {
           this.usuario.Email = valor.Email;
+          this.usuario.Username=valor.Username
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;
@@ -72,10 +95,12 @@ export class NavbarComponent implements OnInit {
   }
 
   goToPerfil() {
+    this.mensajeActivo=false
     this.Router.navigate(['/perfil']);
   }
 
   goToObjetos() {
+    this.mensajeActivo=false
     this.Router.navigate(['lista-objetos']);
   }
 

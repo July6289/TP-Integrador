@@ -10,6 +10,18 @@ nav {
   max-width: 9.375rem;
 }
 
+
+.mensaje-bienvenida {
+  margin-left: 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  left: 400px;
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none; /* Para evitar interacciones accidentales */
+}
 .homePage,
 .boton2,
 .helpPage {

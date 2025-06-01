@@ -19,6 +19,7 @@ export class EquipoPokemonService {
     id: "",
     box: [],
     Email: "",
+    Username:"",
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: [],

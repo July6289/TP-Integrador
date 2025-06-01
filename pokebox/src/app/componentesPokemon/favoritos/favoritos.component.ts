@@ -25,6 +25,7 @@ export class FavoritosComponent {
     id: "",
     box: [],
     Email: "",
+    Username:"",
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: [],

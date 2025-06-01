@@ -29,6 +29,7 @@ export class VisualizarEquipoComponent implements OnInit, OnDestroy {
     id: "",
     box: [],
     Email: "",
+    Username:"",
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: [],
@@ -111,6 +112,7 @@ export class VisualizarEquipoComponent implements OnInit, OnDestroy {
   }
 
   gotoCombate() {
+    this.usuarioServicio.desactivarMensaje()
     this.router.navigate(['/selector']);
   }
 

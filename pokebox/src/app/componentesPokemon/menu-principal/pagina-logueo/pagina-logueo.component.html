@@ -4,7 +4,7 @@
   @if (IsFormRegisterShowing) {
 
 
-  <form class="formulario" [formGroup]="formulario">
+  <form class="formulario" [formGroup]="formulario"  (ngSubmit)="addUsuario()" (keydown.enter)="checkLoggedUsuario()">
     <h1 class="titulo">Registrarse</h1>
 
 
@@ -18,17 +18,43 @@
     <p class="Error" [class.visible]="formulario.controls['Email'].touched&&formulario.controls['Email'].errors">
 
 
-    @if(formulario.controls['Email'].hasError('required'))
+    @if(formulario.controls['Email'].hasError('required')&&formulario.controls['Email'].touched)
       {
 
         <span>Se debe llenar el campo requerido</span>
       }
 
 
-    @if (formulario.controls['Email'].getError('minlength')) {
+    @if (formulario.controls['Email'].getError('minlength')&&formulario.controls['Email'].touched) {
     <span>El usuario no puede contener un minimo de 6 letras</span>
     }
     </p>
+
+
+    <div class="input-contenedor">
+
+    <i class="fa-solid fa-user icon" style="color: #000000;"></i>
+    <input type="text" value="" formControlName="Username" placeholder="Nombre Completo">
+
+    </div>
+
+    <p class="Error" [class.visible]="formulario.controls['Username'].touched&&formulario.controls['Username'].errors">
+
+
+    @if(formulario.controls['Username'].hasError('required')&&formulario.controls['Username'].touched)
+      {
+
+        <span>Se debe llenar el campo requerido</span>
+      }
+
+
+    @if (formulario.controls['Username'].getError('minlength')&&formulario.controls['Username'].touched) {
+    <span>El usuario no puede contener un minimo de 6 letras</span>
+    }
+    </p>
+
+
+
     <div class="input-contenedor">
     <i class="fa-solid fa-key" style="color: #000000;"></i>
 
@@ -38,13 +64,13 @@
     </span>
       </div>
     <p class="Error" [class.visible]="formulario.controls['Password'].touched">
-    @if (formulario.controls['Password'].getError('required')) {
+    @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
 
     <span> Se debe llenar el campo requerido</span>
 
 
     }
-    @if (formulario.controls['Password'].getError('minlength')) {
+    @if (formulario.controls['Password'].getError('minlength')&&formulario.controls['Password'].touched) {
     <span>La contraseña no puede contener un minimo de 6 letras </span>
 
     }
@@ -63,7 +89,7 @@
 
   }
   @if (isFormLoginShowing) {
-  <form class="formulario" [formGroup]="formulario" (ngSubmit)="checkLoggedUsuario()" (keydown.enter)="checkLoggedUsuario()">
+  <form class="formulario" [formGroup]="formulario"  (keydown.enter)="checkLoggedUsuario()">
     <h1 class="titulo">Iniciar Sesión</h1>
 
     <div class="input-contenedor">
@@ -141,8 +167,13 @@
   <p class="titulo">¿olvidaste tu contraseña?</p>
 
   <p class="subtitulo">ingrese su correo electronico para crear una contraseña nueva</p>
-  <input type="text" value="" formControlName="Username" placeholder="pickachu123">
 
+  <div class="input-contenedor">
+
+    <i class="fa-solid fa-envelope icon" style="color: #000000;"></i>
+    <input type="text" value="" formControlName="Email" placeholder="Correo electronico">
+
+    </div>
   @if (validadorMensajeEspecifico) {
 
     <p class="mensaje">{{mensajeEspecifico}}</p>

@@ -20,8 +20,12 @@
       <img class="imagenHelp" src="assets/imagenes/icono-ayuda.png" alt="imagen ayuda">
       <p>Ayuda</p>
     </button>
+@if(mensajeActivo){
+              <span class="mensaje-bienvenida">bienvenido de vuelta: {{this.usuario.Username}}</span>
 
+      }
     }
+
   </ul>
   <button class="boton2" (click)="onLonginLogout()" (click)="llamarDbGuardarDatos()">
     <img class="imagenUsuario" src="assets/imagenes/log_out.webp" alt="">

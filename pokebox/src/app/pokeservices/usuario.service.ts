@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.interface';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,21 @@ export class UsuarioService {
 
   constructor(private service: HttpClient) { }
 
+
+   private ActivadorMensajeSubject = new BehaviorSubject<boolean>(false);
+    activadorMensaje$ = this.ActivadorMensajeSubject.asObservable();
+
+
+  public activarMensaje()
+  {
+    this.ActivadorMensajeSubject.next(true)
+
+  }
+  public desactivarMensaje()
+  {
+    this.ActivadorMensajeSubject.next(false)
+
+  }
   postUsuario(usuario: Usuario): Observable<Usuario> {
     return this.service.post<Usuario>(this.urlbase, usuario);
   }

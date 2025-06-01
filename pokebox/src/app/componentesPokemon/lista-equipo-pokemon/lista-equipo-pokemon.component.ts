@@ -35,6 +35,7 @@ export class ListaEquipoPokemonComponent implements OnInit, OnDestroy {
     id: "",
     box: [],
     Email: "",
+    Username:"",
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: [],

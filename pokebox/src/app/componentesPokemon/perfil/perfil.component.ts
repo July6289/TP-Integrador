@@ -34,6 +34,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
     id: "",
     box: [],
     Email: "",
+    Username:"",
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: [],
@@ -47,6 +48,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
   formulario = this.fb.nonNullable.group(
     {
       Email: ['', [Validators.required, Validators.minLength(6)]],
+      Username:['',[Validators.required, Validators.minLength(6)]],
       Password: ['', [Validators.required, Validators.minLength(6)]],
     }
   )
@@ -61,9 +63,15 @@ export class PerfilComponent implements OnInit, OnDestroy {
       mostrar => this.mostrarTutorial = mostrar
     );
     this.id = localStorage.getItem('token');
+
+
     setTimeout(() => {
       this.dbUsuarioId();
       console.log(this.usuario)
+
+
+
+
     }, 300);
   }
 
@@ -74,12 +82,16 @@ export class PerfilComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.tutorialSub?.unsubscribe();
   }
-
+ cancelar(){
+    this.isCardShowing=true;
+    this.isModifyShowing=false;
+  }
   dbUsuarioId() {
     this.usarioServicio.getUsuarioById(this.id).subscribe(
       {
         next: (valor: Usuario) => {
           this.usuario.Email = valor.Email;
+          this.usuario.Username=valor.Username
           if (valor.Password === null) {
             this.isLoggedWithouthGoogle = false; // Tiene cuenta de Google
           }
@@ -102,14 +114,94 @@ export class PerfilComponent implements OnInit, OnDestroy {
           this.usuario.ListaEquipos = valor.ListaEquipos.map(equipo => ({
             nombre: equipo.nombre,
             equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
+
+
+
+
           }));
-        },
+
+      this.formulario.patchValue({
+      Email: this.usuario.Email,
+      Username: this.usuario.Username,
+      Password: this.usuario.Password || '' // si es nulo, que quede vacío
+    });        },
         error: (e: Error) => {
           console.log(e.message);
         }
       }
     )
   }
+
+addUsuario() {
+    if (this.formulario.invalid) {
+      console.log("Error");
+    }
+    else {
+      this.validadorMensajeEspecifico = true;
+      const datosFormulario = this.formulario.getRawValue();
+
+
+      if(datosFormulario.Email==this.usuario.Email){  //opcion en caso de que el usuario no quiera cambiar el correo
+
+          this.usuario.Username=datosFormulario.Username;
+              this.usuario.Password=datosFormulario.Password;
+              this.usuarioService.putUsuario(this.usuario,this.id).subscribe(
+                {
+                  next: () => {
+                    console.log("enviado con exito");
+                    this.isCardShowing=true;
+                    this.isModifyShowing=false;
+                    this.formulario.reset();
+                  },
+                  error: (e: Error) => {
+                    console.log(e.message);
+                    this.formulario.reset();
+                  }
+                }
+              )
+
+
+
+
+      }
+      else
+      {
+      this.usuarioService.getUsuariobyName(datosFormulario.Email).subscribe(
+        {
+          next: (usuarioDato: Usuario[]) => {
+            if (usuarioDato.length > 0 && usuarioDato[0] != undefined) {
+              this.MensajeEspecifico = 'Este Correo ya existe en el sistema';
+              this.validadorMensajeEspecifico = true;
+            }
+            else {
+              this.usuario.Email=datosFormulario.Email;
+              this.usuario.Username=datosFormulario.Username;
+              this.usuario.Password=datosFormulario.Password;
+              this.usuarioService.putUsuario(this.usuario,this.id).subscribe(
+                {
+                  next: () => {
+                    console.log("enviado con exito");
+                    this.isCardShowing=true;
+                    this.isModifyShowing=false;
+                    this.formulario.reset();
+                  },
+                  error: (e: Error) => {
+                    console.log(e.message);
+                    this.formulario.reset();
+                  }
+                }
+              )
+            }
+          },
+          error: (e: Error) => {
+            console.log(e.message);
+          }
+        }
+      )
+    }
+    }
+  }
+
 
   toggleModify() {
     this.isCardShowing = false;

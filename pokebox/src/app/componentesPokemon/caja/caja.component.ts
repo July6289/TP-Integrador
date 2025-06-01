@@ -36,6 +36,7 @@ export class CajaComponent implements OnInit {
     id: "",
     box: [],
     Email: "",
+    Username:"",
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: [],

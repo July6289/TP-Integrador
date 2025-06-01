@@ -38,6 +38,7 @@ export class PaginaLogueoComponent {
     id: "",
     box: [],
     Email: "",
+    Username:"",
     Password: "",
     CombatesGanados: 0,
     ListaFavoritos: [],
@@ -49,6 +50,7 @@ export class PaginaLogueoComponent {
       id: [''],
       box: [[] as Caja[]], //un array vacio de cajas
       Email: ['', [Validators.required, Validators.minLength(6)]],
+      Username:['',[Validators.required,Validators.minLength(6)]],
       Password: ['', [Validators.required, Validators.minLength(6)]],
       CombatesGanados: 0,
       ListaFavoritos: [[] as Pokemon[],],
@@ -64,16 +66,20 @@ export class PaginaLogueoComponent {
 
 
   btRegistro() {
+    this.formulario.reset();
+    this.validadorMensajeEspecifico=false;
     this.IsFormRegisterShowing = true;
     this.isFormLoginShowing = false;
-    this.formulario.reset();
+    this.mensajeEspecifico = '';
+
   }
 
   btLogueo() {
-    this.formulario.reset();
     this.validadorMensajeEspecifico = false;
     this.IsFormRegisterShowing = false;
     this.isFormLoginShowing = true;
+    this.mensajeEspecifico = '';
+
   }
 
   btVolver() {
@@ -119,9 +125,10 @@ export class PaginaLogueoComponent {
     result.then(result => {
       const user = result.user;
       const email = user.email; // Extraer el correo del usuario
+      const name= user.displayName
       console.log("Correo del usuario:", email);
       // Puedes guardar el email en tu JSON o manejarlo como prefieras
-      if (email != null) {
+      if (email != null&&name!=null) {
         this.usuarioService.getUsuariobyName(email).subscribe(
           {
             next: (usuarioDato: Usuario[]) => {
@@ -129,6 +136,8 @@ export class PaginaLogueoComponent {
                 this.idUsuario = getRandomAlphaNumeric(4);
                 this.usuarioNuevo.id = this.idUsuario;
                 this.usuarioNuevo.Email = email;
+
+                this.usuarioNuevo.Username=name;
                 this.usuarioNuevo.Password = null;
                 this.usuarioService.postUsuario(this.usuarioNuevo).subscribe(
                   {
@@ -136,6 +145,7 @@ export class PaginaLogueoComponent {
                       console.log("usuario creado con exito");
                       localStorage.setItem('token', this.idUsuario);
                       this.usuarioService.estoyLogeado = true
+                      this.usuarioService.activarMensaje()
                       this.router.navigate([`main-page`])
                     },
                     error: (e: Error) => {
@@ -149,6 +159,7 @@ export class PaginaLogueoComponent {
                 if (usuarioDato[0].id != undefined) {
                   localStorage.setItem('token', usuarioDato[0].id);
                   this.usuarioService.estoyLogeado = true
+                  this.usuarioService.activarMensaje()
                   this.router.navigate([`main-page`])
                 }
               }
@@ -191,6 +202,7 @@ export class PaginaLogueoComponent {
                         localStorage.setItem('token', this.idUsuario);
                         this.authservice.logIn2(usuario);
                         this.usuarioService.estoyLogeado = true
+                        this.usuarioService.activarMensaje()
                         this.router.navigate([`main-page`])
                       },
                       error: (e: Error) => {
@@ -226,7 +238,9 @@ export class PaginaLogueoComponent {
     this.validadorMensajeEspecifico = false;
 this.mensajeEspecifico = '';
           const datosUsuario = this.formulario.getRawValue();
-
+           this.formulario.patchValue({
+      Username: "randomDATA",       //hacemos esto porque sino salta un error de datos por no llevar username el logueo
+    })
     if (this.formulario.invalid) {
       console.log("Error");
     }
@@ -243,6 +257,7 @@ this.mensajeEspecifico = '';
                     localStorage.setItem('token', usuario[0].id);
                     this.authservice.logIn2(datosUsuario);
                     this.usuarioService.estoyLogeado = true
+                    this.usuarioService.activarMensaje()
                     this.router.navigate([`main-page`])
                   }
                 }
