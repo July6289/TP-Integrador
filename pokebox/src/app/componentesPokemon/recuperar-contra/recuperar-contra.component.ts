@@ -28,6 +28,7 @@ export class RecuperarContraComponent implements OnInit {
     Username:"",
     Password: "",
     CombatesGanados: 0,
+    UrlImagenPerfil:'',
     ListaFavoritos: [],
     ListaObjetos: [],
     ListaEquipos: []

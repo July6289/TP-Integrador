@@ -9,6 +9,7 @@ export interface Usuario {
   Username:string;
   Password: string | null;
   CombatesGanados: number;
+  UrlImagenPerfil:string;
   box: Caja[];
   ListaFavoritos: Pokemon[];
   ListaObjetos: Objeto[];

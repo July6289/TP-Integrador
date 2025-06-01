@@ -38,6 +38,7 @@ export class PokeservicesService {
     Username:"",
     Password: "",
     CombatesGanados: 0,
+    UrlImagenPerfil:'',
     ListaFavoritos: [],
     ListaObjetos: [],
     ListaEquipos: []

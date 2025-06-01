@@ -28,6 +28,8 @@ export class PerfilComponent implements OnInit, OnDestroy {
   isCardShowing: boolean = true;
   isDeleteShowing: boolean = false;
   isLoggedWithouthGoogle: boolean = true;
+  selectedAvatar: string | null = null;
+  mostrarSelectorAvatar: boolean = false;
   usarioServicio = inject(UsuarioService);
   pokeservice = inject(PokeservicesService)
   usuario: Usuario = {
@@ -36,6 +38,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
     Email: "",
     Username:"",
     Password: "",
+    UrlImagenPerfil:"",
     CombatesGanados: 0,
     ListaFavoritos: [],
     ListaObjetos: [],
@@ -55,6 +58,11 @@ export class PerfilComponent implements OnInit, OnDestroy {
   mostrarTutorial: boolean = false;
   private tutorialSub?: Subscription;
 
+avatarList: string[] = [
+  '/assets/imagenes/imagen_pokemon1.png',
+  '/assets/imagenes/imagen_pokemon2.png',
+  '/assets/imagenes/imagen_pokemon3.png'
+];
 
   constructor(private tutorialService: TutorialService) { }
 
@@ -75,6 +83,27 @@ export class PerfilComponent implements OnInit, OnDestroy {
     }, 300);
   }
 
+seleccionarAvatar(avatar: string): void {
+  this.selectedAvatar = avatar;
+  this.mostrarSelectorAvatar = false; // cerrar selector al elegir
+  this.isCardShowing=true
+
+  this.usuario.UrlImagenPerfil=this.selectedAvatar
+   this.usuarioService.putUsuario(this.usuario,this.id).subscribe(
+                {
+                  next: () => {
+                    console.log("imagen actualizada con exito");
+                    this.usarioServicio.cambiarUrl(this.usuario.UrlImagenPerfil)
+                  },
+                  error: (e: Error) => {
+                    console.log(e.message);
+                  }
+                }
+              )
+
+
+
+}
   cerrarTutorial() {
     this.tutorialService.ocultarTutorial();
   }
@@ -102,6 +131,8 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;
+          this.usuario.UrlImagenPerfil=valor.UrlImagenPerfil
+          this.selectedAvatar=this.usuario.UrlImagenPerfil
           this.usuario.box = this.pokeservice.cajas
           valor.box.map((caja) => {
             this.usuario.box[this.posicion].imagen = caja.imagen;
@@ -233,4 +264,13 @@ addUsuario() {
       }
     )
   }
+
+  mostrarSelector(){
+    this.mostrarSelectorAvatar=true
+    this.isCardShowing=false
+
+
+  }
+
+
 }

@@ -38,6 +38,7 @@ export class CajaComponent implements OnInit {
     Email: "",
     Username:"",
     Password: "",
+    UrlImagenPerfil:'',
     CombatesGanados: 0,
     ListaFavoritos: [],
     ListaObjetos: [],
@@ -72,7 +73,7 @@ export class CajaComponent implements OnInit {
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
-
+          this.usuario.UrlImagenPerfil=valor.UrlImagenPerfil
           //la forma definitiva de evitar el undefined
           this.usuario.box = this.pokeservice.cajas
           valor.box.map((caja) => {

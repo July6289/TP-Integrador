@@ -17,7 +17,16 @@ export class UsuarioService {
    private ActivadorMensajeSubject = new BehaviorSubject<boolean>(false);
     activadorMensaje$ = this.ActivadorMensajeSubject.asObservable();
 
+    private ActualizarUrlPerfilSubject = new BehaviorSubject<string>("");
+    actualizarperfil$ = this.ActualizarUrlPerfilSubject.asObservable();
 
+
+public cambiarUrl(url:string)
+{
+
+  this.ActualizarUrlPerfilSubject.next(url)
+
+}
   public activarMensaje()
   {
     this.ActivadorMensajeSubject.next(true)

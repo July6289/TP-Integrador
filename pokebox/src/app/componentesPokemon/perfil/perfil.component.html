@@ -33,8 +33,13 @@
       </div>
 
       <!-- Columna derecha - Imagen del entrenador -->
+        <button class="btn-change-avatar" (click)="mostrarSelector()">
+    Cambiar Avatar
+  </button>
       <div class="trainer-image-container">
-        <img class="Image-trainer" src="/assets/imagenes/entrenador_pokemon.png" alt="Imagen del entrenador">
+
+        <img class="Image-trainer" [src]="selectedAvatar" alt="Imagen del entrenador">
+
       </div>
     </div>
 
@@ -112,5 +117,21 @@
       </div>
     </div>
     }
+
+
+
+    @if (mostrarSelectorAvatar) {
+        <label class="mensajeSelector">Selecciona tu Avatar:</label>
+
+    <div class="avatar-selector">
+  <div class="avatar-options">
+    <img *ngFor="let avatar of avatarList"
+         [src]="avatar"
+         [class.selected]="selectedAvatar === avatar"
+         (click)="seleccionarAvatar(avatar)"
+         alt="Avatar">
+  </div>
+</div>
+}
   </div>
 </div>

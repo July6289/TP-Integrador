@@ -21,18 +21,6 @@ export class FavoritosComponent {
   contextMenuX = 0;
   contextMenuY = 0;
   selectedPokemon: Pokemon | null = null;
-  usuario: Usuario = {
-    id: "",
-    box: [],
-    Email: "",
-    Username:"",
-    Password: "",
-    CombatesGanados: 0,
-    ListaFavoritos: [],
-    ListaObjetos: [],
-    ListaEquipos: []
-  }
-
   constructor(private pokeService: PokeservicesService) {
     this.favoritos$ = this.pokeService.favoritos$;
   }

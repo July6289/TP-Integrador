@@ -31,6 +31,84 @@
 .user-info-list {
   flex: 1;
 }
+btn-change-avatar {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #1976D2;
+  color: white;
+  border: none;
+  border-radius: 0.3125rem;
+}
+
+.mensajeSelector{
+  font-size: 20px;
+  display: flex;
+margin-left: 450px;
+  color:rgb(0, 0, 0);
+    font-family: 'Winky Rough', cursive;
+
+}
+
+.btn-change-avatar:hover {
+  background-color: #1565C0;
+}
+
+.avatar-selector {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: #f0f0f0;
+  border-radius: 0.5rem;
+}
+
+.avatar-options {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.avatar-options img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.avatar-options img:hover {
+  transform: scale(1.1);
+}
+
+.avatar-options img.selected {
+  border: 3px solid #4CAF50;
+}
+.avatar-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; /* lo alinea a la izquierda */
+  margin-top: 1rem;
+  padding-left: 1rem;
+}
+
+.btn-change-avatar {
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
+  margin-top: 200px;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  background-color: #dab40e;
+  border: 0.125rem solid #bee23a;
+  transition-duration: 0.3s;
+  color: white;
+}
+
+.btn-change-avatar:hover {
+  background-color: #0cd693; /* o ponelo naranja si querés copiar el otro */
+}
+
+
 
 .trainer-image-container {
   height: 30rem;

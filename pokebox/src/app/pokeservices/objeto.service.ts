@@ -21,6 +21,7 @@ export class ObjetoService {
     Username:"",
     Password: "",
     CombatesGanados: 0,
+    UrlImagenPerfil:'',
     ListaFavoritos: [],
     ListaObjetos: [],
     ListaEquipos: []

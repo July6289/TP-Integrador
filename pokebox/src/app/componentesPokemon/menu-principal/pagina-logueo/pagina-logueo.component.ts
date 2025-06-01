@@ -40,6 +40,7 @@ export class PaginaLogueoComponent {
     Email: "",
     Username:"",
     Password: "",
+    UrlImagenPerfil:'',
     CombatesGanados: 0,
     ListaFavoritos: [],
     ListaObjetos: [],
@@ -52,6 +53,7 @@ export class PaginaLogueoComponent {
       Email: ['', [Validators.required, Validators.minLength(6)]],
       Username:['',[Validators.required,Validators.minLength(6)]],
       Password: ['', [Validators.required, Validators.minLength(6)]],
+      UrlImagenPerfil:[''],
       CombatesGanados: 0,
       ListaFavoritos: [[] as Pokemon[],],
       ListaObjetos: [[] as Objeto[],],
@@ -136,8 +138,8 @@ export class PaginaLogueoComponent {
                 this.idUsuario = getRandomAlphaNumeric(4);
                 this.usuarioNuevo.id = this.idUsuario;
                 this.usuarioNuevo.Email = email;
-
                 this.usuarioNuevo.Username=name;
+                this.usuarioNuevo.UrlImagenPerfil='/assets/imagenes/imagen_pokemon1.png'
                 this.usuarioNuevo.Password = null;
                 this.usuarioService.postUsuario(this.usuarioNuevo).subscribe(
                   {
@@ -180,6 +182,8 @@ export class PaginaLogueoComponent {
       this.validadorMensajeEspecifico = true;
       const usuario = this.formulario.getRawValue();
       usuario.box = this.pokeservice.cajas;
+      usuario.UrlImagenPerfil='/assets/imagenes/imagen_pokemon1.png'
+
       this.usuarioService.getUsuariobyName(usuario.Email).subscribe(
         {
           next: (usuarioDato: Usuario[]) => {

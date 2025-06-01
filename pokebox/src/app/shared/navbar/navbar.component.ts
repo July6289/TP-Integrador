@@ -31,6 +31,7 @@ export class NavbarComponent implements OnInit {
     Username:"",
     Password: "",
     CombatesGanados: 0,
+    UrlImagenPerfil:'',
     ListaFavoritos: [],
     ListaObjetos: [],
     ListaEquipos: []
@@ -42,6 +43,8 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
     this.usuarioService.activadorMensaje$.subscribe(
       dato=> {this.mensajeActivo=dato
               console.log('Estado del mensaje:', dato);
@@ -55,15 +58,15 @@ export class NavbarComponent implements OnInit {
     }
       console.log("dato es",this.mensajeActivo)
 
+    this.usuarioService.actualizarperfil$.subscribe(
+      dato=>{this.usuario.UrlImagenPerfil=dato}
+    )
 
 
   }
 
 
-  public activarMensaje()
-  {
-    this.mensajeActivo=true
-  }
+
 
   dbUsuarioId() {
     this.secretId = this.auth.getTokenValue();
@@ -75,6 +78,8 @@ export class NavbarComponent implements OnInit {
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;
+
+          this.usuario.UrlImagenPerfil=valor.UrlImagenPerfil
           for (let i = 0; i < valor.box.length; i++) {
             this.usuario.box[i] = valor.box[i]
           }

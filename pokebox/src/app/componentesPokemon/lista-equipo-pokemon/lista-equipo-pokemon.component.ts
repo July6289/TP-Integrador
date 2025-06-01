@@ -38,6 +38,7 @@ export class ListaEquipoPokemonComponent implements OnInit, OnDestroy {
     Username:"",
     Password: "",
     CombatesGanados: 0,
+    UrlImagenPerfil:'',
     ListaFavoritos: [],
     ListaObjetos: [],
     ListaEquipos: []
@@ -81,7 +82,7 @@ export class ListaEquipoPokemonComponent implements OnInit, OnDestroy {
           this.usuario.CombatesGanados = valor.CombatesGanados;
 
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
-
+          this.usuario.UrlImagenPerfil=valor.UrlImagenPerfil
           //la forma definitiva de evitar el undefined
           this.usuario.box = this.pokeservice.cajas
           valor.box.map((caja) => {

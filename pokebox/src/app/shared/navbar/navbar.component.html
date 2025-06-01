@@ -7,7 +7,7 @@
       <p>Home</p>
     </button>
     <button class="homePage" (click)="goToPerfil()">
-      <img class="imagenUsuario" src="assets/imagenes/images.png" alt="imagen perfil">
+      <img class="imagenUsuario" [src]="this.usuario.UrlImagenPerfil" alt="imagen perfil">
       <p>Perfil</p>
     </button>
 
