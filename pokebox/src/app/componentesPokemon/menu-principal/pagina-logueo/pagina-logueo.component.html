@@ -4,7 +4,7 @@
   @if (IsFormRegisterShowing) {
 
 
-  <form class="formulario" [formGroup]="formulario"  (ngSubmit)="addUsuario()" (keydown.enter)="checkLoggedUsuario()">
+  <form class="formulario" [formGroup]="formulario"  (keydown.enter)="checkLoggedUsuario()">
     <h1 class="titulo">Registrarse</h1>
 
 

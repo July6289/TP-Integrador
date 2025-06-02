@@ -182,7 +182,7 @@ export class PaginaLogueoComponent {
       this.validadorMensajeEspecifico = true;
       const usuario = this.formulario.getRawValue();
       usuario.box = this.pokeservice.cajas;
-      usuario.UrlImagenPerfil='/assets/imagenes/imagen_pokemon12.png'
+      usuario.UrlImagenPerfil='/assets/imagenes/imagen_pokemon1.png'
 
       this.usuarioService.getUsuariobyName(usuario.Email).subscribe(
         {
@@ -198,12 +198,11 @@ export class PaginaLogueoComponent {
             else {
               this.auth.register(usuario as Usuario)
                 .then(() => {
-                  this.idUsuario = getRandomAlphaNumeric(4);
-                  usuario.id = this.idUsuario;
+                  usuario.id = getRandomAlphaNumeric(4);
                   this.usuarioService.postUsuario(usuario).subscribe(
                     {
                       next: () => {
-                        localStorage.setItem('token', this.idUsuario);
+                        localStorage.setItem('token', usuario.id);
                         this.authservice.logIn2(usuario);
                         this.usuarioService.estoyLogeado = true
                         this.usuarioService.activarMensaje()

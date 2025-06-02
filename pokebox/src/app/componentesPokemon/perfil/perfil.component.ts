@@ -129,7 +129,7 @@ seleccionarAvatar(avatar: string): void {
         next: (valor: Usuario) => {
           this.usuario.Email = valor.Email;
           this.usuario.Username=valor.Username
-          if (valor.Password === null) {
+          if (valor.Password === null||!valor.Password.length) {
             this.isLoggedWithouthGoogle = false; // Tiene cuenta de Google
           }
           else {

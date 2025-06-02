@@ -74,6 +74,7 @@ export class RecuperarContraComponent implements OnInit {
               next: (usuarioDato: Usuario[]) => {
                 if (usuarioDato.length > 0 && usuarioDato[0] != undefined) {
                   this.usuarioDato = usuarioDato[0]
+                  console.log(this.usuarioDato)
                   this.usuarioDato.Email = this.email;
                   this.usuarioDato.Password = this.newPassword;
                   console.log(usuarioDato)
