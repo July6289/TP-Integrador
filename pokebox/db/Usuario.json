@@ -1,193 +1,6 @@
 {
   "Usuarios": [
     {
-      "id": "YQ4E",
-      "box": [
-        {
-          "imagen": "/assets/imagenes/cajas/1.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/2.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/3.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/4.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/5.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/6.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/7.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/8.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/9.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/10.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/11.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/12.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/13.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/14.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/15.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/16.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/17.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/18.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/19.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/20.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/21.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/22.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/23.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/24.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/25.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/26.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/27.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/28.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/29.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/30.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/31.png",
-          "pokemones": []
-        },
-        {
-          "imagen": "/assets/imagenes/cajas/32.png",
-          "pokemones": []
-        }
-      ],
-      "Email": "auterijuli82@gmail.com",
-      "Username": "nosexd",
-      "Password": "NOSESDSD",
-      "UrlImagenPerfil": "/assets/imagenes/imagen_pokemon1.png",
-      "CombatesGanados": 0,
-      "ListaFavoritos": [],
-      "ListaObjetos": [
-        {
-          "nombre": "Agua fresca",
-          "descripcion": "Agua de alto contenido mineral que restaura 30 PS de un Pokémon.",
-          "generacion": "1",
-          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/a/ae/latest/20230115173952/Agua_fresca_EP.png/32px-Agua_fresca_EP.png",
-          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/a/ae/latest/20230115173952/Agua_fresca_EP.png",
-          "id": "9d55",
-          "cantidad": 1
-        },
-        {
-          "nombre": "Piedra agua",
-          "descripcion": "Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es de color azul.",
-          "generacion": "1",
-          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/1/14/latest/20230106130249/Piedra_agua_EP.png/32px-Piedra_agua_EP.png",
-          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/1/14/latest/20230106130249/Piedra_agua_EP.png",
-          "id": "dbaa",
-          "cantidad": 1
-        },
-        {
-          "nombre": "Agua mística",
-          "descripcion": "Gema con forma de gota de agua que potencia los movimientos de tipo agua. Debe llevarla un Pokémon.",
-          "generacion": "2",
-          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/7/75/latest/20230122124919/Agua_mística_EP.png/32px-Agua_mística_EP.png",
-          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/7/75/latest/20230122124919/Agua_m%C3%ADstica_EP.png",
-          "id": "df48",
-          "cantidad": 1
-        },
-        {
-          "nombre": "Cinta aguante",
-          "descripcion": "El Pokémon que la lleva a veces resiste los golpes que potencialmente lo debilitarían y se queda con 1 PS.",
-          "generacion": "2",
-          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/f/ff/latest/20230122140924/Cinta_aguante_EP.png/32px-Cinta_aguante_EP.png",
-          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/f/ff/latest/20230122140924/Cinta_aguante_EP.png",
-          "id": "4374",
-          "cantidad": 1
-        },
-        {
-          "nombre": "Banda aguante",
-          "descripcion": "Si el Pokémon que la lleva tiene los PS al máximo, resiste una vez un golpe que lo debilitaría y se queda con 1 PS.",
-          "generacion": "4",
-          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/b/be/latest/20230122140856/Banda_aguante_EP.png/32px-Banda_aguante_EP.png",
-          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/b/be/latest/20230122140856/Banda_aguante_EP.png",
-          "id": "502b",
-          "cantidad": 1
-        }
-      ],
-      "ListaEquipos": []
-    },
-    {
       "id": "iG8f",
       "box": [
         {
@@ -323,6 +136,147 @@
       "Username": "Nailuj",
       "Password": "",
       "UrlImagenPerfil": "/assets/imagenes/imagen_pokemon2.png",
+      "CombatesGanados": 0,
+      "ListaFavoritos": [],
+      "ListaObjetos": [],
+      "ListaEquipos": []
+    },
+    {
+      "id": "NMNN",
+      "box": [
+        {
+          "imagen": "/assets/imagenes/cajas/1.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/2.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/3.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/4.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/5.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/6.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/7.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/8.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/9.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/10.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/11.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/12.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/13.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/14.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/15.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/16.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/17.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/18.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/19.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/20.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/21.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/22.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/23.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/24.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/25.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/26.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/27.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/28.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/29.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/30.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/31.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/32.png",
+          "pokemones": []
+        }
+      ],
+      "Email": "auterijuli82@gmail.com",
+      "Username": "Juli",
+      "Password": "",
+      "UrlImagenPerfil": "/assets/imagenes/imagen_pokemon1.png",
       "CombatesGanados": 0,
       "ListaFavoritos": [],
       "ListaObjetos": [],

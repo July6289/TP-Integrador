@@ -182,7 +182,7 @@ export class PaginaLogueoComponent {
       this.validadorMensajeEspecifico = true;
       const usuario = this.formulario.getRawValue();
       usuario.box = this.pokeservice.cajas;
-      usuario.UrlImagenPerfil='/assets/imagenes/imagen_pokemon1.png'
+      usuario.UrlImagenPerfil='/assets/imagenes/imagen_pokemon12.png'
 
       this.usuarioService.getUsuariobyName(usuario.Email).subscribe(
         {

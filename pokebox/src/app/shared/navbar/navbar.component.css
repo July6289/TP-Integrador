@@ -13,7 +13,7 @@ nav {
 
 .mensaje-bienvenida {
   margin-left: 1rem;
-  font-size: 1.25rem;
+  font-size: 1.50rem;
   font-weight: bold;
   color: white;
   position: absolute;
@@ -21,6 +21,8 @@ nav {
   transform: translateX(-50%);
   z-index: 1;
   pointer-events: none; /* Para evitar interacciones accidentales */
+    font-family: 'Winky Rough', cursive;
+
 }
 .homePage,
 .boton2,

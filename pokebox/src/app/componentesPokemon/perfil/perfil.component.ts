@@ -61,7 +61,15 @@ export class PerfilComponent implements OnInit, OnDestroy {
 avatarList: string[] = [
   '/assets/imagenes/imagen_pokemon1.png',
   '/assets/imagenes/imagen_pokemon2.png',
-  '/assets/imagenes/imagen_pokemon3.png'
+  '/assets/imagenes/imagen_pokemon3.png',
+  '/assets/imagenes/imagen_pokemon4.png',
+  '/assets/imagenes/imagen_pokemon5.png',
+  '/assets/imagenes/imagen_pokemon6.png',
+  '/assets/imagenes/imagen_pokemon7.png',
+  '/assets/imagenes/imagen_pokemon8.png',
+  '/assets/imagenes/imagen_pokemon9.png',
+  '/assets/imagenes/imagen_pokemon10.png',
+  '/assets/imagenes/imagen_pokemon11.png',
 ];
 
   constructor(private tutorialService: TutorialService) { }
