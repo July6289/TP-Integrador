@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../auth/service/auth.service';
@@ -11,7 +11,7 @@ import { Observable, Subscription } from 'rxjs';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink,CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -47,7 +47,7 @@ export class NavbarComponent implements OnInit {
 
     this.usuarioService.activadorMensaje$.subscribe(
       dato=> {this.mensajeActivo=dato
-              console.log('Estado del mensaje:', dato);
+
   }
 )
 

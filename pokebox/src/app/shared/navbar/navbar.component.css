@@ -10,20 +10,21 @@ nav {
   max-width: 9.375rem;
 }
 
-
+.mininav{
+  background-color: #4A4A4A;
+}
 .mensaje-bienvenida {
-  margin-left: 1rem;
-  font-size: 1.50rem;
+  font-size: 20px;
+  text-align: center;
   font-weight: bold;
   color: white;
-  position: absolute;
-  left: 400px;
-  transform: translateX(-50%);
-  z-index: 1;
-  pointer-events: none; /* Para evitar interacciones accidentales */
     font-family: 'Winky Rough', cursive;
+    left: 50px;
 
 }
+
+
+
 .homePage,
 .boton2,
 .helpPage {
@@ -111,6 +112,11 @@ nav {
     margin-bottom: 0.5rem;
   }
 
+.mensaje-bienvenida{
+   width: 18vh;
+    max-width: 7.5rem;
+
+}
   .imagenLogueo {
     width: 18vh;
     max-width: 7.5rem;

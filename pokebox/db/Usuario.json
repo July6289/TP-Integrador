@@ -152,11 +152,53 @@
       "ListaEquipos": []
     },
     {
-      "id": "z1gF",
+      "id": "l2Ps",
       "box": [
         {
           "imagen": "/assets/imagenes/cajas/1.png",
-          "pokemones": []
+          "pokemones": [
+            {
+              "forms": [
+                {
+                  "name": "bulbasaur",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/1/"
+                }
+              ],
+              "id": 1,
+              "is_default": true,
+              "name": "bulbasaur",
+              "species": {
+                "name": "bulbasaur",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/1/"
+              },
+              "sprites": {
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png",
+                "back_female": null,
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/1.png",
+                "back_shiny_female": null,
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+                "front_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png",
+                "front_shiny_female": null
+              },
+              "types": [
+                {
+                  "slot": 1,
+                  "type": {
+                    "name": "grass",
+                    "url": "https://pokeapi.co/api/v2/type/12/"
+                  }
+                },
+                {
+                  "slot": 2,
+                  "type": {
+                    "name": "poison",
+                    "url": "https://pokeapi.co/api/v2/type/4/"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "imagen": "/assets/imagenes/cajas/2.png",
@@ -284,8 +326,8 @@
         }
       ],
       "Email": "auterijuli82@gmail.com",
-      "Username": "no lose bro xdd",
-      "Password": "no lose bro xdd",
+      "Username": "Julián",
+      "Password": "nosebroxd",
       "UrlImagenPerfil": "/assets/imagenes/imagen_pokemon1.png",
       "CombatesGanados": 0,
       "ListaFavoritos": [],
