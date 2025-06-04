@@ -32,25 +32,27 @@
         </div>
       </div>
 
-      <!-- Columna derecha - Imagen del entrenador -->
-        <button class="btn-change-avatar" (click)="mostrarSelector()">
-    Cambiar Avatar
-  </button>
-      <div class="trainer-image-container">
 
-        <img class="Image-trainer" [src]="selectedAvatar" alt="Imagen del entrenador">
 
-      </div>
-    </div>
+     <!-- COLUMNA DERECHA: Imagen + botón -->
+<div class="trainer-container">
+  <div class="trainer-image-container">
+    <img class="Image-trainer" [src]="selectedAvatar" alt="Imagen del entrenador">
+  </div>
+</div>
 
-    <!-- Botones de acción -->
-    <div class="action-buttons">
-      @if(isLoggedWithouthGoogle)
-      {
-      <button class="btn-modify-account" (click)="toggleModify()">Modificar Perfil</button>
-      }
-      <button class="btn-delete-account" (click)="toogleDelete()">Eliminar Cuenta</button>
-    </div>
+
+</div>
+<!-- Botones de acción -->
+<div class="action-buttons">
+  @if(isLoggedWithouthGoogle) {
+    <button class="btn-modify-account" (click)="toggleModify()">Modificar Perfil</button>
+  }
+  <button class="btn-change-avatar" (click)="mostrarSelector()">Cambiar Avatar</button>
+<button class="btn-delete-account" (click)="toogleDelete()">Eliminar Cuenta</button>
+</div>
+
+
     }
 <!-- Formulario de modificación, solo se muestra si isModifyShowing es verdadero -->
   @if(isModifyShowing) {
