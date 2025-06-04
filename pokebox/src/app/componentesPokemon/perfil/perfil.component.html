@@ -36,6 +36,7 @@
 
      <!-- COLUMNA DERECHA: Imagen + botón -->
 <div class="trainer-container">
+    <button class="btn-change-avatar" (click)="mostrarSelector()">Cambiar Avatar</button>
   <div class="trainer-image-container">
     <img class="Image-trainer" [src]="selectedAvatar" alt="Imagen del entrenador">
   </div>
@@ -48,7 +49,6 @@
   @if(isLoggedWithouthGoogle) {
     <button class="btn-modify-account" (click)="toggleModify()">Modificar Perfil</button>
   }
-  <button class="btn-change-avatar" (click)="mostrarSelector()">Cambiar Avatar</button>
 <button class="btn-delete-account" (click)="toogleDelete()">Eliminar Cuenta</button>
 </div>
 
