@@ -7,6 +7,8 @@ import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.in
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { TutorialService } from '../../pokeservices/tutorial.service';
 import { Observable, Subscription } from 'rxjs';
+import { PokeservicesService } from '../../pokeservices/pokeservices.service';
+import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 
 @Component({
   selector: 'app-navbar',
@@ -38,7 +40,7 @@ export class NavbarComponent implements OnInit {
   }
   secretId: string | null = ""
 
- constructor(private usuarioService:UsuarioService ) {
+ constructor(private usuarioService:UsuarioService,private pokeservce:PokeservicesService,private equposervice:EquipoPokemonService ) {
 
   }
 
@@ -119,6 +121,9 @@ export class NavbarComponent implements OnInit {
       this.auth.logLogout() //para firebase
       this.textButton = 'Iniciar Sesion'
       this.Router.navigateByUrl('registro');
+      this.pokeservce.limpiarCaja()
+      this.pokeservce.vaciarFavoritos()
+      this.equposervice.limpiarEquipo()
       localStorage.clear();
     }
   }

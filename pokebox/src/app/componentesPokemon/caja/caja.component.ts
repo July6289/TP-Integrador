@@ -51,10 +51,6 @@ export class CajaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pokeService.cajas$.subscribe(cajas => {
-      this.usuario.box = cajas; // Actualiza las cajas en tiempo real
-    });
-
     this.secretId = this.auth.getTokenValue();
     this.dbUsuarioId();
     setTimeout(() => {
@@ -70,6 +66,7 @@ export class CajaComponent implements OnInit {
         next: (valor: Usuario) => {
           this.usuario.Email = valor.Email;
           this.usuario.Password = valor.Password
+          this.usuario.Username=valor.Username
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco

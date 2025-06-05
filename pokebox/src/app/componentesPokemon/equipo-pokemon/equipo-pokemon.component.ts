@@ -80,6 +80,7 @@ export class EquipoPokemonComponent implements OnInit, OnDestroy {
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;
+          this.usuario.Username=valor.Username
 
           this.usuario.UrlImagenPerfil=valor.UrlImagenPerfil
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
