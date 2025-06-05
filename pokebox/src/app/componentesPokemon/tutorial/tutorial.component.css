@@ -63,7 +63,7 @@
 
 .imagen {
   max-width: 29vw;
-
+  border-radius: 1rem;
   width: 100%;
   height: auto;
 }

@@ -140,16 +140,339 @@
       "ListaFavoritos": [],
       "ListaObjetos": [
         {
-          "nombre": "Agua fresca",
-          "descripcion": "Agua de alto contenido mineral que restaura 30 PS de un Pokémon.",
+          "nombre": "Poké Ball",
+          "descripcion": "Dispositivo con diseño capsular que captura Pokémon salvajes. Se lanza como una bola contra el blanco.",
           "generacion": "1",
-          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/a/ae/latest/20230115173952/Agua_fresca_EP.png/32px-Agua_fresca_EP.png",
-          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/a/ae/latest/20230115173952/Agua_fresca_EP.png",
-          "id": "22ba",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/6/6a/latest/20230115164405/Poké_Ball_EP.png/32px-Poké_Ball_EP.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/0/02/latest/20231226202856/Pok%C3%A9_Ball_%28Ilustraci%C3%B3n%29.png",
+          "id": "a686",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Super Ball",
+          "descripcion": "Poké Ball de alto rendimiento. Tiene un índice de captura superior al de la Poké Ball.",
+          "generacion": "1",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/3/3f/latest/20230115164421/Super_Ball_EP.png/32px-Super_Ball_EP.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/5/57/latest/20231226203004/Super_Ball_%28Ilustraci%C3%B3n%29.png",
+          "id": "e6e5",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Ultra Ball",
+          "descripcion": "Poké Ball de rendimiento superior. Tiene un índice de captura mayor al de la Super Ball.",
+          "generacion": "1",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/9/9f/latest/20230115164434/Ultra_Ball_EP.png/32px-Ultra_Ball_EP.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/c/c9/latest/20231226203124/Ultra_Ball_%28Ilustraci%C3%B3n%29.png",
+          "id": "66f7",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Master Ball",
+          "descripcion": "La Poké Ball definitiva. Captura cualquier Pokémon salvaje y no falla nunca.",
+          "generacion": "1",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/e/eb/latest/20230115164446/Master_Ball_EP.png/32px-Master_Ball_EP.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/a/a9/latest/20120802225204/Master_Ball_%28Ilustraci%C3%B3n%29.png",
+          "id": "5d6e",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Safari Ball",
+          "descripcion": "Poké Ball especial utilizada en lugares como la Zona Safari de Kanto y el Gran Pantano de Sinnoh.",
+          "generacion": "1",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/4/47/latest/20230115164921/Safari_Ball_EP.png/32px-Safari_Ball_EP.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/a/ac/latest/20231226200329/Safari_Ball_%28Ilustraci%C3%B3n%29.png",
+          "id": "6f73",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Honor Ball",
+          "descripcion": "Poké Ball algo singular que se creó para conmemorar algún acontecimiento.",
+          "generacion": "3",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/e/ea/latest/20230115165123/Honor_Ball_EP.png/32px-Honor_Ball_EP.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/a/a0/latest/20231226200646/Honor_Ball_%28Ilustraci%C3%B3n%29.png",
+          "id": "64d0",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Rapid Ball",
+          "descripcion": "Poké Ball algo distinta a las demás especialmente indicada para capturar Pokémon con tendencia a huir.",
+          "generacion": "2",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/4/4e/latest/20230103133554/Rapid_Ball_EP.png/32px-Rapid_Ball_EP.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/9/9e/latest/20231226195048/Rapid_Ball_%28Ilustraci%C3%B3n%29.png",
+          "id": "cf50",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Competi Ball",
+          "descripcion": "Poké Ball especial utilizada en el Concurso de Captura de Bichos de la región de Johto.",
+          "generacion": "2",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/5/59/latest/20230103133637/Competi_Ball_EP.png/32px-Competi_Ball_EP.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/5/59/latest/20230103133637/Competi_Ball_EP.png",
+          "id": "3b5d",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Amor Ball",
+          "descripcion": "Poké Ball algo distinta a las demás que funciona especialmente bien con Pokémon del sexo opuesto al del Pokémon propio.",
+          "generacion": "2",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/3/32/latest/20230103133439/Amor_Ball_EP.png/32px-Amor_Ball_EP.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/9/9c/latest/20231226195459/Amor_Ball_%28Ilustraci%C3%B3n%29.png",
+          "id": "ac8c",
           "cantidad": 1
         }
       ],
-      "ListaEquipos": []
+      "ListaEquipos": [
+        {
+          "nombre": "6ta",
+          "equipo": [
+            {
+              "forms": [
+                {
+                  "name": "venusaur",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/3/"
+                }
+              ],
+              "id": 1749134696905,
+              "is_default": true,
+              "name": "venusaur",
+              "species": {
+                "name": "venusaur",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/3/"
+              },
+              "sprites": {
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/3.png",
+                "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/3.png",
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/3.png",
+                "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/3.png",
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+                "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/3.png",
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/3.png",
+                "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/3.png"
+              },
+              "types": [
+                {
+                  "slot": 1,
+                  "type": {
+                    "name": "grass",
+                    "url": "https://pokeapi.co/api/v2/type/12/"
+                  }
+                },
+                {
+                  "slot": 2,
+                  "type": {
+                    "name": "poison",
+                    "url": "https://pokeapi.co/api/v2/type/4/"
+                  }
+                }
+              ],
+              "isAlive": true
+            },
+            {
+              "forms": [
+                {
+                  "name": "delphox",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/655/"
+                }
+              ],
+              "id": 1749134704173,
+              "is_default": true,
+              "name": "delphox",
+              "species": {
+                "name": "delphox",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/655/"
+              },
+              "sprites": {
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/655.png",
+                "back_female": null,
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/655.png",
+                "back_shiny_female": null,
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/655.png",
+                "front_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/655.png",
+                "front_shiny_female": null
+              },
+              "types": [
+                {
+                  "slot": 1,
+                  "type": {
+                    "name": "fire",
+                    "url": "https://pokeapi.co/api/v2/type/10/"
+                  }
+                },
+                {
+                  "slot": 2,
+                  "type": {
+                    "name": "psychic",
+                    "url": "https://pokeapi.co/api/v2/type/14/"
+                  }
+                }
+              ],
+              "isAlive": true
+            },
+            {
+              "forms": [
+                {
+                  "name": "pangoro",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/675/"
+                }
+              ],
+              "id": 1749134708953,
+              "is_default": true,
+              "name": "pangoro",
+              "species": {
+                "name": "pangoro",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/675/"
+              },
+              "sprites": {
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/675.png",
+                "back_female": null,
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/675.png",
+                "back_shiny_female": null,
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/675.png",
+                "front_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/675.png",
+                "front_shiny_female": null
+              },
+              "types": [
+                {
+                  "slot": 1,
+                  "type": {
+                    "name": "fighting",
+                    "url": "https://pokeapi.co/api/v2/type/2/"
+                  }
+                },
+                {
+                  "slot": 2,
+                  "type": {
+                    "name": "dark",
+                    "url": "https://pokeapi.co/api/v2/type/17/"
+                  }
+                }
+              ],
+              "isAlive": true
+            },
+            {
+              "forms": [
+                {
+                  "name": "doublade",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/680/"
+                }
+              ],
+              "id": 1749134711842,
+              "is_default": true,
+              "name": "doublade",
+              "species": {
+                "name": "doublade",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/680/"
+              },
+              "sprites": {
+                "back_default": null,
+                "back_female": null,
+                "back_shiny": null,
+                "back_shiny_female": null,
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/680.png",
+                "front_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/680.png",
+                "front_shiny_female": null
+              },
+              "types": [
+                {
+                  "slot": 1,
+                  "type": {
+                    "name": "steel",
+                    "url": "https://pokeapi.co/api/v2/type/9/"
+                  }
+                },
+                {
+                  "slot": 2,
+                  "type": {
+                    "name": "ghost",
+                    "url": "https://pokeapi.co/api/v2/type/8/"
+                  }
+                }
+              ],
+              "isAlive": true
+            },
+            {
+              "forms": [
+                {
+                  "name": "sylveon",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/700/"
+                }
+              ],
+              "id": 1749134717957,
+              "is_default": true,
+              "name": "sylveon",
+              "species": {
+                "name": "sylveon",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/700/"
+              },
+              "sprites": {
+                "back_default": null,
+                "back_female": null,
+                "back_shiny": null,
+                "back_shiny_female": null,
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/700.png",
+                "front_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/700.png",
+                "front_shiny_female": null
+              },
+              "types": [
+                {
+                  "slot": 1,
+                  "type": {
+                    "name": "fairy",
+                    "url": "https://pokeapi.co/api/v2/type/18/"
+                  }
+                }
+              ],
+              "isAlive": true
+            },
+            {
+              "forms": [
+                {
+                  "name": "noivern",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/715/"
+                }
+              ],
+              "id": 1749134723514,
+              "is_default": true,
+              "name": "noivern",
+              "species": {
+                "name": "noivern",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/715/"
+              },
+              "sprites": {
+                "back_default": null,
+                "back_female": null,
+                "back_shiny": null,
+                "back_shiny_female": null,
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/715.png",
+                "front_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/715.png",
+                "front_shiny_female": null
+              },
+              "types": [
+                {
+                  "slot": 1,
+                  "type": {
+                    "name": "flying",
+                    "url": "https://pokeapi.co/api/v2/type/3/"
+                  }
+                },
+                {
+                  "slot": 2,
+                  "type": {
+                    "name": "dragon",
+                    "url": "https://pokeapi.co/api/v2/type/16/"
+                  }
+                }
+              ],
+              "isAlive": true
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "l2Ps",

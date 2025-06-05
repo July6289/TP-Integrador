@@ -103,7 +103,7 @@ export class TutorialComponent implements OnInit {
       case 12:
         this.pagina.titulo = "Perfil";
         this.pagina.imagen = "/assets/imagenes/tutorial/12.png";
-        this.pagina.texto = "Dentro del perfil podrás ver tu mail, tu contraseña y tus combates ganados, además puedes modificar tu contraseña y tu email (excepto si entraste por google) o eliminar tu cuenta con su respectivo botón.";
+        this.pagina.texto = "Dentro del perfil podrás ver tu mail, tu contraseña, tus combates ganados y una imagen de perfil, la cual podras elegir entre una de las que aparecerán al presionar el boton “Cambiar Avatar”. además puedes modificar tu contraseña y tu email (excepto si entraste por google) o eliminar tu cuenta con su respectivo botón.";
         break;
       case 13:
         this.pagina.titulo = "Lista de objetos";
