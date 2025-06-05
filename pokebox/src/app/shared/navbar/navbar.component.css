@@ -27,7 +27,8 @@ nav {
 
 .homePage,
 .boton2,
-.helpPage {
+.helpPage,
+.perfilPage {
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -42,8 +43,13 @@ nav {
 }
 
 
-.homePage {
+.homePage,
+.perfilPage {
   margin-right: 2rem;
+}
+
+.perfilPage{
+
 }
 
 .homePage p,
@@ -88,10 +94,16 @@ nav {
   max-height: 2.6rem;
   cursor: pointer;
 }
-.imagenUsuario {
+.imagenUsuario,
+.imagenUsuarios {
   max-width: 3.125rem;
   max-height: 3.125rem;
   cursor: pointer;
+}
+.imagenUsuarios
+{
+  border-radius: 100%;
+  max-width: 2.6rem;
 }
 
 /* Media Queries */
@@ -161,7 +173,8 @@ nav {
     padding: 0.3rem 0.8rem;
   }
 
-  .imagenUsuario {
+  .imagenUsuario,
+  .imagenUsuarios {
     max-width: 2.5rem;
   }
 }
