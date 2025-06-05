@@ -110,6 +110,8 @@ export class PaginaLogueoComponent {
               this.mensajeEspecifico = 'no se puede enviar un correo de recuperacion a una cuenta autenticada con google'
             }
             else {
+              this.validadorMensajeEspecifico=true
+              this.mensajeEspecifico="mensaje enviado con exito"
               this.authservice.enviarCorreoRecuperación(usuarioDato.Email);
             }
           }

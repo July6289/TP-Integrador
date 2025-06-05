@@ -101,10 +101,8 @@ export class InventarioObjetoComponent implements OnInit {
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
 
-          this.usuario.ListaEquipos = valor.ListaEquipos.map(equipo => ({
-           nombre: equipo.nombre,
-          equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
-          }));
+
+          this.usuario.ListaEquipos = [...valor.ListaEquipos]
         },
         error: (e: Error) => {
           console.log(e.message);

@@ -83,19 +83,20 @@ export class EquipoPokemonComponent implements OnInit, OnDestroy {
 
           this.usuario.UrlImagenPerfil=valor.UrlImagenPerfil
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
+          this.usuario.box = this.pokeservice.cajas
 
           //la forma definitiva de evitar el undefined
-          this.usuario.box = valor.box.map((caja, index) => ({
-            imagen: caja.imagen || `/assets/imagenes/cajas/${index + 1}.png`,
-            pokemones: [...(caja.pokemones || [])] // clon defensivo y protección
-          }));
+            valor.box.map((caja) => {
+            this.usuario.box[this.posicion].imagen = caja.imagen;
+            this.usuario.box[this.posicion].pokemones = caja.pokemones;
+            this.posicion++;
+          })
+
+
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
 
-          this.usuario.ListaEquipos = valor.ListaEquipos.map(equipo => ({
-            nombre: equipo.nombre,
-            equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
-          }));
+          this.usuario.ListaEquipos = [...valor.ListaEquipos]
         },
         error: (e: Error) => {
           console.log(e.message);
