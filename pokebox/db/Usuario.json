@@ -223,7 +223,7 @@
       ],
       "ListaEquipos": [
         {
-          "nombre": "6ta",
+          "nombre": "asd",
           "equipo": [
             {
               "forms": [
@@ -232,7 +232,7 @@
                   "url": "https://pokeapi.co/api/v2/pokemon-form/3/"
                 }
               ],
-              "id": 1749134696905,
+              "id": 1749143132374,
               "is_default": true,
               "name": "venusaur",
               "species": {
@@ -270,25 +270,25 @@
             {
               "forms": [
                 {
-                  "name": "delphox",
-                  "url": "https://pokeapi.co/api/v2/pokemon-form/655/"
+                  "name": "charizard",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/6/"
                 }
               ],
-              "id": 1749134704173,
+              "id": 1749143132650,
               "is_default": true,
-              "name": "delphox",
+              "name": "charizard",
               "species": {
-                "name": "delphox",
-                "url": "https://pokeapi.co/api/v2/pokemon-species/655/"
+                "name": "charizard",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/6/"
               },
               "sprites": {
-                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/655.png",
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/6.png",
                 "back_female": null,
-                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/655.png",
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/6.png",
                 "back_shiny_female": null,
-                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/655.png",
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png",
                 "front_female": null,
-                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/655.png",
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/6.png",
                 "front_shiny_female": null
               },
               "types": [
@@ -302,8 +302,8 @@
                 {
                   "slot": 2,
                   "type": {
-                    "name": "psychic",
-                    "url": "https://pokeapi.co/api/v2/type/14/"
+                    "name": "flying",
+                    "url": "https://pokeapi.co/api/v2/type/3/"
                   }
                 }
               ],
@@ -312,159 +312,152 @@
             {
               "forms": [
                 {
-                  "name": "pangoro",
-                  "url": "https://pokeapi.co/api/v2/pokemon-form/675/"
+                  "name": "blastoise",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/9/"
                 }
               ],
-              "id": 1749134708953,
+              "id": 1749143133983,
               "is_default": true,
-              "name": "pangoro",
+              "name": "blastoise",
               "species": {
-                "name": "pangoro",
-                "url": "https://pokeapi.co/api/v2/pokemon-species/675/"
+                "name": "blastoise",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/9/"
               },
               "sprites": {
-                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/675.png",
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/9.png",
                 "back_female": null,
-                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/675.png",
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/9.png",
                 "back_shiny_female": null,
-                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/675.png",
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png",
                 "front_female": null,
-                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/675.png",
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/9.png",
                 "front_shiny_female": null
               },
               "types": [
                 {
                   "slot": 1,
                   "type": {
-                    "name": "fighting",
-                    "url": "https://pokeapi.co/api/v2/type/2/"
+                    "name": "water",
+                    "url": "https://pokeapi.co/api/v2/type/11/"
+                  }
+                }
+              ],
+              "isAlive": true
+            },
+            {
+              "forms": [
+                {
+                  "name": "arbok",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/24/"
+                }
+              ],
+              "id": 1749143134434,
+              "is_default": true,
+              "name": "arbok",
+              "species": {
+                "name": "arbok",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/24/"
+              },
+              "sprites": {
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/24.png",
+                "back_female": null,
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/24.png",
+                "back_shiny_female": null,
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png",
+                "front_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/24.png",
+                "front_shiny_female": null
+              },
+              "types": [
+                {
+                  "slot": 1,
+                  "type": {
+                    "name": "poison",
+                    "url": "https://pokeapi.co/api/v2/type/4/"
+                  }
+                }
+              ],
+              "isAlive": true
+            },
+            {
+              "forms": [
+                {
+                  "name": "fearow",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/22/"
+                }
+              ],
+              "id": 1749143135425,
+              "is_default": true,
+              "name": "fearow",
+              "species": {
+                "name": "fearow",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/22/"
+              },
+              "sprites": {
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/22.png",
+                "back_female": null,
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/22.png",
+                "back_shiny_female": null,
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/22.png",
+                "front_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/22.png",
+                "front_shiny_female": null
+              },
+              "types": [
+                {
+                  "slot": 1,
+                  "type": {
+                    "name": "normal",
+                    "url": "https://pokeapi.co/api/v2/type/1/"
                   }
                 },
                 {
                   "slot": 2,
-                  "type": {
-                    "name": "dark",
-                    "url": "https://pokeapi.co/api/v2/type/17/"
-                  }
-                }
-              ],
-              "isAlive": true
-            },
-            {
-              "forms": [
-                {
-                  "name": "doublade",
-                  "url": "https://pokeapi.co/api/v2/pokemon-form/680/"
-                }
-              ],
-              "id": 1749134711842,
-              "is_default": true,
-              "name": "doublade",
-              "species": {
-                "name": "doublade",
-                "url": "https://pokeapi.co/api/v2/pokemon-species/680/"
-              },
-              "sprites": {
-                "back_default": null,
-                "back_female": null,
-                "back_shiny": null,
-                "back_shiny_female": null,
-                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/680.png",
-                "front_female": null,
-                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/680.png",
-                "front_shiny_female": null
-              },
-              "types": [
-                {
-                  "slot": 1,
-                  "type": {
-                    "name": "steel",
-                    "url": "https://pokeapi.co/api/v2/type/9/"
-                  }
-                },
-                {
-                  "slot": 2,
-                  "type": {
-                    "name": "ghost",
-                    "url": "https://pokeapi.co/api/v2/type/8/"
-                  }
-                }
-              ],
-              "isAlive": true
-            },
-            {
-              "forms": [
-                {
-                  "name": "sylveon",
-                  "url": "https://pokeapi.co/api/v2/pokemon-form/700/"
-                }
-              ],
-              "id": 1749134717957,
-              "is_default": true,
-              "name": "sylveon",
-              "species": {
-                "name": "sylveon",
-                "url": "https://pokeapi.co/api/v2/pokemon-species/700/"
-              },
-              "sprites": {
-                "back_default": null,
-                "back_female": null,
-                "back_shiny": null,
-                "back_shiny_female": null,
-                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/700.png",
-                "front_female": null,
-                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/700.png",
-                "front_shiny_female": null
-              },
-              "types": [
-                {
-                  "slot": 1,
-                  "type": {
-                    "name": "fairy",
-                    "url": "https://pokeapi.co/api/v2/type/18/"
-                  }
-                }
-              ],
-              "isAlive": true
-            },
-            {
-              "forms": [
-                {
-                  "name": "noivern",
-                  "url": "https://pokeapi.co/api/v2/pokemon-form/715/"
-                }
-              ],
-              "id": 1749134723514,
-              "is_default": true,
-              "name": "noivern",
-              "species": {
-                "name": "noivern",
-                "url": "https://pokeapi.co/api/v2/pokemon-species/715/"
-              },
-              "sprites": {
-                "back_default": null,
-                "back_female": null,
-                "back_shiny": null,
-                "back_shiny_female": null,
-                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/715.png",
-                "front_female": null,
-                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/715.png",
-                "front_shiny_female": null
-              },
-              "types": [
-                {
-                  "slot": 1,
                   "type": {
                     "name": "flying",
                     "url": "https://pokeapi.co/api/v2/type/3/"
                   }
+                }
+              ],
+              "isAlive": true
+            },
+            {
+              "forms": [
+                {
+                  "name": "pidgeot",
+                  "url": "https://pokeapi.co/api/v2/pokemon-form/18/"
+                }
+              ],
+              "id": 1749143137560,
+              "is_default": true,
+              "name": "pidgeot",
+              "species": {
+                "name": "pidgeot",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/18/"
+              },
+              "sprites": {
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/18.png",
+                "back_female": null,
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/18.png",
+                "back_shiny_female": null,
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png",
+                "front_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/18.png",
+                "front_shiny_female": null
+              },
+              "types": [
+                {
+                  "slot": 1,
+                  "type": {
+                    "name": "normal",
+                    "url": "https://pokeapi.co/api/v2/type/1/"
+                  }
                 },
                 {
                   "slot": 2,
                   "type": {
-                    "name": "dragon",
-                    "url": "https://pokeapi.co/api/v2/type/16/"
+                    "name": "flying",
+                    "url": "https://pokeapi.co/api/v2/type/3/"
                   }
                 }
               ],

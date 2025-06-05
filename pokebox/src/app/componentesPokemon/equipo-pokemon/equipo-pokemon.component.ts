@@ -1,4 +1,4 @@
-import { Component, EventEmitter, importProvidersFrom, inject, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnDestroy, OnInit, Output } from '@angular/core';
 import { ListaPokemonComponent } from "../lista-pokemon/lista-pokemon.component";
 import { CommonModule } from '@angular/common';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
@@ -19,10 +19,11 @@ import { Subscription } from 'rxjs';
   templateUrl: './equipo-pokemon.component.html',
   styleUrls: ['./equipo-pokemon.component.css'] // Corrige 'styleUrl' a 'styleUrls'
 })
-export class EquipoPokemonComponent implements OnInit, OnDestroy {
+export class EquipoPokemonComponent implements OnInit {
 
   @Output() pokemonSeleccionado = new EventEmitter<Pokemon>(); // Emisor para el Pokémon seleccionado
   @Output() equipoSeleccionado = new EventEmitter<EquipoPokemon>(); // Emisor para el Pokémon seleccionado
+
   pokemonesEnEquipo: Pokemon[] = []; // Arreglo para almacenar Pokémon en el equipo
   pokeaux: Pokemon[] = [];
   equipoPokemon: EquipoPokemon =
@@ -47,14 +48,13 @@ export class EquipoPokemonComponent implements OnInit, OnDestroy {
   pokeservice = inject(PokeservicesService)
   usuarioService = inject(UsuarioService)
   secretId: string | null = ""
+
   constructor(private equipoPokemonService: EquipoPokemonService, private router: Router, private tutorialService: TutorialService) { }
+
   mostrarTutorial: boolean = false;
   private tutorialSub?: Subscription;
 
   ngOnInit(): void {
-    this.tutorialSub = this.tutorialService.mostrarTutorial$.subscribe(
-      mostrar => this.mostrarTutorial = mostrar
-    );
 
     this.dbUsuarioId
     setTimeout(() => {
@@ -62,14 +62,6 @@ export class EquipoPokemonComponent implements OnInit, OnDestroy {
         this.equipoPokemonService.setEquipo(this.usuario.ListaEquipos)
       }
     }, 400);
-  }
-
-  cerrarTutorial() {
-    this.tutorialService.ocultarTutorial();
-  }
-
-  ngOnDestroy() {
-    this.tutorialSub?.unsubscribe();
   }
 
   dbUsuarioId() {
