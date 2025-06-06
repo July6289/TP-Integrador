@@ -8,7 +8,6 @@ import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.in
 import { AuthService } from '../../auth/service/auth.service';
 import { CajaService } from '../../pokeservices/caja.service';
 
-
 @Component({
   selector: 'app-caja',
   standalone: true,
@@ -26,7 +25,6 @@ export class CajaComponent implements OnInit {
   indiceCaja: number = 0; // Índice de la caja actual
   flag: boolean = false;
   posicion: number = 0;
-  pokeservicio = inject(PokeservicesService);
   secretId: string | null = ""
   usarioServicio = inject(UsuarioService);
   pokeservice = inject(PokeservicesService)
@@ -36,9 +34,9 @@ export class CajaComponent implements OnInit {
     id: "",
     box: [],
     Email: "",
-    Username:"",
+    Username: "",
     Password: "",
-    UrlImagenPerfil:'',
+    UrlImagenPerfil: '',
     CombatesGanados: 0,
     ListaFavoritos: [],
     ListaObjetos: [],
@@ -66,11 +64,11 @@ export class CajaComponent implements OnInit {
         next: (valor: Usuario) => {
           this.usuario.Email = valor.Email;
           this.usuario.Password = valor.Password
-          this.usuario.Username=valor.Username
+          this.usuario.Username = valor.Username
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
-          this.usuario.UrlImagenPerfil=valor.UrlImagenPerfil
+          this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil
           //la forma definitiva de evitar el undefined
           this.usuario.box = this.pokeservice.cajas
           valor.box.map((caja) => {
@@ -177,7 +175,7 @@ export class CajaComponent implements OnInit {
   // Agregar a favoritos
   agregarAFavoritosDesdeMenu() {
     if (this.contextPokemon) {
-      this.pokeservicio.agregarAFavoritos(this.contextPokemon);
+      this.pokeService.agregarAFavoritos(this.contextPokemon);
     }
 
     this.mostrarMenu = false;
@@ -196,13 +194,18 @@ export class CajaComponent implements OnInit {
   eliminarDeCajaDesdeMenu() {
     if (!this.contextPokemon) return;
 
-    const pokemones = this.usuario.box[this.indiceCaja].pokemones;
-    const index = pokemones.findIndex(p => p.id === this.contextPokemon!.id);
+    const confirmar = confirm(`¿Estás seguro que quieres eliminar a ${this.contextPokemon.name} de la caja?`);
 
-    if (index !== -1) {
-      pokemones.splice(index, 1);
-      this.dbGuardarDatos(); // Guardamos el estado actualizado
-      this.mostrarMenu = false;
+    if (confirmar) {
+      const pokemones = this.usuario.box[this.indiceCaja].pokemones;
+      const index = pokemones.findIndex(p => p.id === this.contextPokemon!.id);
+
+      if (index !== -1) {
+        pokemones.splice(index, 1);
+        this.dbGuardarDatos();
+      }
     }
+
+    this.mostrarMenu = false;
   }
 }
