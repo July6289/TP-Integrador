@@ -10,7 +10,6 @@ import { AuthService } from '../../auth/service/auth.service';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { Subscription } from 'rxjs';
 import { TutorialService } from '../../pokeservices/tutorial.service';
-import { TutorialComponent } from '../tutorial/tutorial.component';
 
 @Component({
   selector: 'app-lista-equipo-pokemon',
@@ -35,10 +34,10 @@ export class ListaEquipoPokemonComponent implements OnInit, OnDestroy {
     id: "",
     box: [],
     Email: "",
-    Username:"",
+    Username: "",
     Password: "",
     CombatesGanados: 0,
-    UrlImagenPerfil:'',
+    UrlImagenPerfil: '',
     ListaFavoritos: [],
     ListaObjetos: [],
     ListaEquipos: []
@@ -80,11 +79,11 @@ export class ListaEquipoPokemonComponent implements OnInit, OnDestroy {
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;
-          this.usuario.Username=valor.Username
+          this.usuario.Username = valor.Username
 
 
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
-          this.usuario.UrlImagenPerfil=valor.UrlImagenPerfil
+          this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil
           //la forma definitiva de evitar el undefined
           this.usuario.box = this.pokeservice.cajas
           valor.box.map((caja) => {

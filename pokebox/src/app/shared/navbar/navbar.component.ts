@@ -1,98 +1,91 @@
-import { CommonModule, Location } from '@angular/common';
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../auth/service/auth.service';
 import { CajaService } from '../../pokeservices/caja.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { TutorialService } from '../../pokeservices/tutorial.service';
-import { Observable, Subscription } from 'rxjs';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink,CommonModule],
+  imports: [RouterLink, CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   textButton: string = 'Iniciar Sesion'
   perfilActivo: boolean = false;
-  mensajeActivo:boolean=false;
+  mensajeActivo: boolean = false;
   auth = inject(AuthService);
   Router = inject(Router);
   cajaService = inject(CajaService);
+  tutorialService = inject(TutorialService);
   posicion: number = 0;
   usuario: Usuario = {
     id: "",
     box: [],
     Email: "",
-    Username:"",
+    Username: "",
     Password: "",
     CombatesGanados: 0,
-    UrlImagenPerfil:'',
+    UrlImagenPerfil: '',
     ListaFavoritos: [],
     ListaObjetos: [],
     ListaEquipos: []
   }
-  secretId: string | null = ""
+  secretId: string | null = "";
+  private destroy$ = new Subject<void>();
 
- constructor(private usuarioService:UsuarioService,private pokeservce:PokeservicesService,private equposervice:EquipoPokemonService ) {
 
-  }
+  constructor(private usuarioService: UsuarioService, private pokeservce: PokeservicesService, private equposervice: EquipoPokemonService) { }
 
   ngOnInit(): void {
+    this.usuarioService.activadorMensaje$.pipe(takeUntil(this.destroy$))
+      .subscribe(dato => this.mensajeActivo = dato);
 
-
-    this.usuarioService.activadorMensaje$.subscribe(
-      dato=> {this.mensajeActivo=dato
-
-  }
-)
+    this.usuarioService.actualizarperfil$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(dato => this.usuario.UrlImagenPerfil = dato);
 
     if (localStorage.getItem('token')) {
-      this.textButton = 'Cerrar Sesion'
+      this.textButton = 'Cerrar Sesion';
       this.perfilActivo = true;
       this.dbUsuarioId();
     }
-      console.log("dato es",this.mensajeActivo)
-
-    this.usuarioService.actualizarperfil$.subscribe(
-      dato=>{this.usuario.UrlImagenPerfil=dato}
-    )
-
-
   }
 
-
-
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   dbUsuarioId() {
     this.secretId = this.auth.getTokenValue();
     this.usuarioService.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
-          this.usuario.Email = valor.Email;
-          this.usuario.Username=valor.Username
-          this.usuario.Password = valor.Password
-          this.usuario.id = valor.id
-          this.usuario.CombatesGanados = valor.CombatesGanados;
-
-          this.usuario.UrlImagenPerfil=valor.UrlImagenPerfil
-          for (let i = 0; i < valor.box.length; i++) {
-            this.usuario.box[i] = valor.box[i]
-          }
-
-          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
-          valor.box.map((caja) => {
-            this.usuario.box[this.posicion].imagen = caja.imagen;
-            this.usuario.box[this.posicion].pokemones = caja.pokemones;
-            this.posicion++;
-          })
-          this.usuario.ListaFavoritos = valor.ListaFavoritos;
+          this.usuario = {
+            ...this.usuario, // conserva posibles valores anteriores
+            Email: valor.Email,
+            Username: valor.Username,
+            Password: valor.Password,
+            id: valor.id,
+            CombatesGanados: valor.CombatesGanados,
+            UrlImagenPerfil: valor.UrlImagenPerfil,
+            ListaFavoritos: valor.ListaFavoritos,
+            ListaObjetos: valor.ListaObjetos,
+            ListaEquipos: valor.ListaEquipos,
+            box: valor.box.map(caja => ({
+              imagen: caja.imagen,
+              pokemones: caja.pokemones
+            }))
+          };
         },
         error: (e: Error) => {
           console.log(e.message);
@@ -102,12 +95,12 @@ export class NavbarComponent implements OnInit {
   }
 
   goToPerfil() {
-    this.mensajeActivo=false
+    this.mensajeActivo = false
     this.Router.navigate(['/perfil']);
   }
 
   goToObjetos() {
-    this.mensajeActivo=false
+    this.mensajeActivo = false
     this.Router.navigate(['lista-objetos']);
   }
 
@@ -131,8 +124,6 @@ export class NavbarComponent implements OnInit {
   llamarDbGuardarDatos(): void {
     this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
   }
-
-  tutorialService = inject(TutorialService);
 
   mostrarAyuda() {
     this.tutorialService.mostrarTutorial();

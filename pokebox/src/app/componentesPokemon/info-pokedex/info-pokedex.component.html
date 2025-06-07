@@ -5,10 +5,10 @@
   </div>
 
   <div class="botones">
-    <button class="macho" (click)="cambiarAMacho()">Macho</button>
+    <button [disabled]="!selectedPokemon" class="macho" (click)="cambiarAMacho()">Macho</button>
 
-    <button class="hembra" (click)="cambiarAHembra()">Hembra</button>
+    <button [disabled]="!selectedPokemon" class="hembra" (click)="cambiarAHembra()">Hembra</button>
 
-    <button class="shiny" (click)="cambiarAShiny()">Shiny</button>
+    <button [disabled]="!selectedPokemon" class="shiny" (click)="cambiarAShiny()">Shiny</button>
   </div>
 </div>

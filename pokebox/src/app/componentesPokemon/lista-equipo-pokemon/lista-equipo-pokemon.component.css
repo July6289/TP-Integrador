@@ -1,16 +1,13 @@
 :host {
   box-sizing: border-box;
   height: 100%;
-
 }
 
-
-.titulo
-{
+.titulo {
   font-size: 3rem;
 }
 
-.selector{
+.selector {
   overflow-y: auto;
 }
 
@@ -18,7 +15,7 @@
 .selector,
 .pokemon-banner,
 .equipos,
-.a-selector  {
+.a-selector {
   display: flex;
 }
 
@@ -56,7 +53,7 @@
 
 .selector,
 .pokemon-banner,
-.a-selector  {
+.a-selector {
   flex-direction: column;
   width: 100%;
 }
