@@ -6,7 +6,6 @@ import { EquipoPokemonService } from '../../pokeservices/equiposervices.service'
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
-import { TutorialComponent } from '../tutorial/tutorial.component';
 import { TutorialService } from '../../pokeservices/tutorial.service';
 import { Subscription } from 'rxjs';
 
@@ -18,7 +17,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './visualizar-equipo.component.css'
 })
 
-export class VisualizarEquipoComponent implements OnInit, OnDestroy {
+export class VisualizarEquipoComponent implements OnInit {
   pokemonesEnEquipo: Pokemon[] = [];
   nombreEquipo: string = '';
   posicion: number = 0;
@@ -39,15 +38,10 @@ export class VisualizarEquipoComponent implements OnInit, OnDestroy {
   }
   usuarioServicio = inject(UsuarioService)
   pokeservice = inject(PokeservicesService)
-    mostrarTutorial: boolean = false;
-    private tutorialSub?: Subscription;
 
   constructor(private route: ActivatedRoute, private equipoPokemonService: EquipoPokemonService, private router: Router, private tutorialService: TutorialService) { }
 
   ngOnInit(): void {
-    this.tutorialSub = this.tutorialService.mostrarTutorial$.subscribe(
-      mostrar => this.mostrarTutorial = mostrar
-    );
 
     // Obtener el parámetro 'nombre' de la URL
     this.id = localStorage.getItem('token')
@@ -89,20 +83,6 @@ export class VisualizarEquipoComponent implements OnInit, OnDestroy {
       }
     )
 
-
-
-
-
-
-
-  }
-
-  cerrarTutorial() {
-    this.tutorialService.ocultarTutorial();
-  }
-
-  ngOnDestroy() {
-    this.tutorialSub?.unsubscribe();
   }
 
   gotoMainMenu() {
