@@ -5,9 +5,7 @@
 </div>
 
 <!-- Menú contextual para eliminar -->
-<div *ngIf="contextMenuVisible" class="context-menu"
-     [style.top.px]="contextMenuY"
-     [style.left.px]="contextMenuX"
-     (click)="$event.stopPropagation()">
+<div *ngIf="contextMenuVisible" class="context-menu" [style.top.px]="contextMenuY" [style.left.px]="contextMenuX"
+  (click)="$event.stopPropagation()">
   <button (click)="eliminarFavorito()">❌ Eliminar de favoritos</button>
 </div>

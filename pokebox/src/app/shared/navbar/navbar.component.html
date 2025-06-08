@@ -1,16 +1,14 @@
-
 @if(mensajeActivo){
 <nav class="mininab">
-              <span class="mensaje-bienvenida">¡Bienvenido/a de vuelta: {{this.usuario.Username}}!</span>
+  <span class="mensaje-bienvenida">¡Bienvenido/a de vuelta: {{this.usuario.Username}}!</span>
 </nav>
 
-      }
+}
 <nav>
   <img class="imagenLogueo" src="\assets\imagenes\Pokebox-4-11-2024(1).png" alt="imagen usuario">
 
   <ul>
     @if (perfilActivo) {
-
     <button class="homePage" routerLink="/main-page">
       <img class="imagenUsuario" src="assets/imagenes/home_icon.png" alt="imagen home page">
       <p>Home</p>
@@ -29,10 +27,9 @@
       <img class="imagenHelp" src="assets/imagenes/icono-ayuda.png" alt="imagen ayuda">
       <p>Ayuda</p>
     </button>
-
     }
-
   </ul>
+
   <button class="boton2" (click)="onLonginLogout()" (click)="llamarDbGuardarDatos()">
     <img class="imagenUsuario" src="assets/imagenes/log_out.webp" alt="">
     <p>{{ textButton }}</p>

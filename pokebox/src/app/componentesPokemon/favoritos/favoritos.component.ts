@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { Observable } from 'rxjs';
-import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 
 @Component({
@@ -35,12 +34,17 @@ export class FavoritosComponent {
 
   eliminarFavorito() {
     if (this.selectedPokemon) {
-      this.pokeService.eliminarFavorito(this.selectedPokemon.id);
-      this.selectedPokemon = null;
+      const confirmado = confirm(`¿Estás seguro que deseas eliminar a ${this.selectedPokemon.name} de favoritos?`);
+
+      if (confirmado) {
+        this.pokeService.eliminarFavorito(this.selectedPokemon.id);
+        this.selectedPokemon = null;
+      }
     }
 
     this.contextMenuVisible = false;
   }
+
 
   @HostListener('document:click')
   closeContextMenu() {

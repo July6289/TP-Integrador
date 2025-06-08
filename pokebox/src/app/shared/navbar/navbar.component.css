@@ -10,16 +10,17 @@ nav {
   max-width: 9.375rem;
 }
 
-.mininav{
+.mininav {
   background-color: #4A4A4A;
 }
+
 .mensaje-bienvenida {
   font-size: 20px;
   text-align: center;
   font-weight: bold;
   color: white;
-    font-family: 'Winky Rough', cursive;
-    left: 50px;
+  font-family: 'Winky Rough', cursive;
+  left: 50px;
 
 }
 
@@ -48,9 +49,7 @@ nav {
   margin-right: 2rem;
 }
 
-.perfilPage{
-
-}
+.perfilPage {}
 
 .homePage p,
 ul {
@@ -88,20 +87,20 @@ nav {
   align-items: center;
 }
 
-.imagenHelp
-{
+.imagenHelp {
   max-width: 3.125rem;
   max-height: 2.6rem;
   cursor: pointer;
 }
+
 .imagenUsuario,
 .imagenUsuarios {
   max-width: 3.125rem;
   max-height: 3.125rem;
   cursor: pointer;
 }
-.imagenUsuarios
-{
+
+.imagenUsuarios {
   border-radius: 100%;
   max-width: 2.6rem;
 }
@@ -124,11 +123,12 @@ nav {
     margin-bottom: 0.5rem;
   }
 
-.mensaje-bienvenida{
-   width: 18vh;
+  .mensaje-bienvenida {
+    width: 18vh;
     max-width: 7.5rem;
 
-}
+  }
+
   .imagenLogueo {
     width: 18vh;
     max-width: 7.5rem;

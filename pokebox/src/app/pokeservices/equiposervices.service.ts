@@ -49,6 +49,10 @@ export class EquipoPokemonService {
     this.clave = localStorage.getItem('token')
   }
 
+  public limpiarEquipo()
+  {
+    this.equiposSubject.next([])
+  }
   public setEquipo(equipo: EquipoPokemon[]) {
     const nuevoEquipo = equipo.map(equ => ({
       nombre: equ.nombre,

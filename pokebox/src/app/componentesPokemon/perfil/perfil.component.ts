@@ -142,6 +142,7 @@ seleccionarAvatar(avatar: string): void {
           this.usuario.UrlImagenPerfil=valor.UrlImagenPerfil
           this.selectedAvatar=this.usuario.UrlImagenPerfil
           this.usuario.box = this.pokeservice.cajas
+
           valor.box.map((caja) => {
             this.usuario.box[this.posicion].imagen = caja.imagen;
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
@@ -149,15 +150,7 @@ seleccionarAvatar(avatar: string): void {
           })
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
-
-          this.usuario.ListaEquipos = valor.ListaEquipos.map(equipo => ({
-            nombre: equipo.nombre,
-            equipo: [...equipo.equipo] // clon defensivo si querés evitar referencias compartidas
-
-
-
-
-          }));
+          this.usuario.ListaEquipos = [...valor.ListaEquipos]
 
       this.formulario.patchValue({
       Email: this.usuario.Email,

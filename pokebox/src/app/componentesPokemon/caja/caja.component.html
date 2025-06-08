@@ -33,11 +33,8 @@
 
 <footer class="nombrecaja">{{ nombreCaja }}</footer>
 
-<div *ngIf="mostrarMenu" class="context-menu"
-     [style.top.px]="contextMenuY"
-     [style.left.px]="contextMenuX"
-     (click)="$event.stopPropagation()">
+<div *ngIf="mostrarMenu" class="context-menu" [style.top.px]="contextMenuY" [style.left.px]="contextMenuX"
+  (click)="$event.stopPropagation()">
   <button (click)="agregarAFavoritosDesdeMenu()">⭐ Agregar a favoritos</button>
   <button (click)="eliminarDeCajaDesdeMenu()">🗑️ Eliminar de la caja</button>
 </div>
-

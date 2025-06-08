@@ -22,6 +22,18 @@ export class PokeservicesService {
   // BehaviorSubject para emitir actualizaciones de cajas
   private cajasSubject = new BehaviorSubject<Caja[]>(this.cajas);
   cajas$ = this.cajasSubject.asObservable();
+
+  public limpiarCaja()
+  {
+      this.cajas.forEach(caja => caja.pokemones = []);
+
+  // Volver a emitir el array actualizado
+  this.cajasSubject.next([...this.cajas]);
+    console.log("a ver si borre:",this.cajasSubject)
+
+
+  }
+
   usuarioService = inject(UsuarioService);
   private selectedPokemonSubject = new BehaviorSubject<Pokemon | null>(null); // BehaviorSubject para el Pokémon seleccionado
   selectedPokemon$ = this.selectedPokemonSubject.asObservable(); // Observable para suscribirse a los cambios
@@ -237,6 +249,11 @@ export class PokeservicesService {
   private favoritosSubject = new BehaviorSubject<Pokemon[]>([]);
   favoritos$ = this.favoritosSubject.asObservable();
 
+  public vaciarFavoritos()
+  {
+    this.favoritosSubject.next([]);
+
+  }
   public setFavoritos(pokemons: Pokemon[]) {
     this.favoritosSubject.next(pokemons);
   }

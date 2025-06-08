@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { CommonModule } from '@angular/common';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-info-pokedex',
@@ -11,27 +12,30 @@ import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.intefa
   styleUrls: ['./info-pokedex.component.css']
 })
 
-export class InfoPokedexComponent implements OnInit {
+export class InfoPokedexComponent implements OnInit, OnDestroy {
   selectedPokemon: Pokemon | null = null;
   spriteUrl: string = '';
   @Output() guardarDatos = new EventEmitter<void>();
+  private subs = new Subscription();
+
+  constructor(private pokeService: PokeservicesService) { }
 
   onGuardarDatos() {
     this.guardarDatos.emit();
   }
 
-  constructor(private pokeService: PokeservicesService) { }
-
   ngOnInit(): void {
-    // Suscribirse al observable para obtener el Pokémon seleccionado
-    this.pokeService.selectedPokemon$.subscribe(pokemon => {
+    this.subs.add(this.pokeService.selectedPokemon$.subscribe(pokemon => {
       this.selectedPokemon = pokemon;
       this.updateSprite();
-    });
+    }));
 
-    // Suscribirse a los cambios de género y brillo
-    this.pokeService.esMacho$.subscribe(() => this.updateSprite());
-    this.pokeService.esShiny$.subscribe(() => this.updateSprite());
+    this.subs.add(this.pokeService.esMacho$.subscribe(() => this.updateSprite()));
+    this.subs.add(this.pokeService.esShiny$.subscribe(() => this.updateSprite()));
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 
   cambiarAMacho(): void {
@@ -66,7 +70,6 @@ export class InfoPokedexComponent implements OnInit {
 
     this.selectedPokemon.isMale = this.pokeService.getEsMachoActual();
     this.selectedPokemon.isShiny = this.pokeService.getEsShinyActual();
-
     this.pokeService.updatePokemonInCaja(this.selectedPokemon); // Guardar en usuario + back
     this.updateSprite();
   }

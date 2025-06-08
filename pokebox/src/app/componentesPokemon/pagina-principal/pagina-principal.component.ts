@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { FavoritosComponent } from "../favoritos/favoritos.component";
 import { Subscription } from 'rxjs';
 import { TutorialService } from '../../pokeservices/tutorial.service';
-import { TutorialComponent } from '../tutorial/tutorial.component';
 
 @Component({
   selector: 'pagina-principal',
