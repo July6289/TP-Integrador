@@ -26,11 +26,13 @@ export class EquipoPokemonComponent implements OnInit {
 
   pokemonesEnEquipo: Pokemon[] = []; // Arreglo para almacenar Pokémon en el equipo
   pokeaux: Pokemon[] = [];
+
   equipoPokemon: EquipoPokemon =
     {
       nombre: "",
       equipo: []
     }
+
   usuario: Usuario = {
     id: "",
     box: [],
@@ -43,6 +45,7 @@ export class EquipoPokemonComponent implements OnInit {
     ListaObjetos: [],
     ListaEquipos: []
   }
+
   posicion: number = 0;
   posicion2: number = 0;
   pokeservice = inject(PokeservicesService)
@@ -97,6 +100,7 @@ export class EquipoPokemonComponent implements OnInit {
       }
     )
   }
+
   goToMainPage() {
     this.router.navigate(['/**']);
   }
@@ -107,11 +111,6 @@ export class EquipoPokemonComponent implements OnInit {
     } else {
       alert('No puedes agregar más de 6 Pokémon al equipo.'); // Mensaje de alerta
     }
-  }
-
-  pickPokemon(pokemon: Pokemon) {
-    console.log('Seleccionaste el Pokémon:', pokemon); // Manejo de la selección
-    // Aquí puedes añadir la lógica que necesites para manejar el Pokémon seleccionado
   }
 
   agregarPokemon() {
@@ -132,6 +131,19 @@ export class EquipoPokemonComponent implements OnInit {
       }
     }
     else {
+      alert('No puedes agregar más de 6 Pokémon al equipo.');
+    }
+  }
+
+  agregarPokemonDirecto(pokemon: Pokemon) {
+    if (this.pokemonesEnEquipo.length < 6) {
+      const clonPokemon: Pokemon = {
+        ...pokemon,
+        id: Date.now() + Math.floor(Math.random() * 1000),
+        isAlive: true
+      };
+      this.pokemonesEnEquipo.push(clonPokemon);
+    } else {
       alert('No puedes agregar más de 6 Pokémon al equipo.');
     }
   }
@@ -163,18 +175,7 @@ export class EquipoPokemonComponent implements OnInit {
     }
   }
 
-  agregarPokemonDirecto(pokemon: Pokemon) {
-    if (this.pokemonesEnEquipo.length < 6) {
-      const clonPokemon: Pokemon = {
-        ...pokemon,
-        id: Date.now() + Math.floor(Math.random() * 1000),
-        isAlive: true
-      };
-      this.pokemonesEnEquipo.push(clonPokemon);
-    } else {
-      alert('No puedes agregar más de 6 Pokémon al equipo.');
-    }
-  }
+
 }
 
 
