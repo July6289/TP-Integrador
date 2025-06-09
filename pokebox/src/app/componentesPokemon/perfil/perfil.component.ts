@@ -9,6 +9,7 @@ import { TutorialComponent } from '../tutorial/tutorial.component';
 import { TutorialService } from '../../pokeservices/tutorial.service';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 
 @Component({
   selector: 'perfil',
@@ -72,7 +73,7 @@ avatarList: string[] = [
   '/assets/imagenes/imagen_pokemon11.png',
 ];
 
-  constructor(private tutorialService: TutorialService) { }
+  constructor(private tutorialService: TutorialService,private equiposervice:EquipoPokemonService) { }
 
   ngOnInit(): void {
     this.tutorialSub = this.tutorialService.mostrarTutorial$.subscribe(
@@ -257,6 +258,11 @@ addUsuario() {
         next: () => {
           this.authservice.logOut();
           localStorage.clear();
+          this.pokeservice.limpiarCaja()
+          this.pokeservice.vaciarFavoritos()
+          this.equiposervice.limpiarEquipo()
+
+
           this.router.navigate(['/registro']);
         },
         error: (e: Error) => {
