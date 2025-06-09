@@ -8,7 +8,7 @@ import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.in
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { AuthService } from '../../auth/service/auth.service';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subject, Subscription, takeUntil } from 'rxjs';
 import { TutorialService } from '../../pokeservices/tutorial.service';
 
 @Component({
@@ -48,61 +48,35 @@ export class ListaEquipoPokemonComponent implements OnInit, OnDestroy {
   secretId: string | null = ""
   mostrarTutorial: boolean = false;
   private tutorialSub?: Subscription;
+  private destroy$ = new Subject<void>();
+
 
   ngOnInit() {
+    this.dbUsuarioId()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (usuario: Usuario) => {
+          this.usuario = { ...usuario };
+          this.usuario.box = [...usuario.box];
+          this.equipoPokemonService.setEquipo(usuario.ListaEquipos);
+        }
+      });
+
+    this.equipoPokemonService.equipos$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(equipos => this.poketeam = equipos);
+
     this.tutorialSub = this.tutorialService.mostrarTutorial$.subscribe(
       mostrar => this.mostrarTutorial = mostrar
     );
 
-    // Suscribirse a todos los equipos
-    this.equipoPokemonService.equipos$.subscribe(equipos => {
-      this.poketeam = equipos;  // Actualiza el arreglo con todos los equipos
-    });
-
-    this.secretId = this.auth.getTokenValue();
-    this.dbUsuarioId()
-
-    setTimeout(() => {
-      if (this.usuario.ListaEquipos.length > 0) {
-        this.equipoPokemonService.setEquipo(this.usuario.ListaEquipos)
-      }
-    }, 300);
-
     this.checkRoute();
   }
 
-  dbUsuarioId() {
-    this.usuarioService.getUsuarioById(this.secretId).subscribe(
-      {
-        next: (valor: Usuario) => {
-          this.usuario.Email = valor.Email;
-          this.usuario.Password = valor.Password
-          this.usuario.id = valor.id
-          this.usuario.CombatesGanados = valor.CombatesGanados;
-          this.usuario.Username = valor.Username
 
-
-          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
-          this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil
-          //la forma definitiva de evitar el undefined
-          this.usuario.box = this.pokeservice.cajas
-          valor.box.map((caja) => {
-            this.usuario.box[this.posicion].imagen = caja.imagen;
-            this.usuario.box[this.posicion].pokemones = caja.pokemones;
-            this.posicion = this.posicion + 1;
-          })
-          this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
-          this.usuario.ListaObjetos = [...valor.ListaObjetos];
-
-
-          this.usuario.ListaEquipos = [...valor.ListaEquipos]
-        },
-
-        error: (e: Error) => {
-          console.log(e.message);
-        }
-      }
-    )
+  dbUsuarioId(): Observable<Usuario> {
+    this.secretId = this.auth.getTokenValue();
+    return this.usuarioService.getUsuarioById(this.secretId);
   }
 
   llamarDbGuardarDatos(): void {
@@ -117,10 +91,13 @@ export class ListaEquipoPokemonComponent implements OnInit, OnDestroy {
     this.rutaCombate = this.location.path().includes('/main-page');
   }
 
-  // Eliminar un elemento específico
   eliminarElemento(index: number) {
-    this.equipoPokemonService.eliminarEquipo(index);
+    const confirmar = confirm('¿Estás seguro de que querés eliminar este equipo?');
+    if (confirmar) {
+      this.equipoPokemonService.eliminarEquipo(index);
+    }
   }
+
 
   goToCrearEquipo() {
     this.router.navigate(['/equipo-pokemon']);
@@ -167,5 +144,7 @@ export class ListaEquipoPokemonComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.tutorialSub?.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

@@ -71,16 +71,14 @@ export class CajaComponent implements OnInit {
           this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil
           //la forma definitiva de evitar el undefined
           this.usuario.box = this.pokeservice.cajas
+          this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
+          this.usuario.ListaObjetos = [...valor.ListaObjetos];
+          this.usuario.ListaEquipos = [...valor.ListaEquipos]
           valor.box.map((caja) => {
-
             this.usuario.box[this.posicion].imagen = caja.imagen;
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
             this.posicion = this.posicion + 1;
           })
-
-          this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
-          this.usuario.ListaObjetos = [...valor.ListaObjetos];
-          this.usuario.ListaEquipos = [...valor.ListaEquipos]
         },
         error: (e: Error) => {
           console.log(e.message);

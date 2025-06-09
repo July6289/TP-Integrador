@@ -27,7 +27,6 @@
   gap: 1rem;
 }
 
-
 .user-content,
 .action-buttons,
 .botones,
@@ -39,17 +38,13 @@
   flex: 1;
 }
 
-
-.mensajeSelector{
+.mensajeSelector {
   font-size: 20px;
   display: flex;
-margin-left: 450px;
-  color:rgb(0, 0, 0);
-    font-family: 'Winky Rough', cursive;
-
+  margin-left: 450px;
+  color: rgb(0, 0, 0);
+  font-family: 'Winky Rough', cursive;
 }
-
-
 
 .avatar-selector {
   margin-top: 1rem;
@@ -80,10 +75,12 @@ margin-left: 450px;
 .avatar-options img.selected {
   border: 3px solid #4CAF50;
 }
+
 .avatar-button-container {
   width: 100%;
   display: flex;
-  justify-content: flex-start; /* lo alinea a la izquierda */
+  justify-content: flex-start;
+  /* lo alinea a la izquierda */
   margin-top: 1rem;
   padding-left: 1rem;
 }
@@ -100,7 +97,8 @@ margin-left: 450px;
 }
 
 .btn-change-avatar:hover {
-  background-color: #0cd693; /* o ponelo naranja si querés copiar el otro */
+  background-color: #0cd693;
+  /* o ponelo naranja si querés copiar el otro */
 }
 
 
@@ -114,8 +112,6 @@ margin-left: 450px;
   max-width: 250px;
 }
 
-
-
 .trainer-image-container {
   height: 15rem;
   width: 15rem;
@@ -127,14 +123,12 @@ margin-left: 450px;
   overflow: hidden;
 }
 
-
 .Image-trainer {
   height: 15rem;
   width: 15rem;
   object-fit: contain;
   display: block;
 }
-
 
 .user-card {
   width: 60%;
@@ -205,7 +199,6 @@ margin-left: 450px;
   font-size: 1.5rem;
 }
 
-
 .modify-profile,
 .botones,
 .delete-confirmation {
@@ -234,11 +227,16 @@ margin-left: 450px;
   border: 0.125rem solid #B0B0C3;
   transition-duration: 0.3s;
   color: white;
-  padding: 0.5rem 1rem;          /* Igual que el otro botón */
-  font-size: 0.9rem;             /* Igual que el otro botón */
-  border-radius: 0.5rem;         /* Igual que el otro botón */
-  height: auto;                 /* ← IMPORTANTE para evitar que se estire */
-  width: auto;                  /* Que no tome 100% */
+  padding: 0.5rem 1rem;
+  /* Igual que el otro botón */
+  font-size: 0.9rem;
+  /* Igual que el otro botón */
+  border-radius: 0.5rem;
+  /* Igual que el otro botón */
+  height: auto;
+  /* ← IMPORTANTE para evitar que se estire */
+  width: auto;
+  /* Que no tome 100% */
 }
 
 .bottom-button-row {
@@ -249,8 +247,6 @@ margin-left: 450px;
   padding: 0 2rem;
   gap: 1rem;
 }
-
-
 
 .btn-delete-account:hover {
   background-color: #BD2222;
@@ -306,7 +302,6 @@ margin-left: 450px;
 
 /* Efecto al pasar el mouse por encima del contenedor */
 .user-card:hover {
-
   transform: translateY(-0.3125rem);
   box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.15);
   transition: 0.3s;

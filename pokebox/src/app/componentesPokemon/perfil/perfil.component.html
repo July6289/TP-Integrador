@@ -2,6 +2,7 @@
   <div class="user-card-header">
     <h2>Perfil de Usuario</h2>
   </div>
+
   <div class="user-card-body">
     @if(isCardShowing){
     <div class="user-content">
@@ -10,10 +11,8 @@
         <div class="user-info">
           <label>Email:</label>
           <span>{{ usuario.Email }}</span>
-
           <label> Nombre de Usuario</label>
           <span>{{usuario.Username}}</span>
-
         </div>
 
         <div class="user-info">
@@ -32,74 +31,69 @@
         </div>
       </div>
 
+      <!-- COLUMNA DERECHA: Imagen + botón -->
+      <div class="trainer-container">
+        <button class="btn-change-avatar" (click)="mostrarSelector()">Cambiar Avatar</button>
+        <div class="trainer-image-container">
+          <img class="Image-trainer" [src]="selectedAvatar" alt="Imagen del entrenador">
+        </div>
+      </div>
 
-
-     <!-- COLUMNA DERECHA: Imagen + botón -->
-<div class="trainer-container">
-    <button class="btn-change-avatar" (click)="mostrarSelector()">Cambiar Avatar</button>
-  <div class="trainer-image-container">
-    <img class="Image-trainer" [src]="selectedAvatar" alt="Imagen del entrenador">
-  </div>
-</div>
-
-
-</div>
-<!-- Botones de acción -->
-<div class="action-buttons">
-  @if(isLoggedWithouthGoogle) {
-    <button class="btn-modify-account" (click)="toggleModify()">Modificar Perfil</button>
-  }
-<button class="btn-delete-account" (click)="toogleDelete()">Eliminar Cuenta</button>
-</div>
-
-
+    </div>
+    <!-- Botones de acción -->
+    <div class="action-buttons">
+      @if(isLoggedWithouthGoogle) {
+      <button class="btn-modify-account" (click)="toggleModify()">Modificar Perfil</button>
+      }
+      <button class="btn-delete-account" (click)="toogleDelete()">Eliminar Cuenta</button>
+    </div>
     }
-<!-- Formulario de modificación, solo se muestra si isModifyShowing es verdadero -->
-  @if(isModifyShowing) {
+    <!-- Formulario de modificación, solo se muestra si isModifyShowing es verdadero -->
+    @if(isModifyShowing) {
     <div class="modify-profile">
       <h3 class="modify-title">Modificando tu Perfil</h3>
-      <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="addUsuario()" (keydown.enter)="addUsuario()">
+      <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="addUsuario()"
+        (keydown.enter)="addUsuario()">
         <!-- Campo de Email -->
         <div class="form-group">
           <label for="">Correo electronico:</label>
           <input type="text" formControlName="Email">
-          @if(formulario.controls['Email'].getError('required') && formulario.controls['Email'].touched) {
-            <p class="Error">Campo requerido</p>
+          @if(getError('Email', 'required')){
+          <p class="Error">Campo requerido</p>
           }
-          @if(formulario.controls['Email'].getError('minlength') && formulario.controls['Email'].touched) {
-            <p class="Error">El Usuario no puede contener menos de 6 letras</p>
+
+          @if(getError('Email', 'minlength')) {
+          <p class="Error">El Usuario no puede contener menos de 6 letras</p>
           }
         </div>
 
-          <!-- Campo de Usuario -->
+        <!-- Campo de Usuario -->
         <div class="form-group">
           <label for="">Nombre de Usuario:</label>
           <input type="text" formControlName="Username">
-          @if(formulario.controls['Username'].getError('required') && formulario.controls['Username'].touched) {
-            <p class="Error">Campo requerido</p>
+          @if(getError('Email', 'required')) {
+          <p class="Error">Campo requerido</p>
           }
-          @if(formulario.controls['Username'].getError('minlength') && formulario.controls['Username'].touched) {
-            <p class="Error">El Usuario no puede contener menos de 6 letras</p>
+          @if(getError('Email', 'minlength')) {
+          <p class="Error">El Usuario no puede contener menos de 6 letras</p>
           }
         </div>
-
-
 
         <!-- Campo de Contraseña -->
         <div class="form-group">
           <label for="">Contraseña:</label>
           <input type="password" formControlName="Password">
-          @if(formulario.controls['Password'].getError('required') && formulario.controls['Password'].touched) {
-            <p class="Error">Campo requerido</p>
+          @if(getError('Email', 'required')) {
+          <p class="Error">Campo requerido</p>
           }
-          @if(formulario.controls['Password'].getError('minlength') && formulario.controls['Password'].touched) {
-            <p class="Error">La contraseña debe tener al menos 6 caracteres</p>
+          @if(getError('Email', 'minlength')) {
+          <p class="Error">La contraseña debe tener al menos 6 caracteres</p>
           }
         </div>
 
         <!-- Mensaje de error adicional -->
         @if(validadorMensajeEspecifico) {
-          <p class="Error">{{ MensajeEspecifico }}</p>
+        <p class="Error">{{ MensajeEspecifico }}</p>
         }
 
         <!-- Botones para cancelar o confirmar cambios -->
@@ -109,7 +103,7 @@
         </div>
       </form>
     </div>
-  }
+    }
     @if (isDeleteShowing) {
     <div class="delete-confirmation">
       <p>¿Estás seguro de que quieres eliminar tu cuenta?</p>
@@ -120,20 +114,14 @@
     </div>
     }
 
-
-
     @if (mostrarSelectorAvatar) {
-        <label class="mensajeSelector">Selecciona tu Avatar:</label>
-
+    <label class="mensajeSelector">Selecciona tu Avatar:</label>
     <div class="avatar-selector">
-  <div class="avatar-options">
-    <img *ngFor="let avatar of avatarList"
-         [src]="avatar"
-         [class.selected]="selectedAvatar === avatar"
-         (click)="seleccionarAvatar(avatar)"
-         alt="Avatar">
-  </div>
-</div>
-}
+      <div class="avatar-options">
+        <img *ngFor="let avatar of avatarList" [src]="avatar" [class.selected]="selectedAvatar === avatar"
+          (click)="seleccionarAvatar(avatar)" alt="Avatar">
+      </div>
+    </div>
+    }
   </div>
 </div>

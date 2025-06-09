@@ -19,10 +19,10 @@ export class EquipoPokemonService {
     id: "",
     box: [],
     Email: "",
-    Username:"",
+    Username: "",
     Password: "",
     CombatesGanados: 0,
-    UrlImagenPerfil:'',
+    UrlImagenPerfil: '',
     ListaFavoritos: [],
     ListaObjetos: [],
     ListaEquipos: []
@@ -49,8 +49,7 @@ export class EquipoPokemonService {
     this.clave = localStorage.getItem('token')
   }
 
-  public limpiarEquipo()
-  {
+  public limpiarEquipo() {
     this.equiposSubject.next([])
   }
   public setEquipo(equipo: EquipoPokemon[]) {
@@ -58,7 +57,7 @@ export class EquipoPokemonService {
       nombre: equ.nombre,
       equipo: [...equ.equipo]
     }))
-    this.equipos=nuevoEquipo
+    this.equipos = nuevoEquipo
     this.equiposSubject.next([...this.equipos])
   }
 
