@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { TutorialComponent } from './componentesPokemon/tutorial/tutorial.component';
-import { Subscription } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 import { TutorialService } from './pokeservices/tutorial.service';
 
 @Component({
@@ -25,12 +25,12 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private tutorialService: TutorialService) { }
 
   ngOnInit(): void {
-    this.router.events.subscribe(() => {
-      // Aquí detectamos si estamos en una ruta en la que no queremos mostrar el Navbar
-      const currentRoute = this.router.url;
-      this.showNavbar = !currentRoute.includes('registro')// Ejemplo de ruta para no mostrar el navbar
-      this.showNavbar2 = !currentRoute.includes('cambiar-contra');
-    });
+   this.router.events
+  .pipe(filter(event => event instanceof NavigationEnd))
+  .subscribe(() => {
+    const rutasSinNavbar = ['registro', 'cambiar-contra'];
+    this.showNavbar = !rutasSinNavbar.some(ruta => this.router.url.includes(ruta));
+  });
     this.sub = this.tutorialService.mostrarTutorial$.subscribe(
       mostrar => this.mostrarTutorial = mostrar
     );
