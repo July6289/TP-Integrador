@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
-import { CajaService } from '../../pokeservices/caja.service';
 import { AuthService } from '../../auth/service/auth.service';
 import { TutorialComponent } from '../tutorial/tutorial.component';
 import { Subscription } from 'rxjs';
@@ -72,7 +71,6 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
     ListaObjetos: [],
     ListaEquipos: []
   }
-  cajaservice = inject(CajaService);
   auth = inject(AuthService);
   usuarioService = inject(UsuarioService);
   mostrarTutorial: boolean = false;
@@ -157,7 +155,7 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
     this.equipoRival.nombre = "";
     this.equipoRival.equipo = [];
     this.service.EquipoSeleccionadoBot(this.equipoRival);
-    this.cajaservice.dbGuardarDatos(this.usuario, this.secretId);
+    this.usuarioService.dbGuardarDatos(this.usuario, this.secretId);
     this.router.navigate(['/**']);
   }
 

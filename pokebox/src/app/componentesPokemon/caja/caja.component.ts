@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { AuthService } from '../../auth/service/auth.service';
-import { CajaService } from '../../pokeservices/caja.service';
 
 @Component({
   selector: 'app-caja',
@@ -43,7 +42,7 @@ export class CajaComponent implements OnInit {
     ListaEquipos: []
   }
 
-  constructor(private pokeService: PokeservicesService, private cajaService: CajaService) {
+  constructor(private pokeService: PokeservicesService) {
     // Asigna el observable `spriteActual$` desde el servicio
     this.spriteActual$ = this.pokeService.spriteActual$;
   }
@@ -88,7 +87,7 @@ export class CajaComponent implements OnInit {
   }
 
   dbGuardarDatos() {
-    this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
+    this.usarioServicio.dbGuardarDatos(this.usuario, this.secretId || '');
   }
 
   get pokemonesEnCaja(): Pokemon[] {

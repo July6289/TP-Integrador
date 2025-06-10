@@ -10,6 +10,7 @@ import { Pokemon } from '../../../interfaces/interfazpokemon/interfazpokemon.int
 import { Objeto } from '../../../interfaces/objetos/objeto.interface';
 import { EquipoPokemon } from '../../../interfaces/interfazpokemon/interfazEquipo.interface';
 import { CommonModule } from '@angular/common';
+import { eq } from 'lodash';
 
 @Component({
   selector: 'app-pagina-logueo',
@@ -61,6 +62,12 @@ export class PaginaLogueoComponent {
     }
   )
 
+  formularioOlvideContrasenia=this.fb.nonNullable.group(
+    {
+      Email:['',[Validators.required, Validators.minLength(6)]]
+    }
+  )
+
   viewpass(){
     this.visible=!this.visible
     this.changetype=!this.changetype
@@ -77,6 +84,8 @@ export class PaginaLogueoComponent {
   }
 
   btLogueo() {
+    this.formulario.reset()
+    this.formularioOlvideContrasenia.reset()
     this.validadorMensajeEspecifico = false;
     this.IsFormRegisterShowing = false;
     this.isFormLoginShowing = true;
@@ -94,16 +103,17 @@ export class PaginaLogueoComponent {
   }
 
   btOlvideContrasenia() {
+    this.formularioOlvideContrasenia.reset()
     this.isFormForgotPasswordShowing = true;
     this.isFormLoginShowing = false;
   }
 
   btEnviarGmail() {
-    const usuarioDato = this.formulario.getRawValue();
+    const usuarioDato = this.formularioOlvideContrasenia.getRawValue();
     this.usuarioService.getUsuariobyName(usuarioDato.Email).subscribe(
       {
         next: (usuario: Usuario[]) => {
-          if (usuario.length != 0) {
+          if (usuario.length>0 &&usuario[0]!=undefined) {
             if (usuario[0].Password == null)  //si la contrasenia es nulla,significa que estamos usando una de google, no podemos usar una de google
             {
               this.validadorMensajeEspecifico = true
@@ -111,8 +121,9 @@ export class PaginaLogueoComponent {
             }
             else {
               this.validadorMensajeEspecifico=true
-              this.mensajeEspecifico="mensaje enviado con exito"
               this.authservice.enviarCorreoRecuperación(usuarioDato.Email);
+              this.mensajeEspecifico="correo verificado, siga las instrucciones enviadas en su correo para recuperar la contraseña"
+
             }
           }
           else {
@@ -220,13 +231,14 @@ export class PaginaLogueoComponent {
                 .catch((error) => {
                   // Manejar el error devuelto
                   if (error.code === "auth/invalid-email") {
-                    console.error("El correo no tiene un formato válido.");
                     this.validadorMensajeEspecifico = true;
-                    this.mensajeEspecifico = 'correo electronico inexistente.';
+                    this.mensajeEspecifico = 'El correo no tiene un formato válido.';
                   } else if (error.code === "auth/email-already-in-use") {
-                    console.error("El correo ya está registrado.");
+                     this.validadorMensajeEspecifico = true;
+                    this.mensajeEspecifico = 'El correo ya está registrado.';
                   } else {
-                    console.error("Error desconocido:", error.message);
+                    this.validadorMensajeEspecifico = true;
+                    this.mensajeEspecifico = 'Error desconocido: ', error.messaje;
                   }
                 });
             }

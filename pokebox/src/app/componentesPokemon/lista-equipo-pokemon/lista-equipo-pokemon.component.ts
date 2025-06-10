@@ -3,7 +3,6 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { NgFor, Location, NgIf, NgClass } from '@angular/common';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
-import { CajaService } from '../../pokeservices/caja.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { AuthService } from '../../auth/service/auth.service';
@@ -21,7 +20,7 @@ import { TutorialService } from '../../pokeservices/tutorial.service';
 
 export class ListaEquipoPokemonComponent implements OnInit, OnDestroy {
 
-  constructor(private router: Router, private equipoPokemonService: EquipoPokemonService, private location: Location, private cajaService: CajaService, private usuarioService: UsuarioService, private auth: AuthService, private tutorialService: TutorialService) { }
+  constructor(private router: Router, private equipoPokemonService: EquipoPokemonService, private location: Location,private usuarioService: UsuarioService, private auth: AuthService, private tutorialService: TutorialService) { }
 
   poketeam: EquipoPokemon[] = [];
   equipoRival: EquipoPokemon =
@@ -84,7 +83,7 @@ export class ListaEquipoPokemonComponent implements OnInit, OnDestroy {
       this.secretId = ""
     }
 
-    this.cajaService.dbGuardarDatos(this.usuario, this.secretId);
+    this.usuarioService.dbGuardarDatos(this.usuario, this.secretId);
   }
 
   checkRoute(): void {

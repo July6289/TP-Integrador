@@ -216,7 +216,10 @@ export class PerfilComponent implements OnInit, OnDestroy {
                 this.validadorMensajeEspecifico = true;
               }
               else {
+                this.authservice.BorrarUsuario();
+
                 this.usuario.Email = datosFormulario.Email;
+                this.authservice.register(this.usuario)
                 this.usuario.Username = datosFormulario.Username;
                 this.usuario.Password = datosFormulario.Password;
                 this.usuarioService.putUsuario(this.usuario, this.id).subscribe(
@@ -264,7 +267,6 @@ export class PerfilComponent implements OnInit, OnDestroy {
     this.usuarioService.deleteUsuarioById(this.id).subscribe(
       {
         next: () => {
-          this.authservice.logOut();
           localStorage.clear();
           this.pokeservice.limpiarCaja()
           this.pokeservice.vaciarFavoritos()

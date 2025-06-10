@@ -8,6 +8,7 @@ import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.in
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { TutorialService } from '../../pokeservices/tutorial.service';
 import { Subscription } from 'rxjs';
+import { forEach } from 'lodash';
 
 @Component({
   selector: 'app-visualizar-equipo',
@@ -102,6 +103,27 @@ export class VisualizarEquipoComponent implements OnInit {
       const index = this.pokemonesEnEquipo.findIndex(p => p.id === pokemon.id);
       if (index !== -1) {
         this.pokemonesEnEquipo[index].name = mote;
+
+
+          const equipoPokemon=this.usuario.ListaEquipos.find(equipos=>equipos.nombre==this.nombreEquipo)
+
+          if(equipoPokemon)
+          {
+            equipoPokemon.equipo[index].name=mote
+
+            this.usuario.ListaEquipos.forEach(equipote => {
+              if(equipote.nombre==this.nombreEquipo)
+              {
+                equipote.equipo=[...equipoPokemon.equipo]
+
+              }
+            });
+              this.usuarioServicio.dbGuardarDatos(this.usuario,this.id)
+
+          }
+
+
+
       }
     }
   }

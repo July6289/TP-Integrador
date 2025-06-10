@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../auth/service/auth.service';
-import { CajaService } from '../../pokeservices/caja.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { TutorialService } from '../../pokeservices/tutorial.service';
@@ -24,7 +23,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   mensajeActivo: boolean = false;
   auth = inject(AuthService);
   Router = inject(Router);
-  cajaService = inject(CajaService);
   tutorialService = inject(TutorialService);
   posicion: number = 0;
   usuario: Usuario = {
@@ -122,7 +120,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   llamarDbGuardarDatos(): void {
-    this.cajaService.dbGuardarDatos(this.usuario, this.secretId || '');
+    this.usuarioService.dbGuardarDatos(this.usuario, this.secretId || '');
   }
 
   mostrarAyuda() {

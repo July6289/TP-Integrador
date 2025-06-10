@@ -48,6 +48,10 @@ a.volverAlogueo {
   cursor: pointer;
   text-decoration: underline;
 }
+a.volverAlogueo{
+  margin-right: 450px;
+  text-align: left;
+}
 
 a.olvideContraseña {
   margin-right: 3.75rem;
@@ -95,16 +99,13 @@ button.imagenGoogle:focus {
 }
 
 button.inicioSesion,
-.Registro,
-.SalirRegistro,
-.Confirmar,
-.Registarse,
-.IniciarSesion {
+.enviarGmail,
+.Registro{
   cursor: pointer;
-  border: 0.125rem solid #B0B0C3;
+  border: 0.125rem solid #000000;
   border-radius: 0.5rem;
   padding: 0.9375 2.5rem;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   background-color: #D6D6D6;
   transition-duration: 0.3s;
   width: 100%;
@@ -112,21 +113,24 @@ button.inicioSesion,
   font-family: 'Winky Rough', cursive;
 }
 
-.IniciarSesion:hover,
-.Confirmar:hover,
-.SalirRegistro:hover,
-.Registarse:hover {
-  background-color: #B0B0C3;
-  color: white;
+
+
+.inicioSesion:hover
+{
+  background-color: rgb(0, 0, 117);
+  color: rgb(0, 0, 0);
+
+
 }
 
-.Registarse {
-  margin-left: 35%;
-  margin-bottom: 3.125rem;
+.Registro:hover {
+  background-color: #054e03;
+  color: rgb(0, 0, 0);
 }
 
-.IniciarSesion {
-  margin-left: 35.1%;
+.enviarGmail:hover{
+  background-color: #740303;
+  color: rgb(0, 0, 0);
 }
 
 .titulo {
@@ -169,6 +173,8 @@ label {
   font-size: 1rem;
   color: transparent;
   margin-top: 0.562rem;
+  font-size: medium;
+  text-align: center;
 }
 
 input[type="text"],
@@ -180,6 +186,9 @@ input[type="password"]{
   border: none;
   flex: 1 /* Ocupa todo el espacio posible sin desbordar */
 
+}
+.mensaje{
+  color: #eeff06;
 }
 
 .input-contenedor{

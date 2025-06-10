@@ -49,6 +49,18 @@ public cambiarUrl(url:string)
     return this.service.get<Usuario[]>(`${this.urlbase}?Email=${Email}`);
   }
 
+  dbGuardarDatos(usuario: Usuario, secretId: string | null): void {
+    if (usuario.Password !== '') {
+      this.putUsuario(usuario, secretId).subscribe({
+        next: () => {
+          console.log('Usuario Guardado');
+        },
+        error: (e: Error) => {
+          console.error(e.message);
+        },
+      });
+    }
+  }
   putUsuario(usuario: Usuario, id: string | null): Observable<Usuario> {
     if (!id) {
       console.error('Error: El ID del usuario no está definido.');
