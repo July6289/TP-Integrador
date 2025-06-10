@@ -25,7 +25,8 @@ export class InventarioObjetoComponent implements OnInit {
   posicion2:number=0;
   auth = inject(AuthService);
   usarioServicio = inject(UsuarioService);
-  pokeservice = inject(PokeservicesService)
+  pokeservice = inject(PokeservicesService);
+
   usuario: Usuario = {
     id: "",
     box: [],
@@ -41,19 +42,6 @@ export class InventarioObjetoComponent implements OnInit {
 
   constructor(private objetoService: ObjetoService) { }
 
-  cambiarCantidad(nombre: string) {
-    this.editandoCantidad[nombre] = true; // Muestra el input
-  }
-
-  guardarCantidad(nombre: string) {
-    const nuevaCantidad = this.cantidades[nombre];
-    if (nuevaCantidad > 0 && nuevaCantidad < 100 && nuevaCantidad % 1 == 0) {
-      this.objetoService.cambiarCantidad(nombre, nuevaCantidad);
-      this.editandoCantidad[nombre] = false; // Oculta el input nuevamente
-    } else {
-      alert('Cantidad inválida');
-    }
-  }
 
   ngOnInit(): void {
     this.objetoService.inventario$.subscribe(data => {
@@ -72,6 +60,20 @@ export class InventarioObjetoComponent implements OnInit {
         this.objetoService.setInventario(this.usuario.ListaObjetos)
       }
     }, 400);
+  }
+
+  cambiarCantidad(nombre: string) {
+    this.editandoCantidad[nombre] = true; // Muestra el input
+  }
+
+  guardarCantidad(nombre: string) {
+    const nuevaCantidad = this.cantidades[nombre];
+    if (nuevaCantidad > 0 && nuevaCantidad < 100 && nuevaCantidad % 1 == 0) {
+      this.objetoService.cambiarCantidad(nombre, nuevaCantidad);
+      this.editandoCantidad[nombre] = false; // Oculta el input nuevamente
+    } else {
+      alert('Cantidad inválida');
+    }
   }
 
   eliminar(nombre: string) {
