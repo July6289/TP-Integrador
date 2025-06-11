@@ -46,6 +46,8 @@ export class VisualizarEquipoComponent implements OnInit {
 
     // Obtener el parámetro 'nombre' de la URL
     this.id = localStorage.getItem('token')
+
+   setTimeout(() => {
     this.usuarioServicio.getUsuarioById(this.id).subscribe(
       {
         next: (valor: Usuario) => {
@@ -83,6 +85,8 @@ export class VisualizarEquipoComponent implements OnInit {
         }
       }
     )
+   }, 300);
+
 
   }
 
