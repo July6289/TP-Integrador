@@ -3,7 +3,6 @@ import { InfoObjetoComponent } from "./info-objeto/info-objeto.component";
 import { InventarioObjetoComponent } from "./inventario-objeto/inventario-objeto.component";
 import { BuscadorObjetoComponent } from "./buscador-objeto/buscador-objeto.component";
 import { CommonModule } from '@angular/common';
-import { TutorialComponent } from '../tutorial/tutorial.component';
 import { TutorialService } from '../../pokeservices/tutorial.service';
 import { Subscription } from 'rxjs';
 
@@ -16,10 +15,10 @@ import { Subscription } from 'rxjs';
 })
 
 export class ListaObjetosComponent implements OnInit, OnDestroy {
-  constructor(private tutorialService: TutorialService) { }
-
   mostrarTutorial: boolean = false;
   private tutorialSub?: Subscription;
+
+  constructor(private tutorialService: TutorialService) { }
 
   ngOnInit() {
     this.tutorialSub = this.tutorialService.mostrarTutorial$.subscribe(
@@ -34,5 +33,4 @@ export class ListaObjetosComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.tutorialSub?.unsubscribe();
   }
-
 }

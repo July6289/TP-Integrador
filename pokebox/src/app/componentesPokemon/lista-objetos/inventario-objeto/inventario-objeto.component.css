@@ -1,9 +1,9 @@
 :host {
   display: flex;
+  justify-content: center;
   box-sizing: border-box;
   margin: 1vh;
   font-family: 'Winky Rough', cursive;
-
 }
 
 .botones-container {
@@ -28,13 +28,11 @@ button:hover {
   font-size: 0.8rem;
 }
 
-.mensaje
-{
+.mensaje {
   color: #D6D6D6;
 }
 
-.default
-{
+.default {
   align-content: center;
   text-align: center;
 }

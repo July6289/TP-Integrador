@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
@@ -7,8 +7,6 @@ import { UsuarioService } from '../../pokeservices/usuario.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { TutorialService } from '../../pokeservices/tutorial.service';
-import { Subscription } from 'rxjs';
-import { forEach } from 'lodash';
 
 @Component({
   selector: 'app-visualizar-equipo',
@@ -23,16 +21,16 @@ export class VisualizarEquipoComponent implements OnInit {
   nombreEquipo: string = '';
   posicion: number = 0;
   posicion2: number = 0;
-  clave: string | null = ''
+  clave: string | null = '';
   id: string | null = '';
   usuario: Usuario = {
     id: "",
     box: [],
     Email: "",
-    Username:"",
+    Username: "",
     Password: "",
     CombatesGanados: 0,
-    UrlImagenPerfil:'',
+    UrlImagenPerfil: '',
     ListaFavoritos: [],
     ListaObjetos: [],
     ListaEquipos: []
@@ -43,8 +41,6 @@ export class VisualizarEquipoComponent implements OnInit {
   constructor(private route: ActivatedRoute, private equipoPokemonService: EquipoPokemonService, private router: Router, private tutorialService: TutorialService) { }
 
   ngOnInit(): void {
-
-    // Obtener el parámetro 'nombre' de la URL
     this.id = localStorage.getItem('token')
 
    setTimeout(() => {
@@ -54,31 +50,19 @@ export class VisualizarEquipoComponent implements OnInit {
           this.usuario.Email = valor.Email;
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
-          this.usuario.Username=valor.Username
+          this.usuario.Username = valor.Username
           this.usuario.CombatesGanados = valor.CombatesGanados;
-          this.usuario.UrlImagenPerfil=valor.UrlImagenPerfil;
-          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
-
-          this.usuario.box=this.pokeservice.cajas //setear cajas es obligatorio, sino son indefinidas
-
+          this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil;
+          this.usuario.box = this.pokeservice.cajas
           valor.box.map((caja) => {
             this.usuario.box[this.posicion].imagen = caja.imagen;
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
             this.posicion = this.posicion + 1;
           })
-           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
+          this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
           this.usuario.ListaEquipos = [...valor.ListaEquipos]
-
-          console.log(this.usuario.ListaEquipos)
-
           this.equipoPokemonService.setEquipo(this.usuario.ListaEquipos)
-
-          this.route.paramMap.subscribe(params => {
-            this.nombreEquipo = params.get('nombre')!;
-            this.obtenerEquipo(this.nombreEquipo);
-          });
-
         },
         error: (e: Error) => {
           console.log(e.message);
@@ -87,7 +71,10 @@ export class VisualizarEquipoComponent implements OnInit {
     )
    }, 300);
 
-
+    this.route.paramMap.subscribe(params => {
+      this.nombreEquipo = params.get('nombre')!;
+      this.obtenerEquipo(this.nombreEquipo);
+    });
   }
 
   gotoMainMenu() {
@@ -107,27 +94,17 @@ export class VisualizarEquipoComponent implements OnInit {
       const index = this.pokemonesEnEquipo.findIndex(p => p.id === pokemon.id);
       if (index !== -1) {
         this.pokemonesEnEquipo[index].name = mote;
+        const equipoPokemon = this.usuario.ListaEquipos.find(equipos => equipos.nombre == this.nombreEquipo)
 
-
-          const equipoPokemon=this.usuario.ListaEquipos.find(equipos=>equipos.nombre==this.nombreEquipo)
-
-          if(equipoPokemon)
-          {
-            equipoPokemon.equipo[index].name=mote
-
-            this.usuario.ListaEquipos.forEach(equipote => {
-              if(equipote.nombre==this.nombreEquipo)
-              {
-                equipote.equipo=[...equipoPokemon.equipo]
-
-              }
-            });
-              this.usuarioServicio.dbGuardarDatos(this.usuario,this.id)
-
-          }
-
-
-
+        if (equipoPokemon) {
+          equipoPokemon.equipo[index].name = mote
+          this.usuario.ListaEquipos.forEach(equipote => {
+            if (equipote.nombre == this.nombreEquipo) {
+              equipote.equipo = [...equipoPokemon.equipo]
+            }
+          });
+          this.usuarioServicio.dbGuardarDatos(this.usuario, this.id)
+        }
       }
     }
   }

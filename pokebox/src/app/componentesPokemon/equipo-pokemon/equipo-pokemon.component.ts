@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { ListaPokemonComponent } from "../lista-pokemon/lista-pokemon.component";
 import { CommonModule } from '@angular/common';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
@@ -8,9 +8,7 @@ import { Router } from '@angular/router';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { UsuarioService } from '../../pokeservices/usuario.service';
-import { TutorialComponent } from '../tutorial/tutorial.component';
 import { TutorialService } from '../../pokeservices/tutorial.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-equipo-pokemon',
@@ -20,46 +18,40 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./equipo-pokemon.component.css'] // Corrige 'styleUrl' a 'styleUrls'
 })
 export class EquipoPokemonComponent implements OnInit {
-
   @Output() pokemonSeleccionado = new EventEmitter<Pokemon>(); // Emisor para el Pokémon seleccionado
   @Output() equipoSeleccionado = new EventEmitter<EquipoPokemon>(); // Emisor para el Pokémon seleccionado
 
   pokemonesEnEquipo: Pokemon[] = []; // Arreglo para almacenar Pokémon en el equipo
   pokeaux: Pokemon[] = [];
-
   equipoPokemon: EquipoPokemon =
     {
       nombre: "",
       equipo: []
     }
-
   usuario: Usuario = {
     id: "",
     box: [],
     Email: "",
-    Username:"",
+    Username: "",
     Password: "",
     CombatesGanados: 0,
-    UrlImagenPerfil:'',
+    UrlImagenPerfil: '',
     ListaFavoritos: [],
     ListaObjetos: [],
     ListaEquipos: []
   }
-
   posicion: number = 0;
   posicion2: number = 0;
   pokeservice = inject(PokeservicesService)
   usuarioService = inject(UsuarioService)
   secretId: string | null = ""
+  mostrarTutorial: boolean = false;
 
   constructor(private equipoPokemonService: EquipoPokemonService, private router: Router, private tutorialService: TutorialService) { }
 
-  mostrarTutorial: boolean = false;
-  private tutorialSub?: Subscription;
-
   ngOnInit(): void {
-
-    this.dbUsuarioId
+    this.secretId = localStorage.getItem('token');
+    this.dbUsuarioId();
     setTimeout(() => {
       if (this.usuario.ListaEquipos.length > 0) {
         this.equipoPokemonService.setEquipo(this.usuario.ListaEquipos)
@@ -75,23 +67,18 @@ export class EquipoPokemonComponent implements OnInit {
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;
-          this.usuario.Username=valor.Username
-
-          this.usuario.UrlImagenPerfil=valor.UrlImagenPerfil
+          this.usuario.Username = valor.Username
+          this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
           this.usuario.box = this.pokeservice.cajas
-
           //la forma definitiva de evitar el undefined
-            valor.box.map((caja) => {
+          valor.box.map((caja) => {
             this.usuario.box[this.posicion].imagen = caja.imagen;
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
             this.posicion++;
           })
-
-
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
-
           this.usuario.ListaEquipos = [...valor.ListaEquipos]
         },
         error: (e: Error) => {
@@ -174,8 +161,4 @@ export class EquipoPokemonComponent implements OnInit {
       }
     }
   }
-
-
 }
-
-

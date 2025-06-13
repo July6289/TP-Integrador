@@ -22,7 +22,7 @@ export class InventarioObjetoComponent implements OnInit {
   editandoCantidad: { [nombre: string]: boolean } = {};
   id: string | null = ''
   posicion: number = 0;
-  posicion2:number=0;
+  posicion2: number = 0;
   auth = inject(AuthService);
   usarioServicio = inject(UsuarioService);
   pokeservice = inject(PokeservicesService);
@@ -31,10 +31,10 @@ export class InventarioObjetoComponent implements OnInit {
     id: "",
     box: [],
     Email: "",
-    Username:"",
+    Username: "",
     Password: "",
     CombatesGanados: 0,
-    UrlImagenPerfil:'',
+    UrlImagenPerfil: '',
     ListaFavoritos: [],
     ListaObjetos: [],
     ListaEquipos: []
@@ -92,9 +92,8 @@ export class InventarioObjetoComponent implements OnInit {
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
           this.usuario.CombatesGanados = valor.CombatesGanados;
-          this.usuario.Username=valor.Username
-
-          this.usuario.UrlImagenPerfil=valor.UrlImagenPerfil
+          this.usuario.Username = valor.Username
+          this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
           this.usuario.box = this.pokeservice.cajas
           valor.box.map((caja) => {
@@ -104,8 +103,6 @@ export class InventarioObjetoComponent implements OnInit {
           })
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
-
-
           this.usuario.ListaEquipos = [...valor.ListaEquipos]
         },
         error: (e: Error) => {

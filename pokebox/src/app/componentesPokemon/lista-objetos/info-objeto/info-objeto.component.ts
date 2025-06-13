@@ -14,7 +14,7 @@ import { CommonModule, NgIf } from '@angular/common';
 export class InfoObjetoComponent implements OnInit {
   objetoSeleccionado: Objeto | null = null;
 
-  constructor(private objetoService: ObjetoService) {}
+  constructor(private objetoService: ObjetoService) { }
 
   ngOnInit(): void {
     this.objetoService.objetoSeleccionado$.subscribe(objeto => {

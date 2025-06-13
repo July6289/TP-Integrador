@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { AuthService } from '../../auth/service/auth.service';
-import { TutorialComponent } from '../tutorial/tutorial.component';
 import { Subscription } from 'rxjs';
 import { TutorialService } from '../../pokeservices/tutorial.service';
 
@@ -63,10 +62,10 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
     id: "",
     box: [],
     Email: "",
-    Username:"",
+    Username: "",
     Password: "",
     CombatesGanados: 0,
-    UrlImagenPerfil:'',
+    UrlImagenPerfil: '',
     ListaFavoritos: [],
     ListaObjetos: [],
     ListaEquipos: []
@@ -108,10 +107,10 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
           this.usuario.Email = valor.Email;
           this.usuario.Password = valor.Password
           this.usuario.id = valor.id
-          this.usuario.Username=valor.Username
+          this.usuario.Username = valor.Username
 
           this.usuario.CombatesGanados = valor.CombatesGanados;
-          this.usuario.UrlImagenPerfil=valor.UrlImagenPerfil
+          this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
           this.usuario.box = this.pokeservice.cajas
           valor.box.map((caja) => {
@@ -163,67 +162,74 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
     if (pokemon && pokemon.life !== undefined) {
       return `${(pokemon.life * 100) / 16}%`;
     }
+
     return '0%';
   }
 
   tablaDeTipos(idPeleador: number, idBot: number, turno: boolean) {
     let danio = 0;
     let indiceTipos = {
-      jugadorTipo1: -1,
-      jugadorTipo2: -1,
-      botTipo1: -1,
-      botTipo2: -1
+      iJugadorTipo1: -1,
+      iJugadorTipo2: -1,
+      iBotTipo1: -1,
+      iBotTipo2: -1
     }
+    let jugador = this.equipoMain.equipo[idPeleador];
+    const rival = this.equipoRival.equipo[idBot];
+    const jugadorTipo1 = jugador.types[0].type.name;
+    const jugadorTipo2 = jugador.types[1]?.type.name;
+    const rivalTipo1 = rival.types[0].type.name;
+    const rivalTipo2 = rival.types[1]?.type.name;
 
-    //buscar indice tipos tipos
+    //buscar indice tipos
     for (let i = 0; i < this.tablaTiposNombres.length; i++) {
-      if (this.equipoMain.equipo[idPeleador].types[0].type.name === this.tablaTiposNombres[i]) {
-        indiceTipos.jugadorTipo1 = i;
+      if (jugadorTipo1 === this.tablaTiposNombres[i]) {
+        indiceTipos.iJugadorTipo1 = i;
       }
 
-      if (this.equipoMain.equipo[idPeleador].types[1] && this.equipoMain.equipo[idPeleador].types[1].type.name === this.tablaTiposNombres[i]) {
-        indiceTipos.jugadorTipo2 = i;
+      if (jugador.types[1] && jugadorTipo2 === this.tablaTiposNombres[i]) {
+        indiceTipos.iJugadorTipo2 = i;
       }
 
-      if (this.equipoRival.equipo[idBot].types[0].type.name === this.tablaTiposNombres[i]) {
-        indiceTipos.botTipo1 = i;
+      if (rivalTipo1 === this.tablaTiposNombres[i]) {
+        indiceTipos.iBotTipo1 = i;
       }
 
-      if (this.equipoRival.equipo[idBot].types[1] && this.equipoRival.equipo[idBot].types[1].type.name === this.tablaTiposNombres[i]) {
-        indiceTipos.botTipo2 = i;
+      if (rival.types[1] && rivalTipo2 === this.tablaTiposNombres[i]) {
+        indiceTipos.iBotTipo2 = i;
       }
     }
     /*---------------------*/
 
     //calculadora de daño
     if (turno) {
-      if (indiceTipos.jugadorTipo2 !== -1 && indiceTipos.botTipo2 !== -1) {
-        danio = 2 * ((this.tablaTiposValores[indiceTipos.jugadorTipo1][indiceTipos.botTipo1] * this.tablaTiposValores[indiceTipos.jugadorTipo1][indiceTipos.botTipo2]) + (this.tablaTiposValores[indiceTipos.jugadorTipo2][indiceTipos.botTipo1] * this.tablaTiposValores[indiceTipos.jugadorTipo2][indiceTipos.botTipo2]));
+      if (indiceTipos.iJugadorTipo2 !== -1 && indiceTipos.iBotTipo2 !== -1) {
+        danio = 2 * ((this.tablaTiposValores[indiceTipos.iJugadorTipo1][indiceTipos.iBotTipo1] * this.tablaTiposValores[indiceTipos.iJugadorTipo1][indiceTipos.iBotTipo2]) + (this.tablaTiposValores[indiceTipos.iJugadorTipo2][indiceTipos.iBotTipo1] * this.tablaTiposValores[indiceTipos.iJugadorTipo2][indiceTipos.iBotTipo2]));
       }
-      else if (indiceTipos.jugadorTipo2 !== -1 && indiceTipos.botTipo2 === -1) {
-        danio = 2 * (this.tablaTiposValores[indiceTipos.jugadorTipo1][indiceTipos.botTipo1] * this.tablaTiposValores[indiceTipos.jugadorTipo2][indiceTipos.botTipo1]);
+      else if (indiceTipos.iJugadorTipo2 !== -1 && indiceTipos.iBotTipo2 === -1) {
+        danio = 2 * (this.tablaTiposValores[indiceTipos.iJugadorTipo1][indiceTipos.iBotTipo1] * this.tablaTiposValores[indiceTipos.iJugadorTipo2][indiceTipos.iBotTipo1]);
       }
-      else if (indiceTipos.jugadorTipo2 === -1 && indiceTipos.botTipo2 !== -1) {
-        danio = 2 * (this.tablaTiposValores[indiceTipos.jugadorTipo1][indiceTipos.botTipo1] * this.tablaTiposValores[indiceTipos.jugadorTipo1][indiceTipos.botTipo2]);
+      else if (indiceTipos.iJugadorTipo2 === -1 && indiceTipos.iBotTipo2 !== -1) {
+        danio = 2 * (this.tablaTiposValores[indiceTipos.iJugadorTipo1][indiceTipos.iBotTipo1] * this.tablaTiposValores[indiceTipos.iJugadorTipo1][indiceTipos.iBotTipo2]);
       }
       else {
-        danio = 2 * this.tablaTiposValores[indiceTipos.jugadorTipo1][indiceTipos.botTipo1];
+        danio = 2 * this.tablaTiposValores[indiceTipos.iJugadorTipo1][indiceTipos.iBotTipo1];
       }
 
       this.mensaje[this.mensaje.length] = this.equipoMain.equipo[idPeleador].name + " infligió " + danio + " de daño a " + this.equipoRival.equipo[idBot].name;
     }
     else {
-      if (indiceTipos.jugadorTipo2 !== -1 && indiceTipos.botTipo2 !== -1) {
-        danio = 2 * ((this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo1] * this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo2]) + (this.tablaTiposValores[indiceTipos.botTipo2][indiceTipos.jugadorTipo1] * this.tablaTiposValores[indiceTipos.botTipo2][indiceTipos.jugadorTipo2]));
+      if (indiceTipos.iJugadorTipo2 !== -1 && indiceTipos.iBotTipo2 !== -1) {
+        danio = 2 * ((this.tablaTiposValores[indiceTipos.iBotTipo1][indiceTipos.iJugadorTipo1] * this.tablaTiposValores[indiceTipos.iBotTipo1][indiceTipos.iJugadorTipo2]) + (this.tablaTiposValores[indiceTipos.iBotTipo2][indiceTipos.iJugadorTipo1] * this.tablaTiposValores[indiceTipos.iBotTipo2][indiceTipos.iJugadorTipo2]));
       }
-      else if (indiceTipos.jugadorTipo2 !== -1 && indiceTipos.botTipo2 === -1) {
-        danio = 2 * (this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo1] * this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo2]);
+      else if (indiceTipos.iJugadorTipo2 !== -1 && indiceTipos.iBotTipo2 === -1) {
+        danio = 2 * (this.tablaTiposValores[indiceTipos.iBotTipo1][indiceTipos.iJugadorTipo1] * this.tablaTiposValores[indiceTipos.iBotTipo1][indiceTipos.iJugadorTipo2]);
       }
-      else if (indiceTipos.jugadorTipo2 === -1 && indiceTipos.botTipo2 !== -1) {
-        danio = 2 * (this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo1] * this.tablaTiposValores[indiceTipos.botTipo2][indiceTipos.jugadorTipo1]);
+      else if (indiceTipos.iJugadorTipo2 === -1 && indiceTipos.iBotTipo2 !== -1) {
+        danio = 2 * (this.tablaTiposValores[indiceTipos.iBotTipo1][indiceTipos.iJugadorTipo1] * this.tablaTiposValores[indiceTipos.iBotTipo2][indiceTipos.iJugadorTipo1]);
       }
       else {
-        danio = 2 * this.tablaTiposValores[indiceTipos.botTipo1][indiceTipos.jugadorTipo1];
+        danio = 2 * this.tablaTiposValores[indiceTipos.iBotTipo1][indiceTipos.iJugadorTipo1];
       }
 
       this.mensaje[this.mensaje.length] = this.equipoRival.equipo[idBot].name + " infligió " + danio + " de daño a " + this.equipoMain.equipo[idPeleador].name;
@@ -233,8 +239,8 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
   }
 
   pelea(pokemonJugador: Pokemon, pokemonBot: Pokemon) {
-    pokemonJugador.life = this.inicializarVidas(pokemonJugador)
-    pokemonBot.life = this.inicializarVidas(pokemonBot)
+    pokemonJugador.life = this.inicializarVidas(pokemonJugador);
+    pokemonBot.life = this.inicializarVidas(pokemonBot);
 
     if (this.turno) {
       pokemonBot.life -= this.tablaDeTipos(this.peleador, this.peleadorBot, this.turno)
@@ -246,7 +252,6 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
       this.mensaje[this.mensaje.length] = " la vida de tu pokemon es: " + pokemonJugador.life
       this.mensaje[this.mensaje.length] = " "
     }
-
 
     this.turno = !this.turno;
     if (pokemonJugador.life <= 0) {
@@ -261,6 +266,12 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
   combate() {
     let turn = 0;
     this.mensaje.splice(0, this.mensaje.length);
+
+    if (this.equipoRival.equipo[this.peleadorBot].life === undefined) {
+      this.equipoRival.equipo[this.peleadorBot].life = this.inicializarVidas(this.equipoRival.equipo[this.peleadorBot]);
+      console.log("vida del pokemon: " + this.equipoRival.equipo[this.peleadorBot].life);
+    }
+
     while (this.checkStstate(this.equipoMain.equipo[this.peleador]) && this.checkStstate(this.equipoRival.equipo[this.peleadorBot])) {
       this.pelea(this.equipoMain.equipo[this.peleador], this.equipoRival.equipo[this.peleadorBot]);
       turn++;
@@ -306,6 +317,9 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
             else {
               alert("el siguiente pokemon del rival es: " + team.equipo[0].name)
               this.gotoSlector();
+              if (this.equipoRival.equipo[this.peleadorBot].life === undefined) {
+                this.equipoRival.equipo[this.peleadorBot].life = this.inicializarVidas(this.equipoRival.equipo[this.peleadorBot]);
+              }
             }
           }
         }
@@ -335,7 +349,7 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
       return 16;
     }
     else {
-      return pokemonto.life
+      return pokemonto.life;
     }
   }
 

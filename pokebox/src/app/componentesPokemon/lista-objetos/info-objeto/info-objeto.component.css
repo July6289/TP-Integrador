@@ -11,17 +11,13 @@
   flex-direction: column;
 }
 
-.mensaje
-{
+.mensaje {
   color: #D6D6D6;
-
 }
 
-.default
-{
+.default {
   align-content: center;
   text-align: center;
-
 }
 
 .nombre-objeto,
@@ -39,7 +35,6 @@
   background-color: #2C2C3E;
   text-align: center;
   margin: 1vh;
-
 }
 
 .nombre-objeto {
@@ -52,8 +47,7 @@
   flex: 1;
 }
 
-.imagen
-{
+.imagen {
   width: 8rem;
 }
 
@@ -61,7 +55,7 @@
 .descripcion-objeto {
   flex: 0.5;
   font-size: 1.5rem;
-  padding:1rem
+  padding: 1rem
 }
 
 @media (max-width: 768px) {
