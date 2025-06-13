@@ -42,43 +42,44 @@ export class VisualizarEquipoComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = localStorage.getItem('token')
+    this.usuarioServicio.getUsuarioById(this.id).subscribe(
+      {
+        next: (valor: Usuario) => {
+          this.usuario.Email = valor.Email;
+          this.usuario.Password = valor.Password
+          this.usuario.id = valor.id
+          this.usuario.Username=valor.Username
+          this.usuario.CombatesGanados = valor.CombatesGanados;
+          this.usuario.UrlImagenPerfil=valor.UrlImagenPerfil;
+          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
 
-    setTimeout(() => {
-      this.usuarioServicio.getUsuarioById(this.id).subscribe(
-        {
-          next: (valor: Usuario) => {
-            this.usuario.Email = valor.Email;
-            this.usuario.Password = valor.Password
-            this.usuario.id = valor.id
-            this.usuario.Username = valor.Username
-            this.usuario.CombatesGanados = valor.CombatesGanados;
-            this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil;
-            this.usuario.box = this.pokeservice.cajas
-            valor.box.map((caja) => {
-              this.usuario.box[this.posicion].imagen = caja.imagen;
-              this.usuario.box[this.posicion].pokemones = caja.pokemones;
-              this.posicion = this.posicion + 1;
-            })
-            this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
-            this.usuario.ListaObjetos = [...valor.ListaObjetos];
-            this.usuario.ListaEquipos = [...valor.ListaEquipos]
-            this.equipoPokemonService.setEquipo(this.usuario.ListaEquipos)
-          },
-          error: (e: Error) => {
-            console.log(e.message);
-          }
+          this.usuario.box=this.pokeservice.cajas //setear cajas es obligatorio, sino son indefinidas
+
+          valor.box.map((caja) => {
+            this.usuario.box[this.posicion].imagen = caja.imagen;
+            this.usuario.box[this.posicion].pokemones = caja.pokemones;
+            this.posicion = this.posicion + 1;
+          })
+           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
+          this.usuario.ListaObjetos = [...valor.ListaObjetos];
+          this.usuario.ListaEquipos = [...valor.ListaEquipos]
+
+          console.log(this.usuario.ListaEquipos)
+
+          this.equipoPokemonService.setEquipo(this.usuario.ListaEquipos)
+
+          this.route.paramMap.subscribe(params => {
+            this.nombreEquipo = params.get('nombre')!;
+            this.obtenerEquipo(this.nombreEquipo);
+          });
+
+        },
+        error: (e: Error) => {
+          console.log(e.message);
         }
-      )
-    }, 300);
+      }
+    )
 
-    this.route.paramMap.subscribe(params => {
-      this.nombreEquipo = params.get('nombre')!;
-      this.obtenerEquipo(this.nombreEquipo);
-    });
-    this.route.paramMap.subscribe(params => {
-      this.nombreEquipo = params.get('nombre')!;
-      this.obtenerEquipo(this.nombreEquipo);
-    });
   }
 
   gotoMainMenu() {
