@@ -39,7 +39,6 @@ export class SelectorPokemonComponent implements OnInit, OnDestroy {
     this.nombreJugadorActual = this.equipoPokemonService.obtenerNombreJugador();
     this.nombreRivalActual = this.equipoPokemonService.obtenerNombreRival();
 
-
     if (this.pokemonesEnEquipo.equipo[0].life == undefined) {
       for (let i = 0; i < this.pokemonesEnEquipo.equipo.length; i++) {
         this.pokemonesEnEquipo.equipo[i].life = 16;
@@ -65,22 +64,23 @@ export class SelectorPokemonComponent implements OnInit, OnDestroy {
   }
 
   seleccionar(pokemon: Pokemon) {
-    let index = 0;
-    for (let i = 0; i < this.pokemonesEnEquipo.equipo.length; i++) {
-      if (this.pokemonesEnEquipo.equipo[i] === pokemon) {
-        index = i;
-      }
+    const index = this.pokemonesEnEquipo.equipo.findIndex(p => p === pokemon);
+    const indexActual = this.equipoPokemonService.getPosicionEquipo();
+
+    if (index === indexActual) {
+      alert("Ese Pokémon ya está en combate!");
+      return;
     }
 
-    let aux = this.equipoPokemonService.getPosicionEquipo();
-    if (index === aux) {
-      alert("Ese pokemon esta en combate!");
+    if (!pokemon.isAlive) {
+      alert("¡Este Pokémon está debilitado! No puede entrar al combate.");
+      return;
     }
-    else {
-      this.equipoPokemonService.setPosicionEquipo(index);
-      this.router.navigate(['/combate']);
-    }
+
+    this.equipoPokemonService.setPosicionEquipo(index);
+    this.router.navigate(['/combate']);
   }
+
 
   getTypeClass(type: string): string {
     switch (type) {

@@ -1,214 +1,152 @@
-<div>
-  <img class="imagenLogueo" src="\assets\imagenes\Pokebox-4-11-2024(1).png" alt="imagen usuario">
+<img class="imagenLogueo" src="\assets\imagenes\Pokebox-4-11-2024(1).png" alt="imagen usuario">
 
-  @if (IsFormRegisterShowing) {
+@if (IsFormRegisterShowing) {
+<form class="formulario" [formGroup]="formulario" (keydown.enter)="checkLoggedUsuario()">
+  <h1 class="titulo">Registrarse</h1>
 
-
-  <form class="formulario" [formGroup]="formulario"  (keydown.enter)="checkLoggedUsuario()">
-    <h1 class="titulo">Registrarse</h1>
-
-
-    <div class="input-contenedor">
-
+  <div class="input-contenedor">
     <i class="fa-solid fa-envelope icon" style="color: #000000;"></i>
     <input type="text" value="" formControlName="Email" placeholder="Correo electronico">
+  </div>
 
-    </div>
-
-    <p class="Error" [class.visible]="formulario.controls['Email'].touched&&formulario.controls['Email'].errors">
-
-
-    @if(formulario.controls['Email'].hasError('required')&&formulario.controls['Email'].touched)
-      {
-
-        <span>Se debe llenar el campo requerido</span>
-      }
-
+  <p class="Error" [class.visible]="formulario.controls['Email'].touched&&formulario.controls['Email'].errors">
+    @if(formulario.controls['Email'].hasError('required')&&formulario.controls['Email'].touched){
+    <span>Se debe llenar el campo requerido</span>
+    }
 
     @if (formulario.controls['Email'].getError('minlength')&&formulario.controls['Email'].touched) {
     <span>El usuario no puede contener un minimo de 6 letras</span>
     }
-    </p>
+  </p>
 
-
-    <div class="input-contenedor">
-
+  <div class="input-contenedor">
     <i class="fa-solid fa-user icon" style="color: #000000;"></i>
     <input type="text" value="" formControlName="Username" placeholder="Nombre Completo">
+  </div>
 
-    </div>
-
-    <p class="Error" [class.visible]="formulario.controls['Username'].touched&&formulario.controls['Username'].errors">
-
-
-    @if(formulario.controls['Username'].hasError('required')&&formulario.controls['Username'].touched)
-      {
-
-        <span>Se debe llenar el campo requerido</span>
-      }
-
+  <p class="Error" [class.visible]="formulario.controls['Username'].touched&&formulario.controls['Username'].errors">
+    @if(formulario.controls['Username'].hasError('required')&&formulario.controls['Username'].touched) {
+    <span>Se debe llenar el campo requerido</span>
+    }
 
     @if (formulario.controls['Username'].getError('minlength')&&formulario.controls['Username'].touched) {
     <span>El usuario no puede contener un minimo de 6 letras</span>
     }
-    </p>
+  </p>
 
-
-
-    <div class="input-contenedor">
+  <div class="input-contenedor">
     <i class="fa-solid fa-key" style="color: #000000;"></i>
-
     <input [type]="changetype?'password':'text'" formControlName="Password" placeholder="Contraseña" id="password">
-        <span class="eyeicon"(click)="viewpass()" > <i [ngClass]="visible?'fa-solid fa-eye':'fa-solid fa-eye-slash'"></i>
-
+    <span class="eyeicon" (click)="viewpass()"> <i [ngClass]="visible?'fa-solid fa-eye':'fa-solid fa-eye-slash'"></i>
     </span>
-      </div>
-    <p class="Error" [class.visible]="formulario.controls['Password'].touched">
-    @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
-
-    <span> Se debe llenar el campo requerido</span>
-
-
-    }
-    @if (formulario.controls['Password'].getError('minlength')&&formulario.controls['Password'].touched) {
-    <span>La contraseña no puede contener un minimo de 6 letras </span>
-
-    }
-
-    @if (validadorMensajeEspecifico&&!formulario.invalid) {
-    <span>{{mensajeEspecifico}}</span>
-    }
-    </p>
-    <button (click)="addUsuario()" class="Registro">Registrarse</button>
-    <div class="olvideyCuenta">
-
-    <a class="volverAlogueo" (click)="btLogueo()">Volver</a>
-    </div>
-
-  </form>
-
-  }
-  @if (isFormLoginShowing) {
-  <form class="formulario" [formGroup]="formulario"  (keydown.enter)="checkLoggedUsuario()">
-    <h1 class="titulo">Iniciar Sesión</h1>
-
-    <div class="input-contenedor">
-    <i class="fa-solid fa-envelope icon" style="color: #000000;"></i>
-    <input type="text" value="" formControlName="Email" placeholder="Correo electronico" id="usuario">
-    </div>
-    <p class="Error" [class.visible]="formulario.controls['Email'].touched&&formulario.controls['Email'].errors">
-
-    @if (formulario.controls['Email'].getError('required')&&formulario.controls['Email'].touched) {
-
-    <span>Campo requerido</span>
-
-
-    }
-    @if (formulario.controls['Email'].getError('minlength')&&formulario.controls['Email'].touched) {
-    <span>El Usuario no puede contener un minimo de 6 letras</span>
-
-    }
-    </p>
-    <div class="input-contenedor">
-      <i class="fa-solid fa-key icon" ></i>
-    <input [type]="changetype?'password':'text'" formControlName="Password" placeholder="Contraseña" id="password">
-        <span class="eyeicon"(click)="viewpass()" > <i [ngClass]="visible?'fa-solid fa-eye':'fa-solid fa-eye-slash'"></i>
-
-    </span>
-    </div>
-    <p class="Error" [class.visible]="formulario.controls['Password'].touched">
-
-    @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
-
-    <span>Campo requerido</span>
-
-
-    }
-    @if (formulario.controls['Password'].getError('minlength')&&formulario.controls['Password'].touched) {
-    <span>La contraseña no puede contener un minimo de 6 letras</span>
-
-    }
-    @if (validadorMensajeEspecifico&&!formulario.invalid) {
-    <span>{{mensajeEspecifico}}</span>
-    }
-    </p>
-    <button class="inicioSesion" (click)="checkLoggedUsuario()">Iniciar Sesion</button>
-
-
-    <div class="olvideyCuenta">
-    <a class="olvideContraseña" (click)="btOlvideContrasenia()">¿olvidaste tu contraseña?</a>
-
-    <a class="sinCuenta" (click)="btRegistro()">¿no tienes cuenta?</a>
-
   </div>
 
+  <p class="Error" [class.visible]="formulario.controls['Password'].touched">
+    @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
+    <span> Se debe llenar el campo requerido</span>
+    }
+
+    @if (formulario.controls['Password'].getError('minlength')&&formulario.controls['Password'].touched) {
+    <span>La contraseña no puede contener un minimo de 6 letras </span>
+    }
+
+    @if (validadorMensajeEspecifico&&!formulario.invalid) {
+    <span>{{mensajeEspecifico}}</span>
+    }
+  </p>
+  <button (click)="addUsuario()" class="Registro">Registrarse</button>
+
+  <div class="olvideyCuenta">
+    <a class="volverAlogueo" (click)="btLogueo()">Volver</a>
+  </div>
+</form>
+}
+
+@if (isFormLoginShowing) {
+<form class="formulario" [formGroup]="formulario" (keydown.enter)="checkLoggedUsuario()">
+  <h1 class="titulo">Iniciar Sesión</h1>
+
+  <div class="input-contenedor">
+    <i class="fa-solid fa-envelope icon" style="color: #000000;"></i>
+    <input type="text" value="" formControlName="Email" placeholder="Correo electronico" id="usuario">
+  </div>
+
+  <p class="Error" [class.visible]="formulario.controls['Email'].touched&&formulario.controls['Email'].errors">
+    @if (formulario.controls['Email'].getError('required')&&formulario.controls['Email'].touched) {
+    <span>Campo requerido</span>
+    }
+
+    @if (formulario.controls['Email'].getError('minlength')&&formulario.controls['Email'].touched) {
+    <span>El Usuario no puede contener un minimo de 6 letras</span>
+    }
+  </p>
+
+  <div class="input-contenedor">
+    <i class="fa-solid fa-key icon"></i>
+    <input [type]="changetype?'password':'text'" formControlName="Password" placeholder="Contraseña" id="password">
+    <span class="eyeicon" (click)="viewpass()"> <i [ngClass]="visible?'fa-solid fa-eye':'fa-solid fa-eye-slash'"></i>
+    </span>
+  </div>
+
+  <p class="Error" [class.visible]="formulario.controls['Password'].touched">
+    @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
+    <span>Campo requerido</span>
+    }
+
+    @if (formulario.controls['Password'].getError('minlength')&&formulario.controls['Password'].touched) {
+    <span>La contraseña no puede contener un minimo de 6 letras</span>
+    }
+
+    @if (validadorMensajeEspecifico&&!formulario.invalid) {
+    <span>{{mensajeEspecifico}}</span>
+    }
+  </p>
+  <button class="inicioSesion" (click)="checkLoggedUsuario()">Iniciar Sesion</button>
+
+  <div class="olvideyCuenta">
+    <a class="olvideContraseña" (click)="btOlvideContrasenia()">¿olvidaste tu contraseña?</a>
+    <a class="sinCuenta" (click)="btRegistro()">¿no tienes cuenta?</a>
+  </div>
 
   <a>o conectate con</a>
+  <button class="imagenGoogle" (click)="onClickGoogle()">
+    <img class="imagenGoogle" src="/assets/imagenes/GoogleIcon.png">
+  </button>
+</form>
+}
 
-    <button class="imagenGoogle" (click)="onClickGoogle()">
-      <img class="imagenGoogle" src="/assets/imagenes/GoogleIcon.png">
-
-    </button>
-
-
-
-
-
-  </form>
-
-  }
 @if(isFormForgotPasswordShowing)
 {
-
 <form class="formOlvideContraseña" [formGroup]="formularioOlvideContrasenia">
-
-
-
   <h1 class="titulo">¿olvidaste tu contraseña?</h1>
-
   <p class="subtitulo">ingrese su correo electronico para crear una contraseña nueva</p>
 
   <div class="input-contenedor">
-
     <i class="fa-solid fa-envelope icon" style="color: #000000;"></i>
     <input type="text" value="" formControlName="Email" placeholder="Correo electronico">
-    </div>
+  </div>
 
-
- <p class="Error" [class.visible]="formularioOlvideContrasenia.controls['Email'].touched">
-
-    @if (formularioOlvideContrasenia.controls['Email'].getError('required')&&formularioOlvideContrasenia.controls['Email'].touched) {
-
+  <p class="Error" [class.visible]="formularioOlvideContrasenia.controls['Email'].touched">
+    @if
+    (formularioOlvideContrasenia.controls['Email'].getError('required')&&formularioOlvideContrasenia.controls['Email'].touched)
+    {
     <span>Campo requerido</span>
-
-
     }
-    @if (formularioOlvideContrasenia.controls['Email'].getError('minlength')&&formularioOlvideContrasenia.controls['Email'].touched) {
+
+    @if
+    (formularioOlvideContrasenia.controls['Email'].getError('minlength')&&formularioOlvideContrasenia.controls['Email'].touched)
+    {
     <span>La contraseña no puede contener un minimo de 6 letras</span>
-
     }
+
     @if (validadorMensajeEspecifico&&!formularioOlvideContrasenia.invalid) {
     <span class="mensaje">{{mensajeEspecifico}}</span>
     }
-
-
- </p>
-
+  </p>
   <button class="enviarGmail" (click)="btEnviarGmail()">Enviar</button>
 
   <div class="olvideContrasenia">
-
-  <a class="volverAlogueo" (click)="btVolver()">Volver</a>
-
-
+    <a class="volverAlogueo" (click)="btVolver()">Volver</a>
   </div>
-
-
 </form>
-
-
-
-
 }
-
-

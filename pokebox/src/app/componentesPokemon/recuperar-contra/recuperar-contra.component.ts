@@ -25,10 +25,10 @@ export class RecuperarContraComponent implements OnInit {
     id: "",
     box: [],
     Email: "",
-    Username:"",
+    Username: "",
     Password: "",
     CombatesGanados: 0,
-    UrlImagenPerfil:'',
+    UrlImagenPerfil: '',
     ListaFavoritos: [],
     ListaObjetos: [],
     ListaEquipos: []
@@ -36,6 +36,7 @@ export class RecuperarContraComponent implements OnInit {
   authService = inject(AuthService);
   auth = this.authService.getAuth();
   usuarioServicio = inject(UsuarioService);
+  mostrarPassword: boolean = false;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -61,41 +62,63 @@ export class RecuperarContraComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.actionCode == null) {
-      console.log("Error, auth inexistente")
+    const error = this.validarPassword(this.newPassword);
+    if (error) {
+      this.message = error;
+      this.isMessageShowing = true;
+      return;
     }
-    else {
-      confirmPasswordReset(this.auth, this.actionCode, this.newPassword)
-        .then(() => {
-          this.message = 'Contraseña cambiada exitosamente.';
-          this.isMessageShowing = true;
-          this.usuarioServicio.getUsuariobyName(this.email).subscribe(
-            {
-              next: (usuarioDato: Usuario[]) => {
-                if (usuarioDato.length > 0 && usuarioDato[0] != undefined) {
-                  this.usuarioDato = usuarioDato[0]
-                  console.log(this.usuarioDato)
-                  this.usuarioDato.Email = this.email;
-                  this.usuarioDato.Password = this.newPassword;
-                  console.log(usuarioDato)
-                  this.usuarioServicio.putUsuario(this.usuarioDato, this.usuarioDato.id ?? null).subscribe(//verifica si es indefinido o null o tiene valor
-                    {
-                      next: () => {
-                        console.log('Usuario Guardado');
-                      },
-                      error: (e: Error) => {
-                        console.error(e.message);
-                      },
-                    }
-                  )
-                }
+
+    if (!this.actionCode) {
+      this.message = 'Código inválido.';
+      this.isMessageShowing = true;
+      return;
+    }
+
+    confirmPasswordReset(this.auth, this.actionCode, this.newPassword)
+      .then(() => {
+        this.message = 'Contraseña cambiada exitosamente.';
+        this.isMessageShowing = true;
+        // Aquí actualizamos el backend
+        this.usuarioServicio.getUsuariobyName(this.email).subscribe(
+          {
+            next: (usuarioDato: Usuario[]) => {
+              if (usuarioDato.length > 0 && usuarioDato[0] != undefined) {
+                this.usuarioDato = usuarioDato[0]
+                this.usuarioDato.Email = this.email;
+                this.usuarioDato.Password = this.newPassword;
+                this.usuarioServicio.putUsuario(this.usuarioDato, this.usuarioDato.id ?? null).subscribe(//verifica si es indefinido o null o tiene valor
+                  {
+                    next: () => {
+                      console.log('Usuario Guardado');
+                    },
+                    error: (e: Error) => {
+                      console.error(e.message);
+                    },
+                  }
+                )
               }
-            })
-        })
-        .catch(error => {
-          this.message = `Error al cambiar la contraseña: ${error.message}`;
-          this.isMessageShowing = true;
-        });
-    }
+            }
+          })
+      })
+      .catch(error => {
+        this.message = `Error al cambiar la contraseña: ${error.message}`;
+        this.isMessageShowing = true;
+      });
   }
+
+  alternarVisibilidadPassword() {
+    this.mostrarPassword = !this.mostrarPassword;
+  }
+
+  validarPassword(password: string): string | null {
+    const minLength = 6;
+
+    if (password.length < minLength) {
+      return 'La contraseña debe tener al menos 6 caracteres.';
+    }
+
+    return null; // ✅ Todo bien
+  }
+
 }

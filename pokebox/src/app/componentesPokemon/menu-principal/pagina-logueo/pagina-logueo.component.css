@@ -48,7 +48,8 @@ a.volverAlogueo {
   cursor: pointer;
   text-decoration: underline;
 }
-a.volverAlogueo{
+
+a.volverAlogueo {
   margin-right: 450px;
   text-align: left;
 }
@@ -100,7 +101,7 @@ button.imagenGoogle:focus {
 
 button.inicioSesion,
 .enviarGmail,
-.Registro{
+.Registro {
   cursor: pointer;
   border: 0.125rem solid #000000;
   border-radius: 0.5rem;
@@ -113,14 +114,9 @@ button.inicioSesion,
   font-family: 'Winky Rough', cursive;
 }
 
-
-
-.inicioSesion:hover
-{
+.inicioSesion:hover {
   background-color: rgb(0, 0, 117);
   color: rgb(0, 0, 0);
-
-
 }
 
 .Registro:hover {
@@ -128,7 +124,7 @@ button.inicioSesion,
   color: rgb(0, 0, 0);
 }
 
-.enviarGmail:hover{
+.enviarGmail:hover {
   background-color: #740303;
   color: rgb(0, 0, 0);
 }
@@ -178,40 +174,42 @@ label {
 }
 
 input[type="text"],
-input[type="password"]{
+input[type="password"] {
   font-size: 20px;
   text-align: center;
   width: 300px;
   padding: 10px;
   border: none;
-  flex: 1 /* Ocupa todo el espacio posible sin desbordar */
-
+  flex: 1
+    /* Ocupa todo el espacio posible sin desbordar */
 }
-.mensaje{
+
+.mensaje {
   color: #eeff06;
 }
 
-.input-contenedor{
-  border: 5px solid #ffffff ;
+.input-contenedor {
+  border: 5px solid #ffffff;
   background-color: white;
   display: flex;
   align-items: center;
   width: 400px;
-
 }
-.icon{
+
+.icon {
   min-width: 25px;
   text-align: center;
   color: black;
 }
-.eyeicon{
-    min-width: 15px;
-    margin-left: 10px;
-  right: 10px; /* Acomoda este valor según el padding */
+
+.eyeicon {
+  min-width: 15px;
+  margin-left: 10px;
+  right: 10px;
+  /* Acomoda este valor según el padding */
   cursor: pointer;
   align-items: left;
   color: black;
-
 }
 
 /* Media Queries para pantallas medianas */

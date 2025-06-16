@@ -1,12 +1,15 @@
 <div class="reset-password-container">
   <h2>Restablecer contraseña</h2>
-
   <label for="new-password">ingrese su Nueva contraseña:</label>
-  <input type="password" id="new-password" [(ngModel)]="newPassword" />
-  @if (isMessageShowing) {
 
-    <p>{{message}} </p>
-  }
+  <div class="input-password-wrapper">
+    <input [type]="mostrarPassword ? 'text' : 'password'" [(ngModel)]="newPassword"
+      (ngModelChange)="message = ''; isMessageShowing = false" placeholder="Nueva contraseña" />
+    <button type="button" class="eye-btn" (click)="alternarVisibilidadPassword()">
+      <i class="{{ mostrarPassword ? 'fa fa-eye-slash' : 'fa fa-eye' }}"></i>
+    </button>
+  </div>
 
-  <button (click)="onSubmit()">Restablecer</button>
+  <p *ngIf="isMessageShowing" class="error-msg">{{ message }}</p>
+  <button (click)="onSubmit()" [disabled]="!newPassword">Restablecer</button>
 </div>

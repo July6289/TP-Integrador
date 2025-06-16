@@ -10,12 +10,11 @@ import { Pokemon } from '../../../interfaces/interfazpokemon/interfazpokemon.int
 import { Objeto } from '../../../interfaces/objetos/objeto.interface';
 import { EquipoPokemon } from '../../../interfaces/interfazpokemon/interfazEquipo.interface';
 import { CommonModule } from '@angular/common';
-import { eq } from 'lodash';
 
 @Component({
   selector: 'app-pagina-logueo',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule,CommonModule],
+  imports: [ReactiveFormsModule, RouterModule, CommonModule],
   templateUrl: './pagina-logueo.component.html',
   styleUrl: './pagina-logueo.component.css'
 })
@@ -23,8 +22,8 @@ import { eq } from 'lodash';
 export class PaginaLogueoComponent {
   constructor(private ctrl: ChangeDetectorRef, private auth: AuthService) { }
   validadorMensajeEspecifico: boolean = false;
-  visible:boolean=true;
-  changetype:boolean=true;
+  visible: boolean = true;
+  changetype: boolean = true;
   mensajeEspecifico: string = '';
   isFormLoginShowing: boolean = true;
   IsFormRegisterShowing: boolean = false;
@@ -39,9 +38,9 @@ export class PaginaLogueoComponent {
     id: "",
     box: [],
     Email: "",
-    Username:"",
+    Username: "",
     Password: "",
-    UrlImagenPerfil:'',
+    UrlImagenPerfil: '',
     CombatesGanados: 0,
     ListaFavoritos: [],
     ListaObjetos: [],
@@ -52,31 +51,29 @@ export class PaginaLogueoComponent {
       id: [''],
       box: [[] as Caja[]], //un array vacio de cajas
       Email: ['', [Validators.required, Validators.minLength(6)]],
-      Username:['',[Validators.required,Validators.minLength(6)]],
+      Username: ['', [Validators.required, Validators.minLength(6)]],
       Password: ['', [Validators.required, Validators.minLength(6)]],
-      UrlImagenPerfil:[''],
+      UrlImagenPerfil: [''],
       CombatesGanados: 0,
       ListaFavoritos: [[] as Pokemon[],],
       ListaObjetos: [[] as Objeto[],],
       ListaEquipos: [[] as EquipoPokemon[],]
     }
   )
-
-  formularioOlvideContrasenia=this.fb.nonNullable.group(
+  formularioOlvideContrasenia = this.fb.nonNullable.group(
     {
-      Email:['',[Validators.required, Validators.minLength(6)]]
+      Email: ['', [Validators.required, Validators.minLength(6)]]
     }
   )
 
-  viewpass(){
-    this.visible=!this.visible
-    this.changetype=!this.changetype
+  viewpass() {
+    this.visible = !this.visible
+    this.changetype = !this.changetype
   }
-
 
   btRegistro() {
     this.formulario.reset();
-    this.validadorMensajeEspecifico=false;
+    this.validadorMensajeEspecifico = false;
     this.IsFormRegisterShowing = true;
     this.isFormLoginShowing = false;
     this.mensajeEspecifico = '';
@@ -90,7 +87,6 @@ export class PaginaLogueoComponent {
     this.IsFormRegisterShowing = false;
     this.isFormLoginShowing = true;
     this.mensajeEspecifico = '';
-
   }
 
   btVolver() {
@@ -113,17 +109,16 @@ export class PaginaLogueoComponent {
     this.usuarioService.getUsuariobyName(usuarioDato.Email).subscribe(
       {
         next: (usuario: Usuario[]) => {
-          if (usuario.length>0 &&usuario[0]!=undefined) {
+          if (usuario.length > 0 && usuario[0] != undefined) {
             if (usuario[0].Password == null)  //si la contrasenia es nulla,significa que estamos usando una de google, no podemos usar una de google
             {
               this.validadorMensajeEspecifico = true
               this.mensajeEspecifico = 'no se puede enviar un correo de recuperacion a una cuenta autenticada con google'
             }
             else {
-              this.validadorMensajeEspecifico=true
+              this.validadorMensajeEspecifico = true
               this.authservice.enviarCorreoRecuperación(usuarioDato.Email);
-              this.mensajeEspecifico="correo verificado, siga las instrucciones enviadas en su correo para recuperar la contraseña"
-
+              this.mensajeEspecifico = "correo verificado, siga las instrucciones enviadas en su correo para recuperar la contraseña"
             }
           }
           else {
@@ -140,10 +135,10 @@ export class PaginaLogueoComponent {
     result.then(result => {
       const user = result.user;
       const email = user.email; // Extraer el correo del usuario
-      const name= user.displayName
+      const name = user.displayName
       console.log("Correo del usuario:", email);
       // Puedes guardar el email en tu JSON o manejarlo como prefieras
-      if (email != null&&name!=null) {
+      if (email != null && name != null) {
         this.usuarioService.getUsuariobyName(email).subscribe(
           {
             next: (usuarioDato: Usuario[]) => {
@@ -151,8 +146,8 @@ export class PaginaLogueoComponent {
                 this.idUsuario = getRandomAlphaNumeric(4);
                 this.usuarioNuevo.id = this.idUsuario;
                 this.usuarioNuevo.Email = email;
-                this.usuarioNuevo.Username=name;
-                this.usuarioNuevo.UrlImagenPerfil='/assets/imagenes/imagen_pokemon1.png'
+                this.usuarioNuevo.Username = name;
+                this.usuarioNuevo.UrlImagenPerfil = '/assets/imagenes/imagen_pokemon1.png'
                 this.usuarioNuevo.Password = null;
                 this.usuarioService.postUsuario(this.usuarioNuevo).subscribe(
                   {
@@ -195,8 +190,7 @@ export class PaginaLogueoComponent {
       this.validadorMensajeEspecifico = true;
       const usuario = this.formulario.getRawValue();
       usuario.box = this.pokeservice.cajas;
-      usuario.UrlImagenPerfil='/assets/imagenes/imagen_pokemon1.png'
-
+      usuario.UrlImagenPerfil = '/assets/imagenes/imagen_pokemon1.png'
       this.usuarioService.getUsuariobyName(usuario.Email).subscribe(
         {
           next: (usuarioDato: Usuario[]) => {
@@ -234,7 +228,7 @@ export class PaginaLogueoComponent {
                     this.validadorMensajeEspecifico = true;
                     this.mensajeEspecifico = 'El correo no tiene un formato válido.';
                   } else if (error.code === "auth/email-already-in-use") {
-                     this.validadorMensajeEspecifico = true;
+                    this.validadorMensajeEspecifico = true;
                     this.mensajeEspecifico = 'El correo ya está registrado.';
                   } else {
                     this.validadorMensajeEspecifico = true;
@@ -253,9 +247,9 @@ export class PaginaLogueoComponent {
 
   checkLoggedUsuario() {
     this.validadorMensajeEspecifico = false;
-this.mensajeEspecifico = '';
-          const datosUsuario = this.formulario.getRawValue();
-           this.formulario.patchValue({
+    this.mensajeEspecifico = '';
+    const datosUsuario = this.formulario.getRawValue();
+    this.formulario.patchValue({
       Username: "randomDATA",       //hacemos esto porque sino salta un error de datos por no llevar username el logueo
     })
     if (this.formulario.invalid) {
@@ -280,7 +274,7 @@ this.mensajeEspecifico = '';
                 }
                 else {
                   this.validadorMensajeEspecifico = true;
-                  this.mensajeEspecifico = 'contraseña incorrecta, ingese nuevamente';
+                  this.mensajeEspecifico = 'contraseña incorrecta, ingrese nuevamente';
                 }
               }
               else {
