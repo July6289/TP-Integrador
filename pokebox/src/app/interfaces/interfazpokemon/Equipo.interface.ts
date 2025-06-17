@@ -1,4 +1,4 @@
-import { Pokemon } from "./interfazpokemon.inteface";
+import { Pokemon } from "./Pokemon.inteface";
 
 export interface EquipoPokemon {
   nombre: string;

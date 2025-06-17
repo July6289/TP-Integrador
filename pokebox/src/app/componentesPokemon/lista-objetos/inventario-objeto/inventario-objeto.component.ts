@@ -3,7 +3,7 @@ import { ObjetoService } from '../../../pokeservices/objeto.service';
 import { Objeto } from '../../../interfaces/objetos/objeto.interface';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Usuario } from '../../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { Usuario } from '../../../interfaces/interfaz-usuario/Usuario.interface';
 import { AuthService } from '../../../auth/service/auth.service';
 import { UsuarioService } from '../../../pokeservices/usuario.service';
 import { PokeservicesService } from '../../../pokeservices/pokeservices.service';

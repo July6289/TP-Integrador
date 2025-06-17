@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { Usuario } from '../../interfaces/interfaz-usuario/Usuario.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/service/auth.service';

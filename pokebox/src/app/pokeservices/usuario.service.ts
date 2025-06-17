@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { Usuario } from '../interfaces/interfaz-usuario/Usuario.interface';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 
 @Injectable({

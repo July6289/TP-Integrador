@@ -21,10 +21,7 @@ nav {
   color: white;
   font-family: 'Winky Rough', cursive;
   left: 50px;
-
 }
-
-
 
 .homePage,
 .boton2,
@@ -43,13 +40,10 @@ nav {
   line-height: 1;
 }
 
-
 .homePage,
 .perfilPage {
   margin-right: 2rem;
 }
-
-.perfilPage {}
 
 .homePage p,
 ul {

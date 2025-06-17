@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
-import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
+import { Pokemon } from '../../interfaces/interfazpokemon/Pokemon.inteface';
 import { Observable } from 'rxjs';
 import { UsuarioService } from '../../pokeservices/usuario.service';
-import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { Usuario } from '../../interfaces/interfaz-usuario/Usuario.interface';
 import { AuthService } from '../../auth/service/auth.service';
 
 @Component({

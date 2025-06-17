@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
+import { Pokemon } from '../../interfaces/interfazpokemon/Pokemon.inteface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
 import { UsuarioService } from '../../pokeservices/usuario.service';
-import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { Usuario } from '../../interfaces/interfaz-usuario/Usuario.interface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { TutorialService } from '../../pokeservices/tutorial.service';
 

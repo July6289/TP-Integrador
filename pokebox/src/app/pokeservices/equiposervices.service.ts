@@ -1,10 +1,10 @@
 // equiposervices.service.ts
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { EquipoPokemon } from '../interfaces/interfazpokemon/interfazEquipo.interface';
+import { EquipoPokemon } from '../interfaces/interfazpokemon/Equipo.interface';
 import { PokeservicesService } from './pokeservices.service';
-import { Pokemon } from '../interfaces/interfazpokemon/interfazpokemon.inteface';
-import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { Pokemon } from '../interfaces/interfazpokemon/Pokemon.inteface';
+import { Usuario } from '../interfaces/interfaz-usuario/Usuario.interface';
 import { UsuarioService } from './usuario.service';
 
 @Injectable({

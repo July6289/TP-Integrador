@@ -1,7 +1,7 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
-import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
+import { Pokemon } from '../../interfaces/interfazpokemon/Pokemon.inteface';
 import { Observable } from 'rxjs';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 

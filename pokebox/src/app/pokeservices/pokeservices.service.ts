@@ -1,11 +1,11 @@
+import { Generation } from './../interfaces/interfazpokemon/Generacion.interface';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, combineLatest, map, Observable, of, forkJoin } from 'rxjs';
-import { Generation } from '../interfaces/interfazpokemon/interfazGeneracion.interface';
-import { Pokemon, Species, Sprites, Type } from '../interfaces/interfazpokemon/interfazpokemon.inteface';
-import { Caja } from '../interfaces/interfaz-caja/interfazCaja.inteface';
+import { Pokemon, Sprites, Type } from '../interfaces/interfazpokemon/Pokemon.inteface';
+import { Caja } from '../interfaces/interfaz-caja/Caja.inteface';
 import { UsuarioService } from './usuario.service';
-import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { Usuario } from '../interfaces/interfaz-usuario/Usuario.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +23,12 @@ export class PokeservicesService {
   private cajasSubject = new BehaviorSubject<Caja[]>(this.cajas);
   cajas$ = this.cajasSubject.asObservable();
 
-  public limpiarCaja()
-  {
-      this.cajas.forEach(caja => caja.pokemones = []);
+  public limpiarCaja() {
+    this.cajas.forEach(caja => caja.pokemones = []);
 
-  // Volver a emitir el array actualizado
-  this.cajasSubject.next([...this.cajas]);
-    console.log("a ver si borre:",this.cajasSubject)
+    // Volver a emitir el array actualizado
+    this.cajasSubject.next([...this.cajas]);
+    console.log("a ver si borre:", this.cajasSubject)
 
 
   }
@@ -47,10 +46,10 @@ export class PokeservicesService {
     id: "",
     box: [],
     Email: "",
-    Username:"",
+    Username: "",
     Password: "",
     CombatesGanados: 0,
-    UrlImagenPerfil:'',
+    UrlImagenPerfil: '',
     ListaFavoritos: [],
     ListaObjetos: [],
     ListaEquipos: []
@@ -89,17 +88,8 @@ export class PokeservicesService {
   getPokemonByName(nombrePokemon: string): Observable<Pokemon | undefined> {
     return this.http.get<any>(`${this.urlBase}/pokemon/${nombrePokemon}`).pipe(
       map((data) => ({
-        forms: data.forms.map((form: any) => ({
-          name: form.name,
-          url: form.url
-        })) as Species[],
         id: data.id,
-        is_default: data.is_default,
         name: data.name,
-        species: {
-          name: data.species.name,
-          url: data.species.url
-        } as Species,
         sprites: {
           back_default: data.sprites.back_default,
           back_female: data.sprites.back_female,
@@ -111,12 +101,8 @@ export class PokeservicesService {
           front_shiny_female: data.sprites.front_shiny_female
         } as Sprites,
         types: data.types.map((typeData: any) => ({
-          slot: typeData.slot,
-          type: {
-            name: typeData.type.name,
-            url: typeData.type.url
-          } as Species
-        })) as Type[]
+          type: typeData.type
+        })) as Type[],
       })),
       catchError((error) => {
         console.error('Error fetching Pokémon:', error);
@@ -249,8 +235,7 @@ export class PokeservicesService {
   private favoritosSubject = new BehaviorSubject<Pokemon[]>([]);
   favoritos$ = this.favoritosSubject.asObservable();
 
-  public vaciarFavoritos()
-  {
+  public vaciarFavoritos() {
     this.favoritosSubject.next([]);
 
   }

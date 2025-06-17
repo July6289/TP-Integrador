@@ -1,11 +1,11 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
+import { Pokemon } from '../../interfaces/interfazpokemon/Pokemon.inteface';
 import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
-import { EquipoPokemon } from '../../interfaces/interfazpokemon/interfazEquipo.interface';
+import { EquipoPokemon } from '../../interfaces/interfazpokemon/Equipo.interface';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { Usuario } from '../../interfaces/interfaz-usuario/Usuario.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { AuthService } from '../../auth/service/auth.service';
 import { Subscription } from 'rxjs';
@@ -176,10 +176,10 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
     }
     let jugador = this.equipoMain.equipo[idPeleador];
     const rival = this.equipoRival.equipo[idBot];
-    const jugadorTipo1 = jugador.types[0].type.name;
-    const jugadorTipo2 = jugador.types[1]?.type.name;
-    const rivalTipo1 = rival.types[0].type.name;
-    const rivalTipo2 = rival.types[1]?.type.name;
+    const jugadorTipo1 = jugador.types[0].type;
+    const jugadorTipo2 = jugador.types[1]?.type;
+    const rivalTipo1 = rival.types[0].type;
+    const rivalTipo2 = rival.types[1]?.type;
 
     //buscar indice tipos
     for (let i = 0; i < this.tablaTiposNombres.length; i++) {

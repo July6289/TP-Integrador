@@ -1,14 +1,14 @@
-import { Usuario } from './../../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { Usuario } from '../../../interfaces/interfaz-usuario/Usuario.interface';
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
-import { Caja } from '../../../interfaces/interfaz-caja/interfazCaja.inteface';
+import { Caja } from '../../../interfaces/interfaz-caja/Caja.inteface';
 import { UsuarioService } from '../../../pokeservices/usuario.service';
 import { PokeservicesService } from '../../../pokeservices/pokeservices.service';
 import { AuthService } from '../../../auth/service/auth.service';
-import { Pokemon } from '../../../interfaces/interfazpokemon/interfazpokemon.inteface';
+import { Pokemon } from '../../../interfaces/interfazpokemon/Pokemon.inteface';
 import { Objeto } from '../../../interfaces/objetos/objeto.interface';
-import { EquipoPokemon } from '../../../interfaces/interfazpokemon/interfazEquipo.interface';
+import { EquipoPokemon } from '../../../interfaces/interfazpokemon/Equipo.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({

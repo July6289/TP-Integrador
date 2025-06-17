@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../auth/service/auth.service';
-import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { Usuario } from '../../interfaces/interfaz-usuario/Usuario.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { TutorialService } from '../../pokeservices/tutorial.service';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';

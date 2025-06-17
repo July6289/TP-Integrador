@@ -5,7 +5,7 @@ import { confirmPasswordReset, verifyPasswordResetCode } from 'firebase/auth';
 import { AuthService } from '../../auth/service/auth.service';
 import { FormsModule } from '@angular/forms';
 import { UsuarioService } from '../../pokeservices/usuario.service';
-import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { Usuario } from '../../interfaces/interfaz-usuario/Usuario.interface';
 
 @Component({
   selector: 'app-recuperar-contra',

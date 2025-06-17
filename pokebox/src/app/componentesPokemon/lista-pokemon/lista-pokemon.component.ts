@@ -1,11 +1,11 @@
-import { Component, inject, Output, EventEmitter, OnInit, Input } from '@angular/core';
+import { Component, inject, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 import { filter } from 'rxjs/operators';
-import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
+import { Pokemon } from '../../interfaces/interfazpokemon/Pokemon.inteface';
 
 @Component({
   selector: 'app-lista-pokemon',

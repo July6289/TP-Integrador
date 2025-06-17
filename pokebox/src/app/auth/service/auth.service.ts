@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createUserWithEmailAndPassword, deleteUser, getAuth, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
-import { Usuario } from '../../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { Usuario } from '../../interfaces/interfaz-usuario/Usuario.interface';
 
 @Injectable({
   providedIn: 'root'

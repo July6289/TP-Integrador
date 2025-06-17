@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Objeto } from '../interfaces/objetos/objeto.interface';
-import { Usuario } from '../interfaces/interfaz-usuario/interfazGeneracion.interface';
+import { Usuario } from '../interfaces/interfaz-usuario/Usuario.interface';
 import { UsuarioService } from './usuario.service';
 
 @Injectable({

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { PokeservicesService } from '../../pokeservices/pokeservices.service';
 import { CommonModule } from '@angular/common';
-import { Pokemon } from '../../interfaces/interfazpokemon/interfazpokemon.inteface';
+import { Pokemon } from '../../interfaces/interfazpokemon/Pokemon.inteface';
 import { Subscription } from 'rxjs';
 
 @Component({
