@@ -16,15 +16,15 @@ export class ObjetoService {
   inventario$ = this.inventarioSubject.asObservable();
   usuario: Usuario = {
     id: "",
-    box: [],
     Email: "",
-    Username:"",
+    Username: "",
     Password: "",
+    UrlImagenPerfil: '',
     CombatesGanados: 0,
-    UrlImagenPerfil:'',
+    box: [],
     ListaFavoritos: [],
-    ListaObjetos: [],
-    ListaEquipos: []
+    ListaEquipos: [],
+    ListaObjetos: []
   }
   clave: string | null = ""
   usuarioService = inject(UsuarioService);

@@ -17,15 +17,15 @@ export class EquipoPokemonService {
   equipos$ = this.equiposSubject.asObservable();
   usuario: Usuario = {
     id: "",
-    box: [],
     Email: "",
     Username: "",
     Password: "",
-    CombatesGanados: 0,
     UrlImagenPerfil: '',
+    CombatesGanados: 0,
+    box: [],
     ListaFavoritos: [],
-    ListaObjetos: [],
-    ListaEquipos: []
+    ListaEquipos: [],
+    ListaObjetos: []
   }
   clave: string | null = ''
   poketeam: EquipoPokemon =

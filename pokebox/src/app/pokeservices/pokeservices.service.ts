@@ -22,17 +22,6 @@ export class PokeservicesService {
   // BehaviorSubject para emitir actualizaciones de cajas
   private cajasSubject = new BehaviorSubject<Caja[]>(this.cajas);
   cajas$ = this.cajasSubject.asObservable();
-
-  public limpiarCaja() {
-    this.cajas.forEach(caja => caja.pokemones = []);
-
-    // Volver a emitir el array actualizado
-    this.cajasSubject.next([...this.cajas]);
-    console.log("a ver si borre:", this.cajasSubject)
-
-
-  }
-
   usuarioService = inject(UsuarioService);
   private selectedPokemonSubject = new BehaviorSubject<Pokemon | null>(null); // BehaviorSubject para el Pokémon seleccionado
   selectedPokemon$ = this.selectedPokemonSubject.asObservable(); // Observable para suscribirse a los cambios
@@ -44,15 +33,15 @@ export class PokeservicesService {
   clave: string | null = ""
   usuario: Usuario = {
     id: "",
-    box: [],
     Email: "",
     Username: "",
     Password: "",
-    CombatesGanados: 0,
     UrlImagenPerfil: '',
+    CombatesGanados: 0,
+    box: [],
     ListaFavoritos: [],
-    ListaObjetos: [],
-    ListaEquipos: []
+    ListaEquipos: [],
+    ListaObjetos: []
   }
   // Este observable combinará los valores de selectedPokemon$, esMacho$ y esShiny$ para generar la URL correcta del sprite.
   spriteActual$: Observable<string | null> = combineLatest([
@@ -71,6 +60,8 @@ export class PokeservicesService {
     })
   );
   urlBase: string = 'https://pokeapi.co/api/v2';
+  private favoritosSubject = new BehaviorSubject<Pokemon[]>([]);
+  favoritos$ = this.favoritosSubject.asObservable();
 
   constructor(private http: HttpClient) {
     // Inicializar las cajas para evitar errores
@@ -79,6 +70,16 @@ export class PokeservicesService {
       pokemones: [],
     }));
     this.cajasSubject.next(this.usuario.box); // Emitir cajas inicializadas
+  }
+
+  public limpiarCaja() {
+    this.cajas.forEach(caja => caja.pokemones = []);
+
+    // Volver a emitir el array actualizado
+    this.cajasSubject.next([...this.cajas]);
+    console.log("a ver si borre:", this.cajasSubject)
+
+
   }
 
   getid() {
@@ -231,9 +232,6 @@ export class PokeservicesService {
       map(results => results.filter((pokemon): pokemon is Pokemon => pokemon !== null))
     );
   }
-
-  private favoritosSubject = new BehaviorSubject<Pokemon[]>([]);
-  favoritos$ = this.favoritosSubject.asObservable();
 
   public vaciarFavoritos() {
     this.favoritosSubject.next([]);

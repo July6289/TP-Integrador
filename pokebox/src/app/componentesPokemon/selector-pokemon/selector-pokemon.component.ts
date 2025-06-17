@@ -81,7 +81,6 @@ export class SelectorPokemonComponent implements OnInit, OnDestroy {
     this.router.navigate(['/combate']);
   }
 
-
   getTypeClass(type: string): string {
     switch (type) {
       case 'normal':

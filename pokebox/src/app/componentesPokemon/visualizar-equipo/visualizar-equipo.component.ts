@@ -25,15 +25,15 @@ export class VisualizarEquipoComponent implements OnInit {
   id: string | null = '';
   usuario: Usuario = {
     id: "",
-    box: [],
     Email: "",
     Username: "",
     Password: "",
-    CombatesGanados: 0,
     UrlImagenPerfil: '',
+    CombatesGanados: 0,
+    box: [],
     ListaFavoritos: [],
-    ListaObjetos: [],
-    ListaEquipos: []
+    ListaEquipos: [],
+    ListaObjetos: []
   }
   usuarioServicio = inject(UsuarioService)
   pokeservice = inject(PokeservicesService)

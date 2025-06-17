@@ -20,6 +20,9 @@ import { TutorialService } from '../../pokeservices/tutorial.service';
 export class PaginaPrincipalComponent implements OnInit, OnDestroy {
   @ViewChild('caja') caja!: CajaComponent;
 
+  mostrarTutorial: boolean = false;
+  private tutorialSub?: Subscription;
+
   constructor(private router: Router, private tutorialService: TutorialService) { }
 
   goToCombate() {
@@ -31,9 +34,6 @@ export class PaginaPrincipalComponent implements OnInit, OnDestroy {
       this.caja.dbGuardarDatos();
     }, 1000);
   }
-
-  mostrarTutorial: boolean = false;
-  private tutorialSub?: Subscription;
 
   ngOnInit() {
     this.tutorialSub = this.tutorialService.mostrarTutorial$.subscribe(

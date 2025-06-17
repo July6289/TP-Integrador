@@ -60,15 +60,15 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
   pokeservice = inject(PokeservicesService)
   usuario: Usuario = {
     id: "",
-    box: [],
     Email: "",
     Username: "",
     Password: "",
-    CombatesGanados: 0,
     UrlImagenPerfil: '',
+    CombatesGanados: 0,
+    box: [],
     ListaFavoritos: [],
-    ListaObjetos: [],
-    ListaEquipos: []
+    ListaEquipos: [],
+    ListaObjetos: []
   }
   auth = inject(AuthService);
   usuarioService = inject(UsuarioService);

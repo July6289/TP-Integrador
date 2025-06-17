@@ -10,33 +10,25 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 export class UsuarioService {
   urlbase: string = 'http://localhost:3000/Usuarios';
   estoyLogeado: boolean = false
+  private ActivadorMensajeSubject = new BehaviorSubject<boolean>(false);
+  activadorMensaje$ = this.ActivadorMensajeSubject.asObservable();
+  private ActualizarUrlPerfilSubject = new BehaviorSubject<string>("");
+  actualizarperfil$ = this.ActualizarUrlPerfilSubject.asObservable();
 
   constructor(private service: HttpClient) { }
 
+  public cambiarUrl(url: string) {
+    this.ActualizarUrlPerfilSubject.next(url)
+  }
 
-   private ActivadorMensajeSubject = new BehaviorSubject<boolean>(false);
-    activadorMensaje$ = this.ActivadorMensajeSubject.asObservable();
-
-    private ActualizarUrlPerfilSubject = new BehaviorSubject<string>("");
-    actualizarperfil$ = this.ActualizarUrlPerfilSubject.asObservable();
-
-
-public cambiarUrl(url:string)
-{
-
-  this.ActualizarUrlPerfilSubject.next(url)
-
-}
-  public activarMensaje()
-  {
+  public activarMensaje() {
     this.ActivadorMensajeSubject.next(true)
-
   }
-  public desactivarMensaje()
-  {
+
+  public desactivarMensaje() {
     this.ActivadorMensajeSubject.next(false)
-
   }
+
   postUsuario(usuario: Usuario): Observable<Usuario> {
     return this.service.post<Usuario>(this.urlbase, usuario);
   }
@@ -61,6 +53,7 @@ public cambiarUrl(url:string)
       });
     }
   }
+
   putUsuario(usuario: Usuario, id: string | null): Observable<Usuario> {
     if (!id) {
       console.error('Error: El ID del usuario no está definido.');

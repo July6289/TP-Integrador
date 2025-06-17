@@ -28,18 +28,17 @@ export class CajaComponent implements OnInit {
   usarioServicio = inject(UsuarioService);
   pokeservice = inject(PokeservicesService)
   auth = inject(AuthService);
-
   usuario: Usuario = {
     id: "",
-    box: [],
     Email: "",
     Username: "",
     Password: "",
     UrlImagenPerfil: '',
     CombatesGanados: 0,
+    box: [],
     ListaFavoritos: [],
-    ListaObjetos: [],
-    ListaEquipos: []
+    ListaEquipos: [],
+    ListaObjetos: []
   }
 
   constructor(private pokeService: PokeservicesService) {

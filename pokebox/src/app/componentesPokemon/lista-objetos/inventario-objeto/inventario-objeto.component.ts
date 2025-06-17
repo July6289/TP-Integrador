@@ -26,18 +26,17 @@ export class InventarioObjetoComponent implements OnInit {
   auth = inject(AuthService);
   usarioServicio = inject(UsuarioService);
   pokeservice = inject(PokeservicesService);
-
   usuario: Usuario = {
     id: "",
-    box: [],
     Email: "",
     Username: "",
     Password: "",
-    CombatesGanados: 0,
     UrlImagenPerfil: '',
+    CombatesGanados: 0,
+    box: [],
     ListaFavoritos: [],
-    ListaObjetos: [],
-    ListaEquipos: []
+    ListaEquipos: [],
+    ListaObjetos: []
   }
 
   constructor(private objetoService: ObjetoService) { }

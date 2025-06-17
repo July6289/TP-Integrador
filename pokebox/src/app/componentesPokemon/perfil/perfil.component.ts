@@ -35,15 +35,15 @@ export class PerfilComponent implements OnInit, OnDestroy {
   pokeservice = inject(PokeservicesService)
   usuario: Usuario = {
     id: "",
-    box: [],
     Email: "",
     Username: "",
     Password: "",
-    UrlImagenPerfil: "",
+    UrlImagenPerfil: '',
     CombatesGanados: 0,
+    box: [],
     ListaFavoritos: [],
-    ListaObjetos: [],
-    ListaEquipos: []
+    ListaEquipos: [],
+    ListaObjetos: []
   }
   fb = inject(FormBuilder);
   authservice = inject(AuthService);

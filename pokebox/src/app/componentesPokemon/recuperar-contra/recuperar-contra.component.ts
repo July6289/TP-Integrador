@@ -23,15 +23,15 @@ export class RecuperarContraComponent implements OnInit {
   actionCode: string | null = null;
   usuarioDato: Usuario = {
     id: "",
-    box: [],
     Email: "",
     Username: "",
     Password: "",
-    CombatesGanados: 0,
     UrlImagenPerfil: '',
+    CombatesGanados: 0,
+    box: [],
     ListaFavoritos: [],
-    ListaObjetos: [],
-    ListaEquipos: []
+    ListaEquipos: [],
+    ListaObjetos: []
   }
   authService = inject(AuthService);
   auth = this.authService.getAuth();

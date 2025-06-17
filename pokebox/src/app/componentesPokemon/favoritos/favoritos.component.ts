@@ -15,11 +15,11 @@ import { UsuarioService } from '../../pokeservices/usuario.service';
 export class FavoritosComponent {
   favoritos$: Observable<Pokemon[]>;
   usarioServicio = inject(UsuarioService);
-
   contextMenuVisible = false;
   contextMenuX = 0;
   contextMenuY = 0;
   selectedPokemon: Pokemon | null = null;
+
   constructor(private pokeService: PokeservicesService) {
     this.favoritos$ = this.pokeService.favoritos$;
   }

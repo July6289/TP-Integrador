@@ -36,15 +36,15 @@ export class PaginaLogueoComponent {
   fb = inject(FormBuilder);
   usuarioNuevo: Usuario = {
     id: "",
-    box: [],
     Email: "",
     Username: "",
     Password: "",
     UrlImagenPerfil: '',
     CombatesGanados: 0,
+    box: [],
     ListaFavoritos: [],
-    ListaObjetos: [],
-    ListaEquipos: []
+    ListaEquipos: [],
+    ListaObjetos: []
   }
   formulario = this.fb.nonNullable.group(
     {
