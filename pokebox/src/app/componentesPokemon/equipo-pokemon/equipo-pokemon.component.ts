@@ -1,12 +1,12 @@
 import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { ListaPokemonComponent } from "../lista-pokemon/lista-pokemon.component";
 import { CommonModule } from '@angular/common';
-import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
+import { EquipoPokemonService } from '../../pokeservices/equipo.service';
 import { Pokemon } from '../../interfaces/interfazpokemon/Pokemon.inteface';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/Equipo.interface';
 import { Router } from '@angular/router';
 import { Usuario } from '../../interfaces/interfaz-usuario/Usuario.interface';
-import { PokeservicesService } from '../../pokeservices/pokeservices.service';
+import { PokeservicesService } from '../../pokeservices/pokemon.service';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { TutorialService } from '../../pokeservices/tutorial.service';
 

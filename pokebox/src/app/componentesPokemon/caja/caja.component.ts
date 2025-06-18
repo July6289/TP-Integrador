@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit, inject } from '@angular/core';
-import { PokeservicesService } from '../../pokeservices/pokeservices.service';
+import { PokeservicesService } from '../../pokeservices/pokemon.service';
 import { Pokemon } from '../../interfaces/interfazpokemon/Pokemon.inteface';
 import { Observable } from 'rxjs';
 import { UsuarioService } from '../../pokeservices/usuario.service';

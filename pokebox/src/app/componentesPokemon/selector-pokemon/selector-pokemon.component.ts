@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pokemon } from '../../interfaces/interfazpokemon/Pokemon.inteface';
-import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
+import { EquipoPokemonService } from '../../pokeservices/equipo.service';
 import { CommonModule, NgClass, NgFor } from '@angular/common';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/Equipo.interface';
 import { TutorialService } from '../../pokeservices/tutorial.service';

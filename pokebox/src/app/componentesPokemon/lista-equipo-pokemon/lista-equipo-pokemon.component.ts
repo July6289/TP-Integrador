@@ -1,12 +1,12 @@
 import { Router, RouterModule } from '@angular/router';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
+import { EquipoPokemonService } from '../../pokeservices/equipo.service';
 import { NgFor, Location, NgIf, NgClass } from '@angular/common';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/Equipo.interface';
 import { Usuario } from '../../interfaces/interfaz-usuario/Usuario.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { AuthService } from '../../auth/service/auth.service';
-import { PokeservicesService } from '../../pokeservices/pokeservices.service';
+import { PokeservicesService } from '../../pokeservices/pokemon.service';
 import { Observable, Subject, Subscription, takeUntil } from 'rxjs';
 import { TutorialService } from '../../pokeservices/tutorial.service';
 

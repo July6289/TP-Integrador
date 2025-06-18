@@ -1,6 +1,6 @@
 import { Component, inject, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { PokeservicesService } from '../../pokeservices/pokeservices.service';
+import { PokeservicesService } from '../../pokeservices/pokemon.service';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';

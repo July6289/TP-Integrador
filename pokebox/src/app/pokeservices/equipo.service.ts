@@ -2,7 +2,7 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { EquipoPokemon } from '../interfaces/interfazpokemon/Equipo.interface';
-import { PokeservicesService } from './pokeservices.service';
+import { PokeservicesService } from './pokemon.service';
 import { Pokemon } from '../interfaces/interfazpokemon/Pokemon.inteface';
 import { Usuario } from '../interfaces/interfaz-usuario/Usuario.interface';
 import { UsuarioService } from './usuario.service';

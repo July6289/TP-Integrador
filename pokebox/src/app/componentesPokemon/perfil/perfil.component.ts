@@ -4,12 +4,12 @@ import { UsuarioService } from '../../pokeservices/usuario.service';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/service/auth.service';
 import { Router } from '@angular/router';
-import { PokeservicesService } from '../../pokeservices/pokeservices.service';
+import { PokeservicesService } from '../../pokeservices/pokemon.service';
 import { TutorialService } from '../../pokeservices/tutorial.service';
 import { CommonModule } from '@angular/common';
 import { of, Subscription } from 'rxjs';
 import { switchMap, filter } from 'rxjs/operators';
-import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
+import { EquipoPokemonService } from '../../pokeservices/equipo.service';
 
 @Component({
   selector: 'perfil',

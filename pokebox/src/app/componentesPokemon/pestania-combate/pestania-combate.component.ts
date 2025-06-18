@@ -1,8 +1,8 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Pokemon } from '../../interfaces/interfazpokemon/Pokemon.inteface';
-import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
+import { EquipoPokemonService } from '../../pokeservices/equipo.service';
 import { EquipoPokemon } from '../../interfaces/interfazpokemon/Equipo.interface';
-import { PokeservicesService } from '../../pokeservices/pokeservices.service';
+import { PokeservicesService } from '../../pokeservices/pokemon.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Usuario } from '../../interfaces/interfaz-usuario/Usuario.interface';
@@ -41,16 +41,14 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
     [1.0, 2.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 1.0],//hada
   ]
   private tablaTiposNombres: string[] = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
-  equipoMain: EquipoPokemon =
-    {
-      nombre: "",
-      equipo: []
-    }
-  equipoRival: EquipoPokemon =
-    {
-      nombre: "",
-      equipo: []
-    }
+  equipoMain: EquipoPokemon = {
+    nombre: "",
+    equipo: []
+  }
+  equipoRival: EquipoPokemon = {
+    nombre: "",
+    equipo: []
+  }
   peleador: number = 0;
   peleadorBot: number = 0;
   turno: boolean = true;
@@ -180,9 +178,6 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
     const jugadorTipo2 = jugador.types[1]?.type;
     const rivalTipo1 = rival.types[0].type;
     const rivalTipo2 = rival.types[1]?.type;
-
-    console.log(jugadorTipo1);
-    console.log(rivalTipo1);
 
     //buscar indice tipos
     for (let i = 0; i < this.tablaTiposNombres.length; i++) {

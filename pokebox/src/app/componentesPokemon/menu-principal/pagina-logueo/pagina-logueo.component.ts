@@ -4,7 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { Caja } from '../../../interfaces/interfaz-caja/Caja.inteface';
 import { UsuarioService } from '../../../pokeservices/usuario.service';
-import { PokeservicesService } from '../../../pokeservices/pokeservices.service';
+import { PokeservicesService } from '../../../pokeservices/pokemon.service';
 import { AuthService } from '../../../auth/service/auth.service';
 import { Pokemon } from '../../../interfaces/interfazpokemon/Pokemon.inteface';
 import { Objeto } from '../../../interfaces/objetos/objeto.interface';

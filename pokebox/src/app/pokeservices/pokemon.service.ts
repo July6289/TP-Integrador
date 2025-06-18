@@ -1,4 +1,4 @@
-import { Generation } from './../interfaces/interfazpokemon/Generacion.interface';
+import { Generation } from '../interfaces/interfazpokemon/Generacion.interface';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, combineLatest, map, Observable, of, forkJoin } from 'rxjs';
@@ -6,7 +6,6 @@ import { Pokemon, Sprites, Type } from '../interfaces/interfazpokemon/Pokemon.in
 import { Caja } from '../interfaces/interfaz-caja/Caja.inteface';
 import { UsuarioService } from './usuario.service';
 import { Usuario } from '../interfaces/interfaz-usuario/Usuario.interface';
-import { Name } from '../interfaces/interfazpokemon/Generacion.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -75,7 +74,6 @@ export class PokeservicesService {
 
   public limpiarCaja() {
     this.cajas.forEach(caja => caja.pokemones = []);
-
     // Volver a emitir el array actualizado
     this.cajasSubject.next([...this.cajas]);
   }
@@ -218,6 +216,21 @@ export class PokeservicesService {
       const randomId = Math.floor(Math.random() * 1025) + 1;
       pokemonRequests.push(
         this.http.get<Pokemon>(`${this.urlBase}/pokemon/${randomId}`).pipe(
+          map((data) => ({
+            id: data.id,
+            name: data.name,
+            sprites: {
+              front_default: data.sprites.front_default,
+              back_default: data.sprites.back_default,
+              front_female: data.sprites.front_female,
+              back_female: data.sprites.back_female,
+              front_shiny: data.sprites.front_shiny,
+              back_shiny: data.sprites.back_shiny,
+              front_shiny_female: data.sprites.front_shiny_female,
+              back_shiny_female: data.sprites.back_shiny_female
+            } as Sprites,
+            types: data.types.map((t: any) => ({ type: t.type.name })) as Type[],
+          })),
           catchError(() => of(null)) // Emitir `null` si ocurre un error, sin conversión de tipo
         )
       );

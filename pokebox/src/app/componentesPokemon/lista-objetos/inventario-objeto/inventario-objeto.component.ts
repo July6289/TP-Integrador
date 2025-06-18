@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { Usuario } from '../../../interfaces/interfaz-usuario/Usuario.interface';
 import { AuthService } from '../../../auth/service/auth.service';
 import { UsuarioService } from '../../../pokeservices/usuario.service';
-import { PokeservicesService } from '../../../pokeservices/pokeservices.service';
+import { PokeservicesService } from '../../../pokeservices/pokemon.service';
 
 @Component({
   selector: 'app-inventario-objeto',

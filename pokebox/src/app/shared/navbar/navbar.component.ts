@@ -5,8 +5,8 @@ import { AuthService } from '../../auth/service/auth.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/Usuario.interface';
 import { UsuarioService } from '../../pokeservices/usuario.service';
 import { TutorialService } from '../../pokeservices/tutorial.service';
-import { PokeservicesService } from '../../pokeservices/pokeservices.service';
-import { EquipoPokemonService } from '../../pokeservices/equiposervices.service';
+import { PokeservicesService } from '../../pokeservices/pokemon.service';
+import { EquipoPokemonService } from '../../pokeservices/equipo.service';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
