@@ -28,20 +28,21 @@ export class EquipoPokemonService {
     ListaObjetos: []
   }
   clave: string | null = ''
-  poketeam: EquipoPokemon =
-    {
-      nombre: "",
-      equipo: []
-    }
-  pokeRival: EquipoPokemon =
-    {
-      nombre: "",
-      equipo: []
-    }
+  poketeam: EquipoPokemon = {
+    nombre: "",
+    equipo: []
+  }
+  pokeRival: EquipoPokemon = {
+    nombre: "",
+    equipo: []
+  }
   pokemonTeam: Pokemon[] = [];
   selectedPokemon: number = 0;
   turns: boolean = true;
   usuarioService = inject(UsuarioService)
+  // equipoPokemonService.ts
+  private nombreRival = '';
+  private nombrePropio = '';
 
   constructor(private pokeService: PokeservicesService) { }
 
@@ -67,9 +68,8 @@ export class EquipoPokemonService {
     this.getid()
     this.usuarioService.getUsuarioById(this.clave).subscribe({
       next: (valor: Usuario) => {
-        this.usuario = valor
-        console.log(this.equiposSubject.value)
-        this.usuario.ListaEquipos = [...this.equiposSubject.value]
+        this.usuario = valor;
+        this.usuario.ListaEquipos = [...this.equiposSubject.value];
         this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
           next: () => console.log('equipos actualizado con exito.'),
           error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
@@ -85,8 +85,8 @@ export class EquipoPokemonService {
     this.getid()
     this.usuarioService.getUsuarioById(this.clave).subscribe({
       next: (valor: Usuario) => {
-        this.usuario = valor
-        this.usuario.ListaEquipos = [...this.equipos]
+        this.usuario = valor;
+        this.usuario.ListaEquipos = [...this.equipos];
         this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
           next: () => console.log('equipos eliminado.'),
           error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
@@ -108,8 +108,8 @@ export class EquipoPokemonService {
       this.getid()
       this.usuarioService.getUsuarioById(this.clave).subscribe({
         next: (valor: Usuario) => {
-          this.usuario = valor
-          this.usuario.ListaEquipos = [...this.equipos]
+          this.usuario = valor;
+          this.usuario.ListaEquipos = [...this.equipos];
           this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
             next: () => console.log('nombre del equipo actualizado.'),
             error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
@@ -174,10 +174,6 @@ export class EquipoPokemonService {
   getPosicionEquipo() {
     return this.selectedPokemon;
   }
-
-  // equipoPokemonService.ts
-  private nombreRival = '';
-  private nombrePropio = '';
 
   guardarNombresCombate(nombreJugador: string, nombreRival: string): void {
     this.nombrePropio = nombreJugador;

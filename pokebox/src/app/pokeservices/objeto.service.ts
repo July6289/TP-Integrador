@@ -28,11 +28,12 @@ export class ObjetoService {
   }
   clave: string | null = ""
   usuarioService = inject(UsuarioService);
+  private objetoSeleccionadoSubject = new BehaviorSubject<Objeto | null>(null);
+  objetoSeleccionado$ = this.objetoSeleccionadoSubject.asObservable();
 
   constructor(private service: HttpClient) { }
 
   public setInventario(objetos: Objeto[]) {
-    console.log(objetos)
     const nuevoInventario = objetos.map(obj => ({
       objeto: obj,
       cantidad: obj.cantidad
@@ -142,9 +143,6 @@ export class ObjetoService {
       });
     }
   }
-
-  private objetoSeleccionadoSubject = new BehaviorSubject<Objeto | null>(null);
-  objetoSeleccionado$ = this.objetoSeleccionadoSubject.asObservable();
 
   seleccionarObjeto(objeto: Objeto) {
     this.objetoSeleccionadoSubject.next(objeto);

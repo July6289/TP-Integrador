@@ -181,6 +181,9 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
     const rivalTipo1 = rival.types[0].type;
     const rivalTipo2 = rival.types[1]?.type;
 
+    console.log(jugadorTipo1);
+    console.log(rivalTipo1);
+
     //buscar indice tipos
     for (let i = 0; i < this.tablaTiposNombres.length; i++) {
       if (jugadorTipo1 === this.tablaTiposNombres[i]) {
@@ -269,7 +272,6 @@ export class PestaniaCombateComponent implements OnInit, OnDestroy {
 
     if (this.equipoRival.equipo[this.peleadorBot].life === undefined) {
       this.equipoRival.equipo[this.peleadorBot].life = this.inicializarVidas(this.equipoRival.equipo[this.peleadorBot]);
-      console.log("vida del pokemon: " + this.equipoRival.equipo[this.peleadorBot].life);
     }
 
     while (this.checkStstate(this.equipoMain.equipo[this.peleador]) && this.checkStstate(this.equipoRival.equipo[this.peleadorBot])) {

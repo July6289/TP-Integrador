@@ -49,15 +49,15 @@ export class PaginaLogueoComponent {
   formulario = this.fb.nonNullable.group(
     {
       id: [''],
-      box: [[] as Caja[]], //un array vacio de cajas
       Email: ['', [Validators.required, Validators.minLength(6)]],
       Username: ['', [Validators.required, Validators.minLength(6)]],
       Password: ['', [Validators.required, Validators.minLength(6)]],
       UrlImagenPerfil: [''],
       CombatesGanados: 0,
+      box: [[] as Caja[]], //un array vacio de cajas
       ListaFavoritos: [[] as Pokemon[],],
-      ListaObjetos: [[] as Objeto[],],
-      ListaEquipos: [[] as EquipoPokemon[],]
+      ListaEquipos: [[] as EquipoPokemon[],],
+      ListaObjetos: [[] as Objeto[],]
     }
   )
   formularioOlvideContrasenia = this.fb.nonNullable.group(
@@ -77,7 +77,6 @@ export class PaginaLogueoComponent {
     this.IsFormRegisterShowing = true;
     this.isFormLoginShowing = false;
     this.mensajeEspecifico = '';
-
   }
 
   btLogueo() {
@@ -152,7 +151,6 @@ export class PaginaLogueoComponent {
                 this.usuarioService.postUsuario(this.usuarioNuevo).subscribe(
                   {
                     next: () => {
-                      console.log("usuario creado con exito");
                       localStorage.setItem('token', this.idUsuario);
                       this.usuarioService.estoyLogeado = true
                       this.usuarioService.activarMensaje()
@@ -197,9 +195,6 @@ export class PaginaLogueoComponent {
             if (usuarioDato.length > 0 && usuarioDato[0] != undefined) {
               this.mensajeEspecifico = 'Este usuario ya existe en el sistema';
               this.validadorMensajeEspecifico = true;
-              console.log(usuarioDato[0]);
-              console.log(this.validadorMensajeEspecifico);
-              console.log(this.mensajeEspecifico);
               this.ctrl.detectChanges();
             }
             else {

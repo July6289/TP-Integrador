@@ -6,6 +6,7 @@ import { Pokemon, Sprites, Type } from '../interfaces/interfazpokemon/Pokemon.in
 import { Caja } from '../interfaces/interfaz-caja/Caja.inteface';
 import { UsuarioService } from './usuario.service';
 import { Usuario } from '../interfaces/interfaz-usuario/Usuario.interface';
+import { Name } from '../interfaces/interfazpokemon/Generacion.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -77,9 +78,6 @@ export class PokeservicesService {
 
     // Volver a emitir el array actualizado
     this.cajasSubject.next([...this.cajas]);
-    console.log("a ver si borre:", this.cajasSubject)
-
-
   }
 
   getid() {
@@ -92,18 +90,16 @@ export class PokeservicesService {
         id: data.id,
         name: data.name,
         sprites: {
-          back_default: data.sprites.back_default,
-          back_female: data.sprites.back_female,
-          back_shiny: data.sprites.back_shiny,
-          back_shiny_female: data.sprites.back_shiny_female,
           front_default: data.sprites.front_default,
+          back_default: data.sprites.back_default,
           front_female: data.sprites.front_female,
+          back_female: data.sprites.back_female,
           front_shiny: data.sprites.front_shiny,
-          front_shiny_female: data.sprites.front_shiny_female
+          back_shiny: data.sprites.back_shiny,
+          front_shiny_female: data.sprites.front_shiny_female,
+          back_shiny_female: data.sprites.back_shiny_female
         } as Sprites,
-        types: data.types.map((typeData: any) => ({
-          type: typeData.type
-        })) as Type[],
+        types: data.types.map((t: any) => ({ type: t.type.name })) as Type[],
       })),
       catchError((error) => {
         console.error('Error fetching Pokémon:', error);
@@ -237,6 +233,7 @@ export class PokeservicesService {
     this.favoritosSubject.next([]);
 
   }
+
   public setFavoritos(pokemons: Pokemon[]) {
     this.favoritosSubject.next(pokemons);
   }
@@ -306,5 +303,4 @@ export class PokeservicesService {
   getEsShinyActual(): boolean {
     return this.esShinySubject.value;
   }
-
 }

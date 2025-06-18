@@ -40,6 +40,10 @@ export class CajaComponent implements OnInit {
     ListaEquipos: [],
     ListaObjetos: []
   }
+  mostrarMenu: boolean = false;
+  contextPokemon: Pokemon | null = null;
+  contextMenuX: number = 0;
+  contextMenuY: number = 0;
 
   constructor(private pokeService: PokeservicesService) {
     // Asigna el observable `spriteActual$` desde el servicio
@@ -60,18 +64,18 @@ export class CajaComponent implements OnInit {
     this.usarioServicio.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
+          this.usuario.id = valor.id;
           this.usuario.Email = valor.Email;
-          this.usuario.Password = valor.Password
-          this.usuario.Username = valor.Username
-          this.usuario.id = valor.id
-          this.usuario.CombatesGanados = valor.CombatesGanados;
+          this.usuario.Username = valor.Username;
+          this.usuario.Password = valor.Password;
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
-          this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil
+          this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil;
+          this.usuario.CombatesGanados = valor.CombatesGanados;
           //la forma definitiva de evitar el undefined
-          this.usuario.box = this.pokeservice.cajas
+          this.usuario.box = this.pokeservice.cajas;
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
+          this.usuario.ListaEquipos = [...valor.ListaEquipos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
-          this.usuario.ListaEquipos = [...valor.ListaEquipos]
           valor.box.map((caja) => {
             this.usuario.box[this.posicion].imagen = caja.imagen;
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
@@ -105,7 +109,6 @@ export class CajaComponent implements OnInit {
   // Método para agregar un Pokémon a la caja actual
   agregarPokemon(pokemon: Pokemon) {
     if (this.usuario.box[this.indiceCaja].pokemones.length < this.MAX_POKEMON) {
-      console.log(pokemon)
       this.usuario.box[this.indiceCaja].pokemones.push(pokemon);
       this.flag = true;
       this.dbGuardarDatos();
@@ -153,11 +156,6 @@ export class CajaComponent implements OnInit {
       return pokemon.sprites.front_female || pokemon.sprites.front_default;
     }
   }
-
-  mostrarMenu: boolean = false;
-  contextPokemon: Pokemon | null = null;
-  contextMenuX: number = 0;
-  contextMenuY: number = 0;
 
   // Evento click derecho
   onRightClick(event: MouseEvent, pokemon: Pokemon) {

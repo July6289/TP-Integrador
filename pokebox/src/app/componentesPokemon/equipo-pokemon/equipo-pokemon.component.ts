@@ -23,11 +23,10 @@ export class EquipoPokemonComponent implements OnInit {
 
   pokemonesEnEquipo: Pokemon[] = []; // Arreglo para almacenar Pokémon en el equipo
   pokeaux: Pokemon[] = [];
-  equipoPokemon: EquipoPokemon =
-    {
-      nombre: "",
-      equipo: []
-    }
+  equipoPokemon: EquipoPokemon = {
+    nombre: "",
+    equipo: []
+  }
   usuario: Usuario = {
     id: "",
     Email: "",
@@ -63,14 +62,14 @@ export class EquipoPokemonComponent implements OnInit {
     this.usuarioService.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
+          this.usuario.id = valor.id;
           this.usuario.Email = valor.Email;
-          this.usuario.Password = valor.Password
-          this.usuario.id = valor.id
+          this.usuario.Username = valor.Username;
+          this.usuario.Password = valor.Password;
+          this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil;
           this.usuario.CombatesGanados = valor.CombatesGanados;
-          this.usuario.Username = valor.Username
-          this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil
           //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
-          this.usuario.box = this.pokeservice.cajas
+          this.usuario.box = this.pokeservice.cajas;
           //la forma definitiva de evitar el undefined
           valor.box.map((caja) => {
             this.usuario.box[this.posicion].imagen = caja.imagen;

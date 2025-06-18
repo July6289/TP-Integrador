@@ -14,8 +14,8 @@
         <div class="pokemon-nombre-grande">{{ pokemon.name }}</div>
         <div class="pokemon-vida">{{pokemon.life}}/16</div>
         <div class="pokemon-tipos">
-          <div *ngFor="let tipo of pokemon.types" [ngClass]="getTypeClass(tipo.type.name)" class="pokemon-tipo">
-            {{ tipo.type.name }}
+          <div *ngFor="let tipo of pokemon.types" [ngClass]="getTypeClass(tipo.type)" class="pokemon-tipo">
+            {{ tipo.type }}
           </div>
         </div>
       </ng-container>
@@ -32,8 +32,8 @@
           <div class="pokemon-nombre-mini">{{ pokemon.name }}</div>
           <div class="pokemon-vida">{{pokemon.life}}/16</div>
           <div class="pokemon-tipos">
-            <div *ngFor="let tipo of pokemon.types" [ngClass]="getTypeClass(tipo.type.name)" class="pokemon-tipo">
-              {{ tipo.type.name }}
+            <div *ngFor="let tipo of pokemon.types" [ngClass]="getTypeClass(tipo.type)" class="pokemon-tipo">
+              {{ tipo.type }}
             </div>
           </div>
           <button class="select" (click)="seleccionar(pokemon)">Elegir Pokémon</button>
