@@ -7,19 +7,15 @@ import { Usuario } from '../../interfaces/interfaz-usuario/Usuario.interface';
 })
 
 export class AuthService {
-  estoyLogeado: boolean = false;
+  private auth = getAuth();
+  user = this.auth.currentUser;
+  estoyLogeado= this.user !== null;
   idDelUsuario: string = '';
+
 
   //metodos mios originales
   getTokenValue() {
     return localStorage.getItem('token');
-  }
-
-  logIn() {
-    this.estoyLogeado = true;
-  }
-  logOut() {
-    this.estoyLogeado = false;
   }
 
   //metodos del firebase
@@ -29,7 +25,7 @@ export class AuthService {
 
   register(user: Usuario) {
     if (user.Password != null) {
-      return createUserWithEmailAndPassword(getAuth(), user.Email, user.Password);
+      return createUserWithEmailAndPassword(this.auth, user.Email, user.Password);
     }
     else {
       throw new Error("contrasenia nula");
@@ -38,7 +34,7 @@ export class AuthService {
 
   logIn2(user: Usuario) {
     if (user.Password != null) {
-      return signInWithEmailAndPassword(getAuth(), user.Email, user.Password)
+      return signInWithEmailAndPassword(this.auth, user.Email, user.Password)
     }
     else {
       throw new Error("contrasenia nula");
@@ -46,16 +42,15 @@ export class AuthService {
   }
 
   logInGoogle() {
-    return signInWithPopup(getAuth(), new GoogleAuthProvider)
+    return signInWithPopup(this.auth, new GoogleAuthProvider)
   }
 
   logLogout() {
-    return signOut(getAuth());
+    return signOut(this.auth);
   }
 
   BorrarUsuario() {
-    const auth = getAuth();
-    const user = auth.currentUser;
+    const user = this.auth.currentUser;
 
     if (user) {
       //si el usuario esta autenticado se podria borrar...o no....
@@ -76,8 +71,7 @@ export class AuthService {
     const actionCodeSettings = {
       url: 'http://localhost:4200/cambiar-contra', // Solo la URL necesaria
     };
-    const auth = getAuth(); // objeto de autenticación de firebase
-    sendPasswordResetEmail(auth, email, actionCodeSettings)
+    sendPasswordResetEmail(this.auth, email, actionCodeSettings)
       .then(() => {
         console.log('Correo de recuperación enviado.');
       })
@@ -87,7 +81,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    const user = getAuth().currentUser;
+    const user = this.auth.currentUser;
     return user !== null;
   }
 }

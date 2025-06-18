@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../auth/service/auth.service';
 import { Usuario } from '../../interfaces/interfaz-usuario/Usuario.interface';
@@ -104,11 +104,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   onLonginLogout() {
     if (this.textButton === 'Iniciar Sesion') {
-      this.textButton = 'Cerrar Sesion'
-      this.auth.logIn()
+      this.textButton = 'Cerrar Sesion';
+      this.auth.estoyLogeado;
       this.Router.navigateByUrl('registro');
     } else {
-      this.auth.logOut()//para el guard
+      this.auth.estoyLogeado;
       this.auth.logLogout() //para firebase
       this.textButton = 'Iniciar Sesion'
       this.Router.navigateByUrl('registro');
