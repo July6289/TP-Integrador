@@ -13,7 +13,6 @@ import { Usuario } from '../interfaces/interfaz-usuario/Usuario.interface';
 
 export class PokeservicesService {
   readonly TOTAL_CAJAS = 32;  // Número total de cajas disponibles
-
   // Arreglo de cajas, accesible para cualquier componente
   cajas: Caja[] = Array.from({ length: this.TOTAL_CAJAS }, (_, index) => ({
     imagen: `/assets/imagenes/cajas/${index + 1}.png`, // Ruta de imagen dinámica
@@ -106,7 +105,7 @@ export class PokeservicesService {
     );
   }
 
- getPokemonByGeneration(NumeroGeneracion: number): Observable<Generation | undefined> {
+  getPokemonByGeneration(NumeroGeneracion: number): Observable<Generation | undefined> {
     return this.http.get<any>(`${this.urlBase}/generation/${NumeroGeneracion}`).pipe(
       map((data) => ({
         id: NumeroGeneracion,

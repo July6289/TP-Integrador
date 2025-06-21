@@ -1,7 +1,6 @@
-// objeto.service.ts
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map, switchMap, tap } from 'rxjs';
 import { Objeto } from '../interfaces/objetos/objeto.interface';
 import { Usuario } from '../interfaces/interfaz-usuario/Usuario.interface';
 import { UsuarioService } from './usuario.service';
@@ -25,13 +24,21 @@ export class ObjetoService {
     ListaFavoritos: [],
     ListaEquipos: [],
     ListaObjetos: []
-  }
-  clave: string | null = ""
+  };
+  clave: string | null = "";
   usuarioService = inject(UsuarioService);
   private objetoSeleccionadoSubject = new BehaviorSubject<Objeto | null>(null);
   objetoSeleccionado$ = this.objetoSeleccionadoSubject.asObservable();
 
   constructor(private service: HttpClient) { }
+
+  private syncUsuario(modificar: (usuario: Usuario) => void): Observable<Usuario> {
+    this.getid();
+    return this.usuarioService.getUsuarioById(this.clave!).pipe(
+      tap(usuario => modificar(usuario)),
+      switchMap(usuario => this.usuarioService.putUsuario(usuario, this.clave!))
+    );
+  }
 
   public setInventario(objetos: Objeto[]) {
     const nuevoInventario = objetos.map(obj => ({
@@ -66,41 +73,35 @@ export class ObjetoService {
   agregarObjeto(objeto: Objeto, cantidad: number) {
     const actual = this.inventarioSubject.getValue();
     const existe = actual.find(o => o.objeto.nombre === objeto.nombre);
-    this.getid();
-    this.usuarioService.getUsuarioById(this.clave).subscribe({
-      next: (valor: Usuario) => {
-        this.usuario = valor;
-        // Si ya existe en el inventarioSubject
-        if (existe) {
-          if (existe.cantidad < 99) {
-            existe.cantidad += cantidad;
-            const index = this.usuario.ListaObjetos.findIndex(e => e.nombre === objeto.nombre);
-            if (index !== -1) {
-              this.usuario.ListaObjetos[index].cantidad += cantidad;
-            } else {
-              // Si no lo encuentra en ListaObjetos, lo agrega
-              this.usuario.ListaObjetos.push({ ...objeto, cantidad });
-            }
+    this.syncUsuario(usuario => {
+      this.usuario = usuario;
+
+      if (existe) {
+        if (existe.cantidad < 99) {
+          existe.cantidad += cantidad;
+          const index = usuario.ListaObjetos.findIndex(e => e.nombre === objeto.nombre);
+
+          if (index !== -1) {
+            usuario.ListaObjetos[index].cantidad += cantidad;
           } else {
-            alert('Solo puedes llevar hasta 99 unidades del mismo objeto, los objetos restantes no fueron agregados');
+            usuario.ListaObjetos.push({ ...objeto, cantidad });
           }
         } else {
-          actual.push({ objeto, cantidad });
-          const existeEnUsuario = this.usuario.ListaObjetos.find(e => e.nombre === objeto.nombre);
-          if (!existeEnUsuario) {
-            this.usuario.ListaObjetos.push({ ...objeto, cantidad });
-          }
+          alert('Solo puedes llevar hasta 99 unidades del mismo objeto');
         }
+      } else {
+        actual.push({ objeto, cantidad });
+        const yaExiste = usuario.ListaObjetos.find(e => e.nombre === objeto.nombre);
 
-        // Emitimos inventario actualizado
-        this.inventarioSubject.next([...actual]);
-        // Guardamos usuario actualizado
-        this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
-          next: () => console.log('Lista de objetos actualizada con éxito.'),
-          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
-        });
-      },
-      error: (e: Error) => console.error('Error al obtener el usuario:', e.message),
+        if (!yaExiste) {
+          usuario.ListaObjetos.push({ ...objeto, cantidad });
+        }
+      }
+
+      this.inventarioSubject.next([...actual]);
+    }).subscribe({
+      next: () => console.log('Objeto agregado y sincronizado exitosamente.'),
+      error: (e: Error) => console.error('Error al sincronizar:', e.message)
     });
   }
 
@@ -108,41 +109,46 @@ export class ObjetoService {
     const actual = this.inventarioSubject.getValue();
     const actualizado = actual.filter(item => item.objeto.nombre !== nombre);
     this.inventarioSubject.next(actualizado);
-    this.getid()
-    this.usuarioService.getUsuarioById(this.clave).subscribe({
-      next: (valor: Usuario) => {
-        this.usuario = valor
-        this.usuario.ListaObjetos = this.usuario.ListaObjetos.filter(e => e.nombre !== nombre)
-        this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
-          next: () => console.log('Objeto eliminado con exito.'),
-          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
-        });
-      },
-      error: (e: Error) => console.error('Error al obtener el usuario para eliminar su objeto:', e.message),
+    this.syncUsuario(usuario => {
+      this.usuario = usuario;
+      usuario.ListaObjetos = usuario.ListaObjetos.filter(e => e.nombre !== nombre);
+    }).subscribe({
+      next: () => console.log('Objeto eliminado y sincronizado.'),
+      error: (e: Error) => console.error('Error al eliminar objeto:', e.message)
     });
   }
 
-  cambiarCantidad(nombre: string, nuevaCantidad: number) {
-    const actual = this.inventarioSubject.getValue();
-    const objeto = actual.find(item => item.objeto.nombre === nombre);
-    if (objeto != undefined) {
-      objeto.cantidad = nuevaCantidad;
-      this.inventarioSubject.next([...actual]);
-      this.getid()
-      this.usuarioService.getUsuarioById(this.clave).subscribe({
-        next: (valor: Usuario) => {
-          this.usuario = valor
-          const index = this.usuario.ListaObjetos.findIndex(e => e.nombre === nombre)
-          this.usuario.ListaObjetos[index].cantidad = nuevaCantidad
-          this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
-            next: () => console.log('Lista de objetos actualizado con éxito.'),
-            error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
-          });
-        },
-        error: (e: Error) => console.error('Error al obtener el usuario para actualizar su lista de objetos:', e.message),
-      });
+
+cambiarCantidad(nombre: string, nuevaCantidad: number) {
+  const actual = this.inventarioSubject.getValue();
+  // Creamos un nuevo array inmutable con cantidades actualizadas
+  const actualizado = actual.map(item => {
+    if (item.objeto.nombre === nombre) {
+      return {
+        ...item, // Copiamos el objeto
+        cantidad: nuevaCantidad // Reemplazamos la cantidad
+      };
     }
-  }
+
+    return item;
+  });
+
+  this.inventarioSubject.next(actualizado); // Emitimos copia modificada
+  this.syncUsuario(usuario => {
+    this.usuario = usuario;
+    const index = usuario.ListaObjetos.findIndex(e => e.nombre === nombre);
+
+    if (index !== -1) {
+      usuario.ListaObjetos[index] = {
+        ...usuario.ListaObjetos[index],
+        cantidad: nuevaCantidad
+      };
+    }
+  }).subscribe({
+    next: () => console.log('Cantidad actualizada y sincronizada.'),
+    error: (e: Error) => console.error('Error al sincronizar:', e.message)
+  });
+}
 
   seleccionarObjeto(objeto: Objeto) {
     this.objetoSeleccionadoSubject.next(objeto);

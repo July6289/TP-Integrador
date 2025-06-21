@@ -1,6 +1,5 @@
-// equiposervices.service.ts
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { EquipoPokemon } from '../interfaces/interfazpokemon/Equipo.interface';
 import { PokeservicesService } from './pokemon.service';
 import { Pokemon } from '../interfaces/interfazpokemon/Pokemon.inteface';
@@ -46,6 +45,22 @@ export class EquipoPokemonService {
 
   constructor(private pokeService: PokeservicesService) { }
 
+  private syncEquiposConUsuario(): void {
+    this.getid();
+    this.usuarioService.getUsuarioById(this.clave).pipe(
+      tap(usuario => {
+        this.usuario = usuario;
+        this.usuario.ListaEquipos = [...this.equipos];
+      }),
+      switchMap(usuarioActualizado =>
+        this.usuarioService.putUsuario(usuarioActualizado, this.clave)
+      )
+    ).subscribe({
+      next: () => console.log('Cambios sincronizados'),
+      error: (e: Error) => console.error('Error al sincronizar:', e.message)
+    });
+  }
+
   getid() {
     this.clave = localStorage.getItem('token')
   }
@@ -53,6 +68,7 @@ export class EquipoPokemonService {
   public limpiarEquipo() {
     this.equiposSubject.next([])
   }
+
   public setEquipo(equipo: EquipoPokemon[]) {
     const nuevoEquipo = equipo.map(equ => ({
       nombre: equ.nombre,
@@ -63,61 +79,35 @@ export class EquipoPokemonService {
   }
 
   actualizarEquipo(nuevoEquipo: EquipoPokemon) {
+    const yaExiste = this.equipos.some(e => e.nombre.toLowerCase() === nuevoEquipo.nombre.toLowerCase());
+    if (yaExiste) {
+      console.warn(`Ya existe un equipo llamado "${nuevoEquipo.nombre}"`);
+      return;
+    }
+
     this.equipos.push(nuevoEquipo);
-    this.equiposSubject.next([...this.equipos]);  // Emitir copia del arreglo actualizado
-    this.getid()
-    this.usuarioService.getUsuarioById(this.clave).subscribe({
-      next: (valor: Usuario) => {
-        this.usuario = valor;
-        this.usuario.ListaEquipos = [...this.equiposSubject.value];
-        this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
-          next: () => console.log('equipos actualizado con exito.'),
-          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
-        });
-      },
-      error: (e: Error) => console.error('Error al obtener el usuario para actualizar el equipo:', e.message),
-    });
+    this.equiposSubject.next([...this.equipos]);
+    this.getid();
+    this.syncEquiposConUsuario();
+  }
+
+  actualizarNombreEquipo(index: number, nuevoNombre: string) {
+    if (!this.equipos[index]) return;
+    this.equipos[index].nombre = nuevoNombre;
+    this.equiposSubject.next([...this.equipos]);
+    this.syncEquiposConUsuario();
   }
 
   eliminarEquipo(index: number) {
     this.equipos.splice(index, 1);
-    this.equiposSubject.next([...this.equipos]);  // Emitir copia del arreglo actualizado tras eliminación
-    this.getid()
-    this.usuarioService.getUsuarioById(this.clave).subscribe({
-      next: (valor: Usuario) => {
-        this.usuario = valor;
-        this.usuario.ListaEquipos = [...this.equipos];
-        this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
-          next: () => console.log('equipos eliminado.'),
-          error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
-        });
-      },
-      error: (e: Error) => console.error('Error al obtener el usuario para eliminar el equipo:', e.message),
-    });
+    this.equiposSubject.next([...this.equipos]);
+    this.syncEquiposConUsuario();
   }
+
 
   eliminarpokemonPerdedor(index: number, pokeEquipo: EquipoPokemon): EquipoPokemon {
     pokeEquipo.equipo.splice(index, 1);
     return pokeEquipo;
-  }
-
-  actualizarNombreEquipo(index: number, nuevoNombre: string) {
-    if (this.equipos[index]) {
-      this.equipos[index].nombre = nuevoNombre;
-      this.equiposSubject.next([...this.equipos]); // Emitir copia actualizada
-      this.getid()
-      this.usuarioService.getUsuarioById(this.clave).subscribe({
-        next: (valor: Usuario) => {
-          this.usuario = valor;
-          this.usuario.ListaEquipos = [...this.equipos];
-          this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
-            next: () => console.log('nombre del equipo actualizado.'),
-            error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
-          });
-        },
-        error: (e: Error) => console.error('Error al obtener el usuario para eliminar el equipo:', e.message),
-      });
-    }
   }
 
   // Método para obtener un equipo por su nombre

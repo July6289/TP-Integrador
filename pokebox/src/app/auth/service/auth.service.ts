@@ -9,9 +9,8 @@ import { Usuario } from '../../interfaces/interfaz-usuario/Usuario.interface';
 export class AuthService {
   private auth = getAuth();
   user = this.auth.currentUser;
-  estoyLogeado= this.user !== null;
+  estoyLogeado = this.user !== null;
   idDelUsuario: string = '';
-
 
   //metodos mios originales
   getTokenValue() {
