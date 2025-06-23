@@ -10,14 +10,17 @@ export class AuthService {
   private auth = getAuth();
   user = this.auth.currentUser;
   estoyLogeado = this.user !== null;
+  equiposeleccionado:boolean=false;
   idDelUsuario: string = '';
 
-  //metodos mios originales
   getTokenValue() {
     return localStorage.getItem('token');
   }
 
-  //metodos del firebase
+  equipoSelected(){
+    this.equiposeleccionado=true
+  }
+
   getAuth() {
     return getAuth();
   }

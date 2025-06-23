@@ -12,6 +12,7 @@ import { authGuardFnLogout } from './auth/guard/auth.guard-fn-logout';
 import { authGuardFn } from './auth/guard/auth.guard-fn';
 import { RecuperarContraComponent } from './componentesPokemon/recuperar-contra/recuperar-contra.component';
 import { ListaObjetosComponent } from './componentesPokemon/lista-objetos/lista-objetos.component';
+import { authGuardFnCombat } from './auth/guard/auth.guard-fn-Combat';
 
 export const routes: Routes = [
   {
@@ -52,7 +53,7 @@ export const routes: Routes = [
   {
     path: 'combate',
     component: PestaniaCombateComponent,
-    canActivate:[authGuardFn]
+    canActivate:[authGuardFn,authGuardFnCombat],
   },
   {
     path: 'equipo/:nombre',

@@ -48,7 +48,7 @@ export class ListaEquipoPokemonComponent implements OnInit, OnDestroy {
   mostrarTutorial: boolean = false;
   private tutorialSub?: Subscription;
   private destroy$ = new Subject<void>();
-
+  guard=inject(AuthService)
 
   ngOnInit() {
     this.dbUsuarioId()
@@ -117,6 +117,7 @@ export class ListaEquipoPokemonComponent implements OnInit, OnDestroy {
     }
 
     setTimeout(() => {
+      this.guard.equipoSelected()
       this.router.navigate(['/combate'])
     }, 1000);
 
