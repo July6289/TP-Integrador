@@ -1,15 +1,24 @@
-<div class="reset-password-container">
-  <h2>Restablecer contraseña</h2>
-  <label for="new-password">ingrese su Nueva contraseña:</label>
+<img class="imagenLogueo" src="\assets\imagenes\Pokebox-4-11-2024(1).png" alt="imagen usuario">
 
-  <div class="input-password-wrapper">
-    <input [type]="mostrarPassword ? 'text' : 'password'" [(ngModel)]="newPassword"
-      (ngModelChange)="message = ''; isMessageShowing = false" placeholder="Nueva contraseña" />
-    <button type="button" class="eye-btn" (click)="alternarVisibilidadPassword()">
-      <i class="{{ mostrarPassword ? 'fa fa-eye-slash' : 'fa fa-eye' }}"></i>
-    </button>
+<form class="formOlvideContraseña">
+  <h1 class="titulo">Restablecer Contraseña</h1>
+  <p class="subtitulo">Ingrese su nueva contraseña para continuar</p>
+
+  <div class="input-contenedor">
+    <i class="fa-solid fa-key icon" style="color: #000000;"></i>
+    <input
+      [type]="mostrarPassword ? 'text' : 'password'"
+      [(ngModel)]="newPassword"
+      name="newPassword"
+      placeholder="Nueva contraseña" />
+    <span class="eyeicon" (click)="alternarVisibilidadPassword()">
+      <i [ngClass]="mostrarPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"></i>
+    </span>
   </div>
 
-  <p *ngIf="isMessageShowing" class="error-msg">{{ message }}</p>
-  <button (click)="onSubmit()" [disabled]="!newPassword">Restablecer</button>
-</div>
+  <p class="Error" [class.visible]="isMessageShowing">
+    {{ message }}
+  </p>
+
+  <button class="enviarGmail" (click)="onSubmit()" [disabled]="!newPassword">Restablecer</button>
+</form>

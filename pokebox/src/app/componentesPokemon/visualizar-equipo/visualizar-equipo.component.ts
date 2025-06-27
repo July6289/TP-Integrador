@@ -51,7 +51,6 @@ export class VisualizarEquipoComponent implements OnInit {
           this.usuario.Username = valor.Username
           this.usuario.CombatesGanados = valor.CombatesGanados;
           this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil;
-          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
 
           this.usuario.box = this.pokeservice.cajas //setear cajas es obligatorio, sino son indefinidas
 
