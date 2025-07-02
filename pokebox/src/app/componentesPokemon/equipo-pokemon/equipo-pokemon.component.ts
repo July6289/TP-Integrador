@@ -50,15 +50,6 @@ export class EquipoPokemonComponent implements OnInit {
 
   ngOnInit(): void {
     this.secretId = localStorage.getItem('token');
-    this.dbUsuarioId();
-    setTimeout(() => {
-      if (this.usuario.ListaEquipos.length > 0) {
-        this.equipoPokemonService.setEquipo(this.usuario.ListaEquipos)
-      }
-    }, 400);
-  }
-
-  dbUsuarioId() {
     this.usuarioService.getUsuarioById(this.secretId).subscribe(
       {
         next: (valor: Usuario) => {
@@ -68,7 +59,6 @@ export class EquipoPokemonComponent implements OnInit {
           this.usuario.Password = valor.Password;
           this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil;
           this.usuario.CombatesGanados = valor.CombatesGanados;
-          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
           this.usuario.box = this.pokeservice.cajas;
           //la forma definitiva de evitar el undefined
           valor.box.map((caja) => {
@@ -76,16 +66,26 @@ export class EquipoPokemonComponent implements OnInit {
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
             this.posicion++;
           })
+          console.log(valor.box)
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
           this.usuario.ListaEquipos = [...valor.ListaEquipos]
+
+
+
+      if (this.usuario.ListaEquipos.length > 0) {
+        this.equipoPokemonService.setEquipo(this.usuario.ListaEquipos)
+      }
+
         },
         error: (e: Error) => {
           console.log(e.message);
         }
       }
     )
+
   }
+
 
   goToMainPage() {
     this.router.navigate(['/**']);

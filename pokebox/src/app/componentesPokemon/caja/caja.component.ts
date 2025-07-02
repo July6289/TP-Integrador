@@ -68,7 +68,6 @@ export class CajaComponent implements OnInit {
           this.usuario.Email = valor.Email;
           this.usuario.Username = valor.Username;
           this.usuario.Password = valor.Password;
-          //notas, la carga de usuario, nombre, contraseña funciona, la caja no carga los datos almacenados del usuario al recargar la pagina, pero no tira errores tampoco
           this.usuario.UrlImagenPerfil = valor.UrlImagenPerfil;
           this.usuario.CombatesGanados = valor.CombatesGanados;
           //la forma definitiva de evitar el undefined

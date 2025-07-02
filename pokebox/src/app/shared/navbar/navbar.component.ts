@@ -8,6 +8,7 @@ import { TutorialService } from '../../pokeservices/tutorial.service';
 import { PokeservicesService } from '../../pokeservices/pokemon.service';
 import { EquipoPokemonService } from '../../pokeservices/equipo.service';
 import { Subject, takeUntil } from 'rxjs';
+import { ObjetoService } from '../../pokeservices/objeto.service';
 
 @Component({
   selector: 'app-navbar',
@@ -41,7 +42,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
 
-  constructor(private usuarioService: UsuarioService, private pokeservce: PokeservicesService, private equposervice: EquipoPokemonService) { }
+  constructor(private usuarioService: UsuarioService, private pokeservce: PokeservicesService, private equposervice: EquipoPokemonService, private objetoService:ObjetoService) { }
 
   ngOnInit(): void {
     this.usuarioService.activadorMensaje$.pipe(takeUntil(this.destroy$))
@@ -115,6 +116,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.pokeservce.limpiarCaja()
       this.pokeservce.vaciarFavoritos()
       this.equposervice.limpiarEquipo()
+      this.objetoService.limpiarInventario()
       localStorage.clear();
     }
   }

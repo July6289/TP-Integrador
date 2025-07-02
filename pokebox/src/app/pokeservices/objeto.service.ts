@@ -47,7 +47,9 @@ export class ObjetoService {
     }))
     this.inventarioSubject.next(nuevoInventario)
   }
-
+  public limpiarInventario(){
+    this.inventarioSubject.next([])
+  }
   getid() {
     this.clave = localStorage.getItem('token')
   }

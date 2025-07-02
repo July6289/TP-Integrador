@@ -17,7 +17,6 @@ import { TutorialService } from './pokeservices/tutorial.service';
 export class AppComponent implements OnInit, OnDestroy {
 
   showNavbar: boolean = true;
-  showNavbar2: boolean = true;
 
   mostrarTutorial = false;
   private sub?: Subscription;

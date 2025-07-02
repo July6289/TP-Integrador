@@ -78,13 +78,7 @@ export class ListaEquipoPokemonComponent implements OnInit, OnDestroy {
     return this.usuarioService.getUsuarioById(this.secretId);
   }
 
-  llamarDbGuardarDatos(): void {
-    if (this.secretId === null) {
-      this.secretId = ""
-    }
 
-    this.usuarioService.dbGuardarDatos(this.usuario, this.secretId);
-  }
 
   checkRoute(): void {
     this.rutaCombate = this.location.path().includes('/main-page');
