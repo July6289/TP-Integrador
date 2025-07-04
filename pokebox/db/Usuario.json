@@ -1,10 +1,50 @@
 {
   "Usuarios": [
     {
-      "id": "m5B4",
-      "Email": "auterijuli82@gmail.com",
-      "Username": "Juli",
+      "id": "E8LB",
+      "Email": "mr.slime.omg@gmail.com",
+      "Username": "Kort",
       "Password": null,
+      "UrlImagenPerfil": "/assets/imagenes/imagen_pokemon1.png",
+      "CombatesGanados": 0,
+      "box": [],
+      "ListaFavoritos": [],
+      "ListaEquipos": [],
+      "ListaObjetos": [
+        {
+          "nombre": "Agua fresca",
+          "descripcion": "Agua de alto contenido mineral que restaura 30 PS de un Pokémon.",
+          "generacion": "1",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/a/ae/latest/20230115173952/Agua_fresca_EP.png/32px-Agua_fresca_EP.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/a/ae/latest/20230115173952/Agua_fresca_EP.png",
+          "id": "81e7",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Piedra agua",
+          "descripcion": "Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es de color azul.",
+          "generacion": "1",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/1/14/latest/20230106130249/Piedra_agua_EP.png/32px-Piedra_agua_EP.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/1/14/latest/20230106130249/Piedra_agua_EP.png",
+          "id": "eb47",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Agua mística",
+          "descripcion": "Gema con forma de gota de agua que potencia los movimientos de tipo agua. Debe llevarla un Pokémon.",
+          "generacion": "2",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/7/75/latest/20230122124919/Agua_mística_EP.png/32px-Agua_mística_EP.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/7/75/latest/20230122124919/Agua_m%C3%ADstica_EP.png",
+          "id": "6025",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "y7K7",
+      "Email": "auterijuli82@gmail.com",
+      "Username": "July",
+      "Password": "PerritoPoly7*",
       "UrlImagenPerfil": "/assets/imagenes/imagen_pokemon1.png",
       "CombatesGanados": 0,
       "box": [
@@ -139,84 +179,7 @@
       ],
       "ListaFavoritos": [],
       "ListaEquipos": [],
-      "ListaObjetos": [
-        {
-          "nombre": "Hiperpoción",
-          "descripcion": "Medicina en espray que cura heridas y restaura 120 PS de un Pokémon.",
-          "generacion": "1",
-          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/7/76/latest/20230115173900/Hiperpoción_EP.png/32px-Hiperpoción_EP.png",
-          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/7/76/latest/20230115173900/Hiperpoci%C3%B3n_EP.png",
-          "id": "03a3",
-          "cantidad": 1
-        },
-        {
-          "nombre": "Poción",
-          "descripcion": "Medicina en espray que cura heridas y restaura 20 PS de un Pokémon.",
-          "generacion": "1",
-          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/f/fd/latest/20230115173615/Poción_EP.png/32px-Poción_EP.png",
-          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/f/fd/latest/20230115173615/Poci%C3%B3n_EP.png",
-          "id": "b112",
-          "cantidad": 1
-        },
-        {
-          "nombre": "Poción máxima",
-          "descripcion": "Medicina en espray que cura heridas y restaura todos los PS de un Pokémon.",
-          "generacion": "1",
-          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/1/1b/latest/20230115181246/Poción_máxima_EP.png/32px-Poción_máxima_EP.png",
-          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/1/1b/latest/20230115181246/Poci%C3%B3n_m%C3%A1xima_EP.png",
-          "id": "dddd",
-          "cantidad": 1
-        },
-        {
-          "nombre": "Superpoción",
-          "descripcion": "Medicina en espray que cura heridas y restaura 60 PS de un Pokémon.",
-          "generacion": "1",
-          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/1/1a/latest/20230115173819/Superpoción_EP.png/32px-Superpoción_EP.png",
-          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/1/1a/latest/20230115173819/Superpoci%C3%B3n_EP.png",
-          "id": "9bca",
-          "cantidad": 1
-        }
-      ]
-    },
-    {
-      "id": "E8LB",
-      "Email": "mr.slime.omg@gmail.com",
-      "Username": "Kort",
-      "Password": null,
-      "UrlImagenPerfil": "/assets/imagenes/imagen_pokemon1.png",
-      "CombatesGanados": 0,
-      "box": [],
-      "ListaFavoritos": [],
-      "ListaEquipos": [],
-      "ListaObjetos": [
-        {
-          "nombre": "Agua fresca",
-          "descripcion": "Agua de alto contenido mineral que restaura 30 PS de un Pokémon.",
-          "generacion": "1",
-          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/a/ae/latest/20230115173952/Agua_fresca_EP.png/32px-Agua_fresca_EP.png",
-          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/a/ae/latest/20230115173952/Agua_fresca_EP.png",
-          "id": "81e7",
-          "cantidad": 1
-        },
-        {
-          "nombre": "Piedra agua",
-          "descripcion": "Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es de color azul.",
-          "generacion": "1",
-          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/1/14/latest/20230106130249/Piedra_agua_EP.png/32px-Piedra_agua_EP.png",
-          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/1/14/latest/20230106130249/Piedra_agua_EP.png",
-          "id": "eb47",
-          "cantidad": 1
-        },
-        {
-          "nombre": "Agua mística",
-          "descripcion": "Gema con forma de gota de agua que potencia los movimientos de tipo agua. Debe llevarla un Pokémon.",
-          "generacion": "2",
-          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/7/75/latest/20230122124919/Agua_mística_EP.png/32px-Agua_mística_EP.png",
-          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/7/75/latest/20230122124919/Agua_m%C3%ADstica_EP.png",
-          "id": "6025",
-          "cantidad": 1
-        }
-      ]
+      "ListaObjetos": []
     }
   ]
 }

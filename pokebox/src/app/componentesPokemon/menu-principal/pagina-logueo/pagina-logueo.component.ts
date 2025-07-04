@@ -46,12 +46,26 @@ export class PaginaLogueoComponent {
     ListaEquipos: [],
     ListaObjetos: []
   }
-  formulario = this.fb.nonNullable.group(
+  formularioRegistro = this.fb.nonNullable.group(
     {
       id: [''],
-      Email: ['', [Validators.required, Validators.minLength(6)]],
-      Username: ['', [Validators.required, Validators.minLength(6)]],
-      Password: ['', [Validators.required, Validators.minLength(6)]],
+      Email: ['', [Validators.required, Validators.email]],
+      Username: ['', [Validators.required, Validators.minLength(4)]],
+      Password: ['', [Validators.required, Validators.minLength(8),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).+$/)]],
+      UrlImagenPerfil: [''],
+      CombatesGanados: 0,
+      box: [[] as Caja[]], //un array vacio de cajas
+      ListaFavoritos: [[] as Pokemon[],],
+      ListaEquipos: [[] as EquipoPokemon[],],
+      ListaObjetos: [[] as Objeto[],]
+    }
+  )
+  formularioLogueo=this.fb.nonNullable.group(
+    {
+       id: [''],
+      Email: ['', [Validators.required, Validators.email]],
+      Username: [''],
+      Password: ['', [Validators.required]],
       UrlImagenPerfil: [''],
       CombatesGanados: 0,
       box: [[] as Caja[]], //un array vacio de cajas
@@ -62,7 +76,7 @@ export class PaginaLogueoComponent {
   )
   formularioOlvideContrasenia = this.fb.nonNullable.group(
     {
-      Email: ['', [Validators.required, Validators.minLength(6)]]
+      Email: ['', [Validators.required, Validators.email]]
     }
   )
 
@@ -72,7 +86,8 @@ export class PaginaLogueoComponent {
   }
 
   btRegistro() {
-    this.formulario.reset();
+    this.formularioRegistro.reset();
+    this.formularioLogueo.reset()
     this.validadorMensajeEspecifico = false;
     this.IsFormRegisterShowing = true;
     this.isFormLoginShowing = false;
@@ -80,7 +95,8 @@ export class PaginaLogueoComponent {
   }
 
   btLogueo() {
-    this.formulario.reset()
+    this.formularioRegistro.reset()
+    this.formularioLogueo.reset()
     this.formularioOlvideContrasenia.reset()
     this.validadorMensajeEspecifico = false;
     this.IsFormRegisterShowing = false;
@@ -89,7 +105,8 @@ export class PaginaLogueoComponent {
   }
 
   btVolver() {
-    this.formulario.reset();
+    this.formularioRegistro.reset();
+    this.formularioLogueo.reset()
     this.IsFormRegisterShowing = false;
     this.isFormLoginShowing = true;
     this.validadorMensajeEspecifico = false;
@@ -99,6 +116,7 @@ export class PaginaLogueoComponent {
 
   btOlvideContrasenia() {
     this.formularioOlvideContrasenia.reset()
+    this.formularioLogueo.reset()
     this.isFormForgotPasswordShowing = true;
     this.isFormLoginShowing = false;
   }
@@ -135,8 +153,6 @@ export class PaginaLogueoComponent {
       const user = result.user;
       const email = user.email; // Extraer el correo del usuario
       const name = user.displayName
-      console.log("Correo del usuario:", email);
-      // Puedes guardar el email en tu JSON o manejarlo como prefieras
       if (email != null && name != null) {
         this.usuarioService.getUsuariobyName(email).subscribe(
           {
@@ -158,7 +174,7 @@ export class PaginaLogueoComponent {
                     },
                     error: (e: Error) => {
                       console.log(e.message);
-                      this.formulario.reset();
+                      this.formularioRegistro.reset();
                     }
                   }
                 )
@@ -181,12 +197,12 @@ export class PaginaLogueoComponent {
   }
 
   addUsuario() {
-    if (this.formulario.invalid) {
+    if (this.formularioRegistro.invalid) {
       console.log("Error");
     }
     else {
       this.validadorMensajeEspecifico = true;
-      const usuario = this.formulario.getRawValue();
+      const usuario = this.formularioRegistro.getRawValue();
       usuario.box = this.pokeservice.cajas;
       usuario.UrlImagenPerfil = '/assets/imagenes/imagen_pokemon1.png'
       this.usuarioService.getUsuariobyName(usuario.Email).subscribe(
@@ -212,7 +228,7 @@ export class PaginaLogueoComponent {
                       },
                       error: (e: Error) => {
                         console.log(e.message);
-                        this.formulario.reset();
+                        this.formularioRegistro.reset();
                       }
                     }
                   )
@@ -243,11 +259,9 @@ export class PaginaLogueoComponent {
   checkLoggedUsuario() {
     this.validadorMensajeEspecifico = false;
     this.mensajeEspecifico = '';
-    const datosUsuario = this.formulario.getRawValue();
-    this.formulario.patchValue({
-      Username: "randomDATA",       //hacemos esto porque sino salta un error de datos por no llevar username el logueo
-    })
-    if (this.formulario.invalid) {
+    const datosUsuario = this.formularioLogueo.getRawValue();
+
+    if (this.formularioLogueo.invalid) {
       console.log("Error");
     }
     else {
@@ -284,7 +298,7 @@ export class PaginaLogueoComponent {
           },
           error: (e: Error) => {
             console.log(e.message);
-            this.formulario.reset();
+            this.formularioLogueo.reset();
           }
         }
       )

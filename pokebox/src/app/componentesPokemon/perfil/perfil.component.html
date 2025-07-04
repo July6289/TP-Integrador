@@ -52,8 +52,7 @@
     @if(isModifyShowing) {
     <div class="modify-profile">
       <h3 class="modify-title">Modificando tu Perfil</h3>
-      <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="addUsuario()"
-        (keydown.enter)="addUsuario()">
+      <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="addUsuario()">
         <!-- Campo de Email -->
         <div class="form-group">
           <label for="">Correo electronico:</label>
@@ -68,8 +67,8 @@
       }
 
 
-    @if (formulario.controls['Email'].getError('minlength')&&formulario.controls['Email'].touched) {
-    <span>El usuario no puede contener un minimo de 6 letras</span>
+     @if (formulario.controls['Email'].getError('email')&&formulario.controls['Email'].touched) {
+    <span>Formato de correo inválido</span>
     }
     </p>
         </div>
@@ -89,7 +88,7 @@
 
 
         @if (formulario.controls['Username'].getError('minlength')&&formulario.controls['Username'].touched) {
-           <span>El usuario no puede contener un minimo de 6 letras</span>
+           <span>El usuario no puede contener un minimo de 4 letras</span>
            }
         </p>
         </div>
@@ -108,9 +107,13 @@
       }
 
 
-    @if (formulario.controls['Password'].getError('minlength')&&formulario.controls['Password'].touched) {
-    <span>El usuario no puede contener un minimo de 6 letras</span>
+    @else if (formulario.controls['Password'].getError('minlength')&&formulario.controls['Password'].touched) {
+    <span>El usuario no puede contener un minimo de 8 letras</span>
     }
+    @else if (formulario.controls['Password'].getError('pattern') && formulario.controls['Password'].touched) {
+      <span>La contraseña debe incluir al menos una mayúscula, una minúscula, un número y un símbolo.</span>
+    }
+
     </p>
         </div>
 
@@ -121,8 +124,8 @@
 
         <!-- Botones para cancelar o confirmar cambios -->
         <div class="botones">
-          <button class="SalirRegistro" (click)="cancelar()">Cancelar</button>
-          <button class="Confirmar" (click)="addUsuario()">Confirmar</button>
+          <button class="SalirRegistro"  type="button" (click)="cancelar()">Cancelar</button>
+          <button class="Confirmar" type="submit" (click)="addUsuario()">Confirmar</button>
         </div>
       </form>
     </div>

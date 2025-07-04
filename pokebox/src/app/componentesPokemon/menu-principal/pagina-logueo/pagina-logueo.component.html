@@ -1,7 +1,7 @@
 <img class="imagenLogueo" src="\assets\imagenes\Pokebox-4-11-2024(1).png" alt="imagen usuario">
 
 @if (IsFormRegisterShowing) {
-<form class="formulario" [formGroup]="formulario" (keydown.enter)="checkLoggedUsuario()">
+<form class="formulario" [formGroup]="formularioRegistro" (keydown.enter)="checkLoggedUsuario()">
   <h1 class="titulo">Registrarse</h1>
 
   <div class="input-contenedor">
@@ -9,13 +9,13 @@
     <input type="text" value="" formControlName="Email" placeholder="Correo electronico">
   </div>
 
-  <p class="Error" [class.visible]="formulario.controls['Email'].touched&&formulario.controls['Email'].errors">
-    @if(formulario.controls['Email'].hasError('required')&&formulario.controls['Email'].touched){
+  <p class="Error" [class.visible]="formularioRegistro.controls['Email'].touched&&formularioRegistro.controls['Email'].errors">
+    @if(formularioRegistro.controls['Email'].hasError('required')&&formularioRegistro.controls['Email'].touched){
     <span>Se debe llenar el campo requerido</span>
     }
 
-    @if (formulario.controls['Email'].getError('minlength')&&formulario.controls['Email'].touched) {
-    <span>El usuario no puede contener un minimo de 6 letras</span>
+    @if (formularioRegistro.controls['Email'].getError('email')&&formularioRegistro.controls['Email'].touched) {
+    <span>Formato de correo inválido</span>
     }
   </p>
 
@@ -24,12 +24,12 @@
     <input type="text" value="" formControlName="Username" placeholder="Nombre Completo">
   </div>
 
-  <p class="Error" [class.visible]="formulario.controls['Username'].touched&&formulario.controls['Username'].errors">
-    @if(formulario.controls['Username'].hasError('required')&&formulario.controls['Username'].touched) {
+  <p class="Error" [class.visible]="formularioRegistro.controls['Username'].touched&&formularioRegistro.controls['Username'].errors">
+    @if(formularioRegistro.controls['Username'].hasError('required')&&formularioRegistro.controls['Username'].touched) {
     <span>Se debe llenar el campo requerido</span>
     }
 
-    @if (formulario.controls['Username'].getError('minlength')&&formulario.controls['Username'].touched) {
+    @if (formularioRegistro.controls['Username'].getError('minlength')&&formularioRegistro.controls['Username'].touched) {
     <span>El usuario no puede contener un minimo de 6 letras</span>
     }
   </p>
@@ -41,16 +41,19 @@
     </span>
   </div>
 
-  <p class="Error" [class.visible]="formulario.controls['Password'].touched">
-    @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
+  <p class="Error" [class.visible]="formularioRegistro.controls['Password'].touched">
+    @if (formularioRegistro.controls['Password'].getError('required')&&formularioRegistro.controls['Password'].touched) {
     <span> Se debe llenar el campo requerido</span>
     }
 
-    @if (formulario.controls['Password'].getError('minlength')&&formulario.controls['Password'].touched) {
-    <span>La contraseña no puede contener un minimo de 6 letras </span>
+     @else if (formularioRegistro.controls['Password'].getError('pattern') && formularioRegistro.controls['Password'].touched) {
+    <span>La contraseña debe incluir al menos una mayúscula, una minúscula, un número y un símbolo.</span>
+    }
+    @else if (formularioRegistro.controls['Password'].getError('minlength')&&formularioRegistro.controls['Password'].touched) {
+    <span>La contraseña no puede contener un minimo de 8 letras </span>
     }
 
-    @if (validadorMensajeEspecifico&&!formulario.invalid) {
+    @if(validadorMensajeEspecifico&&!formularioRegistro.invalid) {
     <span>{{mensajeEspecifico}}</span>
     }
   </p>
@@ -63,7 +66,7 @@
 }
 
 @if (isFormLoginShowing) {
-<form class="formulario" [formGroup]="formulario" (keydown.enter)="checkLoggedUsuario()">
+<form class="formulario" [formGroup]="formularioLogueo" (keydown.enter)="checkLoggedUsuario()">
   <h1 class="titulo">Iniciar Sesión</h1>
 
   <div class="input-contenedor">
@@ -71,13 +74,13 @@
     <input type="text" value="" formControlName="Email" placeholder="Correo electronico" id="usuario">
   </div>
 
-  <p class="Error" [class.visible]="formulario.controls['Email'].touched&&formulario.controls['Email'].errors">
-    @if (formulario.controls['Email'].getError('required')&&formulario.controls['Email'].touched) {
+  <p class="Error" [class.visible]="formularioLogueo.controls['Email'].touched&&formularioLogueo.controls['Email'].errors">
+    @if (formularioLogueo.controls['Email'].getError('required')&&formularioLogueo.controls['Email'].touched) {
     <span>Campo requerido</span>
     }
 
-    @if (formulario.controls['Email'].getError('minlength')&&formulario.controls['Email'].touched) {
-    <span>El Usuario no puede contener un minimo de 6 letras</span>
+    @else if (formularioLogueo.controls['Email'].getError('email')&&formularioLogueo.controls['Email'].touched) {
+    <span>Formato de correo inválido</span>
     }
   </p>
 
@@ -88,16 +91,12 @@
     </span>
   </div>
 
-  <p class="Error" [class.visible]="formulario.controls['Password'].touched">
-    @if (formulario.controls['Password'].getError('required')&&formulario.controls['Password'].touched) {
+  <p class="Error" [class.visible]="formularioLogueo.controls['Password'].touched">
+    @if (formularioLogueo.controls['Password'].getError('required')&&formularioLogueo.controls['Password'].touched) {
     <span>Campo requerido</span>
     }
 
-    @if (formulario.controls['Password'].getError('minlength')&&formulario.controls['Password'].touched) {
-    <span>La contraseña no puede contener un minimo de 6 letras</span>
-    }
-
-    @if (validadorMensajeEspecifico&&!formulario.invalid) {
+    @else if (validadorMensajeEspecifico&&!formularioLogueo.invalid) {
     <span>{{mensajeEspecifico}}</span>
     }
   </p>
@@ -133,13 +132,11 @@
     <span>Campo requerido</span>
     }
 
-    @if
-    (formularioOlvideContrasenia.controls['Email'].getError('minlength')&&formularioOlvideContrasenia.controls['Email'].touched)
-    {
-    <span>La contraseña no puede contener un minimo de 6 letras</span>
+    @else if (formularioOlvideContrasenia.controls['Email'].getError('email')&&formularioOlvideContrasenia.controls['Email'].touched) {
+    <span>Formato de correo inválido</span>
     }
 
-    @if (validadorMensajeEspecifico&&!formularioOlvideContrasenia.invalid) {
+    @else if (validadorMensajeEspecifico&&!formularioOlvideContrasenia.invalid) {
     <span class="mensaje">{{mensajeEspecifico}}</span>
     }
   </p>

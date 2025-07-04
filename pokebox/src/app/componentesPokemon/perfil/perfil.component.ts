@@ -51,9 +51,9 @@ export class PerfilComponent implements OnInit, OnDestroy {
   router = inject(Router);
   formulario = this.fb.nonNullable.group(
     {
-      Email: ['', [Validators.required, Validators.minLength(6)]],
-      Username: ['', [Validators.required, Validators.minLength(6)]],
-      Password: ['', [Validators.required, Validators.minLength(6)]],
+      Email: ['', [Validators.required, Validators.email]],
+      Username: ['', [Validators.required, Validators.minLength(4)]],
+      Password: ['', [Validators.required, Validators.minLength(8),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).+$/)]],
     }
   )
   mostrarTutorial: boolean = false;
@@ -139,6 +139,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
   cancelar() {
     this.isCardShowing = true;
     this.isModifyShowing = false;
+    this.validadorMensajeEspecifico=false
   }
 
   dbUsuarioId() {
@@ -186,7 +187,6 @@ export class PerfilComponent implements OnInit, OnDestroy {
       console.log("Error");
     }
     else {
-      this.validadorMensajeEspecifico = true;
       const datosFormulario = this.formulario.getRawValue();
 
       if (datosFormulario.Email == this.usuario.Email) {  //opcion en caso de que el usuario no quiera cambiar el correo
@@ -249,6 +249,11 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
   toggleModify() {
     this.isCardShowing = false;
+    this.formulario.patchValue({
+            Email: this.usuario.Email,
+            Username: this.usuario.Username,
+            Password: this.usuario.Password || '' // si es nulo, que quede vacío
+          });
     this.isModifyShowing = true;
   }
 

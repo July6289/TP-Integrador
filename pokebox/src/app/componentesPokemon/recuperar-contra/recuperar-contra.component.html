@@ -1,6 +1,6 @@
 <img class="imagenLogueo" src="\assets\imagenes\Pokebox-4-11-2024(1).png" alt="imagen usuario">
 
-<form class="formOlvideContraseña">
+<form class="formOlvideContraseña" [formGroup]="formularioContrasenia">
   <h1 class="titulo">Restablecer Contraseña</h1>
   <p class="subtitulo">Ingrese su nueva contraseña para continuar</p>
 
@@ -8,17 +8,29 @@
     <i class="fa-solid fa-key icon" style="color: #000000;"></i>
     <input
       [type]="mostrarPassword ? 'text' : 'password'"
-      [(ngModel)]="newPassword"
-      name="newPassword"
+      formControlName="Password"
       placeholder="Nueva contraseña" />
     <span class="eyeicon" (click)="alternarVisibilidadPassword()">
       <i [ngClass]="mostrarPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"></i>
     </span>
   </div>
 
-  <p class="Error" [class.visible]="isMessageShowing">
-    {{ message }}
+  <p class="Error" [class.visible]="formularioContrasenia.controls['Password'].touched">
+     @if (formularioContrasenia.controls['Password'].getError('required')&&formularioContrasenia.controls['Password'].touched) {
+    <span> Se debe llenar el campo requerido</span>
+    }
+
+     @else if (formularioContrasenia.controls['Password'].getError('pattern') && formularioContrasenia.controls['Password'].touched) {
+    <span>La contraseña debe incluir al menos una mayúscula, una minúscula, un número y un símbolo.</span>
+    }
+    @else if (formularioContrasenia.controls['Password'].getError('minlength')&&formularioContrasenia.controls['Password'].touched) {
+    <span>La contraseña no puede contener un minimo de 8 letras </span>
+    }
+
+    @else if(isMessageShowing) {
+    <span>{{message}}</span>
+    }
   </p>
 
-  <button class="enviarGmail" (click)="onSubmit()" [disabled]="!newPassword">Restablecer</button>
+  <button class="enviarGmail" (click)="onSubmit()">Restablecer</button>
 </form>
