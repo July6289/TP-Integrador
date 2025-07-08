@@ -13,6 +13,8 @@ import { authGuardFn } from './auth/guard/auth.guard-fn';
 import { RecuperarContraComponent } from './componentesPokemon/recuperar-contra/recuperar-contra.component';
 import { ListaObjetosComponent } from './componentesPokemon/lista-objetos/lista-objetos.component';
 import { authGuardFnCombat } from './auth/guard/auth.guard-fn-Combat';
+import { RedirigirComponent } from './redirigir/redirigir.component';
+import { UsuarioVerificadoComponent } from './usuario-verificado/usuario-verificado.component';
 
 export const routes: Routes = [
   {
@@ -69,6 +71,15 @@ export const routes: Routes = [
     path:'cambiar-contra',
     component:RecuperarContraComponent,
   },
+  {
+    path:'redireccion',
+    component:RedirigirComponent
+  },
+  {
+    path:'usuario-verificado',
+    component:UsuarioVerificadoComponent
+  },
+
   {
     path: '**',
     redirectTo: 'main-page'

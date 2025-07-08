@@ -1,0 +1,47 @@
+:host {
+  height: 100vh;
+  background-color: #4A4A4A;
+  overflow-y: auto;
+  font-family: 'Winky Rough', cursive;
+  color: rgb(72, 73, 56);
+}
+.verificacion-card {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.verificacion-card.success {
+  background-color: #e6f4ea;
+  border: 1px solid #34a853;
+}
+
+.verificacion-card.error {
+  background-color: #fdecea;
+  border: 1px solid #d93025;
+}
+
+/* Icono grande */
+.icono-verificacion {
+  margin-bottom: 1rem;
+}
+
+.verificacion-icon {
+  width: 80px;
+  height: 80px;
+}
+
+.verificacion-titulo {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #202124;
+}
+
+.verificacion-texto {
+  font-size: 1rem;
+  color: #5f6368;
+}

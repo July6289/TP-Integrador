@@ -21,6 +21,7 @@ import { CommonModule } from '@angular/common';
 
 export class PaginaLogueoComponent {
   constructor(private ctrl: ChangeDetectorRef, private auth: AuthService) { }
+  mostrarVerificacion: boolean = false;
   validadorMensajeEspecifico: boolean = false;
   visible: boolean = true;
   changetype: boolean = true;
@@ -196,65 +197,59 @@ export class PaginaLogueoComponent {
       });
   }
 
-  addUsuario() {
-    if (this.formularioRegistro.invalid) {
-      console.log("Error");
-    }
-    else {
-      this.validadorMensajeEspecifico = true;
-      const usuario = this.formularioRegistro.getRawValue();
-      usuario.box = this.pokeservice.cajas;
-      usuario.UrlImagenPerfil = '/assets/imagenes/imagen_pokemon1.png'
-      this.usuarioService.getUsuariobyName(usuario.Email).subscribe(
-        {
-          next: (usuarioDato: Usuario[]) => {
-            if (usuarioDato.length > 0 && usuarioDato[0] != undefined) {
-              this.mensajeEspecifico = 'Este usuario ya existe en el sistema';
-              this.validadorMensajeEspecifico = true;
-              this.ctrl.detectChanges();
-            }
-            else {
-              this.auth.register(usuario as Usuario)
+ addUsuario() {
+    this.validadorMensajeEspecifico = true;
+    const usuario = this.formularioRegistro.getRawValue();
+    usuario.box = this.pokeservice.cajas;
+    usuario.UrlImagenPerfil = '/assets/imagenes/imagen_pokemon1.png';
+    usuario.id=getRandomAlphaNumeric(5)
+    this.usuarioService.getUsuariobyName(usuario.Email).subscribe({
+      next: (usuarioDato: Usuario[]) => {
+        if (usuarioDato.length > 0 && usuarioDato[0] != undefined) {
+          this.mensajeEspecifico = 'Este usuario ya existe en el sistema';
+          this.validadorMensajeEspecifico = true;
+          this.ctrl.detectChanges();
+        } else {
+          this.auth.register(usuario as Usuario)
+            .then(() => {
+              // Ahora enviamos el correo de verificación
+              this.auth.enviarCorreoVerificacion()
                 .then(() => {
-                  usuario.id = getRandomAlphaNumeric(4);
-                  this.usuarioService.postUsuario(usuario).subscribe(
-                    {
-                      next: () => {
-                        localStorage.setItem('token', usuario.id);
-                        this.authservice.logIn2(usuario);
-                        this.usuarioService.estoyLogeado = true
-                        this.usuarioService.activarMensaje()
-                        this.router.navigate([`main-page`])
-                      },
-                      error: (e: Error) => {
-                        console.log(e.message);
-                        this.formularioRegistro.reset();
-                      }
-                    }
-                  )
+                  localStorage.setItem('usuarioPendiente', JSON.stringify(usuario));
+                  this.mensajeEspecifico = 'Correo de verificación enviado. Revisa tu email.';
+                  this.validadorMensajeEspecifico = true;
+                  // NO redirige al componente, Firebase lo hace cuando se hace clic en el mail
                 })
                 .catch((error) => {
-                  // Manejar el error devuelto
-                  if (error.code === "auth/invalid-email") {
-                    this.validadorMensajeEspecifico = true;
-                    this.mensajeEspecifico = 'El correo no tiene un formato válido.';
-                  } else if (error.code === "auth/email-already-in-use") {
-                    this.validadorMensajeEspecifico = true;
-                    this.mensajeEspecifico = 'El correo ya está registrado.';
-                  } else {
-                    this.validadorMensajeEspecifico = true;
-                    this.mensajeEspecifico = 'Error desconocido: ', error.messaje;
-                  }
+                  this.mensajeEspecifico = 'Error al enviar el correo de verificación: ' + error;
+                  this.validadorMensajeEspecifico = true;
+                  this.ctrl.detectChanges();
                 });
-            }
-          },
-          error: (e: Error) => {
-            console.log(e.message);
-          }
+            })
+            .catch((error) => {
+              if (error.code === "auth/invalid-email") {
+                this.mensajeEspecifico = 'El correo no tiene un formato válido.';
+              } else if (error.code === "auth/email-already-in-use") {
+                this.mensajeEspecifico = 'El usuario no validó el correo, verifique el correo denuevo y vuelva a intentarlo.';
+                this.authservice.enviarCorreoVerificacion()
+                localStorage.setItem('usuarioPendiente', JSON.stringify(usuario));
+
+              } else {
+                this.mensajeEspecifico = 'Error desconocido: ' + error.message;
+              }
+              this.validadorMensajeEspecifico = true;
+              this.ctrl.detectChanges();
+            });
         }
-      )
-    }
-  }
+      },
+      error: (e: Error) => {
+        console.log("Error al verificar usuario en JSON:", e.message);
+      }
+    });
+
+}
+
+
 
   checkLoggedUsuario() {
     this.validadorMensajeEspecifico = false;
@@ -275,7 +270,7 @@ export class PaginaLogueoComponent {
 
                   if (usuario[0].id !== undefined) {
                     localStorage.setItem('token', usuario[0].id);
-                    this.authservice.logIn2(datosUsuario);
+                     this.auth.intentarLoguearORegistrar(datosUsuario)
                     this.usuarioService.estoyLogeado = true
                     this.usuarioService.activarMensaje()
                     this.router.navigate([`main-page`])

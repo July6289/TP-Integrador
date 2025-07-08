@@ -1,0 +1,17 @@
+<div class="verificacion-card"
+     [ngClass]="{'success': mensaje.includes('verificado'), 'error': !mensaje.includes('verificado')}">
+  <!-- Icono grande -->
+  <div class="icono-verificacion">
+    <ng-container *ngIf="mensaje.includes('verificado'); else fallo">
+      <img src="assets/icons/check.svg" alt="Confirmado" class="verificacion-icon" />
+    </ng-container>
+    <ng-template #fallo>
+      <img src="assets/icons/cross.svg" alt="Error" class="verificacion-icon" />
+    </ng-template>
+  </div>
+
+  <h2 class="verificacion-titulo">{{ mensaje }}</h2>
+  <p *ngIf="mensaje.includes('verificado')" class="verificacion-texto">
+    Su cuenta ha sido creada correctamente, vuelva a la página de logueo e inicie sesión.
+  </p>
+</div>

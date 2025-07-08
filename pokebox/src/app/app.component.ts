@@ -27,7 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
    this.router.events
   .pipe(filter(event => event instanceof NavigationEnd))
   .subscribe(() => {
-    const rutasSinNavbar = ['registro', 'cambiar-contra'];
+    const rutasSinNavbar = ['registro', 'cambiar-contra','usuario-verificado'];
     this.showNavbar = !rutasSinNavbar.some(ruta => this.router.url.includes(ruta));
   });
     this.sub = this.tutorialService.mostrarTutorial$.subscribe(

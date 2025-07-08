@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuario } from '../interfaces/interfaz-usuario/Usuario.interface';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,15 @@ export class UsuarioService {
   activadorMensaje$ = this.ActivadorMensajeSubject.asObservable();
   private ActualizarUrlPerfilSubject = new BehaviorSubject<string>("");
   actualizarperfil$ = this.ActualizarUrlPerfilSubject.asObservable();
-
+  private recargarPerfilSubject=new BehaviorSubject<boolean>(false)
+  recargarPerfil$=this.recargarPerfilSubject.asObservable();
   constructor(private service: HttpClient) { }
+
+  public recargarPerfil()
+  {
+    this.recargarPerfilSubject.next(true)
+  }
+
 
   public cambiarUrl(url: string) {
     this.ActualizarUrlPerfilSubject.next(url)

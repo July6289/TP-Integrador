@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { PokeservicesService } from '../../pokeservices/pokemon.service';
 import { TutorialService } from '../../pokeservices/tutorial.service';
 import { CommonModule } from '@angular/common';
-import { of, Subscription } from 'rxjs';
+import { of, Subscription, catchError } from 'rxjs';
 import { switchMap, filter } from 'rxjs/operators';
 import { EquipoPokemonService } from '../../pokeservices/equipo.service';
 
@@ -31,6 +31,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
   isLoggedWithouthGoogle: boolean = true;
   selectedAvatar: string | null = null;
   mostrarSelectorAvatar: boolean = false;
+mostrarBotonVerificarCorreo: boolean = false;
   usarioServicio = inject(UsuarioService);
   pokeservice = inject(PokeservicesService)
   usuario: Usuario = {
@@ -49,12 +50,17 @@ export class PerfilComponent implements OnInit, OnDestroy {
   authservice = inject(AuthService);
   usuarioService = inject(UsuarioService);
   router = inject(Router);
-  formulario = this.fb.nonNullable.group(
+  formularioDatosCortos = this.fb.nonNullable.group(
     {
-      Email: ['', [Validators.required, Validators.email]],
       Username: ['', [Validators.required, Validators.minLength(4)]],
       Password: ['', [Validators.required, Validators.minLength(8),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).+$/)]],
     }
+  )
+  formularioCorrreo=this.fb.nonNullable.group(
+    {
+      Email:['',[Validators.required,Validators.email]]
+    }
+
   )
   mostrarTutorial: boolean = false;
   private tutorialSub?: Subscription;
@@ -91,8 +97,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
         next: (valor: Usuario) => {
           this.usuario = { ...valor };
           this.selectedAvatar = valor.UrlImagenPerfil;
-          this.formulario.patchValue({
-            Email: valor.Email,
+          this.formularioDatosCortos.patchValue({
             Username: valor.Username,
             Password: valor.Password || ''
           });
@@ -127,6 +132,8 @@ export class PerfilComponent implements OnInit, OnDestroy {
       }
     )
   }
+
+
 
   cerrarTutorial() {
     this.tutorialService.ocultarTutorial();
@@ -169,8 +176,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
           this.usuario.ListaEquipos = [...valor.ListaEquipos]
-          this.formulario.patchValue({
-            Email: this.usuario.Email,
+          this.formularioDatosCortos.patchValue({
             Username: this.usuario.Username,
             Password: this.usuario.Password || '' // si es nulo, que quede vacío
           });
@@ -183,13 +189,11 @@ export class PerfilComponent implements OnInit, OnDestroy {
   }
 
   addUsuario() {
-    if (this.formulario.invalid) {
+    if (this.formularioDatosCortos.invalid) {
       console.log("Error");
     }
     else {
-      const datosFormulario = this.formulario.getRawValue();
-
-      if (datosFormulario.Email == this.usuario.Email) {  //opcion en caso de que el usuario no quiera cambiar el correo
+      const datosFormulario = this.formularioDatosCortos.getRawValue();
         this.usuario.Username = datosFormulario.Username;
         this.usuario.Password = datosFormulario.Password;
         this.usuarioService.putUsuario(this.usuario, this.id).subscribe(
@@ -198,59 +202,22 @@ export class PerfilComponent implements OnInit, OnDestroy {
               console.log("enviado con exito");
               this.isCardShowing = true;
               this.isModifyShowing = false;
-              this.formulario.reset();
+              this.formularioDatosCortos.reset();
             },
             error: (e: Error) => {
               console.log(e.message);
-              this.formulario.reset();
+              this.formularioDatosCortos.reset();
             }
           }
         )
-      }
-      else {
-        this.usuarioService.getUsuariobyName(datosFormulario.Email).subscribe(
-          {
-            next: (usuarioDato: Usuario[]) => {
-              if (usuarioDato.length > 0 && usuarioDato[0] != undefined) {
-                this.MensajeEspecifico = 'Este Correo ya existe en el sistema';
-                this.validadorMensajeEspecifico = true;
-              }
-              else {
-                this.authservice.BorrarUsuario();
 
-                this.usuario.Email = datosFormulario.Email;
-                this.authservice.register(this.usuario)
-                this.usuario.Username = datosFormulario.Username;
-                this.usuario.Password = datosFormulario.Password;
-                this.usuarioService.putUsuario(this.usuario, this.id).subscribe(
-                  {
-                    next: () => {
-                      console.log("enviado con exito");
-                      this.isCardShowing = true;
-                      this.isModifyShowing = false;
-                      this.formulario.reset();
-                    },
-                    error: (e: Error) => {
-                      console.log(e.message);
-                      this.formulario.reset();
-                    }
-                  }
-                )
-              }
-            },
-            error: (e: Error) => {
-              console.log(e.message);
-            }
-          }
-        )
-      }
+
     }
   }
 
   toggleModify() {
     this.isCardShowing = false;
-    this.formulario.patchValue({
-            Email: this.usuario.Email,
+    this.formularioDatosCortos.patchValue({
             Username: this.usuario.Username,
             Password: this.usuario.Password || '' // si es nulo, que quede vacío
           });
@@ -292,8 +259,4 @@ export class PerfilComponent implements OnInit, OnDestroy {
     this.isCardShowing = false
   }
 
-  getError(controlName: string, errorName: string): boolean {
-    const control = this.formulario.get(controlName);
-    return !!control?.touched && control.hasError(errorName);
-  }
 }

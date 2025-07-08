@@ -1,24 +1,26 @@
-import { Injectable } from '@angular/core';
-import { createUserWithEmailAndPassword, deleteUser, getAuth, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
+import { inject, Injectable } from '@angular/core';
+import { createUserWithEmailAndPassword, deleteUser, EmailAuthProvider, getAuth, GoogleAuthProvider, reauthenticateWithCredential, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateEmail } from 'firebase/auth'
 import { Usuario } from '../../interfaces/interfaz-usuario/Usuario.interface';
+import { UsuarioService } from '../../pokeservices/usuario.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
+  usuarioservice = inject(UsuarioService)
   private auth = getAuth();
   user = this.auth.currentUser;
   estoyLogeado = this.user !== null;
-  equiposeleccionado:boolean=false;
+  equiposeleccionado: boolean = false;
   idDelUsuario: string = '';
-
+  nombreUsuario: string = ''
   getTokenValue() {
     return localStorage.getItem('token');
   }
 
-  equipoSelected(){
-    this.equiposeleccionado=true
+  equipoSelected() {
+    this.equiposeleccionado = true
   }
 
   getAuth() {
@@ -34,7 +36,7 @@ export class AuthService {
     }
   }
 
-  logIn2(user: Usuario) {
+  logIn(user: Usuario) {
     if (user.Password != null) {
       return signInWithEmailAndPassword(this.auth, user.Email, user.Password)
     }
@@ -72,6 +74,7 @@ export class AuthService {
   enviarCorreoRecuperación(email: string) {
     const actionCodeSettings = {
       url: 'http://localhost:4200/cambiar-contra', // Solo la URL necesaria
+      handleCodeInApp: false,
     };
     sendPasswordResetEmail(this.auth, email, actionCodeSettings)
       .then(() => {
@@ -81,9 +84,40 @@ export class AuthService {
         console.error('Error al enviar el correo:', error.message);
       });
   }
+  enviarCorreoVerificacion() {
+    const user = this.auth.currentUser;
+    if (user) {
+      const actionCodeSettings = {
+        url: 'http://localhost:4200/usuario-verificado',
+        handleCodeInApp: false
+      };
+      return sendEmailVerification(user, actionCodeSettings);
+    } else {
+      return Promise.reject('No hay usuario autenticado para enviar verificación.');
+    }
+  }
+
+
+  async intentarLoguearORegistrar(usuario: Usuario) {
+    try {
+      await this.logIn(usuario);
+      console.log('Logueado');
+    } catch (error) {
+      console.log('Fallo login, registrando...');
+      try {//no, no existe, bueno lo registramos
+        await this.register(usuario);
+        console.log('Registrado');
+      } catch (e) {
+        console.error('Fallo el registro también');
+      }//no en realidad ya existe, bueno lo borramos y creamos denuevo
+
+    }
+  }
+
 
   isAuthenticated(): boolean {
     const user = this.auth.currentUser;
     return user !== null;
   }
+
 }

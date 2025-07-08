@@ -8,6 +8,7 @@
     <div class="user-content">
       <!-- Columna izquierda - Información del usuario -->
       <div class="user-info-list">
+
         <div class="user-info">
           <label>Email:</label>
           <span>{{ usuario.Email }}</span>
@@ -52,42 +53,23 @@
     @if(isModifyShowing) {
     <div class="modify-profile">
       <h3 class="modify-title">Modificando tu Perfil</h3>
-      <form class="formularioRegistro" [formGroup]="formulario" (ngSubmit)="addUsuario()">
-        <!-- Campo de Email -->
-        <div class="form-group">
-          <label for="">Correo electronico:</label>
-          <input type="text" formControlName="Email">
-         <p class="Error" [class.visible]="formulario.controls['Email'].touched&&formulario.controls['Email'].errors">
-
-
-    @if(formulario.controls['Email'].hasError('required')&&formulario.controls['Email'].touched)
-      {
-
-        <span>Se debe llenar el campo requerido</span>
-      }
-
-
-     @if (formulario.controls['Email'].getError('email')&&formulario.controls['Email'].touched) {
-    <span>Formato de correo inválido</span>
-    }
-    </p>
-        </div>
+      <form class="formularioRegistro" [formGroup]="formularioDatosCortos" (ngSubmit)="addUsuario()">
 
         <!-- Campo de Usuario -->
         <div class="form-group">
           <label for="">Nombre de Usuario:</label>
           <input type="text" formControlName="Username">
-         <p class="Error" [class.visible]="formulario.controls['Username'].touched&&formulario.controls['Username'].errors">
+         <p class="Error" [class.visible]="formularioDatosCortos.controls['Username'].touched&&formularioDatosCortos.controls['Username'].errors">
 
 
-        @if(formulario.controls['Username'].hasError('required')&&formulario.controls['Username'].touched)
+        @if(formularioDatosCortos.controls['Username'].hasError('required')&&formularioDatosCortos.controls['Username'].touched)
            {
 
             <span>Se debe llenar el campo requerido</span>
             }
 
 
-        @if (formulario.controls['Username'].getError('minlength')&&formulario.controls['Username'].touched) {
+        @if (formularioDatosCortos.controls['Username'].getError('minlength')&&formularioDatosCortos.controls['Username'].touched) {
            <span>El usuario no puede contener un minimo de 4 letras</span>
            }
         </p>
@@ -97,20 +79,20 @@
         <div class="form-group">
           <label for="">Contraseña:</label>
           <input type="text" formControlName="Password">
-          <p class="Error" [class.visible]="formulario.controls['Password'].touched&&formulario.controls['Password'].errors">
+          <p class="Error" [class.visible]="formularioDatosCortos.controls['Password'].touched&&formularioDatosCortos.controls['Password'].errors">
 
 
-    @if(formulario.controls['Password'].hasError('required')&&formulario.controls['Password'].touched)
+    @if(formularioDatosCortos.controls['Password'].hasError('required')&&formularioDatosCortos.controls['Password'].touched)
       {
 
         <span>Se debe llenar el campo requerido</span>
       }
 
 
-    @else if (formulario.controls['Password'].getError('minlength')&&formulario.controls['Password'].touched) {
+    @else if (formularioDatosCortos.controls['Password'].getError('minlength')&&formularioDatosCortos.controls['Password'].touched) {
     <span>El usuario no puede contener un minimo de 8 letras</span>
     }
-    @else if (formulario.controls['Password'].getError('pattern') && formulario.controls['Password'].touched) {
+    @else if (formularioDatosCortos.controls['Password'].getError('pattern') && formularioDatosCortos.controls['Password'].touched) {
       <span>La contraseña debe incluir al menos una mayúscula, una minúscula, un número y un símbolo.</span>
     }
 
@@ -118,7 +100,7 @@
         </div>
 
         <!-- Mensaje de error adicional -->
-        @if (validadorMensajeEspecifico&&!formulario.invalid) {
+        @if (validadorMensajeEspecifico&&!formularioDatosCortos.invalid) {
           <span>{{MensajeEspecifico}}</span>
           }
 
@@ -149,5 +131,7 @@
       </div>
     </div>
     }
+
+
   </div>
 </div>
