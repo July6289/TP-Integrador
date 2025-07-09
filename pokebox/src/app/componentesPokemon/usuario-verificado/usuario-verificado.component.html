@@ -3,10 +3,8 @@
   <!-- Icono grande -->
   <div class="icono-verificacion">
     <ng-container *ngIf="mensaje.includes('verificado'); else fallo">
-      <img src="assets/icons/check.svg" alt="Confirmado" class="verificacion-icon" />
     </ng-container>
     <ng-template #fallo>
-      <img src="assets/icons/cross.svg" alt="Error" class="verificacion-icon" />
     </ng-template>
   </div>
 

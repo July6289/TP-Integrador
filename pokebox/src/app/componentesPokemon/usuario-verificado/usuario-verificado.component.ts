@@ -1,10 +1,10 @@
+import { Usuario } from './../../interfaces/interfaz-usuario/Usuario.interface';
+import { AuthService } from './../../auth/service/auth.service';
+import { UsuarioService } from './../../pokeservices/usuario.service';
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { UsuarioService } from '../pokeservices/usuario.service';
-import { AuthService } from '../auth/service/auth.service';
 import { applyActionCode } from 'firebase/auth';
-import { Usuario } from '../interfaces/interfaz-usuario/Usuario.interface';
 
 @Component({
   selector: 'app-usuario-verificado',

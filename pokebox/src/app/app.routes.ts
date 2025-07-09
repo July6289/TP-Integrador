@@ -1,3 +1,5 @@
+import { UsuarioVerificadoComponent } from './componentesPokemon/usuario-verificado/usuario-verificado.component';
+import { RedirigirComponent } from './componentesPokemon/redirigir/redirigir.component';
 import { Routes } from '@angular/router';
 import { PerfilComponent } from './componentesPokemon/perfil/perfil.component';
 import { EquipoPokemonComponent } from './componentesPokemon/equipo-pokemon/equipo-pokemon.component';
@@ -13,8 +15,6 @@ import { authGuardFn } from './auth/guard/auth.guard-fn';
 import { RecuperarContraComponent } from './componentesPokemon/recuperar-contra/recuperar-contra.component';
 import { ListaObjetosComponent } from './componentesPokemon/lista-objetos/lista-objetos.component';
 import { authGuardFnCombat } from './auth/guard/auth.guard-fn-Combat';
-import { RedirigirComponent } from './redirigir/redirigir.component';
-import { UsuarioVerificadoComponent } from './usuario-verificado/usuario-verificado.component';
 
 export const routes: Routes = [
   {
