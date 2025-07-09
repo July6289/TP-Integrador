@@ -7,7 +7,7 @@ export const authGuardFnLogout = () => {
   if (!localStorage.getItem('token')) {
     return true
   } else {
-    router.navigateByUrl('registro');
+    router.navigateByUrl('main-page');
     return false;
   }
 }

@@ -132,16 +132,26 @@ export class PaginaLogueoComponent {
             {
               this.validadorMensajeEspecifico = true
               this.mensajeEspecifico = 'no se puede enviar un correo de recuperacion a una cuenta autenticada con google'
+                 setTimeout(() => {
+                this.mensajeEspecifico=''
+              }, 6000);
+
             }
             else {
               this.validadorMensajeEspecifico = true
               this.authservice.enviarCorreoRecuperación(usuarioDato.Email);
               this.mensajeEspecifico = "correo verificado, siga las instrucciones enviadas en su correo para recuperar la contraseña"
+                 setTimeout(() => {
+                this.mensajeEspecifico=''
+              }, 6000);
             }
           }
           else {
             this.validadorMensajeEspecifico = true
             this.mensajeEspecifico = 'el usuario no existe en el sistema'
+               setTimeout(() => {
+                this.mensajeEspecifico=''
+              }, 6000);
           }
         }
       }
@@ -279,16 +289,33 @@ export class PaginaLogueoComponent {
                 else {
                   this.validadorMensajeEspecifico = true;
                   this.mensajeEspecifico = 'contraseña incorrecta, ingrese nuevamente';
+
+              setTimeout(() => {
+                this.mensajeEspecifico=''
+              }, 5000);
                 }
               }
               else {
                 this.validadorMensajeEspecifico = true;
                 this.mensajeEspecifico = 'usuario autenticado con google, no tiene contraseña propia';
+
+
+              setTimeout(() => {
+                this.mensajeEspecifico=''
+              }, 5000);
               }
             }
             else {
               this.validadorMensajeEspecifico = true;
+
+
               this.mensajeEspecifico = 'el usuario ingresado no existe';
+
+
+              setTimeout(() => {
+                this.mensajeEspecifico=''
+              }, 6000);
+
             }
           },
           error: (e: Error) => {
