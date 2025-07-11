@@ -1,5 +1,579 @@
 {
   "Usuarios": [
-
+    {
+      "id": "i2WO",
+      "Email": "lucasivanhourcade@gmail.com",
+      "Username": "Pepito Juan Perez",
+      "Password": null,
+      "UrlImagenPerfil": "/assets/imagenes/imagen_pokemon1.png",
+      "CombatesGanados": 0,
+      "box": [],
+      "ListaFavoritos": [],
+      "ListaEquipos": [],
+      "ListaObjetos": []
+    },
+    {
+      "id": "fCvrJ",
+      "Email": "lucasacuatico@live.com.ar",
+      "Username": "Lucas",
+      "Password": "Juanitoo23-",
+      "UrlImagenPerfil": "/assets/imagenes/imagen_pokemon7.png",
+      "CombatesGanados": 1,
+      "box": [
+        {
+          "imagen": "/assets/imagenes/cajas/1.png",
+          "pokemones": [
+            {
+              "id": 3,
+              "name": "venusaur",
+              "sprites": {
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/3.png",
+                "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/3.png",
+                "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/3.png",
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/3.png",
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/3.png",
+                "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/3.png",
+                "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/3.png"
+              },
+              "types": [
+                {
+                  "type": "grass"
+                },
+                {
+                  "type": "poison"
+                }
+              ],
+              "isMale": true,
+              "isShiny": false
+            },
+            {
+              "id": 12,
+              "name": "butterfree",
+              "sprites": {
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/12.png",
+                "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/12.png",
+                "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/12.png",
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/12.png",
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/12.png",
+                "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/12.png",
+                "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/12.png"
+              },
+              "types": [
+                {
+                  "type": "bug"
+                },
+                {
+                  "type": "flying"
+                }
+              ]
+            },
+            {
+              "id": 14,
+              "name": "kakuna",
+              "sprites": {
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/14.png",
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/14.png",
+                "front_female": null,
+                "back_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/14.png",
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/14.png",
+                "front_shiny_female": null,
+                "back_shiny_female": null
+              },
+              "types": [
+                {
+                  "type": "bug"
+                },
+                {
+                  "type": "poison"
+                }
+              ],
+              "isMale": true,
+              "isShiny": false
+            },
+            {
+              "id": 18,
+              "name": "pidgeot",
+              "sprites": {
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png",
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/18.png",
+                "front_female": null,
+                "back_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/18.png",
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/18.png",
+                "front_shiny_female": null,
+                "back_shiny_female": null
+              },
+              "types": [
+                {
+                  "type": "normal"
+                },
+                {
+                  "type": "flying"
+                }
+              ],
+              "isMale": true,
+              "isShiny": false
+            },
+            {
+              "id": 23,
+              "name": "ekans",
+              "sprites": {
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png",
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/23.png",
+                "front_female": null,
+                "back_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/23.png",
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/23.png",
+                "front_shiny_female": null,
+                "back_shiny_female": null
+              },
+              "types": [
+                {
+                  "type": "poison"
+                }
+              ]
+            },
+            {
+              "id": 24,
+              "name": "arbok",
+              "sprites": {
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png",
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/24.png",
+                "front_female": null,
+                "back_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/24.png",
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/24.png",
+                "front_shiny_female": null,
+                "back_shiny_female": null
+              },
+              "types": [
+                {
+                  "type": "poison"
+                }
+              ]
+            },
+            {
+              "id": 25,
+              "name": "pikachu",
+              "sprites": {
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png",
+                "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/25.png",
+                "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/25.png",
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png",
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/25.png",
+                "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/25.png",
+                "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/25.png"
+              },
+              "types": [
+                {
+                  "type": "electric"
+                }
+              ],
+              "isMale": false,
+              "isShiny": true
+            }
+          ]
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/2.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/3.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/4.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/5.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/6.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/7.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/8.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/9.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/10.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/11.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/12.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/13.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/14.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/15.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/16.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/17.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/18.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/19.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/20.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/21.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/22.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/23.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/24.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/25.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/26.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/27.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/28.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/29.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/30.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/31.png",
+          "pokemones": []
+        },
+        {
+          "imagen": "/assets/imagenes/cajas/32.png",
+          "pokemones": []
+        }
+      ],
+      "ListaFavoritos": [],
+      "ListaEquipos": [
+        {
+          "nombre": "equipo 1",
+          "equipo": [
+            {
+              "id": 1752259165849,
+              "name": "delphox",
+              "sprites": {
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/655.png",
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/655.png",
+                "front_female": null,
+                "back_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/655.png",
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/655.png",
+                "front_shiny_female": null,
+                "back_shiny_female": null
+              },
+              "types": [
+                {
+                  "type": "fire"
+                },
+                {
+                  "type": "psychic"
+                }
+              ],
+              "isAlive": true
+            },
+            {
+              "id": 1752259169402,
+              "name": "Nicolas",
+              "sprites": {
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/675.png",
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/675.png",
+                "front_female": null,
+                "back_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/675.png",
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/675.png",
+                "front_shiny_female": null,
+                "back_shiny_female": null
+              },
+              "types": [
+                {
+                  "type": "fighting"
+                },
+                {
+                  "type": "dark"
+                }
+              ],
+              "isAlive": true
+            },
+            {
+              "id": 1752259172958,
+              "name": "tyrunt",
+              "sprites": {
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/696.png",
+                "back_default": null,
+                "front_female": null,
+                "back_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/696.png",
+                "back_shiny": null,
+                "front_shiny_female": null,
+                "back_shiny_female": null
+              },
+              "types": [
+                {
+                  "type": "rock"
+                },
+                {
+                  "type": "dragon"
+                }
+              ],
+              "isAlive": true
+            },
+            {
+              "id": 1752259178224,
+              "name": "diggersby",
+              "sprites": {
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/660.png",
+                "back_default": null,
+                "front_female": null,
+                "back_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/660.png",
+                "back_shiny": null,
+                "front_shiny_female": null,
+                "back_shiny_female": null
+              },
+              "types": [
+                {
+                  "type": "normal"
+                },
+                {
+                  "type": "ground"
+                }
+              ],
+              "isAlive": true
+            },
+            {
+              "id": 1752259194864,
+              "name": "dragalge",
+              "sprites": {
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/691.png",
+                "back_default": null,
+                "front_female": null,
+                "back_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/691.png",
+                "back_shiny": null,
+                "front_shiny_female": null,
+                "back_shiny_female": null
+              },
+              "types": [
+                {
+                  "type": "poison"
+                },
+                {
+                  "type": "dragon"
+                }
+              ],
+              "isAlive": true
+            },
+            {
+              "id": 1752259209703,
+              "name": "xerneas",
+              "sprites": {
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/716.png",
+                "back_default": null,
+                "front_female": null,
+                "back_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/716.png",
+                "back_shiny": null,
+                "front_shiny_female": null,
+                "back_shiny_female": null
+              },
+              "types": [
+                {
+                  "type": "fairy"
+                }
+              ],
+              "isAlive": true
+            }
+          ]
+        }
+      ],
+      "ListaObjetos": [
+        {
+          "nombre": "Poción",
+          "descripcion": "Medicina en espray que cura heridas y restaura 20 PS de un Pokémon.",
+          "generacion": "1",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/f/fd/latest/20230115173615/Poción_EP.png/32px-Poción_EP.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/f/fd/latest/20230115173615/Poci%C3%B3n_EP.png",
+          "id": "e1c3",
+          "cantidad": 16
+        },
+        {
+          "nombre": "Poción máxima",
+          "descripcion": "Medicina en espray que cura heridas y restaura todos los PS de un Pokémon.",
+          "generacion": "1",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/1/1b/latest/20230115181246/Poción_máxima_EP.png/32px-Poción_máxima_EP.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/1/1b/latest/20230115181246/Poci%C3%B3n_m%C3%A1xima_EP.png",
+          "id": "9b1e",
+          "cantidad": 99
+        },
+        {
+          "nombre": "Pokéseñuelo",
+          "descripcion": "Un objeto que atrae la atención de los Pokémon. Es útil para huir de un combate contra un Pokémon salvaje.",
+          "generacion": "5",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/5/58/latest/20140118200531/Pokéseñuelo_%28Dream_World%29.png/32px-Pokéseñuelo_%28Dream_World%29.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/5/58/latest/20140118200531/Pok%C3%A9se%C3%B1uelo_%28Dream_World%29.png",
+          "id": "093b",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Porcehelado",
+          "descripcion": "Especialidad de Ciudad Porcelana. Cura los problemas de estado de un Pokémon.",
+          "generacion": "5",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/c/c0/latest/20140118192403/Porcehelado_%28Dream_World%29.png/32px-Porcehelado_%28Dream_World%29.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/c/c0/latest/20140118192403/Porcehelado_%28Dream_World%29.png",
+          "id": "2b76",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Cupón botín",
+          "descripcion": "Poder Rotom que triplica el dinero ganado tras un combate.",
+          "generacion": "7",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/c/cd/latest/20171126031041/Cupón_botín.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/c/cd/latest/20171126031041/Cup%C3%B3n_bot%C3%ADn.png",
+          "id": "a52d",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Cupón captura",
+          "descripcion": "Poder Rotom que aumenta mucho la probabilidad de capturar al Pokémon salvaje al que te estés enfrentando.",
+          "generacion": "7",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/5/5d/latest/20171126031238/Cupón_captura.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/5/5d/latest/20171126031238/Cup%C3%B3n_captura.png",
+          "id": "aafd",
+          "cantidad": 2
+        },
+        {
+          "nombre": "Cupón eclosión",
+          "descripcion": "Poder Rotom que hace que los huevos eclosionen mucho antes.",
+          "generacion": "7",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/5/51/latest/20171126031340/Cupón_eclosión.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/5/51/latest/20171126031340/Cup%C3%B3n_eclosi%C3%B3n.png",
+          "id": "a6c6",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Cupón PP",
+          "descripcion": "Poder Rotom que restaura todos los PP de los Pokémon de tu equipo que estén combatiendo.",
+          "generacion": "7",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/6/6e/latest/20171126031551/Cupón_PP.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/6/6e/latest/20171126031551/Cup%C3%B3n_PP.png",
+          "id": "f205",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Cupón PS",
+          "descripcion": "Poder Rotom que restaura todos los PS de los Pokémon de tu equipo que estén combatiendo.",
+          "generacion": "7",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/c/c7/latest/20171126031707/Cupón_PS.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/c/c7/latest/20171126031707/Cup%C3%B3n_PS.png",
+          "id": "f481",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Cupón rebaja",
+          "descripcion": "Poder Rotom que reduce a la mitad el coste de los artículos en las Tiendas Pokémon.",
+          "generacion": "7",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/8/87/latest/20171126031822/Cupón_rebaja.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/8/87/latest/20171126031822/Cup%C3%B3n_rebaja.png",
+          "id": "6017",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Cupón exp",
+          "descripcion": "Poder Rotom que incrementa ligeramente los puntos de experiencia obtenidos en combate.",
+          "generacion": "7",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/9/95/latest/20171126031441/Cupón_exp.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/9/95/latest/20171126031441/Cup%C3%B3n_exp.png",
+          "id": "99ca",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Cupón amistad",
+          "descripcion": "Poder Rotom que hace que el grado de amistad de los Pokémon del equipo aumente más rápido.",
+          "generacion": "7",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/5/54/latest/20171126030712/Cupón_amistad.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/5/54/latest/20171126030712/Cup%C3%B3n_amistad.png",
+          "id": "ebd8",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Poké Ball (Hisui)",
+          "descripcion": "Misterioso instrumento con forma de bola que se lanza a un Pokémon salvaje para capturarlo. Puede elaborarse manualmente si se reúnen los materiales necesarios.",
+          "generacion": "8",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/d/da/latest/20240124235420/Poké_Ball_%28Hisui%29_LPA.png/32px-Poké_Ball_%28Hisui%29_LPA.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/8/87/latest/20210226185630/Pok%C3%A9_Ball_%28Hisui%29_%28Ilustraci%C3%B3n%29.png",
+          "id": "ea08",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Pokémuñeca",
+          "descripcion": "Juguete de madera tallado con forma de Pokémon. Se puede vender en el bazar.",
+          "generacion": "8",
+          "sprite": "https://images.wikidexcdn.net/mwuploads/wikidex/thumb/e/e0/latest/20220128184001/Pokémuñeca_LPA.png/32px-Pokémuñeca_LPA.png",
+          "fullImage": "https://images.wikidexcdn.net/mwuploads/wikidex/e/e0/latest/20220128184001/Pok%C3%A9mu%C3%B1eca_LPA.png",
+          "id": "1e5d",
+          "cantidad": 2
+        }
+      ]
+    }
   ]
 }

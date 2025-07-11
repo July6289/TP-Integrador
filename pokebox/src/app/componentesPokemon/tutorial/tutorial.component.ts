@@ -75,7 +75,7 @@ export class TutorialComponent implements OnInit {
     {
       titulo: "Perfil",
       imagen: "/assets/imagenes/tutorial/12.png",
-      texto: "Dentro del perfil podrás ver tu mail, tu contraseña, tus combates ganados y una imagen de perfil, la cual podras elegir entre una de las que aparecerán al presionar el boton “Cambiar Avatar”. además puedes modificar tu contraseña y tu email (excepto si entraste por google) o eliminar tu cuenta con su respectivo botón."
+      texto: "Dentro del perfil podrás ver tu mail, tu contraseña, tus combates ganados y una imagen de perfil, la cual podras elegir entre una de las que aparecerán al presionar el boton “Cambiar Avatar”. Además puedes modificar tu contraseña y tu email (excepto si entraste por google) o eliminar tu cuenta con su respectivo botón."
     },
     {
       titulo: "Lista de objetos",
