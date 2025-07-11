@@ -19,7 +19,14 @@
         <div class="user-info">
           @if (isLoggedWithouthGoogle) {
           <label>Contraseña:</label>
-          <span>{{ usuario.Password }}</span>
+          <span>
+    <div class="password-visual">
+    <span>{{ visible ? usuario.Password : '••••••••' }}</span>
+    <span class="eyeicon" (click)="viewpass()" title="Mostrar/Ocultar contraseña">
+      <i [ngClass]="visible ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"></i>
+    </span>
+  </div>
+  </span>
           }
           @else {
           <p style="color: green">Usuario autenticado con Google!</p>

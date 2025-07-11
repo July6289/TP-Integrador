@@ -21,6 +21,8 @@ import { EquipoPokemonService } from '../../pokeservices/equipo.service';
 
 export class PerfilComponent implements OnInit, OnDestroy {
   id: string | null = ""
+  visible: boolean = false;
+ changetype: boolean = true;
   posicion: number = 0;
   posicion2: number = 0;
   isModifyShowing: boolean = false;
@@ -133,7 +135,10 @@ mostrarBotonVerificarCorreo: boolean = false;
     )
   }
 
-
+ viewpass() {
+    this.visible = !this.visible
+    this.changetype = !this.changetype
+  }
 
   cerrarTutorial() {
     this.tutorialService.ocultarTutorial();

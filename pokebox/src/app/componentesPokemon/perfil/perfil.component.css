@@ -16,6 +16,24 @@
   display: flex;
 }
 
+.password-visual {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.eyeicon {
+  cursor: pointer;
+  font-size: 1rem;
+  color: #333;
+  transition: color 0.2s ease;
+}
+
+.eyeicon:hover {
+  color: #000;
+}
+
 .user-content {
   align-items: flex-start;
   gap: 1.25rem;
