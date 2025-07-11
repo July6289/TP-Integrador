@@ -15,6 +15,51 @@
 .confirmation-buttons {
   display: flex;
 }
+.password-container {
+  position: relative;
+  width: 100%;
+  max-width: 200px; /* Igual que tus inputs */
+
+}
+
+.password-input {
+   width: 100%;
+  padding: 10px;
+  padding-right: 50px; /*  Más espacio para evitar que el texto choque con el ícono */
+  box-sizing: border-box;
+  border-radius: 0.3125rem;
+  border: 0.0625rem solid #ccc;
+  background-color: #fff;
+}
+
+.password-input:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+.input-usuario {
+  width: 130px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 0.3125rem;
+  border: 0.0625rem solid #ccc;
+}
+.input-ancho-uniforme {
+  width: 100%;
+  max-width: 200px;
+}
+.eyeicon2 {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #333;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+  background-color: #fff;
+  padding-left: 6px; /* Opcional: separa visualmente del texto */
+}
 
 .password-visual {
   display: flex;
@@ -217,6 +262,7 @@
   font-size: 1.5rem;
 }
 
+
 .modify-profile,
 .botones,
 .delete-confirmation {
@@ -282,7 +328,11 @@
 }
 
 .form-group input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
+  max-width: 200px; /* 👈 nuevo límite */
   padding: 0.625rem;
   margin-top: 0.3125rem;
   border-radius: 0.3125rem;

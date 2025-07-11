@@ -152,6 +152,8 @@ mostrarBotonVerificarCorreo: boolean = false;
     this.isCardShowing = true;
     this.isModifyShowing = false;
     this.validadorMensajeEspecifico=false
+    this.visible = false;
+    this.changetype = true;
   }
 
   dbUsuarioId() {
@@ -208,6 +210,8 @@ mostrarBotonVerificarCorreo: boolean = false;
               this.isCardShowing = true;
               this.isModifyShowing = false;
               this.formularioDatosCortos.reset();
+              this.visible = false;
+              this.changetype = true;
             },
             error: (e: Error) => {
               console.log(e.message);
@@ -227,6 +231,8 @@ mostrarBotonVerificarCorreo: boolean = false;
             Password: this.usuario.Password || '' // si es nulo, que quede vacío
           });
     this.isModifyShowing = true;
+    this.visible = false;
+ this.changetype = true;
   }
 
   toogleDelete() {

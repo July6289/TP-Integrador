@@ -65,7 +65,7 @@
         <!-- Campo de Usuario -->
         <div class="form-group">
           <label for="">Nombre de Usuario:</label>
-          <input type="text" formControlName="Username">
+          <input type="text" formControlName="Username" class="input-usuario">
          <p class="Error" [class.visible]="formularioDatosCortos.controls['Username'].touched&&formularioDatosCortos.controls['Username'].errors">
 
 
@@ -83,9 +83,19 @@
         </div>
 
         <!-- Campo de Contraseña -->
-        <div class="form-group">
-          <label for="">Contraseña:</label>
-          <input type="text" formControlName="Password">
+  <div class="form-group">
+  <label for="">Contraseña:</label>
+  <div class="password-container">
+    <input
+      [type]="changetype ? 'password' : 'text'"
+      formControlName="Password"
+      id="password"
+      class="password-input"
+    />
+    <span class="eyeicon2" (click)="viewpass()" title="Mostrar/Ocultar contraseña">
+      <i [ngClass]="visible ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"></i>
+    </span>
+  </div>
           <p class="Error" [class.visible]="formularioDatosCortos.controls['Password'].touched&&formularioDatosCortos.controls['Password'].errors">
 
 
