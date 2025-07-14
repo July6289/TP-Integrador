@@ -51,9 +51,6 @@ export class UsuarioService {
   dbGuardarDatos(usuario: Usuario, secretId: string | null): void {
     if (usuario.Password !== '') {
       this.putUsuario(usuario, secretId).subscribe({
-        next: () => {
-          console.log('Usuario Guardado');
-        },
         error: (e: Error) => {
           console.error(e.message);
         },

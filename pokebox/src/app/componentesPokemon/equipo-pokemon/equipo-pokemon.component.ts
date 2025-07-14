@@ -66,7 +66,6 @@ export class EquipoPokemonComponent implements OnInit {
             this.usuario.box[this.posicion].pokemones = caja.pokemones;
             this.posicion++;
           })
-          console.log(valor.box)
           this.usuario.ListaFavoritos = [...valor.ListaFavoritos];
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
           this.usuario.ListaEquipos = [...valor.ListaEquipos]

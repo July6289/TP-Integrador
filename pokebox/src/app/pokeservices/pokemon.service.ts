@@ -207,7 +207,6 @@ export class PokeservicesService {
     // Guardar cambios en el backend si la clave está definida
     if (this.clave) {
       this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
-        next: () => console.log('Usuario guardado con éxito.'),
         error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
       });
     }
@@ -279,7 +278,6 @@ export class PokeservicesService {
         this.usuario.ListaFavoritos = this.favoritosSubject.value
         this.usuario.ListaEquipos = [...valor.ListaEquipos]
         this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
-          next: () => console.log('favoritos actualizado con éxito.'),
           error: (e: Error) => console.error('Error al guardar el usuario:', e.message),
         });
       },
@@ -298,7 +296,6 @@ export class PokeservicesService {
         this.usuario.ListaFavoritos = this.favoritosSubject.value
         this.usuario.ListaEquipos = [...valor.ListaEquipos]
         this.usuarioService.putUsuario(this.usuario, this.clave).subscribe({
-          next: () => console.log('favorito eliminado con éxito.'),
           error: (e: Error) => console.error('Error al actualizar el favorito:', e.message),
         });
       },

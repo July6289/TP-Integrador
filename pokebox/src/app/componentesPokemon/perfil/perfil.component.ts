@@ -125,7 +125,6 @@ mostrarBotonVerificarCorreo: boolean = false;
     this.usuarioService.putUsuario(this.usuario, this.id).subscribe(
       {
         next: () => {
-          console.log("imagen actualizada con exito");
           this.usarioServicio.cambiarUrl(this.usuario.UrlImagenPerfil)
         },
         error: (e: Error) => {
@@ -197,7 +196,12 @@ mostrarBotonVerificarCorreo: boolean = false;
 
   addUsuario() {
     if (this.formularioDatosCortos.invalid) {
-      console.log("Error");
+      this.validadorMensajeEspecifico=true
+      this.MensajeEspecifico='Campos incorrectos, valide los campos y vuelva a intentarlo'
+
+      setTimeout(() => {
+
+      }, 5000);
     }
     else {
       const datosFormulario = this.formularioDatosCortos.getRawValue();
@@ -206,7 +210,6 @@ mostrarBotonVerificarCorreo: boolean = false;
         this.usuarioService.putUsuario(this.usuario, this.id).subscribe(
           {
             next: () => {
-              console.log("enviado con exito");
               this.isCardShowing = true;
               this.isModifyShowing = false;
               this.formularioDatosCortos.reset();

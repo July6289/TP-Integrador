@@ -267,7 +267,11 @@ export class PaginaLogueoComponent {
     const datosUsuario = this.formularioLogueo.getRawValue();
 
     if (this.formularioLogueo.invalid) {
-      console.log("Error");
+      this.validadorMensajeEspecifico=true
+      this.mensajeEspecifico='campos invalidos, verifique su validez y vuelva a intentarlo'
+      setTimeout(() => {
+                this.mensajeEspecifico=''
+              }, 5000);
     }
     else {
       this.usuarioService.getUsuariobyName(datosUsuario.Email).subscribe(

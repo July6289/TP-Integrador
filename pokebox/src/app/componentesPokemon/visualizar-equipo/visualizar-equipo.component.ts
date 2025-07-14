@@ -63,7 +63,6 @@ export class VisualizarEquipoComponent implements OnInit {
           this.usuario.ListaObjetos = [...valor.ListaObjetos];
           this.usuario.ListaEquipos = [...valor.ListaEquipos]
 
-          console.log(this.usuario.ListaEquipos)
 
           this.equipoPokemonService.setEquipo(this.usuario.ListaEquipos)
 

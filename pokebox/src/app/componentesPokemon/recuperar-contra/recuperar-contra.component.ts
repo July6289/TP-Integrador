@@ -53,15 +53,23 @@ export class RecuperarContraComponent implements OnInit {
           this.email = email;
           this.message = `Código válido. Cambia la contraseña para: ${email}`;
           this.isMessageShowing = true;
+          setTimeout(() => {
+            this.message=''
+          }, 5000);
         })
         .catch(error => {
           this.message = `Error: Código inválido o expirado.`;
           this.isMessageShowing = true;
-          console.log(error);
+           setTimeout(() => {
+            this.message=''
+          }, 5000);
         });
     } else {
       this.message = 'Enlace de verificación inválido.';
       this.isMessageShowing = true;
+       setTimeout(() => {
+            this.message=''
+          }, 5000);
     }
   }
 
@@ -70,14 +78,16 @@ export class RecuperarContraComponent implements OnInit {
     if (!this.actionCode) {
       this.message = 'Código inválido.';
       this.isMessageShowing = true;
+       setTimeout(() => {
+            this.message=''
+          }, 5000);
       return;
     }
     const datosFormulario = this.formularioContrasenia.getRawValue();
 
     confirmPasswordReset(this.auth, this.actionCode, datosFormulario.Password)
       .then(() => {
-        this.message = 'Contraseña cambiada exitosamente.';
-        this.isMessageShowing = true;
+
         // Aquí actualizamos el backend
         this.usuarioServicio.getUsuariobyName(this.email).subscribe(
           {
@@ -89,10 +99,17 @@ export class RecuperarContraComponent implements OnInit {
                 this.usuarioServicio.putUsuario(this.usuarioDato, this.usuarioDato.id ?? null).subscribe(//verifica si es indefinido o null o tiene valor
                   {
                     next: () => {
-                      console.log('Usuario Guardado');
+                      this.message = 'Contraseña cambiada exitosamente, vuelve a la página de inicio de sesion e ingresa tu nueva contraseña.';
+                      this.isMessageShowing = true;
+                      setTimeout(() => {
+                      this.message=''
+                      }, 6000);
                     },
                     error: (e: Error) => {
-                      console.error(e.message);
+                      this.message = `Error al cambiar la contraseña: ${e.message}`;
+                       setTimeout(() => {
+                      this.message=''
+                      }, 6000);
                     },
                   }
                 )
@@ -103,6 +120,9 @@ export class RecuperarContraComponent implements OnInit {
       .catch(error => {
         this.message = `Error al cambiar la contraseña: ${error.message}`;
         this.isMessageShowing = true;
+         setTimeout(() => {
+            this.message=''
+          }, 5000);
       });
   }
 
