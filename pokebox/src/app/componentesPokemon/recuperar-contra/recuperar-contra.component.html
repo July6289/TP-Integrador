@@ -24,7 +24,7 @@
     <span>La contraseña debe incluir al menos una mayúscula, una minúscula, un número y un símbolo.</span>
     }
     @else if (formularioContrasenia.controls['Password'].getError('minlength')&&formularioContrasenia.controls['Password'].touched) {
-    <span>La contraseña no puede contener un minimo de 8 letras </span>
+    <span>la contraseña debe tener al menos 8 caracteres</span>
     }
 
     @else if(isMessageShowing) {

@@ -30,7 +30,7 @@
     }
 
     @if (formularioRegistro.controls['Username'].getError('minlength')&&formularioRegistro.controls['Username'].touched) {
-    <span>El usuario no puede contener un minimo de 6 letras</span>
+    <span>El usuario debe tener al menos 4 caracteres</span>
     }
   </p>
 
@@ -50,7 +50,7 @@
     <span>La contraseña debe incluir al menos una mayúscula, una minúscula, un número y un símbolo.</span>
     }
     @else if (formularioRegistro.controls['Password'].getError('minlength')&&formularioRegistro.controls['Password'].touched) {
-    <span>La contraseña no puede contener un minimo de 8 letras </span>
+    <span>la contraseña debe tener al menos 8 caracteres</span>
     }
 
     @if(validadorMensajeEspecifico&&!formularioRegistro.invalid) {
